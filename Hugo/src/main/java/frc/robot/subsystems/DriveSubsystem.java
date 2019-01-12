@@ -8,12 +8,15 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel;
-
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
+
+import frc.robot.RobotMap;
 import frc.robot.commands.DriveCommand;
 
 
@@ -23,11 +26,15 @@ import frc.robot.commands.DriveCommand;
 public class DriveSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  public static final Spark motorLeft =new Spark(1);
-  public static final Spark motorRight = new Spark(0);
-  public static final CANSparkMax test = new CANSparkMax(0, CANSparkMaxLowLevel.MotorType.kBrushless);
 
-  public static DifferentialDrive drive = new DifferentialDrive(motorLeft, motorRight);
+  public static final Spark motorLeft =new Spark(RobotMap.LEFT_MOTOR);
+  public static final Spark motorRight = new Spark(RobotMap.RIGHT_MOTOR);
+  public static final CANSparkMax test = new CANSparkMax(0, MotorType.kBrushless);
+
+  public static SpeedController leftSide = new SpeedControllerGroup(motorLeft);
+  public static SpeedController rightSide = new SpeedControllerGroup(motorRight);
+
+  public static DifferentialDrive drive = new DifferentialDrive(leftSide, rightSide);
 
   @Override
   public void initDefaultCommand() {

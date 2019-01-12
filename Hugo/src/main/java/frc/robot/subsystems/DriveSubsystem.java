@@ -7,11 +7,13 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel;
+
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
-import frc.robot.Robot;
 import frc.robot.commands.DriveCommand;
 
 
@@ -23,6 +25,8 @@ public class DriveSubsystem extends Subsystem {
   // here. Call these from Commands.
   public static final Spark motorLeft =new Spark(1);
   public static final Spark motorRight = new Spark(0);
+  public static final CANSparkMax test = new CANSparkMax(0, CANSparkMaxLowLevel.MotorType.kBrushless);
+
   public static DifferentialDrive drive = new DifferentialDrive(motorLeft, motorRight);
 
   @Override

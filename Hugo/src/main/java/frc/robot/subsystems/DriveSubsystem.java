@@ -7,6 +7,9 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
@@ -28,6 +31,7 @@ public class DriveSubsystem extends Subsystem {
 
   public static SpeedController leftSide = new SpeedControllerGroup(motorLeft);
   public static SpeedController rightSide = new SpeedControllerGroup(motorRight);
+  public static final CANSparkMax test = new CANSparkMax(0, MotorType.kBrushless);
 
   public static DifferentialDrive drive = new DifferentialDrive(leftSide, rightSide);
 

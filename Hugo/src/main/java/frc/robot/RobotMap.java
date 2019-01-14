@@ -25,4 +25,6 @@ public class RobotMap {
   // public static int rangefinderModule = 1;
   public static final int LEFT_MOTOR = 1;
   public static final int RIGHT_MOTOR = 0;
+
+  public static final int CANSpark1 = 0;
 }

@@ -7,18 +7,37 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
 
 /**
  * Add your docs here.
  */
-public class GDMsubsystem extends Subsystem {
+public class PneumaticsSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
+  public static Compressor pressyBoi = new Compressor(0);
+  DoubleSolenoid beak = new DoubleSolenoid(RobotMap.SOLENOID_1, RobotMap.SOLENOID_2);
+
+  public void initalize() {
+    pressyBoi.setClosedLoopControl(true);
+    beak.set(Value.kReverse);
+  }
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+  }
+
+  public void setBeakForward(boolean isForward) {
+    if (isForward) {
+      beak.set(Value.kForward);
+    } else {
+      beak.set(Value.kReverse);
+    }
   }
 }

@@ -26,5 +26,8 @@ public class RobotMap {
   public static final int LEFT_MOTOR = 1;
   public static final int RIGHT_MOTOR = 0;
 
-  public static final int CANSpark1 = 0;
+  public static final int CAN_SPARK_1 = 0;
+
+  public static final int SOLENOID_1 = 1;
+  public static final int SOLENOID_2 = 2;
 }

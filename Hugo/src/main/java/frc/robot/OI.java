@@ -8,6 +8,8 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.buttons.Button;
+import frc.robot.commands.openBeak;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -41,5 +43,14 @@ public class OI {
   // Start the command when the button is released and let it run the command
   // until it is finished as determined by it's isFinished method.
   // button.whenReleased(new ExampleCommand());
+
+  //set up controlers
  public static XboxController driveController = new XboxController(0);
+
+ public OI() {
+   if (driveController.getAButton()) {
+     new openBeak();
+   }
+ }
+
 }

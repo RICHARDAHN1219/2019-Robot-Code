@@ -29,7 +29,7 @@ public class DriveSubsystem extends Subsystem {
 
   public static final Spark motorLeft =new Spark(RobotMap.LEFT_MOTOR);
   public static final Spark motorRight = new Spark(RobotMap.RIGHT_MOTOR);
-  public static final CANSparkMax test = new CANSparkMax(RobotMap.CANSpark1, MotorType.kBrushless);
+  public static final CANSparkMax test = new CANSparkMax(RobotMap.CAN_SPARK_1, MotorType.kBrushless);
 
   public static SpeedController leftSide = new SpeedControllerGroup(motorLeft);
   public static SpeedController rightSide = new SpeedControllerGroup(motorRight);

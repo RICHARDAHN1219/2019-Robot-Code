@@ -30,4 +30,7 @@ public class RobotMap {
 
   public static final int SOLENOID_1 = 1;
   public static final int SOLENOID_2 = 2;
+
+  public static final int AButton = 1;
+  public static final int BButton = 2;
 }

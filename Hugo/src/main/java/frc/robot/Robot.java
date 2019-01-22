@@ -14,9 +14,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ClimbCommand;
 import frc.robot.subsystems.DriveSubsystem;
-import frc.robot.subsystems.PneumaticsSubsystem;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 
-/**
+/**\
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the TimedRobot
  * documentation. If you change the name of this class or the package after
@@ -27,10 +27,12 @@ public class Robot extends TimedRobot {
  
   public static OI m_oi;
   public static DriveSubsystem m_drive;
-  public static PneumaticsSubsystem m_pneumatics;
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
+  public static DoubleSolenoid shiftyBuisness = new DoubleSolenoid(0, 1);
+  public static DoubleSolenoid obligitory1 = new DoubleSolenoid(2, 3);
+  public static DoubleSolenoid obligitory2 = new DoubleSolenoid(4, 5);
 
   /**
    * This function is run when the robot is first started up and should be
@@ -40,7 +42,6 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     m_oi = new OI();
     m_drive = new DriveSubsystem();
-    m_pneumatics = new PneumaticsSubsystem();
 
     m_chooser.setDefaultOption("Default Auto", new ClimbCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());

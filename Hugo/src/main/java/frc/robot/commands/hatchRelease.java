@@ -9,23 +9,25 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 
-public class openBeak extends Command {
-  public openBeak() {
+
+public class hatchRelease extends Command {
+  public hatchRelease() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.m_pneumatics);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.m_pneumatics.setBeakForward(true);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    Robot.obligitory1.set(DoubleSolenoid.Value.kReverse);
+    Robot.obligitory2.set(DoubleSolenoid.Value.kForward);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -43,6 +45,5 @@ public class openBeak extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.m_pneumatics.setBeakForward(false);
   }
 }

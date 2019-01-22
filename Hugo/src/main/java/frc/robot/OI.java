@@ -9,7 +9,11 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
-import frc.robot.commands.openBeak;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.hatchRelease;
+import frc.robot.commands.hatchRetrieve;
+import frc.robot.commands.shiftyDOWN;
+import frc.robot.commands.shiftyUP;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -46,11 +50,13 @@ public class OI {
 
   //set up controlers
  public static XboxController driveController = new XboxController(0);
-
+ Button ShiftyButton = new JoystickButton(driveController, RobotMap.AButton);
+ Button HatchyButton = new JoystickButton(driveController, RobotMap.BButton);
  public OI() {
-   if (driveController.getAButton()) {
-     new openBeak();
-   }
+  ShiftyButton.whileHeld(new shiftyDOWN());
+  ShiftyButton.whenReleased(new shiftyUP());
+  HatchyButton.whileHeld(new hatchRelease());
+  HatchyButton.whenReleased(new hatchRetrieve());
  }
 
 }

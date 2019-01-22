@@ -28,4 +28,5 @@ public class RobotMap {
   public static final int NEO_3 = 3;
   public static final int NEO_4 = 4;
   public static final int AButton = 1;
+  public static final int Bbutton = 2;
 }

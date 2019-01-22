@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.HatchRelease;
 import frc.robot.commands.HatchRetrieve;
+import frc.robot.commands.spinnyvisiondetectcommand;
 
 
 /**
@@ -49,8 +50,10 @@ public class OI {
   // button.whenReleased(new ExampleCommand());
   public static XboxController driveController = new XboxController(0);
   Button PushyButton = new JoystickButton(driveController, RobotMap.AButton);
+  Button SpinnyButton = new JoystickButton(driveController, RobotMap.Bbutton);
   public OI() {
   PushyButton.whileHeld(new HatchRetrieve());
   PushyButton.whenReleased(new HatchRelease());
+  SpinnyButton.whileHeld(new spinnyvisiondetectcommand());
   }
 }

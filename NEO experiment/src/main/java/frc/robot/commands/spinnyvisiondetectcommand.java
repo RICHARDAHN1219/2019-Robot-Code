@@ -6,12 +6,15 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands;
-import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 
-public class HatchRelease extends Command {
-  public HatchRelease() {
+import edu.wpi.first.networktables.EntryListenerFlags;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
+
+public class spinnyvisiondetectcommand extends Command {
+  public spinnyvisiondetectcommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -24,9 +27,14 @@ public class HatchRelease extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.exampleDouble.set(DoubleSolenoid.Value.kReverse);
-  
-}
+    System.out.println("Button is held down");
+    NetworkTableInstance inst = NetworkTableInstance.getDefault();
+    edu.wpi.first.networktables.NetworkTable table = inst.getTable("limelight-one");
+    NetworkTableEntry tvEntry = table.getEntry("tv");
+    tvEntry.addListener(event -> {
+    System.out.println("Vision Lock is currently " + event.value.getValue());
+ }, EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
+  }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override

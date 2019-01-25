@@ -7,11 +7,10 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.networktables.EntryListenerFlags;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTable;
 
 public class spinnyvisiondetectcommand extends Command {
   public spinnyvisiondetectcommand() {
@@ -28,18 +27,17 @@ public class spinnyvisiondetectcommand extends Command {
   @Override
   protected void execute() {
     System.out.println("Button is held down");
-    NetworkTableInstance inst = NetworkTableInstance.getDefault();
-    edu.wpi.first.networktables.NetworkTable table = inst.getTable("limelight-one");
-    NetworkTableEntry tvEntry = table.getEntry("tv");
-    tvEntry.addListener(event -> {
-    System.out.println("Vision Lock is currently " + event.value.getValue());
- }, EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
+    NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight-one");
+
+    NetworkTableEntry tv = table.getEntry("tv");
+    NetworkTableEntry tx = table.getEntry("tx");
+    System.out.format("Vision lock is currently: %f%n", tv.getDouble(3.14));
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true

@@ -52,8 +52,8 @@ public class OI {
   Button PushyButton = new JoystickButton(driveController, RobotMap.AButton);
   Button SpinnyButton = new JoystickButton(driveController, RobotMap.Bbutton);
   public OI() {
-  PushyButton.whileHeld(new HatchRetrieve());
-  PushyButton.whenReleased(new HatchRelease());
-  SpinnyButton.whileHeld(new spinnyvisiondetectcommand());
+    PushyButton.whileHeld(new HatchRetrieve());
+    PushyButton.whenReleased(new HatchRelease());
+    SpinnyButton.whileHeld(new spinnyvisiondetectcommand());
   }
 }

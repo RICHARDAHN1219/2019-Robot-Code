@@ -31,7 +31,7 @@ public class spinnyvisiondetectcommand extends Command {
     NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight-one");
 
     NetworkTableEntry tv = table.getEntry("tv");
-    System.out.format("Vision lock is currently: %f", tv.getDouble(3.14));
+    System.out.format("Vision lock is currently: %f%n", tv.getDouble(3.14));
   }
 
   // Make this return true when this Command no longer needs to run execute()

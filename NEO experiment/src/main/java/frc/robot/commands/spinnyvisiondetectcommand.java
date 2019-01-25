@@ -7,7 +7,6 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.networktables.EntryListenerFlags;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Command;
@@ -31,6 +30,7 @@ public class spinnyvisiondetectcommand extends Command {
     NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight-one");
 
     NetworkTableEntry tv = table.getEntry("tv");
+    NetworkTableEntry tx = table.getEntry("tx");
     System.out.format("Vision lock is currently: %f%n", tv.getDouble(3.14));
   }
 

@@ -10,17 +10,14 @@ package frc.robot.commands;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SendableBuilder;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.Robot;
 import edu.wpi.first.networktables.NetworkTable;
-import frc.robot.subsystems.DriveSubsystem;
 
 
 public class spinnyvisiondetectcommand extends Command {
   
-  public static final double Kp = -0.04;
+  public static final double Kp = -0.08;
+  public static double visionLayout = -1.0;
 
   public spinnyvisiondetectcommand() {
     // Use requires() here to declare subsystem dependencies
@@ -30,7 +27,6 @@ public class spinnyvisiondetectcommand extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -42,11 +38,22 @@ public class spinnyvisiondetectcommand extends Command {
 
     NetworkTableEntry tv = table.getEntry("tv");
     NetworkTableEntry tx = table.getEntry("tx");
+
     double TX = tx.getDouble(3.14);
-    //System.out.format("Vision lock is currently: %f%n", tv.getDouble(3.14));
+    double TV = tv.getDouble(3.14);
+
+    if (TV != visionLayout) {
+      visionLayout = TV;
+
+      if (TV == 1.0) {
+        System.out.println("Vision lock aquired");
+      } else {
+        System.out.println("Vision lock lost");
+      }
+    }
+
     System.out.format("steering is : %f%n", Kp * TX);
 
-    double heading_error = TX;
     double steering_adjust = Kp * TX;
 
     Robot.m_drive.Drive(0, steering_adjust);

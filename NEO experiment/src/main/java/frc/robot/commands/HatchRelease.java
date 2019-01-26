@@ -10,8 +10,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
-public class HatchRelease extends Command {
-  public HatchRelease() {
+public class hatchRelease extends Command {
+  public hatchRelease() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }

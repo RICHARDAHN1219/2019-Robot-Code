@@ -7,16 +7,15 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.OI;
-import frc.robot.Robot;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 
-public class climbCommand extends Command {
-  public climbCommand() {
+public class visionApproachCommand extends Command {
+  public visionApproachCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.m_climb);
   }
 
   // Called just before this Command runs the first time
@@ -27,7 +26,13 @@ public class climbCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_climb.setClimberSpeed(-OI.operatorController.getY(Hand.kLeft));
+    NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight-one");
+
+    NetworkTableEntry ta = table.getEntry("ta");
+
+    double TA = ta.getDouble(3.14);
+
+    System.out.format("Area is : %f%n", TA);
   }
 
   // Make this return true when this Command no longer needs to run execute()

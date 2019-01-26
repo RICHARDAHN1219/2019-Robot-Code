@@ -11,8 +11,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
-public class HatchRetrieve extends Command {
-  public HatchRetrieve() {
+public class hatchRetrieve extends Command {
+  public hatchRetrieve() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }

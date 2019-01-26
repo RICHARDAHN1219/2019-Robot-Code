@@ -14,12 +14,12 @@ import frc.robot.Robot;
 import edu.wpi.first.networktables.NetworkTable;
 
 
-public class spinnyvisiondetectcommand extends Command {
+public class visionTargetingCommand extends Command {
   
-  public static final double Kp = -0.08;
+  public static final double Kp = -0.1;
   public static double visionLayout = -1.0;
 
-  public spinnyvisiondetectcommand() {
+  public visionTargetingCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -32,9 +32,7 @@ public class spinnyvisiondetectcommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //System.out.println("Button is held down");
     NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight-one");
-    //SmartDashboard.putNumber("Kp Value", Kp);
 
     NetworkTableEntry tv = table.getEntry("tv");
     NetworkTableEntry tx = table.getEntry("tx");
@@ -57,8 +55,6 @@ public class spinnyvisiondetectcommand extends Command {
     double steering_adjust = Kp * TX;
 
     Robot.m_drive.Drive(0, steering_adjust);
-    //zRotation += steering_adjust;
-    
   }
 
   // Make this return true when this Command no longer needs to run execute()

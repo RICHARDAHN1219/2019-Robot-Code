@@ -16,13 +16,13 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 
 
 import frc.robot.RobotMap;
-import frc.robot.commands.DriveCommand;
+import frc.robot.commands.driveCommand;
 
 
 /**
  * Add your docs here.
  */
-public class DriveSubsystem extends Subsystem {
+public class driveSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
@@ -40,7 +40,7 @@ public class DriveSubsystem extends Subsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    setDefaultCommand(new DriveCommand());
+    setDefaultCommand(new driveCommand());
   }
   
   public void Drive(double xSpeed, double zRotation) {

@@ -10,9 +10,10 @@ package frc.robot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.HatchRelease;
-import frc.robot.commands.HatchRetrieve;
-import frc.robot.commands.spinnyvisiondetectcommand;
+import frc.robot.commands.hatchRelease;
+import frc.robot.commands.hatchRetrieve;
+import frc.robot.commands.visionTargetingCommand;
+import frc.robot.commands.visionApproachCommand;
 
 
 /**
@@ -54,12 +55,14 @@ public class OI {
   public static XboxController operatorController = new XboxController(1);
   
   //buttons on driveController
-  Button PushyButton = new JoystickButton(driveController, RobotMap.AButton);
-  Button SpinnyButton = new JoystickButton(driveController, RobotMap.Bbutton);
-  
+  Button hatchButton = new JoystickButton(driveController, RobotMap.AButton);
+  Button targetingButton = new JoystickButton(driveController, RobotMap.Bbutton);
+  Button approachButton = new JoystickButton(driveController, RobotMap.YButton);
+
   public OI() {
-    PushyButton.whileHeld(new HatchRetrieve());
-    PushyButton.whenReleased(new HatchRelease());
-    SpinnyButton.whileHeld(new spinnyvisiondetectcommand());
+    hatchButton.whileHeld(new hatchRetrieve());
+    hatchButton.whenReleased(new hatchRelease());
+    targetingButton.whileHeld(new visionTargetingCommand());
+    approachButton.whileHeld(new visionApproachCommand());
   }
 }

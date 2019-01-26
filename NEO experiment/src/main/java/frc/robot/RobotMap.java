@@ -34,4 +34,6 @@ public class RobotMap {
   //buttons
   public static final int AButton = 1;
   public static final int Bbutton = 2;
+  public static final int XButton = 3;
+  public static final int YButton = 4;
 }

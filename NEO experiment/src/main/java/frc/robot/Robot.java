@@ -13,8 +13,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.subsystems.ClimbSubsystem;
-import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.climbSubsystem;
+import frc.robot.subsystems.driveSubsystem;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -26,8 +26,8 @@ import frc.robot.subsystems.DriveSubsystem;
 public class Robot extends TimedRobot {
  
   public static OI m_oi;
-  public static DriveSubsystem m_drive;
-  public static ClimbSubsystem m_climb;
+  public static driveSubsystem m_drive;
+  public static climbSubsystem m_climb;
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -40,8 +40,8 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_oi = new OI();
-    m_drive = new DriveSubsystem();
-    m_climb = new ClimbSubsystem();
+    m_drive = new driveSubsystem();
+    m_climb = new climbSubsystem();
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
   }

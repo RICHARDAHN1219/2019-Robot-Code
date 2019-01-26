@@ -14,7 +14,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 /**
  * Add your docs here.
  */
-public class ClimbSubsystem extends Subsystem {
+public class climbSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   public static final WPI_TalonSRX talon1 = new WPI_TalonSRX(RobotMap.TALON_1);

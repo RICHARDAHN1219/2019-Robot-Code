@@ -12,8 +12,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.Robot;
 
-public class DriveCommand extends Command {
-  public DriveCommand() {
+public class driveCommand extends Command {
+  public driveCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.m_drive);

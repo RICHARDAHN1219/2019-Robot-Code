@@ -13,6 +13,9 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 
 public class visionApproachCommand extends Command {
+  
+  public static final double KpDistance = -0.1; 
+
   public visionApproachCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -21,6 +24,7 @@ public class visionApproachCommand extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -30,9 +34,13 @@ public class visionApproachCommand extends Command {
 
     NetworkTableEntry ta = table.getEntry("ta");
 
-    double TA = ta.getDouble(3.14);
+    double TA = Math.sqrt(ta.getDouble(3.14));
 
-    System.out.format("Area is : %f%n", TA);
+    //double current_distance = (((42.357) * (TA * TA * TA * TA)) + ((-226.564) * (TA * TA * TA)) + ((426.004) * (TA * TA)) + ((-355.428) * TA) + 131.267);
+    double current_distance = (((-57.2018) * (TA * TA * TA)) + ((236.12) * (TA * TA)) - ((348.151) * (TA)) + 184.706 + 32); //the 32 on the end is the distance from the limelight to the front bumper in inches
+
+    //System.out.format("Area is : %f%n", TA);
+    System.out.format("Distance is : %f%n", current_distance);
   }
 
   // Make this return true when this Command no longer needs to run execute()

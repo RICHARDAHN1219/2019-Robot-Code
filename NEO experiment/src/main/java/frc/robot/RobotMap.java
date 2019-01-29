@@ -30,6 +30,8 @@ public class RobotMap {
   public static final int NEO_3 = 3;
   public static final int NEO_4 = 4;
   public static final int TALON_1 = 9;
+  public static final int TALON_2 = 11;
+  public static final int TALON_3 = 13;
 
   //buttons
   public static final int AButton = 1;

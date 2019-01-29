@@ -18,6 +18,8 @@ public class climbSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   public static final WPI_TalonSRX talon1 = new WPI_TalonSRX(RobotMap.TALON_1);
+  public static final WPI_TalonSRX talon2 = new WPI_TalonSRX(RobotMap.TALON_2);
+  public static final WPI_TalonSRX talon3 = new WPI_TalonSRX(RobotMap.TALON_3);
 
   @Override
   public void initDefaultCommand() {
@@ -25,7 +27,12 @@ public class climbSubsystem extends Subsystem {
     // setDefaultCommand(new MySpecialCommand());
   }
 
-  public void setClimberSpeed(double speed) {
+  public void setFrontClimberSpeed(double speed) {
     talon1.set(speed);
+    talon2.set(speed);
+  }
+
+  public void setBackClimberSpeed(double speed) {
+    talon3.set(speed);
   }
 }

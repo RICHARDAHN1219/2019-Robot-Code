@@ -12,8 +12,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.Robot;
 
-public class climbCommand extends Command {
-  public climbCommand() {
+public class climbFrontCommand extends Command {
+  public climbFrontCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.m_climb);
@@ -27,7 +27,7 @@ public class climbCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_climb.setClimberSpeed(-OI.operatorController.getY(Hand.kLeft));
+    Robot.m_climb.setFrontClimberSpeed(-OI.operatorController.getY(Hand.kLeft));
   }
 
   // Make this return true when this Command no longer needs to run execute()

@@ -14,6 +14,7 @@ import frc.robot.commands.hatchRelease;
 import frc.robot.commands.hatchRetrieve;
 import frc.robot.commands.visionTargetingCommand;
 import frc.robot.commands.visionApproachCommand;
+import frc.robot.commands.visionComboCommand;
 
 
 /**
@@ -58,11 +59,13 @@ public class OI {
   Button hatchButton = new JoystickButton(driveController, RobotMap.AButton);
   Button targetingButton = new JoystickButton(driveController, RobotMap.Bbutton);
   Button approachButton = new JoystickButton(driveController, RobotMap.YButton);
+  Button comboButton = new JoystickButton(driveController, RobotMap.XButton);
 
   public OI() {
     hatchButton.whileHeld(new hatchRetrieve());
     hatchButton.whenReleased(new hatchRelease());
     targetingButton.whileHeld(new visionTargetingCommand());
     approachButton.whileHeld(new visionApproachCommand());
+    comboButton.whileHeld(new visionComboCommand());
   }
 }

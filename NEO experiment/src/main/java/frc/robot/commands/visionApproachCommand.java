@@ -11,10 +11,12 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import frc.robot.Robot;
 
 public class visionApproachCommand extends Command {
   
-  public static final double KpDistance = -0.1; 
+  public static final double KpDistance = -0.075; 
+  public static final double desired_distance = 35;
 
   public visionApproachCommand() {
     // Use requires() here to declare subsystem dependencies
@@ -37,10 +39,16 @@ public class visionApproachCommand extends Command {
     double TA = Math.sqrt(ta.getDouble(3.14));
 
     //double current_distance = (((42.357) * (TA * TA * TA * TA)) + ((-226.564) * (TA * TA * TA)) + ((426.004) * (TA * TA)) + ((-355.428) * TA) + 131.267);
-    double current_distance = (((-57.2018) * (TA * TA * TA)) + ((236.12) * (TA * TA)) - ((348.151) * (TA)) + 184.706 + 32); //the 32 on the end is the distance from the limelight to the front bumper in inches
+    //double current_distance = (((-57.2018) * (TA * TA * TA)) + ((236.12) * (TA * TA)) - ((348.151) * (TA)) + 184.706);
+    double current_distance = (((-14.4892) * (TA * TA * TA)) + ((102.636) * (TA * TA)) - ((253.741) * (TA)) + 255.752);
 
     //System.out.format("Area is : %f%n", TA);
     System.out.format("Distance is : %f%n", current_distance);
+
+    double distance_error = desired_distance - current_distance;
+    double driving_adjust = KpDistance * distance_error;
+
+    Robot.m_drive.Drive(driving_adjust, 0);
   }
 
   // Make this return true when this Command no longer needs to run execute()

@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.armCommand;
 import frc.robot.commands.hatchRelease;
 import frc.robot.commands.hatchRetrieve;
 import frc.robot.commands.shifterCommand;

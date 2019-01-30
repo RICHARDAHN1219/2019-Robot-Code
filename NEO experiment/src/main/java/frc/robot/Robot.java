@@ -17,7 +17,6 @@ import frc.robot.subsystems.climbSubsystem;
 import frc.robot.subsystems.driveSubsystem;
 import frc.robot.subsystems.visionDriveSubsystem;
 import com.revrobotics.CANEncoder;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -143,7 +142,7 @@ public class Robot extends TimedRobot {
    
     m_encoder3 = driveSubsystem.neo3.getEncoder();
     m_encoder4 = driveSubsystem.neo4.getEncoder();
-    System.out.println(m_encoder1.getPosition() + m_encoder2.getPosition() + m_encoder3.getPosition() +  m_encoder4.getPosition() / 4);
+    //System.out.println(m_encoder1.getPosition() + m_encoder2.getPosition() + m_encoder3.getPosition() +  m_encoder4.getPosition() / 4);
   }
 
   /**

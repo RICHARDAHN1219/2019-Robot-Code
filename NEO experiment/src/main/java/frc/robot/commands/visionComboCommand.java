@@ -15,10 +15,10 @@ import frc.robot.Robot;
 
 public class visionComboCommand extends Command {
 
-  public static final double KpAim = -0.025;
+  public static final double KpAim = -0.1;
   public static final double KpDistance = -0.025;
-  public static final double min_aim_command = 0.05;
-  public static final double desired_distance = 3 + 32;
+  public static final double min_aim_command = 0.025;
+  public static final double desired_distance = 12 + 32;
   public static double steering_adjust = 0.0;
 
   public visionComboCommand() {
@@ -52,14 +52,14 @@ public class visionComboCommand extends Command {
 
     if (TX > 0) {
       steering_adjust = KpAim * heading_error - min_aim_command;
-    } else if (TX < 1) {
+    } else if (TX < 0) {
       steering_adjust = KpAim * heading_error + min_aim_command;
     }
 
     double distance_adjust = KpDistance * distance_error;
 
-    double left_command = -steering_adjust - distance_adjust;
-    double right_command = -steering_adjust - distance_adjust;
+    double left_command = 0.5 * (-steering_adjust - distance_adjust);
+    double right_command = 0.5 * (-steering_adjust - distance_adjust);
 
     Robot.m_vdrive.Drive(left_command, right_command);
   }

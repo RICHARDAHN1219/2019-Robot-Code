@@ -24,18 +24,25 @@ public class RobotMap {
   // public static int rangefinderPort = 1;
   // public static int rangefinderModule = 1;
 
-  //motor controlers
+  // motor controlers
   public static final int NEO_1 = 1;
   public static final int NEO_2 = 2;
   public static final int NEO_3 = 3;
   public static final int NEO_4 = 4;
-  public static final int TALON_1 = 9;
-  public static final int TALON_2 = 11;
-  public static final int TALON_3 = 13;
+  public static final int FRONT_STRUT_1 = 9;
+  public static final int FRONT_STRUT_2 = 11;
+  public static final int BACK_STRUT = 13;
+  public static final int CLIMBER_DRIVE = 15;
 
-  //buttons
+  // buttons
   public static final int AButton = 1;
   public static final int Bbutton = 2;
   public static final int XButton = 3;
   public static final int YButton = 4;
+  public static final int LBumper = 5;
+  public static final int RBumper = 6;
+  public static final int SelectButton = 7;
+  public static final int StartButton = 8;
+  public static final int LeftJoystickClick = 9;
+  public static final int RightJoystickClick = 10;
 }

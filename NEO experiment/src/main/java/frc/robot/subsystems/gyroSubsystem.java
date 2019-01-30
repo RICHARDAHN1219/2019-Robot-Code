@@ -8,36 +8,27 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.RobotMap;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.SPI;
 
 /**
- * Add your docs here.
+ * Subsystem for Gyro.
  */
-public class climbSubsystem extends Subsystem {
+public class gyroSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  public static final WPI_TalonSRX frontStrut1 = new WPI_TalonSRX(RobotMap.FRONT_STRUT_1);
-  public static final WPI_TalonSRX frontStrut2 = new WPI_TalonSRX(RobotMap.FRONT_STRUT_2);
-  public static final WPI_TalonSRX backStrut = new WPI_TalonSRX(RobotMap.BACK_STRUT);
-  public static final WPI_TalonSRX climberDrive = new WPI_TalonSRX(RobotMap.CLIMBER_DRIVE);
+  private AHRS gyro = new AHRS(SPI.Port.kMXP);
+
+  // TODO:
+  // init function to rest Gyro
+  // getYaw function
+  // get yaw error, return -180 to 180 error off of desired yaw
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-  }
 
-  public void setFrontClimberSpeed(double speed) {
-    frontStrut1.set(speed);
-    frontStrut2.set(speed);
-  }
-
-  public void setBackClimberSpeed(double speed) {
-    backStrut.set(speed);
-  }
-
-  public void climberDriverSpeed(double speed) {
-    climberDrive.set(speed);
+    gyro.reset();
   }
 }

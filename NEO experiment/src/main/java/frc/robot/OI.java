@@ -12,10 +12,10 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.hatchRelease;
 import frc.robot.commands.hatchRetrieve;
+import frc.robot.commands.shifterCommand;
 import frc.robot.commands.visionTargetingCommand;
 import frc.robot.commands.visionApproachCommand;
 import frc.robot.commands.visionComboCommand;
-
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -50,16 +50,18 @@ public class OI {
   // Start the command when the button is released and let it run the command
   // until it is finished as determined by it's isFinished method.
   // button.whenReleased(new ExampleCommand());
-  
-  //controllers
+
+  // controllers
   public static XboxController driveController = new XboxController(0);
   public static XboxController operatorController = new XboxController(1);
-  
-  //buttons on driveController
+
+  // buttons on driveController
   Button hatchButton = new JoystickButton(driveController, RobotMap.AButton);
   Button targetingButton = new JoystickButton(driveController, RobotMap.Bbutton);
   Button approachButton = new JoystickButton(driveController, RobotMap.YButton);
   Button comboButton = new JoystickButton(driveController, RobotMap.XButton);
+  Button shifterButton = new JoystickButton(driveController, RobotMap.LBumper);
+  Button armButton = new JoystickButton(operatorController, RobotMap.AButton);
 
   public OI() {
     hatchButton.whileHeld(new hatchRetrieve());
@@ -67,5 +69,7 @@ public class OI {
     targetingButton.whileHeld(new visionTargetingCommand());
     approachButton.whileHeld(new visionApproachCommand());
     comboButton.whileHeld(new visionComboCommand());
+    shifterButton.whileHeld(new shifterCommand());
+    armButton.whileHeld(new armCommand());
   }
 }

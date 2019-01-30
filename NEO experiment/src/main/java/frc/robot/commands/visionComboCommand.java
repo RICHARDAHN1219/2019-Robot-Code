@@ -42,14 +42,17 @@ public class visionComboCommand extends Command {
     double TA = ta.getDouble(3.14);
     double heading_error = -TX;
     double current_distance = (((-14.4892) * (TA * TA * TA)) + ((102.636) * (TA * TA)) - ((253.741) * (TA)) + 255.752);
+    // double current_distance = (((34.279) * (TA * TA * TA * TA * TA * TA)) +
+    // ((-345.26) * (TA * TA * TA * TA * TA)) + ((1402.6) * (TA * TA * TA * TA)) +
+    // ((-2955.8) * (TA * TA * TA)) + ((3462.6) * (TA * TA)) + ((-2238.2) * (TA)) +
+    // 729.96);
     double distance_error = current_distance - desired_distance;
 
     System.out.format("Distance is : %f%n", current_distance);
 
     if (TX > 0) {
       steering_adjust = KpAim * heading_error - min_aim_command;
-    }
-    else if (TX < 1) {
+    } else if (TX < 1) {
       steering_adjust = KpAim * heading_error + min_aim_command;
     }
 

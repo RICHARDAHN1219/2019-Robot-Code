@@ -31,8 +31,8 @@ public class driveSubsystem extends Subsystem {
   public static final CANSparkMax neo3 = new CANSparkMax(RobotMap.NEO_3, MotorType.kBrushless);
   public static final CANSparkMax neo4 = new CANSparkMax(RobotMap.NEO_4, MotorType.kBrushless);
 
-  public static SpeedController leftSide = new SpeedControllerGroup(neo1);
-  public static SpeedController rightSide = new SpeedControllerGroup(neo4);
+  public static SpeedController leftSide = new SpeedControllerGroup(neo1, neo2);
+  public static SpeedController rightSide = new SpeedControllerGroup(neo3, neo4);
 
   public static DifferentialDrive drive = new DifferentialDrive(leftSide, rightSide);
 

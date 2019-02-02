@@ -10,13 +10,13 @@ package frc.robot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.armCommand;
 import frc.robot.commands.hatchRelease;
 import frc.robot.commands.hatchRetrieve;
 import frc.robot.commands.shifterCommand;
 import frc.robot.commands.visionTargetingCommand;
 import frc.robot.commands.visionApproachCommand;
 import frc.robot.commands.visionComboCommand;
+import frc.robot.commands.cargoIntakeCommand;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -63,6 +63,7 @@ public class OI {
   Button comboButton = new JoystickButton(driveController, RobotMap.XButton);
   Button shifterButton = new JoystickButton(driveController, RobotMap.LBumper);
   Button armButton = new JoystickButton(operatorController, RobotMap.AButton);
+  Button cargoButton = new JoystickButton(driveController, RobotMap.StartButton);
 
   public OI() {
     hatchButton.whileHeld(new hatchRetrieve());
@@ -71,6 +72,6 @@ public class OI {
     approachButton.whileHeld(new visionApproachCommand());
     comboButton.whileHeld(new visionComboCommand());
     shifterButton.whileHeld(new shifterCommand());
-    armButton.whileHeld(new armCommand());
+    cargoButton.whileHeld(new cargoIntakeCommand());
   }
 }

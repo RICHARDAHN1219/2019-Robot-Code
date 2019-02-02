@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.subsystems.cargoDriveSubsystem;
 import frc.robot.subsystems.climbSubsystem;
 import frc.robot.subsystems.driveSubsystem;
 import frc.robot.subsystems.visionDriveSubsystem;
@@ -28,6 +29,7 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
  */
 public class Robot extends TimedRobot {
 
+  public static cargoDriveSubsystem m_intake;
   public static OI m_oi;
   public static driveSubsystem m_drive;
   public static climbSubsystem m_climb;
@@ -49,6 +51,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    m_intake = new cargoDriveSubsystem();
     m_oi = new OI();
     m_drive = new driveSubsystem();
     m_climb = new climbSubsystem();

@@ -7,42 +7,35 @@
 
 package frc.robot.subsystems;
 
+import frc.robot.OI;
+import frc.robot.Robot;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.climbBackCommand;
-import frc.robot.commands.climbFrontCommand;
-
+import frc.robot.commands.cargoIntakeCommand;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 /**
  * Add your docs here.
  */
-public class climbSubsystem extends Subsystem {
+public class cargoDriveSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  public static final WPI_TalonSRX frontStrut1 = new WPI_TalonSRX(RobotMap.FRONT_STRUT_1);
-  public static final WPI_TalonSRX frontStrut2 = new WPI_TalonSRX(RobotMap.FRONT_STRUT_2);
-  public static final WPI_TalonSRX backStrut = new WPI_TalonSRX(RobotMap.BACK_STRUT);
-  public static final WPI_TalonSRX climberDrive = new WPI_TalonSRX(RobotMap.CLIMBER_DRIVE);
-
+  public static final WPI_TalonSRX cargoIntake = new WPI_TalonSRX(RobotMap.CARGO_INTAKE);
+  public static final WPI_TalonSRX armDrive = new WPI_TalonSRX(RobotMap.ARM_DRIVE);
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new climbFrontCommand());
+    setDefaultCommand(new cargoIntakeCommand());
     //setDefaultCommand(new climbBackCommand());
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
 
-  public void setFrontClimberSpeed(double speed) {
-    frontStrut1.set(speed);
-    frontStrut2.set(-speed);
+  public void setcargoDriveSpeed(double speed) {
+    cargoIntake.set(speed);
   }
 
-  public void setBackClimberSpeed(double speed) {
-    backStrut.set(speed * 0.5);
+  public void setarmDriveSpeed(double speed) {
+    armDrive.set(speed);
   }
 
-  public void climberDriverSpeed(double speed) {
-    climberDrive.set(speed);
-  }
 }

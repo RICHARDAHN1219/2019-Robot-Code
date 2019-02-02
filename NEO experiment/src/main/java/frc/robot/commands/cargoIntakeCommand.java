@@ -7,12 +7,22 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-public class armCommand extends Command {
-  public armCommand() {
+import edu.wpi.first.wpilibj.GenericHID.Hand;
+import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.OI;
+import frc.robot.Robot;
+import frc.robot.RobotMap;
+import frc.robot.subsystems.cargoDriveSubsystem;
+
+public class cargoIntakeCommand extends Command {
+
+  
+  public cargoIntakeCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Robot.m_intake);
   }
 
   // Called just before this Command runs the first time
@@ -23,9 +33,10 @@ public class armCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //Insert desired arm distance. :)
+  Robot.m_intake.setcargoDriveSpeed(OI.operatorController.getTriggerAxis(Hand.kLeft));
+  Robot.m_intake.setcargoDriveSpeed(-OI.operatorController.getTriggerAxis(Hand.kRight));
+  //Robot.m_intake.setarmDriveSpeed(OI.operatorController.getY(Hand.kRight));
   }
-
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {

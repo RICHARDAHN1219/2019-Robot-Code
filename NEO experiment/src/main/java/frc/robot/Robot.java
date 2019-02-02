@@ -17,6 +17,7 @@ import frc.robot.subsystems.climbSubsystem;
 import frc.robot.subsystems.driveSubsystem;
 import frc.robot.subsystems.visionDriveSubsystem;
 import com.revrobotics.CANEncoder;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -40,6 +41,7 @@ public class Robot extends TimedRobot {
   SendableChooser<Command> m_chooser = new SendableChooser<>();
   public static DoubleSolenoid beakSolenoid = new DoubleSolenoid(2, 3);
   public static DoubleSolenoid shifterSolenoid = new DoubleSolenoid(0, 1);
+  PowerDistributionPanel PowerDistributionPanel = new PowerDistributionPanel(0);
 
   /**
    * This function is run when the robot is first started up and should be used

@@ -42,11 +42,7 @@ public class visionComboCommand extends Command {
     double TA = ta.getDouble(3.14);
     double heading_error = -TX;
     double current_distance = (((-14.4892) * (TA * TA * TA)) + ((102.636) * (TA * TA)) - ((253.741) * (TA)) + 255.752);
-    // double current_distance = (((34.279) * (TA * TA * TA * TA * TA * TA)) +
-    // ((-345.26) * (TA * TA * TA * TA * TA)) + ((1402.6) * (TA * TA * TA * TA)) +
-    // ((-2955.8) * (TA * TA * TA)) + ((3462.6) * (TA * TA)) + ((-2238.2) * (TA)) +
-    // 729.96);
-    double distance_error = current_distance - desired_distance;
+    double distance_error = -1 * (current_distance - desired_distance);
 
     System.out.format("Distance is : %f%n", current_distance);
 
@@ -58,10 +54,47 @@ public class visionComboCommand extends Command {
 
     double distance_adjust = KpDistance * distance_error;
 
-    double left_command = 0.5 * (-steering_adjust - distance_adjust);
-    double right_command = 0.5 * (-steering_adjust - distance_adjust);
+    double left_command = 0.5 * (steering_adjust + distance_adjust);
+    double right_command = 0.5 * (steering_adjust + distance_adjust);
+
+    if (TX > 0) {
+      left_command = left_command + 0.1;
+    } else if (TX < 0) {
+      right_command = right_command + 0.1;
+    }
 
     Robot.m_vdrive.Drive(left_command, right_command);
+
+/*
+float KpAim = -0.1f;
+float KpDistance = -0.1f;
+float min_aim_command = 0.05f;
+
+std::shared_ptr<NetworkTable> table = NetworkTable::GetTable("limelight");
+float tx = table->GetNumber("tx");
+float ty = table->GetNumber("ty");
+
+if (joystick->GetRawButton(9))
+{
+    float heading_error = -tx;
+    float distance_error = -ty;
+    float steering_adjust = 0.0f;
+
+    if (tx > 1.0)
+    {
+    steering_adjust = KpAim*heading_error - min_aim_command;
+    }
+    else if (tx < 1.0)
+    {
+    steering_adjust = KpAim*heading_error + min_aim_command;
+    }
+
+    float distance_adjust = KpDistance * distance_error;
+
+    left_command += steering_adjust + distance_adjust;
+    right_command -= steering_adjust + distance_adjust;
+}
+*/
   }
 
   // Make this return true when this Command no longer needs to run execute()

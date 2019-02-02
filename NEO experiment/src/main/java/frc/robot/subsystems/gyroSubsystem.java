@@ -25,19 +25,17 @@ public class gyroSubsystem extends Subsystem {
   private AHRS gyro = new AHRS(SPI.Port.kMXP);
   // Roborio horizontal when laying flat, vertical when laying vertical
   private boolean RoborioHorizontal = false;
-  
-  //Returns in degrees 
  
-  // TODO:
-  // init function to rest Gyro
-  // getRoll function
-  // get yaw error, return -180 to 180 error off of desired yaw
- public void setRoborioVertical() {
-   RoborioHorizontal = false;
- }
+  // TODO:  get yaw error, return -180 to 180 error off of desired yaw
+
+  public void setRoborioVertical() {
+    RoborioHorizontal = false;
+  }
   public void setRoborioHorizontal() {
     RoborioHorizontal = true;
   }
+
+  // return the angle of the robot in degrees -180 to 180
   public float getAngle() {
 
     // get angle command depends on the orientation of the RoboRio

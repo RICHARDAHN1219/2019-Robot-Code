@@ -13,8 +13,8 @@ import frc.robot.OI;
 import frc.robot.Robot;
 import frc.robot.subsystems.climbSubsystem;
 
-public class climbFrontCommand extends Command {
-  public climbFrontCommand() {
+public class climbCommand extends Command {
+  public climbCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.m_climb);

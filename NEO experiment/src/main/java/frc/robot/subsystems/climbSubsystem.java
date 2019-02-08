@@ -9,8 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
-import frc.robot.commands.climbBackCommand;
-import frc.robot.commands.climbFrontCommand;
+import frc.robot.commands.climbCommand;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
@@ -27,7 +26,7 @@ public class climbSubsystem extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    setDefaultCommand(new climbFrontCommand());
+    setDefaultCommand(new climbCommand());
     //setDefaultCommand(new climbBackCommand());
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());

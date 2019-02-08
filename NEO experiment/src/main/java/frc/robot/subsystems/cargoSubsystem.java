@@ -7,8 +7,6 @@
 
 package frc.robot.subsystems;
 
-import frc.robot.OI;
-import frc.robot.Robot;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.cargoIntakeCommand;
@@ -17,7 +15,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 /**
  * Add your docs here.
  */
-public class cargoDriveSubsystem extends Subsystem {
+public class cargoSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   public static final WPI_TalonSRX cargoIntake = new WPI_TalonSRX(RobotMap.CARGO_INTAKE);
@@ -35,7 +33,7 @@ public class cargoDriveSubsystem extends Subsystem {
   }
 
   public void setarmDriveSpeed(double speed) {
-    armDrive.set(speed);
+    armDrive.set(speed * 0.5);
   }
 
 }

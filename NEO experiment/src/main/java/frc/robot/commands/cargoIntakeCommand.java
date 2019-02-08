@@ -7,14 +7,10 @@
 
 package frc.robot.commands;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.Robot;
-import frc.robot.RobotMap;
-import frc.robot.subsystems.cargoDriveSubsystem;
 
 public class cargoIntakeCommand extends Command {
 
@@ -33,9 +29,9 @@ public class cargoIntakeCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-  Robot.m_intake.setcargoDriveSpeed(OI.operatorController.getTriggerAxis(Hand.kLeft));
-  Robot.m_intake.setcargoDriveSpeed(-OI.operatorController.getTriggerAxis(Hand.kRight));
-  //Robot.m_intake.setarmDriveSpeed(OI.operatorController.getY(Hand.kRight));
+  Robot.m_intake.setcargoDriveSpeed(OI.operatorController.getY(Hand.kRight));
+  //Robot.m_intake.setcargoDriveSpeed(-OI.operatorController.getY(Hand.kLeft));
+  Robot.m_intake.setarmDriveSpeed(-OI.operatorController.getY(Hand.kLeft));
   }
   // Make this return true when this Command no longer needs to run execute()
   @Override

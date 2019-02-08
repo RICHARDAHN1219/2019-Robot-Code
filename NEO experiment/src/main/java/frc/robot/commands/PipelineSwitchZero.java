@@ -7,36 +7,37 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.GenericHID.Hand;
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.OI;
 import frc.robot.Robot;
-<<<<<<< HEAD
-=======
-import frc.robot.RobotMap;
->>>>>>> e6e9e15c3d6e6d730f52aa336994dcb3826eb928
 
-public class cargoIntakeCommand extends Command {
+public class PipelineSwitchZero extends Command {
 
-  
-  public cargoIntakeCommand() {
+    public String limelightName;
+    private NetworkTable table;
+
+    public PipelineSwitchZero() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.m_intake);
+        requires(Robot.m_pipeline);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-  }
+      }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-  Robot.m_intake.setcargoDriveSpeed(OI.operatorController.getY(Hand.kRight));
-  //Robot.m_intake.setcargoDriveSpeed(-OI.operatorController.getY(Hand.kLeft));
-  Robot.m_intake.setarmDriveSpeed(-OI.operatorController.getY(Hand.kLeft));
+    System.out.println("Switching Pipeline");
+    NetworkTableEntry pipeline = table.getEntry("pipeline");
+    pipeline.setNumber(0);
+    
   }
+
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {

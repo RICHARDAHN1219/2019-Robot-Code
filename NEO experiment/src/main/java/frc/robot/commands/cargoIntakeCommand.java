@@ -11,10 +11,6 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.Robot;
-<<<<<<< HEAD
-=======
-import frc.robot.RobotMap;
->>>>>>> e6e9e15c3d6e6d730f52aa336994dcb3826eb928
 
 public class cargoIntakeCommand extends Command {
 

@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
@@ -15,20 +16,21 @@ import frc.robot.RobotMap;
 /**
  * Add your docs here.
  */
-public class climbPID extends PIDSubsystem {
+public class climbPIDSubsystem extends PIDSubsystem {
   /**
    * Add your docs here.
    */
-
+  
   public static final WPI_TalonSRX frontStrut1 = new WPI_TalonSRX(RobotMap.FRONT_STRUT_1);
   public static final WPI_TalonSRX frontStrut2 = new WPI_TalonSRX(RobotMap.FRONT_STRUT_2);
 
-  public climbPID() {
+  public climbPIDSubsystem() {
     // Intert a subsystem name and PID values here
     
-    super("climbPID", 0.5, 0, 0);
+    super("climbPIDSubsystem", 0.5, 0, 0);
     setAbsoluteTolerance(5);
     getPIDController().setContinuous(false);
+    setSetpoint(15);
     //setSetpoint(setpoint);
     
     // Use these to get going:
@@ -49,7 +51,7 @@ public class climbPID extends PIDSubsystem {
     // e.g. a sensor, like a potentiometer:
     // yourPot.getAverageVoltage() / kYourMaxVoltage;
     
-    return frontStrut1.getSelectedSensorPosition();
+    return frontStrut1.getSelectedSensorPosition() + frontStrut2.getSelectedSensorPosition() / 2;
   }
 
   @Override
@@ -57,6 +59,7 @@ public class climbPID extends PIDSubsystem {
     // Use output to drive your system, like a motor
     // e.g. yourMotor.set(output);
     frontStrut1.pidWrite(output);
+    frontStrut2.pidWrite(output);
   }
 }
 //encoder.thingy = yes;

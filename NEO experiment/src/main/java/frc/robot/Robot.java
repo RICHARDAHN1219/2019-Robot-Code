@@ -18,7 +18,6 @@ import frc.robot.subsystems.climbSubsystem;
 import frc.robot.subsystems.driveSubsystem;
 import frc.robot.subsystems.limelightSubsystem;
 import frc.robot.subsystems.visionDriveSubsystem;
-import frc.robot.subsystems.cargoArmPID;
 import com.revrobotics.CANEncoder;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 
@@ -36,7 +35,6 @@ public class Robot extends TimedRobot {
   public static driveSubsystem m_drive;
   public static climbSubsystem m_climb;
   public static visionDriveSubsystem m_vdrive;
-  public static cargoArmPID m_cargoArms;
   public static limelightSubsystem m_pipeline;
   public static limelightSubsystem limelight_zero;
   public static limelightSubsystem limelight_one;
@@ -62,9 +60,9 @@ public class Robot extends TimedRobot {
     m_drive = new driveSubsystem();
     m_climb = new climbSubsystem();
     m_vdrive = new visionDriveSubsystem();
-    m_cargoArms = new cargoArmPID();
     limelight_zero = new limelightSubsystem();
     limelight_one = new limelightSubsystem();
+    
     limelight_zero.setlimelightName("limelight-zero");
     limelight_one.setlimelightName("limelight-one");
     // chooser.addOption("My Auto", new MyAutoCommand());

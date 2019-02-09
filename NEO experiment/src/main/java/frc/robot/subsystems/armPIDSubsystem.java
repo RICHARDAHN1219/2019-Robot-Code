@@ -15,19 +15,20 @@ import frc.robot.RobotMap;
 /**
  * Add your docs here.
  */
-public class armPID extends PIDSubsystem {
+public class armPIDSubsystem extends PIDSubsystem {
   /**
    * Add your docs here.
    */
   
   public static final WPI_TalonSRX armDrive = new WPI_TalonSRX(RobotMap.ARM_DRIVE);
 
-  public armPID() {
+  public armPIDSubsystem() {
     // Intert a subsystem name and PID values here
     
     super("armPID", 0.5, 0, 0);
     setAbsoluteTolerance(5);
     getPIDController().setContinuous(false);
+    setSetpoint(15);
     //setSetpoint(setpoint);
     
     // Use these to get going:

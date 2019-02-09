@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.subsystems.cargoDriveSubsystem;
+import frc.robot.subsystems.cargoSubsystem;
 
 public class cargoIntakeCommand extends Command {
 

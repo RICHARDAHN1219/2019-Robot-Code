@@ -13,10 +13,11 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.robot.subsystems.cargoDriveSubsystem;
+import frc.robot.subsystems.cargoSubsystem;
 import frc.robot.subsystems.climbSubsystem;
 import frc.robot.subsystems.driveSubsystem;
 import frc.robot.subsystems.visionDriveSubsystem;
+import frc.robot.subsystems.cargoArmPID;
 import com.revrobotics.CANEncoder;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 
@@ -29,11 +30,12 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
  */
 public class Robot extends TimedRobot {
 
-  public static cargoDriveSubsystem m_intake;
+  public static cargoSubsystem m_intake;
   public static OI m_oi;
   public static driveSubsystem m_drive;
   public static climbSubsystem m_climb;
   public static visionDriveSubsystem m_vdrive;
+  public static cargoArmPID m_cargoArms;
   private CANEncoder m_encoder1;
   private CANEncoder m_encoder2;
   private CANEncoder m_encoder3;
@@ -51,11 +53,12 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    m_intake = new cargoDriveSubsystem();
+    m_intake = new cargoSubsystem();
     m_oi = new OI();
     m_drive = new driveSubsystem();
     m_climb = new climbSubsystem();
     m_vdrive = new visionDriveSubsystem();
+    m_cargoArms = new cargoArmPID();
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
   }

@@ -17,7 +17,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 /**
  * Add your docs here.
  */
-public class cargoDriveSubsystem extends Subsystem {
+public class cargoSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   public static final WPI_TalonSRX cargoIntake = new WPI_TalonSRX(RobotMap.CARGO_INTAKE);

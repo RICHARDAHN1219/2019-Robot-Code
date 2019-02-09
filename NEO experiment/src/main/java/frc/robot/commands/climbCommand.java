@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.Robot;
-import frc.robot.subsystems.climbSubsystem;
 
 public class climbCommand extends Command {
   public climbCommand() {
@@ -28,8 +27,8 @@ public class climbCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_climb.setFrontClimberSpeed(OI.operatorController.getY(Hand.kLeft));
-    Robot.m_climb.setBackClimberSpeed(OI.operatorController.getY(Hand.kRight));    
+    //Robot.m_climb.setFrontClimberSpeed(OI.operatorController.getY(Hand.kLeft));
+    //Robot.m_climb.setBackClimberSpeed(OI.operatorController.getY(Hand.kRight));    
 
   }
 

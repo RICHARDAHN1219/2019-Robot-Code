@@ -7,8 +7,6 @@
 
 package frc.robot.subsystems;
 
-import frc.robot.OI;
-import frc.robot.Robot;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
 import frc.robot.commands.cargoIntakeCommand;
@@ -35,7 +33,7 @@ public class cargoSubsystem extends Subsystem {
   }
 
   public void setarmDriveSpeed(double speed) {
-    armDrive.set(speed);
+    armDrive.set(speed * 0.5);
   }
 
 }

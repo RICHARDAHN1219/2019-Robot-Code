@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.cargoSubsystem;
 import frc.robot.subsystems.climbSubsystem;
 import frc.robot.subsystems.driveSubsystem;
+import frc.robot.subsystems.limelightSubsystem;
 import frc.robot.subsystems.visionDriveSubsystem;
 import frc.robot.subsystems.cargoArmPID;
 import com.revrobotics.CANEncoder;
@@ -36,16 +37,19 @@ public class Robot extends TimedRobot {
   public static climbSubsystem m_climb;
   public static visionDriveSubsystem m_vdrive;
   public static cargoArmPID m_cargoArms;
+  public static limelightSubsystem m_pipeline;
+  public static limelightSubsystem limelight_zero;
+  public static limelightSubsystem limelight_one;
   private CANEncoder m_encoder1;
   private CANEncoder m_encoder2;
   private CANEncoder m_encoder3;
   private CANEncoder m_encoder4;
-
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
   public static DoubleSolenoid beakSolenoid = new DoubleSolenoid(2, 3);
   public static DoubleSolenoid shifterSolenoid = new DoubleSolenoid(0, 1);
   PowerDistributionPanel PowerDistributionPanel = new PowerDistributionPanel(0);
+
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -59,6 +63,10 @@ public class Robot extends TimedRobot {
     m_climb = new climbSubsystem();
     m_vdrive = new visionDriveSubsystem();
     m_cargoArms = new cargoArmPID();
+    limelight_zero = new limelightSubsystem();
+    limelight_one = new limelightSubsystem();
+    limelight_zero.setlimelightName("limelight-zero");
+    limelight_one.setlimelightName("limelight-one");
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
   }

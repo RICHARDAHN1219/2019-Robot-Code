@@ -8,17 +8,12 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.PIDSubsystem;
-import frc.robot.subsystems.backStiltPIDSubsystem;
-import frc.robot.subsystems.frontStiltsPIDSubsystem;
-import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import frc.robot.Robot;
 
 public class climbPIDCommand extends Command {
   public climbPIDCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.m_fClimbPID);
   }
 
   // Called just before this Command runs the first time

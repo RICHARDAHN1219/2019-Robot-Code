@@ -58,18 +58,17 @@ public class OI {
 
   // buttons on driveController
   Button hatchButton = new JoystickButton(driveController, RobotMap.AButton);
-  Button targetingButton = new JoystickButton(driveController, RobotMap.Bbutton);
-  Button approachButton = new JoystickButton(driveController, RobotMap.YButton);
+  //Button targetingButton = new JoystickButton(driveController, RobotMap.Bbutton);
+  //Button approachButton = new JoystickButton(driveController, RobotMap.YButton);
   Button comboButton = new JoystickButton(driveController, RobotMap.XButton);
   Button shifterButton = new JoystickButton(driveController, RobotMap.LBumper);
-  Button armButton = new JoystickButton(operatorController, RobotMap.AButton);
   Button cargoButton = new JoystickButton(driveController, RobotMap.StartButton);
 
   public OI() {
     hatchButton.whileHeld(new hatchRetrieve());
     hatchButton.whenReleased(new hatchRelease());
-    targetingButton.whileHeld(new visionTargetingCommand());
-    approachButton.whileHeld(new visionApproachCommand());
+    //targetingButton.whileHeld(new visionTargetingCommand());
+    //approachButton.whileHeld(new visionApproachCommand());
     comboButton.whileHeld(new visionComboCommand());
     shifterButton.whileHeld(new shifterCommand());
     cargoButton.whileHeld(new cargoIntakeCommand());

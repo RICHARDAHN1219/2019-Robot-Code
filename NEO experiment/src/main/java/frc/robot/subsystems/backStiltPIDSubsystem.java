@@ -28,6 +28,7 @@ public class backStiltPIDSubsystem extends PIDSubsystem {
     super("backStiltPIDSubsystem", 0.5, 0, 0);
     setAbsoluteTolerance(5);
     getPIDController().setContinuous(false);
+    setSetpoint(frontStiltsPIDSubsystem.frontStrut1.getSelectedSensorPosition() + frontStiltsPIDSubsystem.frontStrut2.getSelectedSensorPosition() / 2);
     // Use these to get going:
     // setSetpoint() - Sets where the PID controller should move the system
     // to
@@ -45,7 +46,7 @@ public class backStiltPIDSubsystem extends PIDSubsystem {
     // Return your input value for the PID loop
     // e.g. a sensor, like a potentiometer:
     // yourPot.getAverageVoltage() / kYourMaxVoltage;
-    return frontStiltsPIDSubsystem.frontStrut1.getSelectedSensorPosition() + frontStiltsPIDSubsystem.frontStrut2.getSelectedSensorPosition() / 2;
+    return backStrut.getSelectedSensorPosition() * 1.5;
   }
 
   @Override

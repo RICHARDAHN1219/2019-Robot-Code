@@ -21,8 +21,6 @@ import frc.robot.subsystems.driveSubsystem;
 import frc.robot.subsystems.frontStiltsPIDSubsystem;
 import frc.robot.subsystems.limelightSubsystem;
 import frc.robot.subsystems.visionDriveSubsystem;
-import frc.robot.subsystems.armSubsystem;
-import frc.robot.subsystems.backStiltPIDSubsystem;
 import com.revrobotics.CANEncoder;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 
@@ -167,7 +165,7 @@ public class Robot extends TimedRobot {
     m_encoder2 = driveSubsystem.neo2.getEncoder();
     m_encoder3 = driveSubsystem.neo3.getEncoder();
     m_encoder4 = driveSubsystem.neo4.getEncoder();
-    //System.out.println(m_encoder1.getPosition() + m_encoder2.getPosition() + m_encoder3.getPosition() +  m_encoder4.getPosition() / 4);
+    double averageDistance = m_encoder1.getPosition() + m_encoder2.getPosition() + m_encoder3.getPosition() +  m_encoder4.getPosition() / 4;
   }
 
   /**

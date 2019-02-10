@@ -59,7 +59,7 @@ public class armSubsystem extends Subsystem {
 
     printDebug();
   }
-  public void setPosition() {
+  public void setPosition(int targetPositionRotations) {
     armDrive.set(ControlMode.Position, targetPositionRotations);
   
   }

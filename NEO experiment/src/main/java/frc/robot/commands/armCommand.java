@@ -16,7 +16,7 @@ public class armCommand extends Command {
   public armCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(armSubsystem);
+    requires(Robot.m_arm);
   }
 
   // Called just before this Command runs the first time

@@ -14,12 +14,15 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.armSubsystem;
+import frc.robot.subsystems.backStiltPIDSubsystem;
 import frc.robot.subsystems.cargoSubsystem;
 import frc.robot.subsystems.climbSubsystem;
 import frc.robot.subsystems.driveSubsystem;
+import frc.robot.subsystems.frontStiltsPIDSubsystem;
 import frc.robot.subsystems.limelightSubsystem;
 import frc.robot.subsystems.visionDriveSubsystem;
 import frc.robot.subsystems.armSubsystem;
+import frc.robot.subsystems.backStiltPIDSubsystem;
 import com.revrobotics.CANEncoder;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 
@@ -41,6 +44,8 @@ public class Robot extends TimedRobot {
   public static limelightSubsystem limelight_zero;
   public static limelightSubsystem limelight_one;
   public static armSubsystem m_arm;
+  public static frontStiltsPIDSubsystem m_fClimbPID;
+  public static backStiltPIDSubsystem m_bClimbPID;
   private CANEncoder m_encoder1;
   private CANEncoder m_encoder2;
   private CANEncoder m_encoder3;
@@ -66,6 +71,8 @@ public class Robot extends TimedRobot {
     limelight_zero = new limelightSubsystem();
     limelight_one = new limelightSubsystem();
     m_arm = new armSubsystem();
+    m_fClimbPID = new frontStiltsPIDSubsystem();
+    m_bClimbPID = new backStiltPIDSubsystem();
 
     limelight_zero.setlimelightName("limelight-zero");
     limelight_one.setlimelightName("limelight-one");

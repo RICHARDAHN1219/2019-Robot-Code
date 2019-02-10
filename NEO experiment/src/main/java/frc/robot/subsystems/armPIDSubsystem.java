@@ -30,7 +30,6 @@ public class armPIDSubsystem extends PIDSubsystem {
     getPIDController().setContinuous(false);
     setSetpoint(15);
     //setSetpoint(setpoint);
-    
     // Use these to get going:
     // setSetpoint() - Sets where the PID controller should move the system
     // to

@@ -21,13 +21,13 @@ public class armSubsystem extends Subsystem {
   // here. Call these from Commands.
   public static final TalonSRX armDrive = new TalonSRX(RobotMap.ARM_DRIVE);
   StringBuilder _sb = new StringBuilder();
-  double targetPositionRotations;
-  private static final int kPIDLoopIdx = 0;
-  private static final int kTimeoutMs = 30;
-  private final double kP = 0.15;
-	private final double kI = 0.0;
-	private final double kD = 1.0;
-  private final double kF = 0.0;
+  private int startPosition;
+  private int kPIDLoopIdx = 0;
+  private int kTimeoutMs = 30;
+  private double kP = 0.15;
+	private double kI = 0.0;
+	private double kD = 1.0;
+  private double kF = 0.0;
 
 
   
@@ -54,15 +54,19 @@ public class armSubsystem extends Subsystem {
 		 * Grab the 360 degree position of the MagEncoder's absolute
 		 * position, and intitally set the relative sensor to match.
 		 */
-    int absolutePosition = armDrive.getSensorCollection().getPulseWidthPosition();
-    armDrive.setSelectedSensorPosition(absolutePosition,  kPIDLoopIdx,  kTimeoutMs);
+    startPosition = armDrive.getSensorCollection().getPulseWidthPosition();
+    
+    /* Mask out overflows, keep bottom 12 bits. Value will be 0-4096 */
+		startPosition &= 0xFFF;
+    armDrive.setSelectedSensorPosition(startPosition,  kPIDLoopIdx,  kTimeoutMs);
 
     printDebug();
   }
-  public void setPosition(int targetPositionRotations) {
-    armDrive.set(ControlMode.Position, targetPositionRotations);
-  
+
+  public void setPosition(int targetPosition) {
+    armDrive.set(ControlMode.Position, startPosition + targetPosition);
   }
+
   public void printDebug() {
     _sb.append("ARM out:");
     double motorOutput = armDrive.getMotorOutputPercent();

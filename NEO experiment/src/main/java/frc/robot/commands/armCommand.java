@@ -26,16 +26,21 @@ public class armCommand extends Command {
 
   // move arm to low position for cargo intake 
   public void setPositionLow() {
-    Robot.m_arm.setPosition(0);
+    // The arm down position is aprox 1/4 rotation. 
+    // 4096 encoder ticks per revolution
+    Robot.m_arm.setPosition(1000);
   }
 
   // move arm to high position for cargo intake 
   public void setPositionHigh() {
-    Robot.m_arm.setPosition(4096);
+    // high position is the same as the start position
+    Robot.m_arm.setPosition(0);
   }
 
   public void rotateUp() {
     // TODO rotate up a small amount and print debug info
+    // small amount should be about 1 degree (multiply by 2 for 2:1 gear ratio)
+    //  4096 * 2.0 / 360.0   
     Robot.m_arm.printDebug();
   }
 

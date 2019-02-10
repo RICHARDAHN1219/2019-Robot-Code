@@ -13,7 +13,8 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- * Add your docs here.
+ * Control a Limelight. 
+ *   - Switch between pipelines
  */
 public class limelightSubsystem extends Subsystem {
   // Put methods for controlling this subsystem

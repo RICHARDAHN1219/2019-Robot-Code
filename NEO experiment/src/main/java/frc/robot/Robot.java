@@ -13,11 +13,13 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.subsystems.armSubsystem;
 import frc.robot.subsystems.cargoSubsystem;
 import frc.robot.subsystems.climbSubsystem;
 import frc.robot.subsystems.driveSubsystem;
 import frc.robot.subsystems.limelightSubsystem;
 import frc.robot.subsystems.visionDriveSubsystem;
+import frc.robot.subsystems.armSubsystem;
 import com.revrobotics.CANEncoder;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 
@@ -38,6 +40,7 @@ public class Robot extends TimedRobot {
   public static limelightSubsystem m_pipeline;
   public static limelightSubsystem limelight_zero;
   public static limelightSubsystem limelight_one;
+  public static armSubsystem m_arm;
   private CANEncoder m_encoder1;
   private CANEncoder m_encoder2;
   private CANEncoder m_encoder3;
@@ -62,9 +65,11 @@ public class Robot extends TimedRobot {
     m_vdrive = new visionDriveSubsystem();
     limelight_zero = new limelightSubsystem();
     limelight_one = new limelightSubsystem();
-    
+    m_arm = new armSubsystem();
+
     limelight_zero.setlimelightName("limelight-zero");
     limelight_one.setlimelightName("limelight-one");
+  
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
   }
@@ -153,7 +158,6 @@ public class Robot extends TimedRobot {
     Scheduler.getInstance().run();
     m_encoder1 = driveSubsystem.neo1.getEncoder();
     m_encoder2 = driveSubsystem.neo2.getEncoder();
-   
     m_encoder3 = driveSubsystem.neo3.getEncoder();
     m_encoder4 = driveSubsystem.neo4.getEncoder();
     //System.out.println(m_encoder1.getPosition() + m_encoder2.getPosition() + m_encoder3.getPosition() +  m_encoder4.getPosition() / 4);

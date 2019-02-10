@@ -8,11 +8,17 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import frc.robot.subsystems.backStiltPIDSubsystem;
+import frc.robot.subsystems.frontStiltsPIDSubsystem;
+import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import frc.robot.Robot;
 
 public class climbPIDCommand extends Command {
   public climbPIDCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Robot.m_fClimbPID);
   }
 
   // Called just before this Command runs the first time
@@ -23,6 +29,9 @@ public class climbPIDCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    Robot.m_fClimbPID.setPosition(15);
+    Robot.m_fClimbPID.enable();
+    Robot.m_bClimbPID.enable();
   }
 
   // Make this return true when this Command no longer needs to run execute()

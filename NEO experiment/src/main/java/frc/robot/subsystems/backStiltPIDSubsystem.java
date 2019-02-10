@@ -7,7 +7,11 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import frc.robot.RobotMap;
+import frc.robot.subsystems.frontStiltsPIDSubsystem;;
 
 /**
  * Add your docs here.
@@ -16,9 +20,14 @@ public class backStiltPIDSubsystem extends PIDSubsystem {
   /**
    * Add your docs here.
    */
+
+  public static final WPI_TalonSRX backStrut = new WPI_TalonSRX(RobotMap.BACK_STRUT);
+
   public backStiltPIDSubsystem() {
     // Intert a subsystem name and PID values here
-    super("SubsystemName", 1, 2, 3);
+    super("backStiltPIDSubsystem", 0.5, 0, 0);
+    setAbsoluteTolerance(5);
+    getPIDController().setContinuous(false);
     // Use these to get going:
     // setSetpoint() - Sets where the PID controller should move the system
     // to
@@ -36,12 +45,13 @@ public class backStiltPIDSubsystem extends PIDSubsystem {
     // Return your input value for the PID loop
     // e.g. a sensor, like a potentiometer:
     // yourPot.getAverageVoltage() / kYourMaxVoltage;
-    return 0.0;
+    return frontStiltsPIDSubsystem.frontStrut1.getSelectedSensorPosition() + frontStiltsPIDSubsystem.frontStrut2.getSelectedSensorPosition() / 2;
   }
 
   @Override
   protected void usePIDOutput(double output) {
     // Use output to drive your system, like a motor
     // e.g. yourMotor.set(output);
+    backStrut.set(output);
   }
 }

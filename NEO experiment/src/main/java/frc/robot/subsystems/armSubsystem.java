@@ -58,7 +58,7 @@ public class armSubsystem extends Subsystem {
     armDrive.setSelectedSensorPosition(absolutePosition,  kPIDLoopIdx,  kTimeoutMs);
 
   }
-  public void setPosition() {
+  public void setPosition(int targetPositionRotations) {
     armDrive.set(ControlMode.Position, targetPositionRotations);
   
   }

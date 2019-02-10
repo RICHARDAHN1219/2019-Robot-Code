@@ -16,7 +16,7 @@ import frc.robot.RobotMap;
 /**
  * Add your docs here.
  */
-public class climbPIDSubsystem extends PIDSubsystem {
+public class frontStiltsPIDSubsystem extends PIDSubsystem {
   /**
    * Add your docs here.
    */
@@ -24,19 +24,21 @@ public class climbPIDSubsystem extends PIDSubsystem {
   public static final WPI_TalonSRX frontStrut1 = new WPI_TalonSRX(RobotMap.FRONT_STRUT_1);
   public static final WPI_TalonSRX frontStrut2 = new WPI_TalonSRX(RobotMap.FRONT_STRUT_2);
 
-  public climbPIDSubsystem() {
+  public frontStiltsPIDSubsystem() {
     // Intert a subsystem name and PID values here
     
-    super("climbPIDSubsystem", 0.5, 0, 0);
+    super("frontStiltsPIDSubsystem", 0.5, 0, 0);
     setAbsoluteTolerance(5);
     getPIDController().setContinuous(false);
-    setSetpoint(15);
     //setSetpoint(setpoint);
-    
     // Use these to get going:
     // setSetpoint() - Sets where the PID controller should move the system
     // to
     // enable() - Enables the PID controller.
+  }
+
+  public void setPosition(int setpoint) {
+    setSetpoint(setpoint);
   }
 
   @Override

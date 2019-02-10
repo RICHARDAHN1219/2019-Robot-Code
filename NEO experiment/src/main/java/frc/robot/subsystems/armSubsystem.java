@@ -8,18 +8,18 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import frc.robot.RobotMap;
 
-/**zm
+/**
  * Add your docs here.
  */
 public class armSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  public static final WPI_TalonSRX armDrive = new WPI_TalonSRX(RobotMap.ARM_DRIVE);
+  public static final TalonSRX armDrive = new TalonSRX(RobotMap.ARM_DRIVE);
   StringBuilder _sb = new StringBuilder();
   double targetPositionRotations;
   private static final int kPIDLoopIdx = 0;
@@ -57,20 +57,21 @@ public class armSubsystem extends Subsystem {
     int absolutePosition = armDrive.getSensorCollection().getPulseWidthPosition();
     armDrive.setSelectedSensorPosition(absolutePosition,  kPIDLoopIdx,  kTimeoutMs);
 
+    printDebug();
   }
   public void setPosition() {
     armDrive.set(ControlMode.Position, targetPositionRotations);
   
   }
   public void printDebug() {
-    _sb.append("\tout:");
+    _sb.append("ARM out:");
     double motorOutput = armDrive.getMotorOutputPercent();
     _sb.append((int) (motorOutput * 100));
     _sb.append("%");	// Percent
     _sb.append("\tpos:");
 		_sb.append(armDrive.getSelectedSensorPosition(0));
     _sb.append("u"); 	// Native units
-    _sb.append("\ttrg:");
+    _sb.append("\ttarget:");
 		_sb.append(targetPositionRotations);
     _sb.append("u");	/// Native Units
     System.out.println(_sb);

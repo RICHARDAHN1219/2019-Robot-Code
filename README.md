@@ -1,8 +1,8 @@
 # 2019-Robot-Code
 
-## Neo experiment
+## Practice Bot
 
-Initial test robot using new NEO motors. Testbed for vision and driving.
+Practice Robot.
 
 ## LimeLightConfigs
 

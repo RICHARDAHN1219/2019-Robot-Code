@@ -14,7 +14,11 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import frc.robot.RobotMap;
 
 /**
- * Add your docs here.
+ * armSubsystem controls the cargo collection arm's up and down movement.
+ * 
+ * Reference Code:
+ *   https://github.com/CrossTheRoadElec/Phoenix-Examples-Languages/blob/master/Java/PositionClosedLoop/src/main/java/frc/robot/Robot.java
+ *   https://github.com/Spartronics4915/developers_handbook/blob/master/actuators/talon/programming.md#setting-follower-mode
  */
 public class armSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
@@ -22,18 +26,20 @@ public class armSubsystem extends Subsystem {
   public static final TalonSRX armDrive = new TalonSRX(RobotMap.ARM_DRIVE);
   StringBuilder _sb = new StringBuilder();
   private int startPosition;
+  private int targetPosition;
   private int kPIDLoopIdx = 0;
   private int kTimeoutMs = 30;
   private double kP = 0.15;
   private double kI = 0.0;
   private double kD = 1.0;
   private double kF = 0.0;
-
+  private int allowableError = 0;   // allowable error in encoder ticks
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+
     armDrive.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, kPIDLoopIdx,
         kTimeoutMs);
     /* Ensure sensor is positive when output is positive */
@@ -44,7 +50,7 @@ public class armSubsystem extends Subsystem {
     armDrive.configNominalOutputReverse(0, kTimeoutMs);
     armDrive.configPeakOutputForward(1, kTimeoutMs);
     armDrive.configPeakOutputReverse(-1, kTimeoutMs);
-    armDrive.configAllowableClosedloopError(0, kPIDLoopIdx, kTimeoutMs);
+    armDrive.configAllowableClosedloopError(allowableError, kPIDLoopIdx, kTimeoutMs);
     /* Config Position Closed Loop gains in slot0, tsypically kF stays zero. */
     armDrive.config_kF(kPIDLoopIdx, kF, kTimeoutMs);
     armDrive.config_kP(kPIDLoopIdx, kP, kTimeoutMs);
@@ -56,14 +62,28 @@ public class armSubsystem extends Subsystem {
      */
     startPosition = armDrive.getSensorCollection().getPulseWidthPosition();
 
+    _sb.append("ARM: start position ");
+    _sb.append(startPosition);
+    System.out.println(_sb);
+    _sb.setLength(0);
+
     /* Mask out overflows, keep bottom 12 bits. Value will be 0-4096 */
     startPosition &= 0xFFF;
     armDrive.setSelectedSensorPosition(startPosition, kPIDLoopIdx, kTimeoutMs);
 
+    targetPosition = 0;
+
     printDebug();
   }
 
+  /*
+  * setPosition()
+  * 
+  * Tell the arm motor to move to the given targetPosition. Target position is relative
+  * to the start postion when the robot turns on. Position is measured in encoder ticks.
+  */
   public void setPosition(int targetPosition) {
+    this.targetPosition = targetPosition;
     armDrive.set(ControlMode.Position, startPosition + targetPosition);
   }
 
@@ -76,7 +96,7 @@ public class armSubsystem extends Subsystem {
     _sb.append(armDrive.getSelectedSensorPosition(0));
     _sb.append("u"); // Native units
     _sb.append("\ttarget:");
-    //_sb.append(targetPositionRotations);
+    _sb.append(targetPosition);
     _sb.append("u"); /// Native Units
     System.out.println(_sb);
     /* Reset built string for next loop */

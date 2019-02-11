@@ -16,6 +16,7 @@ import frc.robot.commands.shifterCommand;
 import frc.robot.commands.visionTargetingCommand;
 import frc.robot.commands.visionApproachCommand;
 import frc.robot.commands.visionComboCommand;
+import frc.robot.commands.armCommand;
 import frc.robot.commands.cargoIntakeCommand;
 import frc.robot.commands.ejectorIntake;
 import frc.robot.commands.ejectorRelease;
@@ -67,6 +68,7 @@ public class OI {
   Button cargoButton = new JoystickButton(driveController, RobotMap.StartButton);
   Button ejectorButton = new JoystickButton(driveController, RobotMap.Bbutton);
   Button climbPIDButton = new JoystickButton(driveController, RobotMap.YButton);
+  Button armButton = new JoystickButton(driveController, RobotMap.RBumper);
 
   public OI() {
     hatchButton.whileHeld(new hatchRetrieve());
@@ -78,5 +80,6 @@ public class OI {
     comboButton.whileHeld(new visionComboCommand());
     shifterButton.whileHeld(new shifterCommand());
     cargoButton.whileHeld(new cargoIntakeCommand());
+    armButton.whenPressed(new armCommand());
   }
 }

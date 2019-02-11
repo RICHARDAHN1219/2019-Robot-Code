@@ -55,7 +55,9 @@ public class armCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (isUp == 1) {
+    int currentPosition = Robot.m_arm.getPosition();
+    Robot.m_arm.printDebug();
+    if (currentPosition < 50) {
       rotateDown();
     }
     else {

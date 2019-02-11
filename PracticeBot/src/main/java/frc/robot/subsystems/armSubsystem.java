@@ -87,6 +87,10 @@ public class armSubsystem extends Subsystem {
     armDrive.set(ControlMode.Position, startPosition + targetPosition);
   }
 
+  public int getPosition() {
+    return armDrive.getSensorCollection().getPulseWidthPosition() - startPosition;
+  }
+
   public void printDebug() {
     _sb.append("ARM out:");
     double motorOutput = armDrive.getMotorOutputPercent();

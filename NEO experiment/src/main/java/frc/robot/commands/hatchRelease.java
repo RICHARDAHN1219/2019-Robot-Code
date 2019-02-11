@@ -24,7 +24,7 @@ public class hatchRelease extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.beakSolenoid.set(DoubleSolenoid.Value.kReverse);
+    Robot.beakSolenoid.set(DoubleSolenoid.Value.kForward);
 }
 
   // Make this return true when this Command no longer needs to run execute()

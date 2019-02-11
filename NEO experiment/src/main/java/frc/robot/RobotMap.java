@@ -32,7 +32,7 @@ public class RobotMap {
   public static final int FRONT_STRUT_1 = 9;
   public static final int FRONT_STRUT_2 = 11;
   public static final int BACK_STRUT = 13;
-  public static final int CLIMBER_DRIVE = 15;
+  public static final int CLIMBER_DRIVE = 9;
   public static final int CARGO_INTAKE = 4;
   public static final int ARM_DRIVE = 8;
 

@@ -17,6 +17,8 @@ import frc.robot.commands.visionTargetingCommand;
 import frc.robot.commands.visionApproachCommand;
 import frc.robot.commands.visionComboCommand;
 import frc.robot.commands.cargoIntakeCommand;
+import frc.robot.commands.ejectorIntake;
+import frc.robot.commands.ejectorRelease;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -63,10 +65,13 @@ public class OI {
   Button comboButton = new JoystickButton(driveController, RobotMap.XButton);
   Button shifterButton = new JoystickButton(driveController, RobotMap.LBumper);
   Button cargoButton = new JoystickButton(driveController, RobotMap.StartButton);
+  Button ejectorButton = new JoystickButton(driveController, RobotMap.Bbutton);
 
   public OI() {
     hatchButton.whileHeld(new hatchRetrieve());
     hatchButton.whenReleased(new hatchRelease());
+    ejectorButton.whileHeld(new ejectorRelease());
+    ejectorButton.whenReleased(new ejectorIntake());
     //targetingButton.whileHeld(new visionTargetingCommand());
     //approachButton.whileHeld(new visionApproachCommand());
     comboButton.whileHeld(new visionComboCommand());

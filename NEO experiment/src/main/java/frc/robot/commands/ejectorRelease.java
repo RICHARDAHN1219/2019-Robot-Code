@@ -11,8 +11,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
-public class shifterCommand extends Command {
-  public shifterCommand() {
+public class ejectorRelease extends Command {
+  public ejectorRelease() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -25,7 +25,7 @@ public class shifterCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.shifterSolenoid.set(DoubleSolenoid.Value.kReverse);
+    Robot.ejectorSolenoid.set(DoubleSolenoid.Value.kForward);
   }
 
   // Make this return true when this Command no longer needs to run execute()

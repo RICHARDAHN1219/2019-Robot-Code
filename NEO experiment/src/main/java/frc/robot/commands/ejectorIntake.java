@@ -11,8 +11,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
-public class shifterCommand extends Command {
-  public shifterCommand() {
+public class ejectorIntake extends Command {
+  public ejectorIntake() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -25,7 +25,14 @@ public class shifterCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.shifterSolenoid.set(DoubleSolenoid.Value.kReverse);
+    // System.out.println("Button is held down");
+    // NetworkTableInstance inst = NetworkTableInstance.getDefault();
+    // NetworkTable table = inst.getTable("limelight-one");
+    // NetworkTableEntry tvEntry = table.getEntry("tv");
+    /// tvEntry.addListener(event -> {
+    /// System.out.println("Vision Lock is currently " + event.value.getValue());
+    /// }, EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);//
+    Robot.ejectorSolenoid.set(DoubleSolenoid.Value.kReverse);
   }
 
   // Make this return true when this Command no longer needs to run execute()

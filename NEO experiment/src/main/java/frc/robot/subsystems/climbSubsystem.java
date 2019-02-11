@@ -42,6 +42,6 @@ public class climbSubsystem extends Subsystem {
   }
 
   public void climberDriverSpeed(double speed) {
-    climberDrive.set(speed);
+    climberDrive.set(speed * 0.1);
   }
 }

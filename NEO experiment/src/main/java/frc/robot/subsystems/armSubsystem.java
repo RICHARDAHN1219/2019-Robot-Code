@@ -76,7 +76,7 @@ public class armSubsystem extends Subsystem {
     _sb.append(armDrive.getSelectedSensorPosition(0));
     _sb.append("u"); // Native units
     _sb.append("\ttarget:");
-    _sb.append(targetPositionRotations);
+    //_sb.append(targetPositionRotations);
     _sb.append("u"); /// Native Units
     System.out.println(_sb);
     /* Reset built string for next loop */

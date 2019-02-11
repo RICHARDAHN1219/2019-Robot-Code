@@ -15,6 +15,10 @@ import frc.robot.RobotMap;
 
 /**
  * armSubsystem controls the cargo collection arm's up and down movement.
+ * 
+ * Reference Code:
+ *   https://github.com/CrossTheRoadElec/Phoenix-Examples-Languages/blob/master/Java/PositionClosedLoop/src/main/java/frc/robot/Robot.java
+ *   https://github.com/Spartronics4915/developers_handbook/blob/master/actuators/talon/programming.md#setting-follower-mode
  */
 public class armSubsystem extends Subsystem {
   // Put methods for controlling this subsystem

@@ -66,6 +66,7 @@ public class OI {
   Button shifterButton = new JoystickButton(driveController, RobotMap.LBumper);
   Button cargoButton = new JoystickButton(driveController, RobotMap.StartButton);
   Button ejectorButton = new JoystickButton(driveController, RobotMap.Bbutton);
+  Button climbPIDButton = new JoystickButton(driveController, RobotMap.YButton);
 
   public OI() {
     hatchButton.whileHeld(new hatchRetrieve());

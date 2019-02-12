@@ -27,7 +27,7 @@ public class armCommand extends Command {
   public void setPositionLow() {
     // The arm down position is aprox 1/4 rotation. 
     // 4096 encoder ticks per revolution
-    Robot.m_arm.setPosition(1000);
+    Robot.m_arm.setPosition(-250);
   }
 
   // move arm to high position for cargo intake 
@@ -53,7 +53,7 @@ public class armCommand extends Command {
   protected void execute() {
     int currentPosition = Robot.m_arm.getPosition();
     Robot.m_arm.printDebug();
-    if (currentPosition < 50) {
+    if (currentPosition > -50) {
       setPositionLow();
     }
     else {

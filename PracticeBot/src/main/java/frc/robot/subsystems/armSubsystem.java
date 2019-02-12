@@ -28,9 +28,9 @@ public class armSubsystem extends Subsystem {
   private int startPosition;
   private int targetPosition;
   private int kPIDLoopIdx = 0;
-  private int kTimeoutMs = 30;
-  private double kP = 2.0;  // 0.15
-  private double kI = 0.0;
+  private int kTimeoutMs = 3;  // 30
+  private double kP = 1.;  // 0.15
+  private double kI = 0.00;
   private double kD = 0.0;  // 1.0
   private double kF = 0.0;
   private int allowableError = 0;   // allowable error in encoder ticks

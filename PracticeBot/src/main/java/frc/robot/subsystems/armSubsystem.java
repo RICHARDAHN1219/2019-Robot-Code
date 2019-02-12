@@ -101,7 +101,10 @@ public class armSubsystem extends Subsystem {
     _sb.append("u"); // Native units
     _sb.append("\ttarget:");
     _sb.append(targetPosition);
-    _sb.append("u"); /// Native Units
+    _sb.append("u"); // Native Units
+    _sb.append("\terr:");
+    _sb.append(armDrive.getClosedLoopError(0));
+    _sb.append("u");	// Native Units
     System.out.println(_sb);
     /* Reset built string for next loop */
     _sb.setLength(0);

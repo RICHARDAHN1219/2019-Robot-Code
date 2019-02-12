@@ -63,7 +63,6 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_intake = new cargoSubsystem();
-    m_oi = new OI();
     m_drive = new driveSubsystem();
     m_climb = new climbSubsystem();
     m_vdrive = new visionDriveSubsystem();
@@ -76,6 +75,9 @@ public class Robot extends TimedRobot {
     limelight_zero.setlimelightName("limelight-zero");
     limelight_one.setlimelightName("limelight-one");
   
+    // OI needs to be last
+    m_oi = new OI();
+
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
   }

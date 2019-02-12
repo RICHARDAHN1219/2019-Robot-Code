@@ -28,8 +28,8 @@ public class climbCommand extends Command {
   @Override
   protected void execute() {
     //Robot.m_climb.setFrontClimberSpeed(OI.operatorController.getY(Hand.kLeft));
-    Robot.m_climb.climberDriverSpeed(OI.operatorController.getY(Hand.kLeft));    
-    Robot.m_climb.setBackClimberSpeed(OI.operatorController.getY(Hand.kRight));
+    //Robot.m_climb.climberDriverSpeed(OI.operatorController.getY(Hand.kLeft));    
+    Robot.m_climb.setFrontClimberSpeed(OI.operatorController.getY(Hand.kRight));
     
   }
   

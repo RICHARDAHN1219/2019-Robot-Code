@@ -32,7 +32,7 @@ public class ejectorIntake extends Command {
     /// tvEntry.addListener(event -> {
     /// System.out.println("Vision Lock is currently " + event.value.getValue());
     /// }, EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);//
-    Robot.ejectorSolenoid.set(DoubleSolenoid.Value.kReverse);
+    Robot.ejectorSolenoid.set(DoubleSolenoid.Value.kForward);
   }
 
   // Make this return true when this Command no longer needs to run execute()

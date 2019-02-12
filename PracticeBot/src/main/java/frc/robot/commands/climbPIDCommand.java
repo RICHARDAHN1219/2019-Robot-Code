@@ -24,9 +24,9 @@ public class climbPIDCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_fClimbPID.setPosition(15);
+    Robot.m_fClimbPID.setSetpoint(10000);
     Robot.m_fClimbPID.enable();
-    Robot.m_bClimbPID.enable();
+    //Robot.m_bClimbPID.enable();
   }
 
   // Make this return true when this Command no longer needs to run execute()

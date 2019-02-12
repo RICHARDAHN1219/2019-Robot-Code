@@ -17,6 +17,8 @@ import frc.robot.commands.visionTargetingCommand;
 import frc.robot.commands.visionApproachCommand;
 import frc.robot.commands.visionComboCommand;
 import frc.robot.commands.cargoIntakeCommand;
+import frc.robot.commands.climbPIDCommand;
+import frc.robot.commands.climbPIDStopCommand;
 import frc.robot.commands.ejectorIntake;
 import frc.robot.commands.ejectorRelease;
 
@@ -78,5 +80,7 @@ public class OI {
     comboButton.whileHeld(new visionComboCommand());
     shifterButton.whileHeld(new shifterCommand());
     cargoButton.whileHeld(new cargoIntakeCommand());
+    climbPIDButton.whileHeld(new climbPIDCommand());
+    climbPIDButton.whenReleased(new climbPIDStopCommand());
   }
 }

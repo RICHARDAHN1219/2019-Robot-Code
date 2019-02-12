@@ -29,8 +29,8 @@ public class RobotMap {
   public static final int NEO_2 = 2;
   public static final int NEO_3 = 3;
   public static final int NEO_4 = 0;
-  public static final int FRONT_STRUT_1 = 9;
-  public static final int FRONT_STRUT_2 = 11;
+  public static final int FRONT_STRUT_1 = 11;
+  public static final int FRONT_STRUT_2 = 10;
   public static final int BACK_STRUT = 13;
   public static final int CLIMBER_DRIVE = 9;
   public static final int CARGO_INTAKE = 4;

@@ -26,18 +26,14 @@ public class frontStiltsPIDSubsystem extends PIDSubsystem {
   public frontStiltsPIDSubsystem() {
     // Intert a subsystem name and PID values here
     
-    super("frontStiltsPIDSubsystem", 0.5, 0, 0);
-    setAbsoluteTolerance(5);
+    super("frontStiltsPIDSubsystem", 10, 0, 1);
+    setAbsoluteTolerance(100);  
     getPIDController().setContinuous(false);
     //setSetpoint(setpoint);
     // Use these to get going:
     // setSetpoint() - Sets where the PID controller should move the system
     // to
     // enable() - Enables the PID controller.
-  }
-
-  public void setPosition(int setpoint) {
-    setSetpoint(setpoint);
   }
 
   @Override
@@ -52,7 +48,7 @@ public class frontStiltsPIDSubsystem extends PIDSubsystem {
     // e.g. a sensor, like a potentiometer:
     // yourPot.getAverageVoltage() / kYourMaxVoltage;
     
-    return frontStrut1.getSelectedSensorPosition() + frontStrut2.getSelectedSensorPosition() / 2;
+    return frontStrut1.getSelectedSensorPosition();
   }
 
   @Override
@@ -60,7 +56,7 @@ public class frontStiltsPIDSubsystem extends PIDSubsystem {
     // Use output to drive your system, like a motor
     // e.g. yourMotor.set(output);
     frontStrut1.pidWrite(output);
-    frontStrut2.pidWrite(output);
+    frontStrut2.pidWrite(-output);
   }
 }
 //encoder.thingy = yes;

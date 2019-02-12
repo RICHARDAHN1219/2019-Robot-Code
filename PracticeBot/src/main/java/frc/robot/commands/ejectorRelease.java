@@ -25,7 +25,7 @@ public class ejectorRelease extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.ejectorSolenoid.set(DoubleSolenoid.Value.kForward);
+    Robot.ejectorSolenoid.set(DoubleSolenoid.Value.kReverse);
   }
 
   // Make this return true when this Command no longer needs to run execute()

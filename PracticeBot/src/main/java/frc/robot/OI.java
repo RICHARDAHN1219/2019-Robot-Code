@@ -82,11 +82,8 @@ public class OI {
     comboButton.whileHeld(new visionComboCommand());
     shifterButton.whileHeld(new shifterCommand());
     cargoButton.whileHeld(new cargoIntakeCommand());
-<<<<<<< HEAD
     climbPIDButton.whileHeld(new climbPIDCommand());
     climbPIDButton.whenReleased(new climbPIDStopCommand());
-=======
     armButton.whenPressed(new armCommand());
->>>>>>> 6bfaced42f7199a9d292cbba64de40a9f7f1c817
   }
 }

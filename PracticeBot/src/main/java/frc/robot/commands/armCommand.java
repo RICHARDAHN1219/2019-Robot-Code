@@ -12,8 +12,6 @@ import frc.robot.Robot;
 
 public class armCommand extends Command {
 
-  private int isUp = 1;
-
   public armCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -30,14 +28,12 @@ public class armCommand extends Command {
     // The arm down position is aprox 1/4 rotation. 
     // 4096 encoder ticks per revolution
     Robot.m_arm.setPosition(1000);
-    isUp = 0;
   }
 
   // move arm to high position for cargo intake 
   public void setPositionHigh() {
     // high position is the same as the start position
     Robot.m_arm.setPosition(0);
-    isUp = 1;
   }
 
   public void rotateUp() {
@@ -58,10 +54,10 @@ public class armCommand extends Command {
     int currentPosition = Robot.m_arm.getPosition();
     Robot.m_arm.printDebug();
     if (currentPosition < 50) {
-      rotateDown();
+      setPositionLow();
     }
     else {
-      rotateUp();
+      setPositionHigh();
     }
   }
 

@@ -82,8 +82,8 @@ public class armSubsystem extends Subsystem {
   * Tell the arm motor to move to the given targetPosition. Target position is relative
   * to the start postion when the robot turns on. Position is measured in encoder ticks.
   */
-  public void setPosition(int targetPosition) {
-    this.targetPosition = targetPosition;
+  public void setPosition(int desiredPosition) {
+    targetPosition = desiredPosition;
     armDrive.set(ControlMode.Position, startPosition + targetPosition);
   }
 

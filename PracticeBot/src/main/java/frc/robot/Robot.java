@@ -174,6 +174,7 @@ public class Robot extends TimedRobot {
     double averageDistance = m_encoder1.getPosition() + m_encoder2.getPosition() + m_encoder3.getPosition() +  m_encoder4.getPosition() / 4;
     double frontEncoder = frontStiltsPIDSubsystem.frontStrut1.getSelectedSensorPosition();
     // System.out.println(frontEncoder);
+    Robot.m_arm.printDebug();
   }
 
   /**

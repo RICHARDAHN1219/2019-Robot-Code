@@ -18,7 +18,7 @@ public class armMiddleCommand extends armCommand {
     // eg. requires(chassis);
 
     // targetPossition, kP, kI, kP, kF
-    super(800, 0.3, 0.0, 0.0, 0.0);
+    super(600, 1, 0.00075, 0.65, 0.0);
 
     name = "Middle";
   }

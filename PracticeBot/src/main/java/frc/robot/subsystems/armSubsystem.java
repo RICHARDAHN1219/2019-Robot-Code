@@ -33,7 +33,7 @@ public class armSubsystem extends Subsystem {
   public double kI;
   public double kD;  // 1.0
   public double kF;
-  private int allowableError = 200;   // allowable error in encoder ticks
+  private int allowableError = 50;   // allowable error in encoder ticks
 
   @Override
   public void initDefaultCommand() {
@@ -89,6 +89,8 @@ public class armSubsystem extends Subsystem {
     armDrive.config_kP(kPIDLoopIdx, kP, kTimeoutMs);
     armDrive.config_kI(kPIDLoopIdx, kI, kTimeoutMs);
     armDrive.config_kD(kPIDLoopIdx, kD, kTimeoutMs);
+    armDrive.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, kPIDLoopIdx,
+    kTimeoutMs);
     armDrive.set(ControlMode.Position, targetPosition);
     printDebug();
   }

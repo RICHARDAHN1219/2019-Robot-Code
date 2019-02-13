@@ -8,6 +8,8 @@
 package frc.robot.commands;
 
 import frc.robot.Robot;
+import frc.robot.commands.armLowCommand;
+import frc.robot.commands.armMiddleCommand;
 
 public class armHighCommand extends armCommand {
 
@@ -16,7 +18,7 @@ public class armHighCommand extends armCommand {
     // eg. requires(chassis);
 
     // targetPossition, kP, kI, kP, kF
-    super(0, 0.6, 0.0, 0.0, 0.0);
+    super(0, 0.6, 0.0003, 0.0, 0.0);
 
     name = "High";
   }

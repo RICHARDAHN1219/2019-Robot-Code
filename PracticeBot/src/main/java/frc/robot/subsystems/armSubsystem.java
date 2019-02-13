@@ -28,10 +28,10 @@ public class armSubsystem extends Subsystem {
   private int startPosition;
   private int targetPosition;
   private int kPIDLoopIdx = 0;
-  private int kTimeoutMs = 30;
-  private double kP = 0.15;
-  private double kI = 0.0;
-  private double kD = 1.0;
+  private int kTimeoutMs = 3;  // 30
+  private double kP = 1.;  // 0.15
+  private double kI = 0.00;
+  private double kD = 0.0;  // 1.0
   private double kF = 0.0;
   private int allowableError = 0;   // allowable error in encoder ticks
 
@@ -82,8 +82,8 @@ public class armSubsystem extends Subsystem {
   * Tell the arm motor to move to the given targetPosition. Target position is relative
   * to the start postion when the robot turns on. Position is measured in encoder ticks.
   */
-  public void setPosition(int targetPosition) {
-    this.targetPosition = targetPosition;
+  public void setPosition(int desiredPosition) {
+    targetPosition = desiredPosition;
     armDrive.set(ControlMode.Position, startPosition + targetPosition);
   }
 
@@ -101,7 +101,10 @@ public class armSubsystem extends Subsystem {
     _sb.append("u"); // Native units
     _sb.append("\ttarget:");
     _sb.append(targetPosition);
-    _sb.append("u"); /// Native Units
+    _sb.append("u"); // Native Units
+    _sb.append("\terr:");
+    _sb.append(armDrive.getClosedLoopError(0));
+    _sb.append("u");	// Native Units
     System.out.println(_sb);
     /* Reset built string for next loop */
     _sb.setLength(0);

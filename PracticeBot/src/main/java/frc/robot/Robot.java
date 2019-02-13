@@ -63,7 +63,6 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_intake = new cargoSubsystem();
-    m_oi = new OI();
     m_drive = new driveSubsystem();
     m_climb = new climbSubsystem();
     m_vdrive = new visionDriveSubsystem();
@@ -76,6 +75,9 @@ public class Robot extends TimedRobot {
     limelight_zero.setlimelightName("limelight-zero");
     limelight_one.setlimelightName("limelight-one");
   
+    // OI needs to be last
+    m_oi = new OI();
+
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
   }
@@ -170,7 +172,7 @@ public class Robot extends TimedRobot {
     m_encoder4 = driveSubsystem.neo4.getEncoder();
     double averageDistance = m_encoder1.getPosition() + m_encoder2.getPosition() + m_encoder3.getPosition() +  m_encoder4.getPosition() / 4;
     double frontEncoder = frontStiltsPIDSubsystem.frontStrut1.getSelectedSensorPosition();
-    System.out.println(frontEncoder);
+    // System.out.println(frontEncoder);
   }
 
   /**

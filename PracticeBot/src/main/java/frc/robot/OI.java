@@ -63,11 +63,12 @@ public class OI {
   public static XboxController operatorController = new XboxController(1);
 
   // buttons on driveController
-  Button hatchButton = new JoystickButton(driveController, RobotMap.AButton);
+  
   //Button targetingButton = new JoystickButton(driveController, RobotMap.Bbutton);
   //Button approachButton = new JoystickButton(driveController, RobotMap.YButton);
-  Button comboButton = new JoystickButton(driveController, RobotMap.XButton);
   //Button shifterButton = new JoystickButton(driveController, RobotMap.LBumper);
+  Button hatchButton = new JoystickButton(driveController, RobotMap.AButton);
+  Button comboButton = new JoystickButton(driveController, RobotMap.XButton);
   Button cargoButton = new JoystickButton(driveController, RobotMap.StartButton);
   Button ejectorButton = new JoystickButton(driveController, RobotMap.Bbutton);
   Button climbPIDButton = new JoystickButton(driveController, RobotMap.YButton);
@@ -75,14 +76,14 @@ public class OI {
   Button armHighButton = new JoystickButton(driveController, RobotMap.LBumper);
 
   public OI() {
+    //targetingButton.whileHeld(new visionTargetingCommand());
+    //approachButton.whileHeld(new visionApproachCommand());
+    //shifterButton.whileHeld(new shifterCommand());
     hatchButton.whileHeld(new hatchRetrieve());
     hatchButton.whenReleased(new hatchRelease());
     ejectorButton.whileHeld(new ejectorRelease());
     ejectorButton.whenReleased(new ejectorIntake());
-    //targetingButton.whileHeld(new visionTargetingCommand());
-    //approachButton.whileHeld(new visionApproachCommand());
     comboButton.whileHeld(new visionComboCommand());
-    //shifterButton.whileHeld(new shifterCommand());
     cargoButton.whileHeld(new cargoIntakeCommand());
     climbPIDButton.whileHeld(new climbPIDCommand());
     climbPIDButton.whenReleased(new climbPIDStopCommand());

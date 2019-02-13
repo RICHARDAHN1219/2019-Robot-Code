@@ -8,8 +8,10 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
 
 public class armMiddleCommand extends Command {
+
   public armMiddleCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -20,9 +22,20 @@ public class armMiddleCommand extends Command {
   protected void initialize() {
   }
 
+  public void setPositionMiddle() {
+    // 4096 encoder ticks per revolution
+    Robot.m_arm.setPosition(1100);
+  }
+
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    Robot.m_arm.kP = 0.4;
+    Robot.m_arm.kI = 0;
+    Robot.m_arm.kD = 0;
+    Robot.m_arm.kF = 0;
+    setPositionMiddle();
+    Robot.m_arm.printDebug();
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -40,5 +53,6 @@ public class armMiddleCommand extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    // maybe we need to stop moving if some other command needs to move the arm
   }
 }

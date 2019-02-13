@@ -16,7 +16,7 @@ public class armHighCommand extends armCommand {
     // eg. requires(chassis);
 
     // targetPossition, kP, kI, kP, kF
-    super(1900, 0.6, 0.0, 0.0, 0.0);
+    super(0, 0.6, 0.0, 0.0, 0.0);
 
     name = "High";
   }

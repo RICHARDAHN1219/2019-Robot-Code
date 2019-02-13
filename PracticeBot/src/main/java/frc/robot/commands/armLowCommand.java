@@ -14,7 +14,7 @@ public class armLowCommand extends armCommand {
 
   public armLowCommand() {
     // targetPossition, kP, kI, kP, kF
-    super(350, 0.6, 0.0, 0.0, 0.0);
+    super(1550, 0.6, 0.0, 0.0, 0.0);
 
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);

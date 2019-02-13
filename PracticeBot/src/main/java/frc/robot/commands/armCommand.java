@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class armCommand extends Command {
-  public int targetPosition = 1900;
+  public int targetPosition = 0;
   public String name = "armCommand";
   private double kP = 0.0;
   private double kI = 0.0;

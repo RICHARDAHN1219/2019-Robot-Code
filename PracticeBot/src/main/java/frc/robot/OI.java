@@ -16,7 +16,8 @@ import frc.robot.commands.shifterCommand;
 import frc.robot.commands.visionTargetingCommand;
 import frc.robot.commands.visionApproachCommand;
 import frc.robot.commands.visionComboCommand;
-import frc.robot.commands.armCommand;
+import frc.robot.commands.armHighCommand;
+import frc.robot.commands.armLowCommand;
 import frc.robot.commands.cargoIntakeCommand;
 import frc.robot.commands.climbPIDCommand;
 import frc.robot.commands.climbPIDStopCommand;
@@ -66,11 +67,12 @@ public class OI {
   //Button targetingButton = new JoystickButton(driveController, RobotMap.Bbutton);
   //Button approachButton = new JoystickButton(driveController, RobotMap.YButton);
   Button comboButton = new JoystickButton(driveController, RobotMap.XButton);
-  Button shifterButton = new JoystickButton(driveController, RobotMap.LBumper);
+  //Button shifterButton = new JoystickButton(driveController, RobotMap.LBumper);
   Button cargoButton = new JoystickButton(driveController, RobotMap.StartButton);
   Button ejectorButton = new JoystickButton(driveController, RobotMap.Bbutton);
   Button climbPIDButton = new JoystickButton(driveController, RobotMap.YButton);
-  Button armButton = new JoystickButton(driveController, RobotMap.RBumper);
+  Button armLowButton = new JoystickButton(driveController, RobotMap.RBumper);
+  Button armHighButton = new JoystickButton(driveController, RobotMap.LBumper);
 
   public OI() {
     hatchButton.whileHeld(new hatchRetrieve());
@@ -80,10 +82,11 @@ public class OI {
     //targetingButton.whileHeld(new visionTargetingCommand());
     //approachButton.whileHeld(new visionApproachCommand());
     comboButton.whileHeld(new visionComboCommand());
-    shifterButton.whileHeld(new shifterCommand());
+    //shifterButton.whileHeld(new shifterCommand());
     cargoButton.whileHeld(new cargoIntakeCommand());
     climbPIDButton.whileHeld(new climbPIDCommand());
     climbPIDButton.whenReleased(new climbPIDStopCommand());
-    armButton.whenPressed(new armCommand());
+    armLowButton.whenPressed(new armLowCommand());
+    armHighButton.whenPressed(new armHighCommand());
   }
 }

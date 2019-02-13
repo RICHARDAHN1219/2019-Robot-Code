@@ -29,11 +29,11 @@ public class armSubsystem extends Subsystem {
   private int targetPosition;
   private int kPIDLoopIdx = 0;
   private int kTimeoutMs = 3;  // 30
-  private double kP = 1.;  // 0.15
-  private double kI = 0.00;
-  private double kD = 0.0;  // 1.0
-  private double kF = 0.0;
-  private int allowableError = 0;   // allowable error in encoder ticks
+  public double kP;  // 0.15
+  public double kI;
+  public double kD;  // 1.0
+  public double kF;
+  private int allowableError = 200;   // allowable error in encoder ticks
 
   @Override
   public void initDefaultCommand() {
@@ -68,10 +68,10 @@ public class armSubsystem extends Subsystem {
     _sb.setLength(0);
 
     /* Mask out overflows, keep bottom 12 bits. Value will be 0-4096 */
-    startPosition &= 0xFFF;
+    //startPosition &= 0xFFF;
     armDrive.setSelectedSensorPosition(startPosition, kPIDLoopIdx, kTimeoutMs);
 
-    targetPosition = 0;
+    targetPosition = startPosition;
 
     printDebug();
   }
@@ -84,13 +84,25 @@ public class armSubsystem extends Subsystem {
   */
   public void setPosition(int desiredPosition) {
     targetPosition = desiredPosition;
-    armDrive.set(ControlMode.Position, startPosition + targetPosition);
+    armDrive.config_kF(kPIDLoopIdx, kF, kTimeoutMs);
+    armDrive.config_kP(kPIDLoopIdx, kP, kTimeoutMs);
+    armDrive.config_kI(kPIDLoopIdx, kI, kTimeoutMs);
+    armDrive.config_kD(kPIDLoopIdx, kD, kTimeoutMs);
+    armDrive.set(ControlMode.Position, targetPosition);
+    printDebug();
   }
 
   public int getPosition() {
-    return armDrive.getSensorCollection().getPulseWidthPosition() - startPosition;
+    return armDrive.getSensorCollection().getPulseWidthPosition();
   }
 
+  /*
+  public void setPID(double _kP,double _kI, double _kD) {
+    armDrive.config_kP(kPIDLoopIdx, _kP, kTimeoutMs);
+    armDrive.config_kI(kPIDLoopIdx, _kI, kTimeoutMs);
+    armDrive.config_kD(kPIDLoopIdx, _kD, kTimeoutMs);
+  }
+  */
   public void printDebug() {
     _sb.append("ARM out:");
     double motorOutput = armDrive.getMotorOutputPercent();

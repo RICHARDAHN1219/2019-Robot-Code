@@ -10,9 +10,9 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class armCommand extends Command {
+public class armLowCommand extends Command {
 
-  public armCommand() {
+  public armLowCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -22,48 +22,26 @@ public class armCommand extends Command {
   protected void initialize() {
   }
 
-  // move arm to low position for cargo intake 
   public void setPositionLow() {
-    // The arm down position is aprox 1/4 rotation. 
     // 4096 encoder ticks per revolution
-    Robot.m_arm.setPosition(-250);
-  }
-
-  // move arm to high position for cargo intake 
-  public void setPositionHigh() {
-    // high position is the same as the start position
-    Robot.m_arm.setPosition(0);
-  }
-
-  public void rotateUp() {
-    // TODO rotate up a small amount and print debug info
-    // small amount should be about 1 degree (multiply by 2 for 2:1 gear ratio)
-    //  4096 * 2.0 / 360.0   
-    Robot.m_arm.printDebug();
-  }
-
-  public void rotateDown() {
-    // TODO rotate down a small amount and print debug infro
-    Robot.m_arm.printDebug();
+    Robot.m_arm.setPosition(350);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    int currentPosition = Robot.m_arm.getPosition();
+    Robot.m_arm.kP = 0.1;
+    Robot.m_arm.kI = 0;
+    Robot.m_arm.kD = 0;
+    Robot.m_arm.kF = 0;
+    setPositionLow();
     Robot.m_arm.printDebug();
-    if (currentPosition > -50) {
-      setPositionLow();
-    }
-    else {
-      setPositionHigh();
-    }
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
 
   // Called once after isFinished returns true

@@ -25,8 +25,8 @@ public class armSubsystem extends Subsystem {
   // here. Call these from Commands.
   public static final TalonSRX armDrive = new TalonSRX(RobotMap.ARM_DRIVE);
   StringBuilder _sb = new StringBuilder();
-  private int startPosition;
-  private int targetPosition;
+  private int startPosition = 0;
+  private int targetPosition = 0;
   private int kPIDLoopIdx = 0;
   private int kTimeoutMs = 3;  // 30
   public double kP;  // 0.15
@@ -83,17 +83,33 @@ public class armSubsystem extends Subsystem {
   * to the start postion when the robot turns on. Position is measured in encoder ticks.
   */
   public void setPosition(int desiredPosition) {
-    targetPosition = desiredPosition;
-    armDrive.config_kF(kPIDLoopIdx, kF, kTimeoutMs);
-    armDrive.config_kP(kPIDLoopIdx, kP, kTimeoutMs);
-    armDrive.config_kI(kPIDLoopIdx, kI, kTimeoutMs);
-    armDrive.config_kD(kPIDLoopIdx, kD, kTimeoutMs);
-    armDrive.set(ControlMode.Position, targetPosition);
+
+    if (desiredPosition != targetPosition) {
+      targetPosition = desiredPosition;
+      armDrive.config_kF(kPIDLoopIdx, kF, kTimeoutMs);
+      armDrive.config_kP(kPIDLoopIdx, kP, kTimeoutMs);
+      armDrive.config_kI(kPIDLoopIdx, kI, kTimeoutMs);
+      armDrive.config_kD(kPIDLoopIdx, kD, kTimeoutMs);
+      armDrive.set(ControlMode.Position, targetPosition);
+    }
     printDebug();
   }
 
   public int getPosition() {
     return armDrive.getSensorCollection().getPulseWidthPosition();
+  }
+
+  public int getStartPosition() { return startPosition; }
+
+  public int getTargetPosition() { return targetPosition; }
+
+  public boolean isAtTargetPosition(int desiredPosition) {
+    if (Math.abs(getPosition() - desiredPosition) <= allowableError) {
+        return true;
+    }
+    else {
+        return false;
+    }
   }
 
   /*

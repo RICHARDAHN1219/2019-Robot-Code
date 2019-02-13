@@ -40,8 +40,7 @@ public class armSubsystem extends Subsystem {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
-  public void armSubsystem() {
-
+  public void init() {
     armDrive.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, kPIDLoopIdx,
         kTimeoutMs);
     /* Ensure sensor is positive when output is positive */

@@ -72,6 +72,7 @@ public class Robot extends TimedRobot {
     m_fClimbPID = new frontStiltsPIDSubsystem();
     m_bClimbPID = new backStiltPIDSubsystem();
 
+    m_arm.init();
     limelight_zero.setlimelightName("limelight-zero");
     limelight_one.setlimelightName("limelight-one");
   

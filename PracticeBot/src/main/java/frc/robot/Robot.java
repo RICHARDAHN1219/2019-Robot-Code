@@ -107,8 +107,8 @@ public class Robot extends TimedRobot {
   @Override
   public void disabledPeriodic() {
     Scheduler.getInstance().run();
-    //double armPos = m_arm.armDrive.getSelectedSensorPosition();
-    //System.out.println(armPos);
+    double armPos = m_arm.armDrive.getSelectedSensorPosition();
+    System.out.println(armPos);
   }
 
   /**

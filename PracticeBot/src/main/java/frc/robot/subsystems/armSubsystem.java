@@ -39,7 +39,10 @@ public class armSubsystem extends Subsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+  }
+  public void armSubsystem() {
 
+  
     armDrive.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, kPIDLoopIdx,
         kTimeoutMs);
     /* Ensure sensor is positive when output is positive */
@@ -84,14 +87,12 @@ public class armSubsystem extends Subsystem {
   */
   public void setPosition(int desiredPosition) {
 
-    if (desiredPosition != targetPosition) {
-      targetPosition = desiredPosition;
-      armDrive.config_kF(kPIDLoopIdx, kF, kTimeoutMs);
-      armDrive.config_kP(kPIDLoopIdx, kP, kTimeoutMs);
-      armDrive.config_kI(kPIDLoopIdx, kI, kTimeoutMs);
-      armDrive.config_kD(kPIDLoopIdx, kD, kTimeoutMs);
-      armDrive.set(ControlMode.Position, targetPosition);
-    }
+    targetPosition = desiredPosition;
+    armDrive.config_kF(kPIDLoopIdx, kF, kTimeoutMs);
+    armDrive.config_kP(kPIDLoopIdx, kP, kTimeoutMs);
+    armDrive.config_kI(kPIDLoopIdx, kI, kTimeoutMs);
+    armDrive.config_kD(kPIDLoopIdx, kD, kTimeoutMs);
+    armDrive.set(ControlMode.Position, targetPosition);
     printDebug();
   }
 

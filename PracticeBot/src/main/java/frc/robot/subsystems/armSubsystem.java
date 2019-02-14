@@ -23,7 +23,7 @@ import frc.robot.RobotMap;
 public class armSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  public static final TalonSRX armDrive = new TalonSRX(RobotMap.ARM_DRIVE);
+  public TalonSRX armDrive = new TalonSRX(RobotMap.ARM_DRIVE);
   StringBuilder _sb = new StringBuilder();
   private int startPosition = 0;
   private int targetPosition = 0;

@@ -25,7 +25,7 @@ public class hatchRetrieve extends Command {
   @Override
   protected void execute() {
     Robot.m_beak.hatchRetrieve();
-    setTimeout(0.1);
+    setTimeout(0.2);
   }
 
   // Make this return true when this Command no longer needs to run execute()

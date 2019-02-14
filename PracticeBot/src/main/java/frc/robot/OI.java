@@ -17,6 +17,7 @@ import frc.robot.commands.visionTargetingCommand;
 import frc.robot.commands.visionApproachCommand;
 import frc.robot.commands.visionComboCommand;
 import frc.robot.commandGroups.placeHatchLow;
+import frc.robot.commandGroups.readyHatchPickup;
 import frc.robot.commands.armHighCommand;
 import frc.robot.commands.armLowCommand;
 import frc.robot.commands.armMiddleCommand;
@@ -79,8 +80,10 @@ public class OI {
   Button armMiddleButton = new JoystickButton(driveController, RobotMap.Bbutton);
 
   // Operator controller
-  Button hatchReleaseButton = new JoystickButton(operatorController, RobotMap.LBumper);
+  Button hatchPlacementButton = new JoystickButton(operatorController, RobotMap.LBumper);
   Button hatchGrabButton = new JoystickButton(operatorController, RobotMap.RBumper);
+  Button ejectorPushButton = new JoystickButton(operatorController, RobotMap.YButton);
+  Button ejectorRetractButton = new JoystickButton(operatorController, RobotMap.XButton);
 
   public OI() {
     //targetingButton.whileHeld(new visionTargetingCommand());
@@ -99,7 +102,9 @@ public class OI {
     armMiddleButton.whenPressed(new armMiddleCommand());
 
     // Operator
-    hatchReleaseButton.whenPressed(new placeHatchLow());
-    hatchGrabButton.whenPressed(new hatchRetrieve());
+    hatchPlacementButton.whenPressed(new placeHatchLow());
+    hatchGrabButton.whenPressed(new readyHatchPickup());
+    ejectorPushButton.whenPressed(new ejectorRelease());
+    ejectorRetractButton.whenPressed(new ejectorIntake());
   }
 }

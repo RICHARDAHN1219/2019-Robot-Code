@@ -28,10 +28,10 @@ public class beakSubsystem extends Subsystem {
   }
 
   public void hatchRelease() {
-    Robot.beakSolenoid.set(DoubleSolenoid.Value.kReverse);
+    Robot.beakSolenoid.set(DoubleSolenoid.Value.kForward);
   }
 
   public void hatchRetrieve() {
-    Robot.beakSolenoid.set(DoubleSolenoid.Value.kForward);
+    Robot.beakSolenoid.set(DoubleSolenoid.Value.kReverse);
   }
 }

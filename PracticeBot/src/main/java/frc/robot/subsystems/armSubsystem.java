@@ -25,21 +25,22 @@ public class armSubsystem extends Subsystem {
   // here. Call these from Commands.
   public static final TalonSRX armDrive = new TalonSRX(RobotMap.ARM_DRIVE);
   StringBuilder _sb = new StringBuilder();
-  private int startPosition;
-  private int targetPosition;
+  private int startPosition = 0;
+  private int targetPosition = 0;
   private int kPIDLoopIdx = 0;
   private int kTimeoutMs = 3;  // 30
   public double kP;  // 0.15
   public double kI;
   public double kD;  // 1.0
   public double kF;
-  private int allowableError = 200;   // allowable error in encoder ticks
+  private int allowableError = 50;   // allowable error in encoder ticks
 
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-
+  }
+  public void init() {
     armDrive.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, kPIDLoopIdx,
         kTimeoutMs);
     /* Ensure sensor is positive when output is positive */
@@ -71,7 +72,7 @@ public class armSubsystem extends Subsystem {
     //startPosition &= 0xFFF;
     armDrive.setSelectedSensorPosition(startPosition, kPIDLoopIdx, kTimeoutMs);
 
-    targetPosition = startPosition;
+    targetPosition = startPosition - 0;
 
     printDebug();
   }
@@ -83,17 +84,32 @@ public class armSubsystem extends Subsystem {
   * to the start postion when the robot turns on. Position is measured in encoder ticks.
   */
   public void setPosition(int desiredPosition) {
-    targetPosition = desiredPosition;
+    targetPosition = startPosition - desiredPosition;
     armDrive.config_kF(kPIDLoopIdx, kF, kTimeoutMs);
     armDrive.config_kP(kPIDLoopIdx, kP, kTimeoutMs);
     armDrive.config_kI(kPIDLoopIdx, kI, kTimeoutMs);
     armDrive.config_kD(kPIDLoopIdx, kD, kTimeoutMs);
+    armDrive.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, kPIDLoopIdx,
+    kTimeoutMs);
     armDrive.set(ControlMode.Position, targetPosition);
     printDebug();
   }
 
   public int getPosition() {
     return armDrive.getSensorCollection().getPulseWidthPosition();
+  }
+
+  public int getStartPosition() { return startPosition; }
+
+  public int getTargetPosition() { return targetPosition; }
+
+  public boolean isAtTargetPosition(int desiredPosition) {
+    if (Math.abs(getPosition() - (startPosition - desiredPosition)) <= allowableError) {
+        return true;
+    }
+    else {
+        return false;
+    }
   }
 
   /*
@@ -113,6 +129,9 @@ public class armSubsystem extends Subsystem {
     _sb.append("u"); // Native units
     _sb.append("\ttarget:");
     _sb.append(targetPosition);
+    _sb.append("u"); // Native Units
+    _sb.append("\tstart:");
+    _sb.append(startPosition);
     _sb.append("u"); // Native Units
     _sb.append("\terr:");
     _sb.append(armDrive.getClosedLoopError(0));

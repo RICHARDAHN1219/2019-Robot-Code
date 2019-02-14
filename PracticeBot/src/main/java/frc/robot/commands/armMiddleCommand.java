@@ -1,25 +1,25 @@
 /*----------------------------------------------------------------------------*/
-/* Copyright (c) 2018 FIRST. All Rights Reserved. */
-/* Open Source Software - may be modified and shared by FRC teams. The code */
+/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
+/* Open Source Software - may be modified and shared by FRC teams. The code   */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project. */
+/* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.commands.armLowCommand;
-import frc.robot.commands.armMiddleCommand;
 
-public class armHighCommand extends armCommand {
 
-  public armHighCommand() {
+public class armMiddleCommand extends armCommand {
+
+  public armMiddleCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
 
     // targetPossition, kP, kI, kP, kF
-    super(0, 0.6, 0.0003, 0.0, 0.0);
+    super(600, 1, 0.00075, 0.65, 0.0);
 
-    name = "High";
+    name = "Middle";
   }
 }

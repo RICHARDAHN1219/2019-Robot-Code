@@ -25,20 +25,14 @@ public class ejectorIntake extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    // System.out.println("Button is held down");
-    // NetworkTableInstance inst = NetworkTableInstance.getDefault();
-    // NetworkTable table = inst.getTable("limelight-one");
-    // NetworkTableEntry tvEntry = table.getEntry("tv");
-    /// tvEntry.addListener(event -> {
-    /// System.out.println("Vision Lock is currently " + event.value.getValue());
-    /// }, EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);//
     Robot.ejectorSolenoid.set(DoubleSolenoid.Value.kForward);
+    setTimeout(0.5);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return isTimedOut();
   }
 
   // Called once after isFinished returns true

@@ -1,8 +1,8 @@
 /*----------------------------------------------------------------------------*/
-/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
+/* Copyright (c) 2017-2018 FIRST. All Rights Reserved. */
+/* Open Source Software - may be modified and shared by FRC teams. The code */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
+/* the project. */
 /*----------------------------------------------------------------------------*/
 
 package frc.robot;
@@ -16,6 +16,7 @@ import frc.robot.commands.shifterCommand;
 import frc.robot.commands.visionTargetingCommand;
 import frc.robot.commands.visionApproachCommand;
 import frc.robot.commands.visionComboCommand;
+import frc.robot.commandGroups.placeHatchLow;
 import frc.robot.commands.armHighCommand;
 import frc.robot.commands.armLowCommand;
 import frc.robot.commands.armMiddleCommand;
@@ -77,6 +78,10 @@ public class OI {
   Button armHighButton = new JoystickButton(driveController, RobotMap.YButton);
   Button armMiddleButton = new JoystickButton(driveController, RobotMap.Bbutton);
 
+  // Operator controller
+  Button hatchReleaseButton = new JoystickButton(operatorController, RobotMap.LBumper);
+  Button hatchGrabButton = new JoystickButton(operatorController, RobotMap.RBumper);
+
   public OI() {
     //targetingButton.whileHeld(new visionTargetingCommand());
     //approachButton.whileHeld(new visionApproachCommand());
@@ -92,5 +97,8 @@ public class OI {
     armLowButton.whenPressed(new armLowCommand());
     armHighButton.whenPressed(new armHighCommand());
     armMiddleButton.whenPressed(new armMiddleCommand());
+
+    // Operator
+    hatchReleaseButton.whenPressed(new placeHatchLow());
   }
 }

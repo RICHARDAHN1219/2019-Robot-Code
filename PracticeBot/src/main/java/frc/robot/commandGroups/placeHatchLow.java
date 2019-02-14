@@ -1,13 +1,15 @@
 /*----------------------------------------------------------------------------*/
-/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
+/* Copyright (c) 2018 FIRST. All Rights Reserved. */
+/* Open Source Software - may be modified and shared by FRC teams. The code */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
+/* the project. */
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commandGroups;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import frc.robot.commands.ejectorRelease;
+import frc.robot.commands.hatchRelease;
 
 public class placeHatchLow extends CommandGroup {
   /**
@@ -32,7 +34,7 @@ public class placeHatchLow extends CommandGroup {
     // arm.
 
     //addSequential(vision targeting things i don't know about)
-    //addSequential(close beak)
-    //addSequential(eject hatch)
+    addParallel(new hatchRelease());
+    addParallel(new ejectorRelease());
   }
 }

@@ -7,10 +7,6 @@
 
 package frc.robot.commands;
 
-import frc.robot.Robot;
-import frc.robot.commands.armLowCommand;
-import frc.robot.commands.armMiddleCommand;
-
 public class armHighCommand extends armCommand {
 
   public armHighCommand() {

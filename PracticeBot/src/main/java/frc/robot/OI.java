@@ -100,5 +100,6 @@ public class OI {
 
     // Operator
     hatchReleaseButton.whenPressed(new placeHatchLow());
+    hatchGrabButton.whenPressed(new hatchRetrieve());
   }
 }

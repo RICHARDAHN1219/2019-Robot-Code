@@ -22,6 +22,8 @@ public class beakSubsystem extends Subsystem {
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
+
+    // by default we want the beak to stay in the close, hatch holding position
     setDefaultCommand(new hatchRetrieve());
   }
 

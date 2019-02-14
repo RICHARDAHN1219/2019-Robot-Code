@@ -4,18 +4,17 @@
 /* the project. */
 /*----------------------------------------------------------------------------*/
 
+
 package frc.robot.commandGroups;
 
-import frc.robot.Robot;
-import frc.robot.commands.climberDriveCommand;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class climbLevel3  {
+public class climbLevel3 extends CommandGroup {
 
   public climbLevel3() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
 
-    // targetPossition, kP, kI, kP, kF
-   addSequential();
+    //addSequential(new YourCommandClassHere, TIMEOUT_IN_SECONDS);
   }
 }

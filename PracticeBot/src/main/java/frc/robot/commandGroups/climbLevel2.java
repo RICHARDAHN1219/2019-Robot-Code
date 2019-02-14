@@ -6,12 +6,12 @@
 
 package frc.robot.commandGroups;
 
-import frc.robot.Robot;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class climbLevel2 {
+public class climbLevel2 extends CommandGroup{
 
   public climbLevel2() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-
+  }
 }

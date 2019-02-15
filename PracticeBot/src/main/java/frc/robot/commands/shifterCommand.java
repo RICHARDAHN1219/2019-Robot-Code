@@ -9,28 +9,42 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 public class shifterCommand extends Command {
-  public shifterCommand() {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
+  public String gear;
+
+  public shifterCommand(String _gear) {
+    // valid gears are "HIGH_GEAR" and "LOW_GEAR"
+    gear = _gear;
+    requires(Robot.m_shifter);
+
+    if (!gear.equals("HIGH_GEAR") && !gear.equals("LOW_GEAR")) {
+      System.out.println("ERROR: bad gear selection: [" + gear + "]");
+      gear = "HIGH_GEAR";
+    }
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    if (gear.equals("LOW_GEAR")) {
+      Robot.m_shifter.lowGear();
+    }
+    else {
+      Robot.m_shifter.highGear();
+    }
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.shifterSolenoid.set(DoubleSolenoid.Value.kReverse);
+    // nothing to do, it's all in initialize()
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
+    // this is the default command, so we keep running until we're interupted
     return false;
   }
 

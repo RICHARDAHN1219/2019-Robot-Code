@@ -102,9 +102,9 @@ public class OI {
     armMiddleButton.whenPressed(new armMiddleCommand());
 
     // Operator
-    hatchPlacementButton.whenPressed(new placeHatchLow());
-    hatchGrabButton.whenPressed(new readyHatchPickup());
-    ejectorPushButton.whenPressed(new ejectorRelease());
+    hatchPlacementButton.toggleWhenPressed(new placeHatchLow());
+    hatchGrabButton.whileHeld(new readyHatchPickup());
+    ejectorPushButton.whenReleased(new ejectorRelease());
     ejectorRetractButton.whenPressed(new ejectorIntake());
   }
 }

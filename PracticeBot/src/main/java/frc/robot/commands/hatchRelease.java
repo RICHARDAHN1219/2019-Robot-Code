@@ -25,13 +25,14 @@ public class hatchRelease extends Command {
   @Override
   protected void execute() {
     Robot.m_beak.hatchRelease();
-    setTimeout(2.0);
+    //setTimeout(2.0);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return isTimedOut();
+    //return isTimedOut();
+    return false;
   }
 
   // Called once after isFinished returns true

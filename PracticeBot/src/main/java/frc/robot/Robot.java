@@ -19,6 +19,7 @@ import frc.robot.subsystems.beakSubsystem;
 import frc.robot.subsystems.cargoSubsystem;
 import frc.robot.subsystems.climbSubsystem;
 import frc.robot.subsystems.driveSubsystem;
+import frc.robot.subsystems.ejectorSubsystem;
 import frc.robot.subsystems.frontStiltsPIDSubsystem;
 import frc.robot.subsystems.limelightSubsystem;
 import frc.robot.subsystems.visionDriveSubsystem;
@@ -46,6 +47,7 @@ public class Robot extends TimedRobot {
   public static frontStiltsPIDSubsystem m_fClimbPID;
   public static backStiltPIDSubsystem m_bClimbPID;
   public static beakSubsystem m_beak;
+  public static ejectorSubsystem m_ejector;
   private CANEncoder m_encoder1;
   private CANEncoder m_encoder2;
   private CANEncoder m_encoder3;
@@ -74,6 +76,7 @@ public class Robot extends TimedRobot {
     m_fClimbPID = new frontStiltsPIDSubsystem();
     m_bClimbPID = new backStiltPIDSubsystem();
     m_beak = new beakSubsystem();
+    m_ejector = new ejectorSubsystem();
 
     m_arm.init();
     limelight_zero.setlimelightName("limelight-zero");

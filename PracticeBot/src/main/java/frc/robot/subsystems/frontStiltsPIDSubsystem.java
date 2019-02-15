@@ -24,7 +24,7 @@ public class frontStiltsPIDSubsystem extends PIDSubsystem {
   public static final WPI_TalonSRX frontStrut2 = new WPI_TalonSRX(RobotMap.FRONT_STRUT_2);
 
   public frontStiltsPIDSubsystem() {
-    // Intert a subsystem name and PID values here
+    // Insert a subsystem name and PID values here
     
     super("frontStiltsPIDSubsystem", 10, 0, 1);
     setAbsoluteTolerance(100);  

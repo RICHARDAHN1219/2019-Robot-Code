@@ -63,7 +63,7 @@ public class armCommand extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    System.out.println("ARM: Finshed moving to " + name + "position");
+    System.out.println("ARM: Finished moving to " + name + "position");
     Robot.m_arm.printDebug();
   }
 
@@ -72,7 +72,7 @@ public class armCommand extends Command {
   @Override
   protected void interrupted() {
     // maybe we need to stop moving if some other command needs to move the arm
-    System.out.println("ARM: INTERUPTED trying to get to " + name + "position");
+    System.out.println("ARM: INTERRUPTED trying to get to " + name + "position");
     Robot.m_arm.armDrive.set(ControlMode.Disabled, targetPosition);
   }
 }

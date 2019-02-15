@@ -19,7 +19,8 @@ public class driveShortDistance extends Command {
    * drive in a given speed and direction for a time.
    */
 
-  public void driveShortDistance(double _xSpeed, double _zRotation, double _time) {
+  public driveShortDistance(double _xSpeed, double _zRotation, double _time) {
+    super("driveShortDistance");
     xSpeed = _xSpeed;
     zRotation = _zRotation;
     time = _time;

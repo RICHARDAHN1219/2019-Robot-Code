@@ -7,15 +7,17 @@
 
 package frc.robot.commands;
 
+import frc.robot.Robot;
+
 public class armHighCommand extends armCommand {
 
   public armHighCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-
-    // targetPosition, kP, kI, kP, kF
+    
+    // targetPossition, kP, kI, kP, kF
     super(0, 0.6, 0.0003, 0.0, 0.0);
-
+    requires(Robot.m_arm);
     name = "High";
   }
 }

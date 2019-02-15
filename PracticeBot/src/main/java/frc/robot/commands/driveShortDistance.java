@@ -7,20 +7,26 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.OI;
 import frc.robot.Robot;
 
-public class cargoIntakeCommand extends Command {
+public class driveShortDistance extends Command {
+  public double xSpeed = 0.5;
+  public double zRotation = 0.0;
+  public double time = 0.2;
 
-  
-  public cargoIntakeCommand() {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-    requires(Robot.m_intake);
+  /* 
+   * drive in a given speed and direction for a time.
+   */
+
+  public driveShortDistance(double _xSpeed, double _zRotation, double _time) {
+    super("driveShortDistance");
+    xSpeed = _xSpeed;
+    zRotation = _zRotation;
+    time = _time;
+    requires(Robot.m_drive);
   }
-
+  
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
@@ -29,14 +35,14 @@ public class cargoIntakeCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-  //Robot.m_intake.setcargoDriveSpeed(OI.operatorController.getY(Hand.kRight));
-  //Robot.m_intake.setcargoDriveSpeed(-OI.driveController.getY(Hand.kLeft));
-  //Robot.m_intake.setarmDriveSpeed(-OI.operatorController.getY(Hand.kLeft));
+    Robot.m_drive.Drive(xSpeed, zRotation);
+    setTimeout(time);
   }
+
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return isTimedOut();
   }
 
   // Called once after isFinished returns true

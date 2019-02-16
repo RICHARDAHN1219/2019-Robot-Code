@@ -70,8 +70,8 @@ public class Robot extends TimedRobot {
     m_drive = new driveSubsystem();
     m_shifter = new shifterSubsystem();
     m_climb = new climbSubsystem();
-    limelight_zero = new limelightSubsystem();
-    limelight_one = new limelightSubsystem();
+    limelight_zero = new limelightSubsystem("limelight-zero");
+    limelight_one = new limelightSubsystem("limelight-one");
     m_arm = new armSubsystem();
     m_fClimbPID = new frontStiltsPIDSubsystem();
     m_bClimbPID = new backStiltPIDSubsystem();
@@ -79,8 +79,6 @@ public class Robot extends TimedRobot {
     m_ejector = new ejectorSubsystem();
 
     m_arm.init();
-    limelight_zero.setlimelightName("limelight-zero");
-    limelight_one.setlimelightName("limelight-one");
   
     // OI needs to be last
     m_oi = new OI();

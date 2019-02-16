@@ -24,7 +24,6 @@ public class shifterSubsystem extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    // Default to high gear for speed
     setDefaultCommand( new shifterCommand(Gears.LOW_GEAR));
   }
    

@@ -59,7 +59,6 @@ public class armCommand extends Command {
   @Override
   protected boolean isFinished() {
     return true;
-    //return Robot.m_arm.isAtTargetPosition(targetPosition);
   }
 
   // Called once after isFinished returns true

@@ -54,7 +54,7 @@ public class visionTargetingCommand extends Command {
 
     double steering_adjust = Kp * TX;
 
-    Robot.m_drive.Drive(0, steering_adjust);
+    Robot.m_drive.arcadeDrive(0, steering_adjust);
   }
 
   // Make this return true when this Command no longer needs to run execute()

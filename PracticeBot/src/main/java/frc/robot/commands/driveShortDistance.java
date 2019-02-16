@@ -35,7 +35,7 @@ public class driveShortDistance extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_drive.Drive(xSpeed, zRotation);
+    Robot.m_drive.arcadeDrive(xSpeed, zRotation);
     setTimeout(time);
   }
 

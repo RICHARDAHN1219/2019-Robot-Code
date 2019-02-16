@@ -25,10 +25,10 @@ public class shifterSubsystem extends Subsystem {
 
   public void highGear() {
     // TODO: need to check if this is the correct direction for high gear
-    Robot.shifterSolenoid.set(DoubleSolenoid.Value.kReverse);
+    Robot.shifterSolenoid.set(DoubleSolenoid.Value.kForward);
   }
 
   public void lowGear() {
-    Robot.shifterSolenoid.set(DoubleSolenoid.Value.kForward);
+    Robot.shifterSolenoid.set(DoubleSolenoid.Value.kReverse);
   }
 }

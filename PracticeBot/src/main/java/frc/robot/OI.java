@@ -14,6 +14,7 @@ import frc.robot.commands.hatchRelease;
 import frc.robot.commands.hatchRetrieve;
 import frc.robot.commands.shifterCommand;
 import frc.robot.commands.visionTargetingCommand;
+import frc.robot.subsystems.shifterSubsystem;
 import frc.robot.commands.visionApproachCommand;
 import frc.robot.commands.visionComboCommand;
 import frc.robot.commandGroups.placeHatchLow;
@@ -88,7 +89,7 @@ public class OI {
   public OI() {
     //targetingButton.whileHeld(new visionTargetingCommand());
     //approachButton.whileHeld(new visionApproachCommand());
-    shifterButton.whileHeld(new shifterCommand("LOW_GEAR"));
+    shifterButton.whileHeld(new shifterCommand(shifterSubsystem.Gears.LOW_GEAR));
     //hatchButton.whileHeld(new hatchRetrieve());
     //hatchButton.whenReleased(new hatchRelease());
     //ejectorButton.whileHeld(new ejectorRelease());

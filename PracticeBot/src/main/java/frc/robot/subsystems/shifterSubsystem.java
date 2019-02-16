@@ -16,19 +16,30 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
  * Shifter Subsystem: shift driving gears between high and low. High is faster.
  */
 public class shifterSubsystem extends Subsystem {
+  public Gears currentGear;
+
+  public enum Gears {
+    HIGH_GEAR, LOW_GEAR;
+  }
 
   @Override
   public void initDefaultCommand() {
     // Default to high gear for speed
-    setDefaultCommand(new shifterCommand("HIGH_GEAR"));
+    setDefaultCommand( new shifterCommand(Gears.HIGH_GEAR));
   }
-
+   
   public void highGear() {
     // TODO: need to check if this is the correct direction for high gear
     Robot.shifterSolenoid.set(DoubleSolenoid.Value.kReverse);
+    currentGear = Gears.HIGH_GEAR;
   }
 
   public void lowGear() {
     Robot.shifterSolenoid.set(DoubleSolenoid.Value.kForward);
+    currentGear = Gears.LOW_GEAR;
+  }
+
+  public Gears getGear() {
+    return this.currentGear;
   }
 }

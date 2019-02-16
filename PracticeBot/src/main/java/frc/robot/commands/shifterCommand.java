@@ -9,29 +9,27 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.subsystems.shifterSubsystem;
 
 public class shifterCommand extends Command {
-  public String gear;
+  public shifterSubsystem.Gears gear;
 
-  public shifterCommand(String _gear) {
-    // valid gears are "HIGH_GEAR" and "LOW_GEAR"
+  public shifterCommand(shifterSubsystem.Gears _gear) {
     gear = _gear;
     requires(Robot.m_shifter);
-
-    if (!gear.equals("HIGH_GEAR") && !gear.equals("LOW_GEAR")) {
-      System.out.println("ERROR: bad gear selection: [" + gear + "]");
-      gear = "HIGH_GEAR";
-    }
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    if (gear.equals("LOW_GEAR")) {
+    if (gear == shifterSubsystem.Gears.LOW_GEAR) {
       Robot.m_shifter.lowGear();
     }
-    else {
+    else if (gear == shifterSubsystem.Gears.HIGH_GEAR) {
       Robot.m_shifter.highGear();
+    }
+    else {
+      System.out.println("ERROR: bad gear selected: " + gear);
     }
   }
 

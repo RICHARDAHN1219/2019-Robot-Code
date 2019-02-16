@@ -20,6 +20,10 @@ public class limelightSubsystem extends Subsystem {
   public NetworkTable table;
   NetworkTableEntry pipeline;
 
+  public enum Pipeline {
+    VISION_TARGET, CARGO, HATCH, DRIVE;
+  }
+
   /*
    * limelightName is the networktable name. For example "limelight-zero"
    */
@@ -34,8 +38,26 @@ public class limelightSubsystem extends Subsystem {
     setDefaultCommand(null);
   }
 
-  public void setlimelightName(String limelightName) {
-    table = NetworkTableInstance.getDefault().getTable(limelightName);
+  public void setPipeline(Pipeline pipeline) {
+
+    int pipelineNumber = 0;
+    
+    switch (pipeline) {
+      case VISION_TARGET:
+        pipelineNumber = 0;
+        break;
+      case CARGO:
+        pipelineNumber = 1;
+        break;
+      case HATCH:
+        pipelineNumber = 2;
+        break;
+      default:  
+      case DRIVE:
+        pipelineNumber = 3;
+        break;
+    }
+
   }
 
   public void setVisionTargetPipeline() {

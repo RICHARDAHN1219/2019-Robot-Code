@@ -8,7 +8,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
+  
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import frc.robot.RobotMap;
 
@@ -29,6 +29,15 @@ public class frontStiltsPIDSubsystem extends PIDSubsystem {
     super("frontStiltsPIDSubsystem", 10, 0, 1);
     setAbsoluteTolerance(100);  
     getPIDController().setContinuous(false);
+    
+
+    
+    // 2. change mode to follower for the following motor
+    frontStrut2.changeControlMode(CANTalon.TalonControlMode.Follower);
+    // 3. indicate the master motor to follow
+    frontStrut2.set(frontStrut1.getDeviceID());
+    // 4. optional: invert the output of the slave to match master
+    frontStrut2.reverseOutput(true);
     //setSetpoint(setpoint);
     // Use these to get going:
     // setSetpoint() - Sets where the PID controller should move the system
@@ -57,6 +66,7 @@ public class frontStiltsPIDSubsystem extends PIDSubsystem {
     // e.g. yourMotor.set(output);
     frontStrut1.pidWrite(output);
     frontStrut2.pidWrite(-output);
+
   }
 }
 //encoder.thingy = yes;

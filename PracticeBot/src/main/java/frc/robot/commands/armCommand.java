@@ -41,7 +41,7 @@ public class armCommand extends Command {
     Robot.m_arm.kF = kF;
 
     setPosition();
-    Robot.m_arm.printDebug();
+    Robot.m_arm.printDebug(name);
   }
 
   public void setPosition() { 
@@ -52,7 +52,7 @@ public class armCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_arm.printDebug();
+    Robot.m_arm.printDebug(name);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -66,7 +66,7 @@ public class armCommand extends Command {
   @Override
   protected void end() {
     System.out.println("ARM: Finished moving to " + name + "position");
-    Robot.m_arm.printDebug();
+    Robot.m_arm.printDebug(name);
   }
 
   // Called when another command which requires one or more of the same
@@ -75,6 +75,6 @@ public class armCommand extends Command {
   protected void interrupted() {
     // maybe we need to stop moving if some other command needs to move the arm
     System.out.println("ARM: INTERRUPTED trying to get to " + name + "position");
-    Robot.m_arm.armDrive.set(ControlMode.Disabled, targetPosition);
+    // Robot.m_arm.armDrive.set(ControlMode.Disabled, targetPosition);
   }
 }

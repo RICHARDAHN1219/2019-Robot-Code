@@ -40,7 +40,8 @@ public class armSubsystem extends Subsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
-    setDefaultCommand(new armHighCommand());
+    //
+    //setDefaultCommand(new armHighCommand());
   }
   public void init() {
     armDrive.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, kPIDLoopIdx,
@@ -76,7 +77,7 @@ public class armSubsystem extends Subsystem {
 
     targetPosition = startPosition - 0;
 
-    printDebug();
+    printDebug("INIT");
   }
 
   /*
@@ -95,7 +96,6 @@ public class armSubsystem extends Subsystem {
     kTimeoutMs);
     armDrive.setIntegralAccumulator(0.0);  // zero out the kI error accumulator
     armDrive.set(ControlMode.Position, targetPosition);
-    printDebug();
   }
 
   public int getPosition() {
@@ -122,7 +122,7 @@ public class armSubsystem extends Subsystem {
     armDrive.config_kD(kPIDLoopIdx, _kD, kTimeoutMs);
   }
   */
-  public void printDebug() {
+  public void printDebug(String name) {
     _sb.append("ARM out:");
     double motorOutput = armDrive.getMotorOutputPercent();
     _sb.append((int) (motorOutput * 100));
@@ -139,6 +139,7 @@ public class armSubsystem extends Subsystem {
     _sb.append("\terr:");
     _sb.append(armDrive.getClosedLoopError(0));
     _sb.append("u");	// Native Units
+    _sb.append(" " + name);
     System.out.println(_sb);
     /* Reset built string for next loop */
     _sb.setLength(0);

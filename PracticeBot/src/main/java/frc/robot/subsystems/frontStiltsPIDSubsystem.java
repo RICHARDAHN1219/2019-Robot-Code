@@ -33,11 +33,11 @@ public class frontStiltsPIDSubsystem extends PIDSubsystem {
 
     
     // 2. change mode to follower for the following motor
-    frontStrut2.changeControlMode(CANTalon.TalonControlMode.Follower);
-    // 3. indicate the master motor to follow
-    frontStrut2.set(frontStrut1.getDeviceID());
+    frontStrut2.follow(frontStrut1);
+  
     // 4. optional: invert the output of the slave to match master
-    frontStrut2.reverseOutput(true);
+    frontStrut2.setInverted(true);
+    frontStrut1.setInverted(false);
     //setSetpoint(setpoint);
     // Use these to get going:
     // setSetpoint() - Sets where the PID controller should move the system

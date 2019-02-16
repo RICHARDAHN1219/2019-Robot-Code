@@ -93,6 +93,7 @@ public class armSubsystem extends Subsystem {
     armDrive.config_kD(kPIDLoopIdx, kD, kTimeoutMs);
     armDrive.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, kPIDLoopIdx,
     kTimeoutMs);
+    armDrive.setIntegralAccumulator(0.0);  // zero out the kI error accumulator
     armDrive.set(ControlMode.Position, targetPosition);
     printDebug();
   }

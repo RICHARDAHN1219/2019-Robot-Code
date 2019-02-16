@@ -39,11 +39,9 @@ public class armCommand extends Command {
     Robot.m_arm.kI = kI;
     Robot.m_arm.kD = kD;
     Robot.m_arm.kF = kF;
-<<<<<<< HEAD
-=======
+
     setPosition();
     Robot.m_arm.printDebug();
->>>>>>> e23717cbed4b36ee0198d020bd12672445093d32
   }
 
   public void setPosition() { 
@@ -54,10 +52,6 @@ public class armCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-<<<<<<< HEAD
-    setPosition();
-=======
->>>>>>> e23717cbed4b36ee0198d020bd12672445093d32
     Robot.m_arm.printDebug();
   }
 

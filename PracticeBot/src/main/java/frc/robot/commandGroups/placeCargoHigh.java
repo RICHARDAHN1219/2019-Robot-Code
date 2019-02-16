@@ -31,7 +31,7 @@ public class placeCargoHigh extends CommandGroup {
     // a CommandGroup containing them would require both the chassis and the
     // arm.
 
-    //maybe not possible, but pseudocode can't hurt
+    //maybe not possible, but pseudo code can't hurt
     //addSequential(aim arm to correct angle)
     //addSequential(launch cargo)
   }

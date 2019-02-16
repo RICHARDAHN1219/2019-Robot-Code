@@ -22,6 +22,7 @@ import frc.robot.subsystems.driveSubsystem;
 import frc.robot.subsystems.ejectorSubsystem;
 import frc.robot.subsystems.frontStiltsPIDSubsystem;
 import frc.robot.subsystems.limelightSubsystem;
+import frc.robot.subsystems.shifterSubsystem;
 import frc.robot.subsystems.visionDriveSubsystem;
 import com.revrobotics.CANEncoder;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
@@ -38,6 +39,7 @@ public class Robot extends TimedRobot {
   public static cargoSubsystem m_intake;
   public static OI m_oi;
   public static driveSubsystem m_drive;
+  public static shifterSubsystem m_shifter;
   public static climbSubsystem m_climb;
   public static visionDriveSubsystem m_vdrive;
   public static limelightSubsystem m_pipeline;
@@ -68,6 +70,7 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     m_intake = new cargoSubsystem();
     m_drive = new driveSubsystem();
+    m_shifter = new shifterSubsystem();
     m_climb = new climbSubsystem();
     m_vdrive = new visionDriveSubsystem();
     limelight_zero = new limelightSubsystem();

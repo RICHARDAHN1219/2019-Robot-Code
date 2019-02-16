@@ -19,13 +19,13 @@ public class hatchRetrieve extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.m_beak.hatchRetrieve();
+    //setTimeout(0.2);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_beak.hatchRetrieve();
-    //setTimeout(0.2);
   }
 
   // Make this return true when this Command no longer needs to run execute()

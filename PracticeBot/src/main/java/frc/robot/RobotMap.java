@@ -24,7 +24,7 @@ public class RobotMap {
   // public static int rangefinderPort = 1;
   // public static int rangefinderModule = 1;
 
-  // motor controlers
+  // motor controllers
   public static final int NEO_1 = 1;
   public static final int NEO_2 = 2;
   public static final int NEO_3 = 3;

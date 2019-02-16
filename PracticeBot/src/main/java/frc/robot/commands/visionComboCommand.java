@@ -15,6 +15,11 @@ import frc.robot.Robot;
 
 public class visionComboCommand extends Command {
 
+  NetworkTable table;
+  NetworkTableEntry tx;
+  NetworkTableEntry ta;
+  NetworkTableEntry tv;
+
   public static final double KpAim = -0.1;
   public static final double KpDistance = -0.025;
   public static final double min_aim_command = 0.025;
@@ -24,25 +29,46 @@ public class visionComboCommand extends Command {
   public visionComboCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Robot.m_drive);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    table = NetworkTableInstance.getDefault().getTable("limelight-one");
+    tv = table.getEntry("tv");
+    tx = table.getEntry("tx");
+    ta = table.getEntry("ta");
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    double TX;
+    double TA;
+    double heading_error;
+    double current_distance;
+    double distance_error;
+    double TV = tv.getDouble(0.0);
 
-    NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight-one");
-    NetworkTableEntry tx = table.getEntry("tx");
-    NetworkTableEntry ta = table.getEntry("ta");
-    double TX = tx.getDouble(3.14);
-    double TA = ta.getDouble(3.14);
-    double heading_error = -TX;
-    double current_distance = (((-14.4892) * (TA * TA * TA)) + ((102.636) * (TA * TA)) - ((253.741) * (TA)) + 255.752);
-    double distance_error = -1 * (current_distance - desired_distance);
+    if (TV == 0.0) {
+      System.out.println("Lost track of target.");
+      return;
+    }
+
+    // Use default values outside of the acceptable ranges so we can check if we
+    // got a valid response. 
+    TX = tx.getDouble(180.0);   // return angle offset to target -27 to 27 degrees
+    TA = ta.getDouble(-1.0);    // return area as percent of image 0-100
+
+    if ((TX > 45.0) || ( TA < 0.0)) {
+      System.out.println("Bad target values. tx: " + TX + " ta:" + TA);
+      return;
+    }
+
+    heading_error = -TX;
+    current_distance = (((-14.4892) * (TA * TA * TA)) + ((102.636) * (TA * TA)) - ((253.741) * (TA)) + 255.752);
+    distance_error = -1 * (current_distance - desired_distance);
 
     System.out.format("Distance is : %f%n", current_distance);
 
@@ -100,6 +126,7 @@ if (joystick->GetRawButton(9))
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
+    // TODO: we should realease control of the drive on a button press or driver input
     return false;
   }
 

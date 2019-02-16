@@ -17,8 +17,9 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *   - Switch between pipelines
  */
 public class limelightSubsystem extends Subsystem {
+  public String name;
   public NetworkTable table;
-  NetworkTableEntry pipeline;
+  NetworkTableEntry pipelineEntry;
 
   public enum Pipeline {
     VISION_TARGET, CARGO, HATCH, DRIVE;
@@ -29,8 +30,9 @@ public class limelightSubsystem extends Subsystem {
    */
   public limelightSubsystem(String limelightName)
   {
+    name = limelightName;
     table = NetworkTableInstance.getDefault().getTable(limelightName);
-    pipeline = table.getEntry("pipeline");
+    pipelineEntry = table.getEntry("pipeline");
   }
 
   @Override
@@ -38,6 +40,9 @@ public class limelightSubsystem extends Subsystem {
     setDefaultCommand(null);
   }
 
+  /* 
+   * setPipeline( VISION_TARGET | CARGO | HATCH | DRIVE ) 
+   */
   public void setPipeline(Pipeline pipeline) {
 
     int pipelineNumber = 0;
@@ -58,22 +63,9 @@ public class limelightSubsystem extends Subsystem {
         break;
     }
 
+    pipelineEntry.setNumber(pipelineNumber);
+    System.out.println("Limelight " + name + " set to pipeline " + pipeline);
   }
 
-  public void setVisionTargetPipeline() {
-    pipeline.setNumber(0);
-  }
-
-  public void setCargoPipeline() {
-    pipeline.setNumber(1);
-  }
-
-  public void setTargetPipeline() {
-    pipeline.setNumber(2);
-  }
-
-  public void setDrivePipeline() {
-    pipeline.setNumber(3);
-  }
 }
 

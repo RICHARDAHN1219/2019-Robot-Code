@@ -13,7 +13,7 @@ public class armMiddleCommand extends armCommand {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
 
-    // targetPossition, kP, kI, kP, kF
+    // targetPosition, kP, kI, kP, kF
     super(600, 1, 0.00075, 0.65, 0.0);
 
     name = "Middle";

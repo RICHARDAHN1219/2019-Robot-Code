@@ -7,6 +7,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI;
 import frc.robot.Robot;
@@ -26,12 +27,13 @@ public class driveCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //Robot.m_drive.Drive(OI.driveController.getY(Hand.kLeft), -OI.driveController.getX(Hand.kRight));
+    Robot.m_drive.Drive(OI.driveController.getY(Hand.kLeft), -OI.driveController.getX(Hand.kRight));
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
+    // this is the drive subsystem's default command. it doesn't stop, it only gets interupted
     return false;
   }
 

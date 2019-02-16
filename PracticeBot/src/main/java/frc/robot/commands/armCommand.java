@@ -21,7 +21,7 @@ public class armCommand extends Command {
 
   public armCommand() {
     // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
+    requires(Robot.m_arm);
   }
 
   public armCommand(int tpos, double _kP, double _kI, double _kD, double _kF) {
@@ -35,6 +35,13 @@ public class armCommand extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.m_arm.kP = kP;
+    Robot.m_arm.kI = kI;
+    Robot.m_arm.kD = kD;
+    Robot.m_arm.kF = kF;
+
+    setPosition();
+    Robot.m_arm.printDebug();
   }
 
   public void setPosition() { 
@@ -45,11 +52,6 @@ public class armCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_arm.kP = kP;
-    Robot.m_arm.kI = kI;
-    Robot.m_arm.kD = kD;
-    Robot.m_arm.kF = kF;
-    setPosition();
     Robot.m_arm.printDebug();
   }
 
@@ -63,7 +65,7 @@ public class armCommand extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    System.out.println("ARM: Finshed moving to " + name + "position");
+    System.out.println("ARM: Finished moving to " + name + "position");
     Robot.m_arm.printDebug();
   }
 
@@ -72,7 +74,7 @@ public class armCommand extends Command {
   @Override
   protected void interrupted() {
     // maybe we need to stop moving if some other command needs to move the arm
-    System.out.println("ARM: INTERUPTED trying to get to " + name + "position");
+    System.out.println("ARM: INTERRUPTED trying to get to " + name + "position");
     Robot.m_arm.armDrive.set(ControlMode.Disabled, targetPosition);
   }
 }

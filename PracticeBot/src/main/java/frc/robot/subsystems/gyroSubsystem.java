@@ -28,9 +28,15 @@ public class gyroSubsystem extends Subsystem {
  
   // TODO:  get yaw error, return -180 to 180 error off of desired yaw
 
+  public gyroSubsystem() {
+    super("gyroSubsystem");   // call constructor to set name 
+    gyro.reset();             // zero out the gyro
+  }
+
   public void setRoborioVertical() {
     RoborioHorizontal = false;
   }
+
   public void setRoborioHorizontal() {
     RoborioHorizontal = true;
   }
@@ -49,10 +55,8 @@ public class gyroSubsystem extends Subsystem {
   
   @Override
   public void initDefaultCommand() {
-    
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
 
-    gyro.reset();
   }
 }

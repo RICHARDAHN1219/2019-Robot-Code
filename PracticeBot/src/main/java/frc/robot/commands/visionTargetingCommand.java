@@ -44,7 +44,7 @@ public class visionTargetingCommand extends Command {
       visionLayout = TV;
 
       if (TV == 1.0) {
-        System.out.println("Vision lock aquired");
+        System.out.println("Vision lock acquired");
       } else {
         System.out.println("Vision lock lost");
       }

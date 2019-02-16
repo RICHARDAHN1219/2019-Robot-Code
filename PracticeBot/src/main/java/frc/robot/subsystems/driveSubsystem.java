@@ -23,18 +23,38 @@ import frc.robot.commands.driveCommand;
  * Add your docs here.
  */
 public class driveSubsystem extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
 
   public static final CANSparkMax neo1 = new CANSparkMax(RobotMap.NEO_1, MotorType.kBrushless);
   public static final CANSparkMax neo2 = new CANSparkMax(RobotMap.NEO_2, MotorType.kBrushless);
   public static final CANSparkMax neo3 = new CANSparkMax(RobotMap.NEO_3, MotorType.kBrushless);
   public static final CANSparkMax neo4 = new CANSparkMax(RobotMap.NEO_4, MotorType.kBrushless);
+  public static SpeedController leftSide;
+  public static SpeedController rightSide;
+  public static DifferentialDrive drive;
 
-  public static SpeedController leftSide = new SpeedControllerGroup(neo1, neo2);
-  public static SpeedController rightSide = new SpeedControllerGroup(neo3, neo4);
+  public driveSubsystem(){
+    super("driveSubsystem");
 
-  public static DifferentialDrive drive = new DifferentialDrive(leftSide, rightSide);
+    // set all NEOs to factory defaults
+    neo1.restoreFactoryDefaults();
+    neo2.restoreFactoryDefaults();
+    neo3.restoreFactoryDefaults();
+    neo4.restoreFactoryDefaults();
+
+    if (true) {
+      // Instead of SpeedControllerGroup use NEO controlls to lead follow
+      neo2.follow(neo1);
+      neo4.follow(neo3);
+      drive = new DifferentialDrive(neo1, neo3);
+    }
+    else {
+      // the old-school way using SpeedControllerGroup
+      leftSide = new SpeedControllerGroup(neo1, neo2);
+      rightSide = new SpeedControllerGroup(neo3, neo4);
+      drive = new DifferentialDrive(leftSide, rightSide);
+    }
+
+  }
 
   @Override
   public void initDefaultCommand() {

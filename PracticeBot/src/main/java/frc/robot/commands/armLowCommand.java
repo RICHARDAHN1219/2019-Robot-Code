@@ -10,7 +10,7 @@ package frc.robot.commands;
 public class armLowCommand extends armCommand {
 
   public armLowCommand() {
-    // targetPossition, kP, kI, kP, kF
+    // targetPosition, kP, kI, kP, kF
     super(1550, 0.1, 0.0, 0.0, 0.0);
 
     // Use requires() here to declare subsystem dependencies

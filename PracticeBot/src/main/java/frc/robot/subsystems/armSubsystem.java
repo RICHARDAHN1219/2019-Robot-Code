@@ -12,6 +12,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import frc.robot.RobotMap;
+import frc.robot.commands.armHighCommand;
 
 /**
  * armSubsystem controls the cargo collection arm's up and down movement.
@@ -39,6 +40,7 @@ public class armSubsystem extends Subsystem {
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
+    setDefaultCommand(new armHighCommand());
   }
   public void init() {
     armDrive.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, kPIDLoopIdx,
@@ -52,13 +54,13 @@ public class armSubsystem extends Subsystem {
     armDrive.configPeakOutputForward(1, kTimeoutMs);
     armDrive.configPeakOutputReverse(-1, kTimeoutMs);
     armDrive.configAllowableClosedloopError(allowableError, kPIDLoopIdx, kTimeoutMs);
-    /* Config Position Closed Loop gains in slot0, tsypically kF stays zero. */
+    /* Config Position Closed Loop gains in slot0, typically kF stays zero. */
     armDrive.config_kF(kPIDLoopIdx, kF, kTimeoutMs);
     armDrive.config_kP(kPIDLoopIdx, kP, kTimeoutMs);
     armDrive.config_kI(kPIDLoopIdx, kI, kTimeoutMs);
     armDrive.config_kD(kPIDLoopIdx, kD, kTimeoutMs);
     /**
-     * Grab the 360 degree position of the MagEncoder's absolute position, and intitally set the
+     * Grab the 360 degree position of the MagEncoder's absolute position, and initially set the
      * relative sensor to match.
      */
     startPosition = armDrive.getSensorCollection().getPulseWidthPosition();
@@ -81,7 +83,7 @@ public class armSubsystem extends Subsystem {
   * setPosition()
   * 
   * Tell the arm motor to move to the given targetPosition. Target position is relative
-  * to the start postion when the robot turns on. Position is measured in encoder ticks.
+  * to the start position when the robot turns on. Position is measured in encoder ticks.
   */
   public void setPosition(int desiredPosition) {
     targetPosition = startPosition - desiredPosition;
@@ -91,6 +93,7 @@ public class armSubsystem extends Subsystem {
     armDrive.config_kD(kPIDLoopIdx, kD, kTimeoutMs);
     armDrive.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, kPIDLoopIdx,
     kTimeoutMs);
+    armDrive.setIntegralAccumulator(0.0);  // zero out the kI error accumulator
     armDrive.set(ControlMode.Position, targetPosition);
     printDebug();
   }

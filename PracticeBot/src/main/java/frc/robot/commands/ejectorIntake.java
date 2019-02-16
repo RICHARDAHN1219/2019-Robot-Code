@@ -15,24 +15,26 @@ public class ejectorIntake extends Command {
   public ejectorIntake() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Robot.m_ejector);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.m_ejector.extend();
+    //setTimeout(0.5);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.ejectorSolenoid.set(DoubleSolenoid.Value.kForward);
-    setTimeout(0.5);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return isTimedOut();
+    //return isTimedOut();
+    return false;
   }
 
   // Called once after isFinished returns true

@@ -14,33 +14,31 @@ import frc.robot.Robot;
 
 public class PipelineSwitchZero extends Command {
 
-    public String limelightName;
-    private NetworkTable table;
+  public String limelightName;
+  private NetworkTable table;
 
-    public PipelineSwitchZero() {
+  public PipelineSwitchZero() {
     // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-        requires(Robot.m_pipeline);
+    requires(Robot.m_pipeline);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-      }
+    System.out.println("Switching Pipeline");
+    NetworkTableEntry pipeline = table.getEntry("pipeline");
+    pipeline.setNumber(0);
+  }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    System.out.println("Switching Pipeline");
-    NetworkTableEntry pipeline = table.getEntry("pipeline");
-    pipeline.setNumber(0);
-    
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true

@@ -63,7 +63,12 @@ public class driveSubsystem extends Subsystem {
     setDefaultCommand(new driveCommand());
   }
   
-  public void Drive(double xSpeed, double zRotation) {
+  public void arcadeDrive(double xSpeed, double zRotation) {
     drive.arcadeDrive(xSpeed, zRotation);
   }
+
+  public void tankDrive(double leftSpeed, double rightSpeed) {
+    drive.tankDrive(leftSpeed, rightSpeed);
+  }
+
 }

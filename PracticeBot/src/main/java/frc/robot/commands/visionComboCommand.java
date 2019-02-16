@@ -89,7 +89,7 @@ public class visionComboCommand extends Command {
       right_command = right_command + 0.1;
     }
 
-    Robot.m_vdrive.Drive(left_command, right_command);
+    Robot.m_drive.tankDrive(left_command, right_command);
 
 /*
 float KpAim = -0.1f;

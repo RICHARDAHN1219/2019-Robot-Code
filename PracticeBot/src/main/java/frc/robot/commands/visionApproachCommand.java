@@ -48,7 +48,7 @@ public class visionApproachCommand extends Command {
     double distance_error = desired_distance - current_distance;
     double driving_adjust = KpDistance * distance_error;
 
-    Robot.m_drive.Drive(driving_adjust, 0);
+    Robot.m_drive.arcadeDrive(driving_adjust, 0);
   }
 
   // Make this return true when this Command no longer needs to run execute()

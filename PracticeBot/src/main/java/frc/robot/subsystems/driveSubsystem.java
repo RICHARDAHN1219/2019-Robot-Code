@@ -41,7 +41,7 @@ public class driveSubsystem extends Subsystem {
     neo3.restoreFactoryDefaults();
     neo4.restoreFactoryDefaults();
 
-    if (true) {
+    if (false) {
       // Instead of SpeedControllerGroup use NEO controlls to lead follow
       neo2.follow(neo1);
       neo4.follow(neo3);

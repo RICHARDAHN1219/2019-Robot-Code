@@ -47,4 +47,7 @@ public class RobotMap {
   public static final int StartButton = 8;
   public static final int LeftJoystickClick = 9;
   public static final int RightJoystickClick = 10;
+
+  //sensors
+  public static final int LIMIT_SWITCH_1 = 0; 
 }

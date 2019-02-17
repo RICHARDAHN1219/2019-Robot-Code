@@ -30,6 +30,7 @@ public class armCommand extends Command {
     kI = _kI;
     kD = _kD;
     kF = _kF;
+    requires(Robot.m_arm);
   }
 
   // Called just before this Command runs the first time

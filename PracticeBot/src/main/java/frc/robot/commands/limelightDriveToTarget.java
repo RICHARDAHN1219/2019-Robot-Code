@@ -33,6 +33,7 @@ public class limelightDriveToTarget extends Command {
   /*
   * limelightDriveToTarget() constructor 
   *     name   - name of the limelight instance. e.g "limelight", "limelight-zero"
+  *     pipeline - pipeline number to use
   *     steer  - control how hard to steer towards target
   *     drive  - how hard/fast to drive to target
   *     ta     - desired target area as percent of field of view. range of 1-100. 

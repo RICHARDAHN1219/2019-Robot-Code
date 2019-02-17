@@ -14,6 +14,7 @@ import frc.robot.commands.hatchRelease;
 import frc.robot.commands.hatchRetrieve;
 import frc.robot.commands.shifterCommand;
 import frc.robot.commands.visionTargetingCommand;
+import frc.robot.commands.visionlockoncommand;
 import frc.robot.subsystems.shifterSubsystem;
 import frc.robot.commands.visionApproachCommand;
 import frc.robot.commands.visionComboCommand;
@@ -94,7 +95,7 @@ public class OI {
     //hatchButton.whenReleased(new hatchRelease());
     //ejectorButton.whileHeld(new ejectorRelease());
     //ejectorButton.whenReleased(new ejectorIntake());
-    comboButton.whileHeld(new visionComboCommand());
+    comboButton.whileHeld(new visionlockoncommand());
     cargoButton.whileHeld(new cargoIntakeCommand());
     //climbPIDButton.whileHeld(new climbPIDCommand());
     //climbPIDButton.whenReleased(new climbPIDStopCommand());

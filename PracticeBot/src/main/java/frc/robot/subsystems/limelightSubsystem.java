@@ -20,6 +20,7 @@ public class limelightSubsystem extends Subsystem {
   public String name;
   public NetworkTable table;
   NetworkTableEntry pipelineEntry;
+  NetworkTableEntry getTA;
 
   public enum Pipeline {
     VISION_TARGET, CARGO, HATCH, DRIVE;
@@ -66,6 +67,6 @@ public class limelightSubsystem extends Subsystem {
     pipelineEntry.setNumber(pipelineNumber);
     System.out.println("Limelight " + name + " set to pipeline " + pipeline);
   }
-
 }
+
 

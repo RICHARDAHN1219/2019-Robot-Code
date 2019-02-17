@@ -33,9 +33,9 @@ public class visionlockoncommand extends Command {
   @Override
   protected void execute() {
        // These numbers must be tuned for Comp Robot!  Be careful!
-       final double STEER_K = 0.05;                    // how hard to turn toward the target
+       final double STEER_K = 0.075;                    // how hard to turn toward the target
        final double DRIVE_K = 0.1;                    // how hard to drive fwd toward the target
-       final double DESIRED_TARGET_AREA = 60.0;        // Area of the target when the robot reaches the wall
+       final double DESIRED_TARGET_AREA = 55.0;        // Area of the target when the robot reaches the wall
        final double MAX_DRIVE = 0.5;                   // Simple speed limit so we don't drive too fast
 
        double tv = NetworkTableInstance.getDefault().getTable("limelight-one").getEntry("tv").getDouble(0);

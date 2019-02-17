@@ -26,7 +26,7 @@ public class frontStiltsPIDSubsystem extends PIDSubsystem {
   public frontStiltsPIDSubsystem() {
     // Insert a subsystem name and PID values here
     
-    super("frontStiltsPIDSubsystem", 10, 0, 1);
+    super("frontStiltsPIDSubsystem", 0.25, 0, 0);
     setAbsoluteTolerance(100);  
     getPIDController().setContinuous(false);
     

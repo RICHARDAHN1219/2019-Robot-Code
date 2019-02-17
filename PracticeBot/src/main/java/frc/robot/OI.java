@@ -73,9 +73,9 @@ public class OI {
   Button comboButton = new JoystickButton(driveController, RobotMap.XButton);
   Button cargoButton = new JoystickButton(driveController, RobotMap.StartButton);
   //Button ejectorButton = new JoystickButton(driveController, RobotMap.Bbutton);
-  //Button climbPIDButton = new JoystickButton(driveController, RobotMap.YButton);
+  Button climbPIDButton = new JoystickButton(driveController, RobotMap.YButton);
   Button armLowButton = new JoystickButton(driveController, RobotMap.AButton);
-  Button armHighButton = new JoystickButton(driveController, RobotMap.YButton);
+  //Button armHighButton = new JoystickButton(driveController, RobotMap.YButton);
   Button armMiddleButton = new JoystickButton(driveController, RobotMap.Bbutton);
 
   // Operator controller
@@ -94,10 +94,10 @@ public class OI {
     //ejectorButton.whenReleased(new ejectorIntake());
     comboButton.whileHeld(new visionlockoncommand());
     cargoButton.whileHeld(new cargoIntakeCommand());
-    //climbPIDButton.whileHeld(new climbPIDCommand());
-    //climbPIDButton.whenReleased(new climbPIDStopCommand());
+    climbPIDButton.whileHeld(new climbPIDCommand());
+    climbPIDButton.whenReleased(new climbPIDStopCommand());
     armLowButton.whenPressed(new armLowCommand());
-    armHighButton.whenPressed(new armHighCommand());
+    //armHighButton.whenPressed(new armHighCommand());
     armMiddleButton.whenPressed(new armMiddleCommand());
 
     // Operator

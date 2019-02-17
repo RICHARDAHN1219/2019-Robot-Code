@@ -22,6 +22,7 @@ public class limelightDriveToTarget extends Command {
   private NetworkTableEntry taEntry;
   private NetworkTableEntry txEntry;
   private NetworkTableEntry tyEntry;
+  public int pipeline;
 
   double STEER_K;             // how hard to turn toward the target
   double DRIVE_K;             // how hard to drive fwd toward the target
@@ -42,7 +43,7 @@ public class limelightDriveToTarget extends Command {
   *  Example:
   *     comboButton.whileHeld(new visionlockoncommand("limelight", 0.075, 0.1, 0.55, 0.5, false, false));
   */
-  public limelightDriveToTarget(String name, double steer, double drive, double ta, double md, boolean invd, boolean invs) {
+  public limelightDriveToTarget(String name, int pipeline, double steer, double drive, double ta, double md, boolean invd, boolean invs) {
     // declare subsystem dependencies
     requires(Robot.m_drive);
 
@@ -65,6 +66,8 @@ public class limelightDriveToTarget extends Command {
     taEntry = table.getEntry("ta");
     txEntry = table.getEntry("tx");
     tyEntry = table.getEntry("ty");
+    table.getEntry("camMode").setNumber(0);
+    table.getEntry("pipeline").setNumber(pipeline);
   }
 
   // Called repeatedly when this Command is scheduled to run

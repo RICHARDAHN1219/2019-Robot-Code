@@ -11,7 +11,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import frc.robot.RobotMap;
-import frc.robot.subsystems.frontStiltsPIDSubsystem;;
+import frc.robot.subsystems.frontStiltsPIDSubsystem;
 
 /**
  * Add your docs here.
@@ -25,7 +25,7 @@ public class backStiltPIDSubsystem extends PIDSubsystem {
 
   public backStiltPIDSubsystem() {
     // Intert a subsystem name and PID values here
-    super("backStiltPIDSubsystem", 0.5, 0, 0);
+    super("backStiltPIDSubsystem", 0.25, 0, 0);
     setAbsoluteTolerance(5);
     getPIDController().setContinuous(false);
     setSetpoint(frontStiltsPIDSubsystem.frontStrut1.getSelectedSensorPosition() + frontStiltsPIDSubsystem.frontStrut2.getSelectedSensorPosition() / 2);

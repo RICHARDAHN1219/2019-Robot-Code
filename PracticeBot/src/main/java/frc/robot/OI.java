@@ -64,6 +64,7 @@ public class OI {
   // controllers
   public static XboxController driveController = new XboxController(0);
   public static XboxController operatorController = new XboxController(1);
+  public static XboxController climbController = new XboxController(2);
 
   // buttons on driveController
   

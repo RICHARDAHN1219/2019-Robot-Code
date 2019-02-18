@@ -27,14 +27,14 @@ public class RobotMap {
   // motor controllers
   public static final int NEO_1 = 1;
   public static final int NEO_2 = 2;
-  public static final int NEO_3 = 3;
-  public static final int NEO_4 = 5;
-  public static final int FRONT_STRUT_1 = 11;
-  public static final int FRONT_STRUT_2 = 10;
-  public static final int BACK_STRUT = 13;
-  public static final int CLIMBER_DRIVE = 9;
+  public static final int NEO_3 = 13;
+  public static final int NEO_4 = 14;
+  public static final int FRONT_STRUT_1 = 3;
+  public static final int FRONT_STRUT_2 = 12;
+  public static final int BACK_STRUT = 15;
+  public static final int CLIMBER_DRIVE = 8;
   public static final int CARGO_INTAKE = 4;
-  public static final int ARM_DRIVE = 8;
+  public static final int ARM_DRIVE = 11;
 
   // buttons
   public static final int AButton = 1;

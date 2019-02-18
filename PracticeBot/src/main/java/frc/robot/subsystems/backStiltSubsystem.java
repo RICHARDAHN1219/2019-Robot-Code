@@ -116,9 +116,11 @@ public class backStiltSubsystem extends Subsystem {
    
    // Set the back stilt climb motor speed, input from [-1,1]
   public void setBackClimberSpeed(double speed) {
+
     // https://github.com/CrossTheRoadElec/Phoenix-Examples-Languages/blob/master/Java/VelocityClosedLoop/src/main/java/frc/robot/Robot.java
     double targetVelocity_UnitsPer100ms = speed * 500.0 * 4096 / 600;
     backStrut.set(ControlMode.Velocity, targetVelocity_UnitsPer100ms);
+    printDebug("speed");
   }
 
   // debug the encoder positions and motor output for PID
@@ -139,6 +141,9 @@ public class backStiltSubsystem extends Subsystem {
     _sb.append("\terr:");
     _sb.append(backStrut.getClosedLoopError(0));
     _sb.append("u");	// Native Units
+    _sb.append("\tspd:");
+		_sb.append(backStrut.getSelectedSensorVelocity(0));
+		_sb.append("u");
     _sb.append(" " + name);
     System.out.println(_sb);
     /* Reset built string for next loop */

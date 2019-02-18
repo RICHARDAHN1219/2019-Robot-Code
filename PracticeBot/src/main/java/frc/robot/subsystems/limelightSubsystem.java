@@ -38,7 +38,19 @@ public class limelightSubsystem extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
+    // no default command. Maybe set this to the Drive command with lights off?
     setDefaultCommand(null);
+  }
+
+  /*
+   * getEntry - get a NetworkTable entry for this limelight
+   */
+  public NetworkTableEntry getEntry(String key) {
+    return table.getEntry(key);
+  }
+
+  public String getLimelightName() {
+    return name;
   }
 
   /* 

@@ -12,17 +12,17 @@ import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.subsystems.limelightSubsystem;
 
 public class limelightDriveToTarget extends Command {
-  public String limelightName;
+  public limelightSubsystem limelight;
   public boolean invertDrive;
   public boolean invertSteer;
-  private NetworkTable table;
   private NetworkTableEntry tvEntry;
   private NetworkTableEntry taEntry;
   private NetworkTableEntry txEntry;
   private NetworkTableEntry tyEntry;
-  public int pipeline;
+  public limelightSubsystem.Pipeline pipeline;
 
   double STEER_K;             // how hard to turn toward the target
   double DRIVE_K;             // how hard to drive fwd toward the target
@@ -32,7 +32,8 @@ public class limelightDriveToTarget extends Command {
 
   /*
   * limelightDriveToTarget() constructor 
-  *     name   - name of the limelight instance. e.g "limelight", "limelight-zero"
+  *     ll     - limelight subsystem instance (Robot.limelightone_one)
+  *     pipeline - pipeline number to use
   *     steer  - control how hard to steer towards target
   *     drive  - how hard/fast to drive to target
   *     ta     - desired target area as percent of field of view. range of 1-100. 
@@ -43,11 +44,13 @@ public class limelightDriveToTarget extends Command {
   *  Example:
   *     comboButton.whileHeld(new visionlockoncommand("limelight", 0.075, 0.1, 0.55, 0.5, false, false));
   */
-  public limelightDriveToTarget(String name, int pipeline, double steer, double drive, double ta, double md, boolean invd, boolean invs) {
+  public limelightDriveToTarget(limelightSubsystem ll, limelightSubsystem.Pipeline p, double steer, double drive, double ta, double md, boolean invd, boolean invs) {
     // declare subsystem dependencies
     requires(Robot.m_drive);
+    requires(ll);
 
-    limelightName = name;
+    limelight = ll;
+    pipeline = p;
   
     STEER_K = steer;
     DRIVE_K = drive;
@@ -61,13 +64,13 @@ public class limelightDriveToTarget extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    table = NetworkTableInstance.getDefault().getTable(limelightName);
-    tvEntry = table.getEntry("tv");
-    taEntry = table.getEntry("ta");
-    txEntry = table.getEntry("tx");
-    tyEntry = table.getEntry("ty");
-    table.getEntry("camMode").setNumber(0);
-    table.getEntry("pipeline").setNumber(pipeline);
+    
+    tvEntry = limelight.getEntry("tv");
+    taEntry = limelight.getEntry("ta");
+    txEntry = limelight.getEntry("tx");
+    tyEntry = limelight.getEntry("ty");
+    limelight.getEntry("camMode").setNumber(0);
+    limelight.setPipeline(pipeline);
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -123,7 +126,7 @@ public class limelightDriveToTarget extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    System.out.println("END limelightDriveToTarget for " + limelightName);
+    System.out.println("END limelightDriveToTarget for " + limelight.getLimelightName());
   }
 
   // Called when another command which requires one or more of the same

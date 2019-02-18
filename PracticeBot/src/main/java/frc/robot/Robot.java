@@ -17,7 +17,6 @@ import frc.robot.subsystems.armSubsystem;
 import frc.robot.subsystems.backStiltDrive;
 import frc.robot.subsystems.beakSubsystem;
 import frc.robot.subsystems.cargoSubsystem;
-import frc.robot.subsystems.climbSubsystem;
 import frc.robot.subsystems.driveSubsystem;
 import frc.robot.subsystems.ejectorSubsystem;
 import frc.robot.subsystems.limelightSubsystem;
@@ -48,7 +47,6 @@ public class Robot extends TimedRobot {
   public static beakSubsystem m_beak;
   public static ejectorSubsystem m_ejector;
   public static backStiltSubsystem m_backstilt;
-  public static climbSubsystem m_climb;
   public static backStiltDrive m_backstiltdrive;
   public static frontStiltSubsystem m_frontstilt;
   private CANEncoder m_encoder1;
@@ -77,7 +75,6 @@ public class Robot extends TimedRobot {
     m_arm = new armSubsystem();
     m_beak = new beakSubsystem();
     m_ejector = new ejectorSubsystem();
-    m_climb = new climbSubsystem();
     m_frontstilt = new frontStiltSubsystem();
     m_backstilt = new backStiltSubsystem();
     m_backstiltdrive = new backStiltDrive();

@@ -77,14 +77,15 @@ public class Robot extends TimedRobot {
     m_arm = new armSubsystem();
     m_beak = new beakSubsystem();
     m_ejector = new ejectorSubsystem();
-    m_backstilt = new backStiltSubsystem();
     m_climb = new climbSubsystem();
-    m_backstiltdrive = new backStiltDrive();
     m_frontstilt = new frontStiltSubsystem();
+    m_backstilt = new backStiltSubsystem();
+    m_backstiltdrive = new backStiltDrive();
 
     m_arm.init();
     m_backstilt.init();
-  
+    m_frontstilt.init();
+    
     // OI needs to be last
     m_oi = new OI();
 

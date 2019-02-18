@@ -47,12 +47,8 @@ public class Robot extends TimedRobot {
   public static beakSubsystem m_beak;
   public static ejectorSubsystem m_ejector;
   public static backStiltSubsystem m_backstilt;
-<<<<<<< HEAD
   public static climbSubsystem m_climb;
-=======
-  public static frontStiltSubsystem m_frontstilt;
   public static backStiltDrive m_backstiltdrive;
->>>>>>> ec42d5cea926723647aa20522a2ba866776019c8
   private CANEncoder m_encoder1;
   private CANEncoder m_encoder2;
   private CANEncoder m_encoder3;

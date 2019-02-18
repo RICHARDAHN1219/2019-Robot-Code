@@ -9,18 +9,20 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.subsystems.backStiltSubsystem;
 
 public class climbPIDCommand extends Command {
   public climbPIDCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Robot.m_backstilt);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.m_bClimbPID.setSetpoint(-5000);
-    Robot.m_bClimbPID.enable();
+    //Robot.m_backstilt.setSetpoint(-5000);
+    //Robot.m_backstilt.enable();
     //Robot.m_bClimbPID.enable();
   }
 

@@ -14,16 +14,15 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.armSubsystem;
-import frc.robot.subsystems.backStiltPIDSubsystem;
 import frc.robot.subsystems.beakSubsystem;
 import frc.robot.subsystems.cargoSubsystem;
-import frc.robot.subsystems.climbSubsystem;
+import frc.robot.subsystems.frontStiltSubsystem;
 import frc.robot.subsystems.driveSubsystem;
 import frc.robot.subsystems.ejectorSubsystem;
 import frc.robot.subsystems.frontStiltsPIDSubsystem;
 import frc.robot.subsystems.limelightSubsystem;
 import frc.robot.subsystems.shifterSubsystem;
-import frc.robot.subsystems.climbPIDSubsystem;
+import frc.robot.subsystems.backStiltSubsystem;
 
 import com.revrobotics.CANEncoder;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
@@ -41,16 +40,15 @@ public class Robot extends TimedRobot {
   public static OI m_oi;
   public static driveSubsystem m_drive;
   public static shifterSubsystem m_shifter;
-  public static climbSubsystem m_climb;
   public static limelightSubsystem m_pipeline;
   public static limelightSubsystem limelight_zero;
   public static limelightSubsystem limelight_one;
   public static armSubsystem m_arm;
   public static frontStiltsPIDSubsystem m_fClimbPID;
-  public static backStiltPIDSubsystem m_bClimbPID;
   public static beakSubsystem m_beak;
   public static ejectorSubsystem m_ejector;
-  public static climbPIDSubsystem m_climbPID;
+  public static backStiltSubsystem m_backstilt;
+  public static frontStiltSubsystem m_frontstilt;
   private CANEncoder m_encoder1;
   private CANEncoder m_encoder2;
   private CANEncoder m_encoder3;
@@ -72,18 +70,17 @@ public class Robot extends TimedRobot {
     m_intake = new cargoSubsystem();
     m_drive = new driveSubsystem();
     m_shifter = new shifterSubsystem();
-    m_climb = new climbSubsystem();
     limelight_zero = new limelightSubsystem("limelight-zero");
     limelight_one = new limelightSubsystem("limelight-one");
     m_arm = new armSubsystem();
     m_fClimbPID = new frontStiltsPIDSubsystem();
-    m_bClimbPID = new backStiltPIDSubsystem();
     m_beak = new beakSubsystem();
     m_ejector = new ejectorSubsystem();
-    m_climbPID = new climbPIDSubsystem();
+    m_backstilt = new backStiltSubsystem();
+    m_frontstilt = new frontStiltSubsystem();
 
     m_arm.init();
-    m_climbPID.init();
+    m_backstilt.init();
   
     // OI needs to be last
     m_oi = new OI();
@@ -186,7 +183,7 @@ public class Robot extends TimedRobot {
     double averageDistance = m_encoder1.getPosition() + m_encoder2.getPosition() + m_encoder3.getPosition() +  m_encoder4.getPosition() / 4;
     double frontEncoder = frontStiltsPIDSubsystem.frontStrut1.getSelectedSensorPosition();
     // System.out.println(frontEncoder);
-    Robot.m_climbPID.printDebug("rear");
+    //Robot.m_backstilt.printDebug("rear");
   }
 
   /**

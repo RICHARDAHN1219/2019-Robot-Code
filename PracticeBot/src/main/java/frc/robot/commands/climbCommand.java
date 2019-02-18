@@ -16,7 +16,8 @@ public class climbCommand extends Command {
   public climbCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.m_climb);
+    requires(Robot.m_frontstilt);
+    requires(Robot.m_backstilt);
   }
 
   // Called just before this Command runs the first time
@@ -27,9 +28,9 @@ public class climbCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //Robot.m_climb.setFrontClimberSpeed(OI.operatorController.getY(Hand.kLeft));
+    Robot.m_frontstilt.setFrontClimberSpeed(OI.driveController.getY(Hand.kLeft));
     //Robot.m_climb.climberDriverSpeed(OI.operatorController.getY(Hand.kLeft));    
-    Robot.m_climb.setBackClimberSpeed(-OI.driveController.getY(Hand.kRight));
+    Robot.m_backstilt.setBackClimberSpeed(-OI.driveController.getY(Hand.kRight));
     
   }
   

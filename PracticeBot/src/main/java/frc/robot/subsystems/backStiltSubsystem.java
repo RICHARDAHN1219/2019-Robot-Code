@@ -21,7 +21,7 @@ import frc.robot.commands.backStrutClimb;
  *   https://github.com/CrossTheRoadElec/Phoenix-Examples-Languages/blob/master/Java/PositionClosedLoop/src/main/java/frc/robot/Robot.java
  *   https://github.com/Spartronics4915/developers_handbook/blob/master/actuators/talon/programming.md#setting-follower-mode
  */
-public class climbPIDSubsystem extends Subsystem {
+public class backStiltSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   public TalonSRX backStrut = new TalonSRX(RobotMap.BACK_STRUT);
@@ -114,14 +114,18 @@ public class climbPIDSubsystem extends Subsystem {
         return false;
     }
   }
-
-  /*
-  public void setPID(double _kP,double _kI, double _kD) {
-    backStrut.config_kP(kPIDLoopIdx, _kP, kTimeoutMs);
-    backStrut.config_kI(kPIDLoopIdx, _kI, kTimeoutMs);
-    backStrut.config_kD(kPIDLoopIdx, _kD, kTimeoutMs);
+  
+  public void setBackClimberSpeed(double speed) {
+    //backStrut.set(speed);
+    System.out.println("setBackClimberSpeed not finished yet");
   }
-  */
+
+  public void climberDriverSpeed(double speed) {
+    //climberDrive.set(speed * 0.1);
+    System.out.println("setBackClimberSpeed not finished yet");
+  }
+
+
   public void printDebug(String name) {
     _sb.append("BACKSTRUT out:");
     double motorOutput = backStrut.getMotorOutputPercent();

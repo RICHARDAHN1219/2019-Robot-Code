@@ -25,6 +25,7 @@ import frc.robot.commands.cargoIntakeCommand;
 import frc.robot.commands.climbPIDCommand;
 import frc.robot.commands.ejectorIntake;
 import frc.robot.commands.ejectorRelease;
+import frc.robot.commands.backStiltDriveCommand;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -77,6 +78,7 @@ public class OI {
   Button armLowButton = new JoystickButton(driveController, RobotMap.AButton);
   //Button armHighButton = new JoystickButton(driveController, RobotMap.YButton);
   Button armMiddleButton = new JoystickButton(driveController, RobotMap.Bbutton);
+  Button backStiltDriveButton = new JoystickButton(driveController, RobotMap.RBumper);
 
   // Operator controller
   Button hatchPlacementButton = new JoystickButton(operatorController, RobotMap.LBumper);
@@ -99,6 +101,7 @@ public class OI {
     armLowButton.whenPressed(new armLowCommand());
     //armHighButton.whenPressed(new armHighCommand());
     armMiddleButton.whenPressed(new armMiddleCommand());
+    backStiltDriveButton.whenPressed(new backStiltDriveCommand());
 
     // Operator
     hatchPlacementButton.toggleWhenPressed(new placeHatchLow());

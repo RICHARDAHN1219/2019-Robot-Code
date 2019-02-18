@@ -9,9 +9,10 @@ package frc.robot.commands;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
 
-public class climbPIDCommand extends Command {
+public class backClimbPIDCommand extends Command {
   public int targetPosition = 0;
   public String name = "climbCommand";
   private double kP = 0.0;
@@ -19,12 +20,12 @@ public class climbPIDCommand extends Command {
   private double kD = 0.0;
   private double kF = 0.0;
 
-  public climbPIDCommand() {
+  public backClimbPIDCommand() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.m_backstilt);
   }
 
-  public climbPIDCommand(int tpos, double _kP, double _kI, double _kD, double _kF) {
+  public backClimbPIDCommand(int tpos, double _kP, double _kI, double _kD, double _kF) {
     targetPosition = tpos;
     kP = _kP;
     kI = _kI;

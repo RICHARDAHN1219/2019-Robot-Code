@@ -19,8 +19,8 @@ public class climbPIDCommand extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.m_fClimbPID.setSetpoint(10000);
-    Robot.m_fClimbPID.enable();
+    Robot.m_bClimbPID.setSetpoint(-5000);
+    Robot.m_bClimbPID.enable();
     //Robot.m_bClimbPID.enable();
   }
 

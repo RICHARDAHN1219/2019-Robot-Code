@@ -20,6 +20,7 @@ import frc.robot.commandGroups.readyHatchPickup;
 import frc.robot.commands.armHighCommand;
 import frc.robot.commands.armLowCommand;
 import frc.robot.commands.armMiddleCommand;
+import frc.robot.commands.backStrutClimb;
 import frc.robot.commands.cargoIntakeCommand;
 import frc.robot.commands.climbPIDCommand;
 import frc.robot.commands.climbPIDStopCommand;
@@ -94,8 +95,8 @@ public class OI {
     //ejectorButton.whenReleased(new ejectorIntake());
     comboButton.whileHeld(new visionlockoncommand());
     cargoButton.whileHeld(new cargoIntakeCommand());
-    climbPIDButton.whileHeld(new climbPIDCommand());
-    climbPIDButton.whenReleased(new climbPIDStopCommand());
+    climbPIDButton.whileHeld(new backStrutClimb());
+    //climbPIDButton.whenReleased(new climbPIDStopCommand());
     armLowButton.whenPressed(new armLowCommand());
     //armHighButton.whenPressed(new armHighCommand());
     armMiddleButton.whenPressed(new armMiddleCommand());

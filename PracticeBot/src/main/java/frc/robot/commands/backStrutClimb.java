@@ -9,15 +9,15 @@ package frc.robot.commands;
 
 import frc.robot.Robot;
 
-public class armHighCommand extends armCommand {
+public class backStrutClimb extends climbPID2 {
 
-  public armHighCommand() {
+  public backStrutClimb() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     
     // targetPosition, kP, kI, kD, kF
-    super(0, 0.4, 0.0003, 0.75, 0.0);
-    requires(Robot.m_arm);
-    name = "High";
+    super(17000, 0.1, 0.0005, 0.75, 0.0);
+    requires(Robot.m_climbPID);
+    name = "climb";
   }
 }

@@ -33,7 +33,7 @@ public class frontStiltsPIDSubsystem extends PIDSubsystem {
 
     
     // 2. change mode to follower for the following motor
-    frontStrut2.follow(frontStrut1);
+    //frontStrut2.follow(frontStrut1);
   
     // 4. optional: invert the output of the slave to match master
     frontStrut2.setInverted(true);
@@ -65,7 +65,7 @@ public class frontStiltsPIDSubsystem extends PIDSubsystem {
     // Use output to drive your system, like a motor
     // e.g. yourMotor.set(output);
     frontStrut1.pidWrite(output);
-    frontStrut2.pidWrite(-output);
+    //frontStrut2.pidWrite(-output);
 
   }
 }

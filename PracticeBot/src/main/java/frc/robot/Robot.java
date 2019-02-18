@@ -23,6 +23,8 @@ import frc.robot.subsystems.ejectorSubsystem;
 import frc.robot.subsystems.frontStiltsPIDSubsystem;
 import frc.robot.subsystems.limelightSubsystem;
 import frc.robot.subsystems.shifterSubsystem;
+import frc.robot.subsystems.climbPIDSubsystem;
+
 import com.revrobotics.CANEncoder;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 
@@ -48,6 +50,7 @@ public class Robot extends TimedRobot {
   public static backStiltPIDSubsystem m_bClimbPID;
   public static beakSubsystem m_beak;
   public static ejectorSubsystem m_ejector;
+  public static climbPIDSubsystem m_climbPID;
   private CANEncoder m_encoder1;
   private CANEncoder m_encoder2;
   private CANEncoder m_encoder3;
@@ -77,8 +80,10 @@ public class Robot extends TimedRobot {
     m_bClimbPID = new backStiltPIDSubsystem();
     m_beak = new beakSubsystem();
     m_ejector = new ejectorSubsystem();
+    m_climbPID = new climbPIDSubsystem();
 
     m_arm.init();
+    m_climbPID.init();
   
     // OI needs to be last
     m_oi = new OI();
@@ -114,6 +119,9 @@ public class Robot extends TimedRobot {
     Scheduler.getInstance().run();
     //double armPos = m_arm.armDrive.getSelectedSensorPosition();
     //System.out.println(armPos);
+    //Robot.m_arm.printDebug("debug");
+    //double climbpos = m_bClimbPID.backStrut.getSelectedSensorPosition();
+    //System.out.println(climbpos);
   }
 
   /**
@@ -178,6 +186,7 @@ public class Robot extends TimedRobot {
     double averageDistance = m_encoder1.getPosition() + m_encoder2.getPosition() + m_encoder3.getPosition() +  m_encoder4.getPosition() / 4;
     double frontEncoder = frontStiltsPIDSubsystem.frontStrut1.getSelectedSensorPosition();
     // System.out.println(frontEncoder);
+    Robot.m_climbPID.printDebug("rear");
   }
 
   /**

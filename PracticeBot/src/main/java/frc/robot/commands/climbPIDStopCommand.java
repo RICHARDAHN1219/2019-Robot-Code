@@ -20,6 +20,7 @@ public class climbPIDStopCommand extends Command {
   @Override
   protected void initialize() {
     Robot.m_fClimbPID.disable();
+    Robot.m_bClimbPID.disable();
   }
 
   // Called repeatedly when this Command is scheduled to run

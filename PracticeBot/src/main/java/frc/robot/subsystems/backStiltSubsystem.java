@@ -38,8 +38,6 @@ public class backStiltSubsystem extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-
     // default to manual control
     setDefaultCommand(new backStiltSpeedCommand());
   }

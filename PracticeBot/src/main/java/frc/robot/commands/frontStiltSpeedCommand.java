@@ -21,8 +21,8 @@ public class frontStiltSpeedCommand extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.m_frontstilt.frontStrut2.follow(Robot.m_frontstilt.frontStrut1);
-    Robot.m_frontstilt.frontStrut2.setInverted(true);
+    // Robot.m_frontstilt.frontStrut2.follow(Robot.m_frontstilt.frontStrut1);
+    // Robot.m_frontstilt.frontStrut2.setInverted(true);
   }
 
   // Called repeatedly when this Command is scheduled to run

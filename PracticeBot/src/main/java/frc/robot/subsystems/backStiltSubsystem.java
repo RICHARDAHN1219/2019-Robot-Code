@@ -114,18 +114,13 @@ public class backStiltSubsystem extends Subsystem {
         return false;
     }
   }
-  
+   
+   // Set the back stilt climb motor speed
   public void setBackClimberSpeed(double speed) {
-    //backStrut.set(speed);
-    System.out.println("setBackClimberSpeed not finished yet");
+    backStrut.set(ControlMode.Velocity, speed);
   }
 
-  public void climberDriverSpeed(double speed) {
-    //climberDrive.set(speed * 0.1);
-    System.out.println("setBackClimberSpeed not finished yet");
-  }
-
-
+  // debug the encoder positions and motor output for PID
   public void printDebug(String name) {
     _sb.append("BACKSTRUT out:");
     double motorOutput = backStrut.getMotorOutputPercent();

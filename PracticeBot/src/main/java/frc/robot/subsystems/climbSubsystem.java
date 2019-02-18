@@ -22,7 +22,7 @@ public class climbSubsystem extends Subsystem {
   public static final WPI_TalonSRX frontStrut1 = new WPI_TalonSRX(RobotMap.FRONT_STRUT_1);
   public static final WPI_TalonSRX frontStrut2 = new WPI_TalonSRX(RobotMap.FRONT_STRUT_2);
   public static final WPI_TalonSRX backStrut = new WPI_TalonSRX(RobotMap.BACK_STRUT);
-  public static final WPI_TalonSRX climberDrive = new WPI_TalonSRX(RobotMap.CLIMBER_DRIVE);
+
 
   @Override
   public void initDefaultCommand() {
@@ -41,7 +41,5 @@ public class climbSubsystem extends Subsystem {
     backStrut.set(speed * 0.5);
   }
 
-  public void climberDriverSpeed(double speed) {
-    climberDrive.set(speed * 0.1);
-  }
+  
 }

@@ -21,12 +21,14 @@ public class frontStiltSpeedCommand extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.m_frontstilt.frontStrut2.follow(Robot.m_frontstilt.frontStrut1);
+    Robot.m_frontstilt.frontStrut2.setInverted(true);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_frontstilt.setFrontClimberSpeed(OI.climbController.getY(Hand.kRight));
+    Robot.m_frontstilt.setFrontClimberSpeed(OI.climbController.getY(Hand.kLeft));
   }
 
   // Make this return true when this Command no longer needs to run execute()

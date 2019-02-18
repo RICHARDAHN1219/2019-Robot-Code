@@ -118,11 +118,6 @@ public class backStiltSubsystem extends Subsystem {
    // Set the back stilt climb motor speed, input from [-1,1]
   public void setBackClimberSpeed(double speed) {
     backStrut.set(ControlMode.PercentOutput, speed);
-    // https://github.com/CrossTheRoadElec/Phoenix-Examples-Languages/blob/master/Java/VelocityClosedLoop/src/main/java/frc/robot/Robot.java
-    //double targetVelocity_UnitsPer100ms = speed * 500.0 * 4096 / 600;
-    //backStrut.configAllowableClosedloopError(0, kPIDLoopIdx, kTimeoutMs);
-    //backStrut.set(ControlMode.Velocity, targetVelocity_UnitsPer100ms);
-    //System.out.println("Desired Speed:" + targetVelocity_UnitsPer100ms);
     printDebug("speed");
   }
 

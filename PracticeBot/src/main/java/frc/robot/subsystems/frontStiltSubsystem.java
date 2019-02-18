@@ -10,6 +10,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.FollowerType;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import frc.robot.RobotMap;
 import frc.robot.commands.frontStiltSpeedCommand;
@@ -71,7 +72,7 @@ public class frontStiltSubsystem extends Subsystem {
     System.out.println(_sb);
     _sb.setLength(0);
     
-    frontStrut2.follow(frontStrut1);
+    frontStrut2.follow(frontStrut1  , FollowerType.PercentOutput);
     frontStrut2.setInverted(true);
 
     /* Mask out overflows, keep bottom 12 bits. Value will be 0-4096 */

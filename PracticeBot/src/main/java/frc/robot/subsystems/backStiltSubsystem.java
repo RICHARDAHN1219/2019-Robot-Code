@@ -102,6 +102,11 @@ public class backStiltSubsystem extends Subsystem {
     return backStrut.getSensorCollection().getPulseWidthPosition();
   }
 
+  public void holdCurrentPosition() {
+    int currentPosition = backStrut.getSensorCollection().getPulseWidthPosition();
+    backStrut.setSelectedSensorPosition(currentPosition, kPIDLoopIdx, kTimeoutMs);
+  }
+
   public int getStartPosition() { return startPosition; }
 
   public int getTargetPosition() { return targetPosition; }

@@ -53,7 +53,7 @@ public class visionlockoncommand extends Command {
        }
 
        m_LimelightHasValidTarget = true;
-
+       Robot.m_beak.hatchRetrieve();
        // Start with proportional steering
        double steer_cmd = tx * STEER_K;
        m_LimelightSteerCommand = steer_cmd;

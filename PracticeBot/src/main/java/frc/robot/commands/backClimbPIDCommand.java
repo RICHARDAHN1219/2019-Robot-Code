@@ -7,9 +7,7 @@
 
 package frc.robot.commands;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
 
 public class backClimbPIDCommand extends Command {
@@ -19,11 +17,6 @@ public class backClimbPIDCommand extends Command {
   private double kI = 0.0;
   private double kD = 0.0;
   private double kF = 0.0;
-
-  public backClimbPIDCommand() {
-    // Use requires() here to declare subsystem dependencies
-    requires(Robot.m_backstilt);
-  }
 
   public backClimbPIDCommand(int tpos, double _kP, double _kI, double _kD, double _kF) {
     targetPosition = tpos;
@@ -75,6 +68,5 @@ public class backClimbPIDCommand extends Command {
   protected void interrupted() {
     // maybe we need to stop moving if some other command needs to move the arm
     System.out.println("BACKSTRUT: INTERRUPTED trying to get to " + name + "position");
-    // Robot.m_backstilt.armDrive.set(ControlMode.Disabled, targetPosition);
   }
 }

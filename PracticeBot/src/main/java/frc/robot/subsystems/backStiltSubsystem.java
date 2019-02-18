@@ -104,7 +104,8 @@ public class backStiltSubsystem extends Subsystem {
 
   public void holdCurrentPosition() {
     int currentPosition = backStrut.getSensorCollection().getPulseWidthPosition();
-    backStrut.setSelectedSensorPosition(currentPosition, kPIDLoopIdx, kTimeoutMs);
+    backStrut.setIntegralAccumulator(0.0);  // zero out the kI error accumulator
+    backStrut.set(ControlMode.Position, currentPosition);
   }
 
   public int getStartPosition() { return startPosition; }

@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.armSubsystem;
+import frc.robot.subsystems.backStiltDrive;
 import frc.robot.subsystems.beakSubsystem;
 import frc.robot.subsystems.cargoSubsystem;
 import frc.robot.subsystems.frontStiltSubsystem;
@@ -49,6 +50,7 @@ public class Robot extends TimedRobot {
   public static ejectorSubsystem m_ejector;
   public static backStiltSubsystem m_backstilt;
   public static frontStiltSubsystem m_frontstilt;
+  public static backStiltDrive m_backstiltdrive;
   private CANEncoder m_encoder1;
   private CANEncoder m_encoder2;
   private CANEncoder m_encoder3;
@@ -78,6 +80,7 @@ public class Robot extends TimedRobot {
     m_ejector = new ejectorSubsystem();
     m_backstilt = new backStiltSubsystem();
     m_frontstilt = new frontStiltSubsystem();
+    m_backstiltdrive = new backStiltDrive();
 
     m_arm.init();
     m_backstilt.init();

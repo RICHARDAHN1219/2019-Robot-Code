@@ -91,6 +91,7 @@ public class backStiltSubsystem extends Subsystem {
     backStrut.config_kP(kPIDLoopIdx, kP, kTimeoutMs);
     backStrut.config_kI(kPIDLoopIdx, kI, kTimeoutMs);
     backStrut.config_kD(kPIDLoopIdx, kD, kTimeoutMs);
+    backStrut.configAllowableClosedloopError(allowableError, kPIDLoopIdx, kTimeoutMs);
     backStrut.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, kPIDLoopIdx,
     kTimeoutMs);
     backStrut.setIntegralAccumulator(0.0);  // zero out the kI error accumulator
@@ -116,9 +117,9 @@ public class backStiltSubsystem extends Subsystem {
    
    // Set the back stilt climb motor speed, input from [-1,1]
   public void setBackClimberSpeed(double speed) {
-
     // https://github.com/CrossTheRoadElec/Phoenix-Examples-Languages/blob/master/Java/VelocityClosedLoop/src/main/java/frc/robot/Robot.java
     double targetVelocity_UnitsPer100ms = speed * 500.0 * 4096 / 600;
+    backStrut.configAllowableClosedloopError(0, kPIDLoopIdx, kTimeoutMs);
     backStrut.set(ControlMode.Velocity, targetVelocity_UnitsPer100ms);
     printDebug("speed");
   }

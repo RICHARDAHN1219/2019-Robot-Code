@@ -16,10 +16,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.armSubsystem;
 import frc.robot.subsystems.beakSubsystem;
 import frc.robot.subsystems.cargoSubsystem;
-import frc.robot.subsystems.frontStiltSubsystem;
+import frc.robot.subsystems.climbSubsystem;
 import frc.robot.subsystems.driveSubsystem;
 import frc.robot.subsystems.ejectorSubsystem;
-import frc.robot.subsystems.frontStiltsPIDSubsystem;
 import frc.robot.subsystems.limelightSubsystem;
 import frc.robot.subsystems.shifterSubsystem;
 import frc.robot.subsystems.backStiltSubsystem;
@@ -44,11 +43,10 @@ public class Robot extends TimedRobot {
   public static limelightSubsystem limelight_zero;
   public static limelightSubsystem limelight_one;
   public static armSubsystem m_arm;
-  public static frontStiltsPIDSubsystem m_fClimbPID;
   public static beakSubsystem m_beak;
   public static ejectorSubsystem m_ejector;
   public static backStiltSubsystem m_backstilt;
-  public static frontStiltSubsystem m_frontstilt;
+  public static climbSubsystem m_climb;
   private CANEncoder m_encoder1;
   private CANEncoder m_encoder2;
   private CANEncoder m_encoder3;
@@ -73,11 +71,10 @@ public class Robot extends TimedRobot {
     limelight_zero = new limelightSubsystem("limelight-zero");
     limelight_one = new limelightSubsystem("limelight-one");
     m_arm = new armSubsystem();
-    m_fClimbPID = new frontStiltsPIDSubsystem();
     m_beak = new beakSubsystem();
     m_ejector = new ejectorSubsystem();
     m_backstilt = new backStiltSubsystem();
-    m_frontstilt = new frontStiltSubsystem();
+    m_climb = new climbSubsystem();
 
     m_arm.init();
     m_backstilt.init();
@@ -181,7 +178,6 @@ public class Robot extends TimedRobot {
     m_encoder3 = driveSubsystem.neo3.getEncoder();
     m_encoder4 = driveSubsystem.neo4.getEncoder();
     double averageDistance = m_encoder1.getPosition() + m_encoder2.getPosition() + m_encoder3.getPosition() +  m_encoder4.getPosition() / 4;
-    double frontEncoder = frontStiltsPIDSubsystem.frontStrut1.getSelectedSensorPosition();
     // System.out.println(frontEncoder);
     //Robot.m_backstilt.printDebug("rear");
   }

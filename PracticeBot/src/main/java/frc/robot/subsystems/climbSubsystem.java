@@ -16,7 +16,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 /**
  * Add your docs here.
  */
-public class frontStiltSubsystem extends Subsystem {
+public class climbSubsystem extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
   public static final WPI_TalonSRX frontStrut1 = new WPI_TalonSRX(RobotMap.FRONT_STRUT_1);

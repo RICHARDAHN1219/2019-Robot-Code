@@ -1,50 +1,79 @@
 /*----------------------------------------------------------------------------*/
-/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
+/* Copyright (c) 2018 FIRST. All Rights Reserved. */
+/* Open Source Software - may be modified and shared by FRC teams. The code */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
+/* the project. */
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import frc.robot.subsystems.backStiltSubsystem;
 
 public class climbPIDCommand extends Command {
+  public int targetPosition = 0;
+  public String name = "climbCommand";
+  private double kP = 0.0;
+  private double kI = 0.0;
+  private double kD = 0.0;
+  private double kF = 0.0;
+
   public climbPIDCommand() {
     // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
+    requires(Robot.m_backstilt);
+  }
+
+  public climbPIDCommand(int tpos, double _kP, double _kI, double _kD, double _kF) {
+    targetPosition = tpos;
+    kP = _kP;
+    kI = _kI;
+    kD = _kD;
+    kF = _kF;
     requires(Robot.m_backstilt);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    //Robot.m_backstilt.setSetpoint(-5000);
-    //Robot.m_backstilt.enable();
-    //Robot.m_bClimbPID.enable();
+    Robot.m_backstilt.kP = kP;
+    Robot.m_backstilt.kI = kI;
+    Robot.m_backstilt.kD = kD;
+    Robot.m_backstilt.kF = kF;
+    setPosition();
+    Robot.m_backstilt.printDebug(name);
+  }
+
+  public void setPosition() { 
+    // 4096 encoder ticks per revolution
+    Robot.m_backstilt.setPosition(targetPosition);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    Robot.m_backstilt.printDebug(name);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    System.out.println("BACKSTRUT: Finished moving to " + name + "position");
+    Robot.m_backstilt.printDebug(name);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    // maybe we need to stop moving if some other command needs to move the arm
+    System.out.println("BACKSTRUT: INTERRUPTED trying to get to " + name + "position");
+    // Robot.m_backstilt.armDrive.set(ControlMode.Disabled, targetPosition);
   }
 }

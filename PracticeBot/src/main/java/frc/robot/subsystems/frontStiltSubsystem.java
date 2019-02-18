@@ -12,7 +12,6 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import frc.robot.RobotMap;
-import frc.robot.commands.climbCommand;
 
 /**
  * armSubsystem controls the cargo collection arm's up and down movement.

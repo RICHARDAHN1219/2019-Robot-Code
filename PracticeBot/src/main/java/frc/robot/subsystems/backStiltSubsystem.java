@@ -12,7 +12,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import frc.robot.RobotMap;
-import frc.robot.commands.backStrutClimb;
+import frc.robot.commands.backStiltSpeedCommand;
 
 /**
  * armSubsystem controls the cargo collection arm's up and down movement.
@@ -39,10 +39,11 @@ public class backStiltSubsystem extends Subsystem {
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
-    //
-    //setDefaultCommand(new armHighCommand());
+
+    // default to manual control
+    setDefaultCommand(new backStiltSpeedCommand());
   }
+
   public void init() {
     backStrut.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, kPIDLoopIdx,
         kTimeoutMs);

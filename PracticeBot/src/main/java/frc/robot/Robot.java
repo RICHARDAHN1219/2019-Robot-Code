@@ -23,6 +23,7 @@ import frc.robot.subsystems.ejectorSubsystem;
 import frc.robot.subsystems.limelightSubsystem;
 import frc.robot.subsystems.shifterSubsystem;
 import frc.robot.subsystems.backStiltSubsystem;
+import frc.robot.subsystems.frontStiltSubsystem;
 
 import com.revrobotics.CANEncoder;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
@@ -49,6 +50,7 @@ public class Robot extends TimedRobot {
   public static backStiltSubsystem m_backstilt;
   public static climbSubsystem m_climb;
   public static backStiltDrive m_backstiltdrive;
+  public static frontStiltSubsystem m_frontstilt;
   private CANEncoder m_encoder1;
   private CANEncoder m_encoder2;
   private CANEncoder m_encoder3;
@@ -78,6 +80,7 @@ public class Robot extends TimedRobot {
     m_backstilt = new backStiltSubsystem();
     m_climb = new climbSubsystem();
     m_backstiltdrive = new backStiltDrive();
+    m_frontstilt = new frontStiltSubsystem();
 
     m_arm.init();
     m_backstilt.init();

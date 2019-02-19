@@ -41,7 +41,7 @@ public class frontStiltSubsystem extends Subsystem {
   @Override
   public void initDefaultCommand() {
     // default to manual control
-    setDefaultCommand(new frontStiltSpeedCommand());
+    //setDefaultCommand(new frontStiltSpeedCommand());
   }
 
   public void init() {
@@ -49,7 +49,7 @@ public class frontStiltSubsystem extends Subsystem {
         kTimeoutMs);
     /* Ensure sensor is positive when output is positive */
     frontStrut1.setSensorPhase(false);
-    frontStrut1.setInverted(false);
+    frontStrut1.setInverted(true);
     /* Config the peak and nominal outputs, 12V means full */
     frontStrut1.configNominalOutputForward(0, kTimeoutMs);
     frontStrut1.configNominalOutputReverse(0, kTimeoutMs);
@@ -73,7 +73,7 @@ public class frontStiltSubsystem extends Subsystem {
     _sb.setLength(0);
     
     frontStrut2.follow(frontStrut1  , FollowerType.PercentOutput);
-    frontStrut2.setInverted(true);
+    frontStrut2.setInverted(false);
 
     /* Mask out overflows, keep bottom 12 bits. Value will be 0-4096 */
     //startPosition &= 0xFFF;
@@ -122,7 +122,7 @@ public class frontStiltSubsystem extends Subsystem {
   // Set the back stilt climb motor speed
   public void setFrontClimberSpeed(double speed) {
     frontStrut1.set(ControlMode.PercentOutput, speed);
-    frontStrut2.set(ControlMode.PercentOutput, -speed);
+    frontStrut2.set(ControlMode.PercentOutput, speed);
   }
 
   // debug the encoder positions and motor output for PID

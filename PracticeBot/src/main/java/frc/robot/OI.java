@@ -26,6 +26,9 @@ import frc.robot.commands.backClimbPIDCommand;
 import frc.robot.commands.ejectorIntake;
 import frc.robot.commands.ejectorRelease;
 import frc.robot.commands.backStiltDriveCommand;
+import frc.robot.commands.backStrutStart;
+import frc.robot.commands.frontStrutClimb;
+import frc.robot.commands.frontStrutStart;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -75,7 +78,10 @@ public class OI {
   Button comboButton = new JoystickButton(driveController, RobotMap.XButton);
   Button cargoButton = new JoystickButton(driveController, RobotMap.StartButton);
   //Button ejectorButton = new JoystickButton(driveController, RobotMap.Bbutton);
-  Button climbPIDButton = new JoystickButton(climbController, RobotMap.YButton);
+  Button backClimbPIDButton = new JoystickButton(climbController, RobotMap.YButton);
+  Button backClimbStartPIDButton = new JoystickButton(climbController, RobotMap.Bbutton);
+  Button frontClimbPIDButton = new JoystickButton(climbController, RobotMap.XButton);
+  Button frontClimbStartPIDButton = new JoystickButton(climbController, RobotMap.AButton);
   Button armLowButton = new JoystickButton(driveController, RobotMap.AButton);
   //Button armHighButton = new JoystickButton(driveController, RobotMap.YButton);
   Button armMiddleButton = new JoystickButton(driveController, RobotMap.Bbutton);
@@ -97,7 +103,10 @@ public class OI {
     //ejectorButton.whenReleased(new ejectorIntake());
     comboButton.whileHeld(new visionlockoncommand());
     cargoButton.whileHeld(new cargoIntakeCommand());
-    climbPIDButton.whenPressed(new backStrutClimb());
+    backClimbPIDButton.whenPressed(new backStrutClimb());
+    backClimbStartPIDButton.whenPressed(new backStrutStart());
+    frontClimbPIDButton.whenPressed(new frontStrutClimb());
+    frontClimbStartPIDButton.whenPressed(new frontStrutStart());
     //climbPIDButton.whenReleased(new climbPIDStopCommand());
     armLowButton.whenPressed(new armLowCommand());
     //armHighButton.whenPressed(new armHighCommand());

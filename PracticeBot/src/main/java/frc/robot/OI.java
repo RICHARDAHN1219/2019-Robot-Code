@@ -67,6 +67,7 @@ public class OI {
   // Driver
   Button shifterButton = new JoystickButton(driveController, RobotMap.LBumper);
   Button comboButton = new JoystickButton(driveController, RobotMap.Bbutton);
+  Button cargoVision = new JoystickButton(driveController, RobotMap.AButton);
   
   // Operator
   Button hatchPlacementButton = new JoystickButton(operatorController, RobotMap.LBumper);
@@ -86,7 +87,8 @@ public class OI {
     
     // Driver
     shifterButton.whileHeld(new shifterCommand(shifterSubsystem.Gears.LOW_GEAR));
-    comboButton.whileHeld(new visionlockoncommand());
+    comboButton.whileHeld(new hatchVisionLockCommand());
+    cargoVision.whileHeld(new cargoVisionLockCommand());
 
     // Operator
     hatchPlacementButton.toggleWhenPressed(new placeHatchLow());

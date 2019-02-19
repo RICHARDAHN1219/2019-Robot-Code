@@ -28,7 +28,7 @@ public class cargoIntakeCommand extends Command {
 
   // Called repeatedly when this Command is scheduled to run
   @Override
-  protected void execute() {
+  protected void execute(){
   Robot.m_intake.setcargoDriveSpeed(OI.operatorController.getTriggerAxis(Hand.kRight) - OI.operatorController.getTriggerAxis(Hand.kLeft));
   }
   // Make this return true when this Command no longer needs to run execute()

@@ -26,11 +26,11 @@ public class ejectorSubsystem extends Subsystem {
   }
 
   public void extend() {
-    Robot.ejectorSolenoid.set(DoubleSolenoid.Value.kForward);
+    Robot.ejectorSolenoid.set(DoubleSolenoid.Value.kReverse);
   }
 
   public void retract() {
-    Robot.ejectorSolenoid.set(DoubleSolenoid.Value.kReverse);
+    Robot.ejectorSolenoid.set(DoubleSolenoid.Value.kForward);
   }
 }
 

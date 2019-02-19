@@ -116,8 +116,9 @@ public class Robot extends TimedRobot {
     //double armPos = m_arm.armDrive.getSelectedSensorPosition();
     //System.out.println(armPos);
     //Robot.m_arm.printDebug("debug");
-    double climbpos = m_frontstilt.frontStrut1.getSelectedSensorPosition();
-    //System.out.println(climbpos);
+    double pos = m_arm.armDrive.getSelectedSensorPosition();
+    System.out.println(pos);
+
   }
 
   /**

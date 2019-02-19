@@ -7,14 +7,14 @@
 
 package frc.robot.commands;
 
-public class armMiddleCommand extends armCommand {
+public class armCargoShipCommand extends armCommand {
 
-  public armMiddleCommand() {
+  public armCargoShipCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
 
     // targetPosition, kP, kI, kD, kF
-    super(1100, 0.4, 0.0005, 0.75, 0.0);
+    super(300, 0.4, 0.0005, 0.75, 0.0);
 
     name = "Middle";
   }

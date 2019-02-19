@@ -18,12 +18,13 @@ import frc.robot.commandGroups.placeHatchLow;
 import frc.robot.commandGroups.readyHatchPickup;
 import frc.robot.commands.armHighCommand;
 import frc.robot.commands.armLowCommand;
-import frc.robot.commands.armMiddleCommand;
+import frc.robot.commands.armCargoShipCommand;
 import frc.robot.commands.backStrutClimb;
 import frc.robot.commands.backStrutStart;
 import frc.robot.commands.frontStrutClimb;
 import frc.robot.commands.frontStrutStart;
 import frc.robot.commandGroups.climbLevel3;
+import frc.robot.commands.armRocketCommand;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -73,8 +74,9 @@ public class OI {
   Button hatchPlacementButton = new JoystickButton(operatorController, RobotMap.LBumper);
   Button hatchGrabButton = new JoystickButton(operatorController, RobotMap.RBumper);
   Button armLowButton = new JoystickButton(operatorController, RobotMap.AButton);
-  Button armMiddleButton = new JoystickButton(operatorController, RobotMap.Bbutton);
+  Button armCargoShipButton = new JoystickButton(operatorController, RobotMap.Bbutton);
   Button armHighButton = new JoystickButton(operatorController, RobotMap.YButton);
+  Button armRocketButton = new JoystickButton(operatorController, RobotMap.XButton);
 
   // Climb
   Button backClimbPIDButton = new JoystickButton(climbController, RobotMap.YButton);
@@ -94,8 +96,9 @@ public class OI {
     hatchPlacementButton.toggleWhenPressed(new placeHatchLow());
     hatchGrabButton.whileHeld(new readyHatchPickup());
     armLowButton.whenPressed(new armLowCommand());
-    armMiddleButton.whenPressed(new armMiddleCommand());
+    armCargoShipButton.whenPressed(new armCargoShipCommand());
     armHighButton.whenPressed(new armHighCommand());
+    armRocketButton.whenPressed(new armRocketCommand());
 
     //Climb
     backClimbPIDButton.whenPressed(new backStrutClimb());

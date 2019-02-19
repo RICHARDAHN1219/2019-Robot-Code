@@ -14,6 +14,8 @@ import frc.robot.Robot;
 
 
 public class backStiltSpeedCommand extends Command {
+  private boolean holding = false;
+
   public backStiltSpeedCommand() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.m_backstilt);
@@ -27,7 +29,15 @@ public class backStiltSpeedCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_backstilt.setBackClimberSpeed(-OI.climbController.getY(Hand.kRight));
+    double climbSpeed = -OI.climbController.getY(Hand.kRight);
+    if (Math.abs(climbSpeed) > 0.1) {
+      Robot.m_backstilt.setBackClimberSpeed(climbSpeed);
+      holding = false;
+    }
+    else if (!holding) {
+      Robot.m_backstilt.holdCurrentPosition();
+      holding = true;
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

@@ -39,7 +39,7 @@ public class backStiltSubsystem extends Subsystem {
   @Override
   public void initDefaultCommand() {
     // default to manual control
-    //setDefaultCommand(new backStiltSpeedCommand());
+    setDefaultCommand(new backStiltSpeedCommand());
   }
 
   public void init() {
@@ -100,6 +100,12 @@ public class backStiltSubsystem extends Subsystem {
 
   public int getPosition() {
     return backStrut.getSensorCollection().getPulseWidthPosition();
+  }
+
+  public void holdCurrentPosition() {
+    int currentPosition = backStrut.getSensorCollection().getPulseWidthPosition();
+    backStrut.setIntegralAccumulator(0.0);  // zero out the kI error accumulator
+    backStrut.set(ControlMode.Position, currentPosition);
   }
 
   public int getStartPosition() { return startPosition; }

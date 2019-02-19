@@ -23,7 +23,7 @@ import frc.robot.subsystems.ejectorSubsystem;
 import frc.robot.subsystems.limelightSubsystem;
 import frc.robot.subsystems.shifterSubsystem;
 import frc.robot.subsystems.backStiltSubsystem;
-
+import frc.robot.commands.hatchVisionLockCommand;
 import com.revrobotics.CANEncoder;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 

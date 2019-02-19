@@ -10,6 +10,8 @@ package frc.robot.commands;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.OI;
 import frc.robot.Robot;
 
@@ -23,12 +25,13 @@ public class cargoVisionLockCommand extends Command {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.m_drive);
+    SmartDashboard.putBoolean("CARGO_LOCK", m_LimelightHasValidTarget);  
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-
+    SmartDashboard.putBoolean("CARGO_LOCK", m_LimelightHasValidTarget);  
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -50,10 +53,11 @@ public class cargoVisionLockCommand extends Command {
          m_LimelightHasValidTarget = false;
          m_LimelightDriveCommand = 0.0;
          m_LimelightSteerCommand = 0.0;
-         Robot.m_drive.arcadeDrive(0.0,0.0);
+         Robot.m_drive.arcadeDrive(0.0,0.4);
          return;
        }
 
+       OI.driveController.setRumble(RumbleType.kLeftRumble, 1);
        m_LimelightHasValidTarget = true;
        Robot.m_beak.hatchRetrieve();
        // Start with proportional steering

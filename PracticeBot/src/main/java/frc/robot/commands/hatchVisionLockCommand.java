@@ -7,14 +7,17 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.OI;
 import frc.robot.Robot;
 
 public class hatchVisionLockCommand extends Command {
-   private boolean m_LimelightHasValidTarget = false;
+
+    public boolean m_LimelightHasValidTarget = false;
     private double m_LimelightDriveCommand = 0.0;
     private double m_LimelightSteerCommand = 0.0;
 
@@ -23,18 +26,19 @@ public class hatchVisionLockCommand extends Command {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.m_drive);
+    SmartDashboard.putBoolean("HATCH_LOCK", m_LimelightHasValidTarget);  
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-
+    SmartDashboard.putBoolean("HATCH_LOCK", m_LimelightHasValidTarget);  
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-       // These numbers must be tuned for Comp Robot!  Be careful!
+    // These numbers must be tuned for Comp Robot!  Be careful!  
        final double STEER_K = 0.025;                    // how hard to turn toward the target
        final double DRIVE_K = 0.075;                    // how hard to drive fwd toward the target
        final double DESIRED_TARGET_AREA = 55.0;        // Area of the target when the robot reaches the wall
@@ -56,9 +60,6 @@ public class hatchVisionLockCommand extends Command {
 
        m_LimelightHasValidTarget = true;
        OI.driveController.setRumble(RumbleType.kLeftRumble, 1);
-       OI.driveController.setRumble(RumbleType.kRightRumble, 1);
-       OI.driveController.setRumble(RumbleType.kLeftRumble, 1);
-       OI.driveController.setRumble(RumbleType.kRightRumble, 1);
        Robot.m_beak.hatchRetrieve();
        // Start with proportional steering
        double steer_cmd = tx * STEER_K;

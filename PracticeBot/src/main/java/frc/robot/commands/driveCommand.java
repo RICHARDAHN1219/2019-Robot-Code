@@ -33,7 +33,7 @@ public class driveCommand extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    // this is the drive subsystem's default command. it doesn't stop, it only gets interupted
+    // this is the drive subsystem's default command. it doesn't stop, it only gets interrupted
     return false;
   }
 

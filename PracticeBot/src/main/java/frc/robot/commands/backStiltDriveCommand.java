@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
 
 public class backStiltDriveCommand extends Command {
   public backStiltDriveCommand() {
-    requires(Robot.m_backstiltdrive);
+    requires(Robot.m_backStiltDrive);
 
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -29,7 +29,7 @@ public class backStiltDriveCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_backstiltdrive.climberDriverSpeed(OI.driveController.getTriggerAxis(Hand.kRight) - OI.driveController.getTriggerAxis(Hand.kLeft));
+    Robot.m_backStiltDrive.climberDriverSpeed(OI.driveController.getTriggerAxis(Hand.kRight) - OI.driveController.getTriggerAxis(Hand.kLeft));
   }
 
   // Make this return true when this Command no longer needs to run execute()

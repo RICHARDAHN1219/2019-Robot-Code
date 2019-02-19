@@ -15,7 +15,7 @@ import frc.robot.commands.backStiltDriveCommand;
 /**
  * backStiltDrive controls the drive motor on back stilt.
  */
-public class backStiltDrive extends Subsystem {
+public class backStiltDriveSubsystem extends Subsystem {
   public static final WPI_TalonSRX climberDrive = new WPI_TalonSRX(RobotMap.CLIMBER_DRIVE);
 
   @Override

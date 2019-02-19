@@ -9,15 +9,13 @@ package frc.robot.commands;
 
 import frc.robot.Robot;
 
-public class backStrutStart extends backClimbPIDCommand {
+public class frontStrutStartCommand extends frontClimbPIDCommand {
 
-  public backStrutStart() {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-    
+  public frontStrutStartCommand() {    
     // targetPosition, kP, kI, kD, kF
-    super(0, 0.4, 0.0, 0.0, 0.0);
-    requires(Robot.m_backstilt);
-    name = "backclimb";
+    // TODO: need to tune the position target value for front strut
+    super(0, 0.2, 0.0, 0.0, 0.0);
+    requires(Robot.m_frontStilt);
+    name = "frontClimb";
   }
 }

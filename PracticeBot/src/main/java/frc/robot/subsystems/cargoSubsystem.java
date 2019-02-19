@@ -28,11 +28,11 @@ public class cargoSubsystem extends Subsystem {
     // setDefaultCommand(new MySpecialCommand());
   }
 
-  public void setcargoDriveSpeed(double speed) {
+  public void setCargoDriveSpeed(double speed) {
     cargoIntake.set(speed);
   }
 
-  public void setarmDriveSpeed(double speed) {
+  public void setArmDriveSpeed(double speed) {
     armDrive.set(speed * 0.5);
   }
 

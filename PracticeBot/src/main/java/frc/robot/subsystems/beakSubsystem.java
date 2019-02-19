@@ -8,7 +8,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.commands.hatchRetrieve;
+import frc.robot.commands.hatchRetrieveCommand;
 import frc.robot.Robot;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
@@ -24,7 +24,7 @@ public class beakSubsystem extends Subsystem {
     // Set the default command for a subsystem here.
 
     // by default we want the beak to stay in the close, hatch holding position
-    setDefaultCommand(new hatchRetrieve());
+    setDefaultCommand(new hatchRetrieveCommand());
   }
 
   public void hatchRelease() {

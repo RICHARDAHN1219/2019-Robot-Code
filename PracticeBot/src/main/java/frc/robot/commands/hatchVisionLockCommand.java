@@ -7,7 +7,6 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.command.Command;
@@ -46,7 +45,6 @@ public class hatchVisionLockCommand extends Command {
 
        double tv = NetworkTableInstance.getDefault().getTable("limelight-one").getEntry("tv").getDouble(0);
        double tx = NetworkTableInstance.getDefault().getTable("limelight-one").getEntry("tx").getDouble(0);
-       double ty = NetworkTableInstance.getDefault().getTable("limelight-one").getEntry("ty").getDouble(0);
        double ta = NetworkTableInstance.getDefault().getTable("limelight-one").getEntry("ta").getDouble(0);
 
        if (tv < 1.0)

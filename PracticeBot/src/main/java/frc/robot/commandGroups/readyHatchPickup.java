@@ -8,15 +8,15 @@
 package frc.robot.commandGroups;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
-import frc.robot.commands.ejectorIntake;
-import frc.robot.commands.hatchRelease;
+import frc.robot.commands.ejectorIntakeCommand;
+import frc.robot.commands.hatchReleaseCommand;
 
 public class readyHatchPickup extends CommandGroup {
   /**
    * prepare to grab hatch. Open beak. retract pistons.
    */
   public readyHatchPickup() {
-    addParallel(new hatchRelease());
-    addSequential(new ejectorIntake());
+    addParallel(new hatchReleaseCommand());
+    addSequential(new ejectorIntakeCommand());
   }
 }

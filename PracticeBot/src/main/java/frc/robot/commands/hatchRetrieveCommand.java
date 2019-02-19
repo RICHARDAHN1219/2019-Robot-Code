@@ -7,27 +7,20 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class PipelineSwitchZero extends Command {
-
-  public String limelightName;
-  private NetworkTable table;
-
-  public PipelineSwitchZero() {
+public class hatchRetrieveCommand extends Command {
+  public hatchRetrieveCommand() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.m_pipeline);
+    requires(Robot.m_beak);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    System.out.println("Switching Pipeline");
-    NetworkTableEntry pipeline = table.getEntry("pipeline");
-    pipeline.setNumber(0);
+    Robot.m_beak.hatchRetrieve();
+    //setTimeout(0.2);
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -38,7 +31,8 @@ public class PipelineSwitchZero extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    //return isTimedOut();
+    return false;
   }
 
   // Called once after isFinished returns true

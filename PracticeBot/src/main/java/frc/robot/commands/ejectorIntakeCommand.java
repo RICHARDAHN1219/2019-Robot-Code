@@ -6,21 +6,22 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands;
+
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class hatchRelease extends Command {
-  public hatchRelease() {
+public class ejectorIntakeCommand extends Command {
+  public ejectorIntakeCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.m_beak);
+    requires(Robot.m_ejector);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.m_beak.hatchRelease();
-    //setTimeout(2.0);
+    Robot.m_ejector.extend();
+    //setTimeout(0.5);
   }
 
   // Called repeatedly when this Command is scheduled to run

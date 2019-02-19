@@ -9,7 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
-import frc.robot.commands.ejectorIntake;
+import frc.robot.commands.ejectorIntakeCommand;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 /**
@@ -22,7 +22,7 @@ public class ejectorSubsystem extends Subsystem {
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
-     setDefaultCommand(new ejectorIntake());
+     setDefaultCommand(new ejectorIntakeCommand());
   }
 
   public void extend() {

@@ -42,7 +42,7 @@ public class shifterCommand extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    // this is the default command, so we keep running until we're interupted
+    // this is the default command, so we keep running until we're interrupted
     return false;
   }
 

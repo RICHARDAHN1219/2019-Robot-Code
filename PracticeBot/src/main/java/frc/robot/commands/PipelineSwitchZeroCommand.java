@@ -7,21 +7,27 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.networktables.NetworkTable;
+import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class ejectorRelease extends Command {
-  public ejectorRelease() {
+public class PipelineSwitchZeroCommand extends Command {
+
+  public String limelightName;
+  private NetworkTable table;
+
+  public PipelineSwitchZeroCommand() {
     // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-    requires(Robot.m_ejector);
+    requires(Robot.m_pipeline);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.m_ejector.retract();
-    //setTimeout(0.5);
+    System.out.println("Switching Pipeline");
+    NetworkTableEntry pipeline = table.getEntry("pipeline");
+    pipeline.setNumber(0);
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -32,8 +38,7 @@ public class ejectorRelease extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    //return isTimedOut();
-    return false;
+    return true;
   }
 
   // Called once after isFinished returns true

@@ -10,30 +10,39 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class ejectorIntake extends Command {
-  public ejectorIntake() {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-    requires(Robot.m_ejector);
-  }
+public class driveShortDistanceCommand extends Command {
+  public double xSpeed = 0.5;
+  public double zRotation = 0.0;
+  public double time = 0.2;
 
+  /* 
+   * drive in a given speed and direction for a time.
+   */
+
+  public driveShortDistanceCommand(double _xSpeed, double _zRotation, double _time) {
+    super("driveShortDistance");
+    xSpeed = _xSpeed;
+    zRotation = _zRotation;
+    time = _time;
+    requires(Robot.m_drive);
+  }
+  
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.m_ejector.extend();
-    //setTimeout(0.5);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    Robot.m_drive.arcadeDrive(xSpeed, zRotation);
+    setTimeout(time);
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    //return isTimedOut();
-    return false;
+    return isTimedOut();
   }
 
   // Called once after isFinished returns true

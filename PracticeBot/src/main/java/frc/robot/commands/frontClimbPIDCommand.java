@@ -19,7 +19,7 @@ public class frontClimbPIDCommand extends Command {
   private double kF = 0.0;
 
   public frontClimbPIDCommand() {
-    requires(Robot.m_frontstilt);
+    requires(Robot.m_frontStilt);
   }
 
   public frontClimbPIDCommand(int tpos, double _kP, double _kI, double _kD, double _kF) {
@@ -28,29 +28,29 @@ public class frontClimbPIDCommand extends Command {
     kI = _kI;
     kD = _kD;
     kF = _kF;
-    requires(Robot.m_frontstilt);
+    requires(Robot.m_frontStilt);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.m_frontstilt.kP = kP;
-    Robot.m_frontstilt.kI = kI;
-    Robot.m_frontstilt.kD = kD;
-    Robot.m_frontstilt.kF = kF;
+    Robot.m_frontStilt.kP = kP;
+    Robot.m_frontStilt.kI = kI;
+    Robot.m_frontStilt.kD = kD;
+    Robot.m_frontStilt.kF = kF;
     setPosition();
-    Robot.m_frontstilt.printDebug(name);
+    Robot.m_frontStilt.printDebug(name);
   }
 
   public void setPosition() { 
     // 4096 encoder ticks per revolution
-    Robot.m_frontstilt.setPosition(targetPosition);
+    Robot.m_frontStilt.setPosition(targetPosition);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_frontstilt.printDebug(name);
+    Robot.m_frontStilt.printDebug(name);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -63,7 +63,7 @@ public class frontClimbPIDCommand extends Command {
   @Override
   protected void end() {
     System.out.println("FRONTSTRUT: Finished moving to " + name + "position");
-    Robot.m_frontstilt.printDebug(name);
+    Robot.m_frontStilt.printDebug(name);
   }
 
   // Called when another command which requires one or more of the same

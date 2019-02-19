@@ -12,14 +12,13 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.subsystems.limelightSubsystem;
 
-public class limelightDriveToTarget extends Command {
+public class limelightDriveToTargetCommand extends Command {
   public limelightSubsystem limelight;
   public boolean invertDrive;
   public boolean invertSteer;
   private NetworkTableEntry tvEntry;
   private NetworkTableEntry taEntry;
   private NetworkTableEntry txEntry;
-  private NetworkTableEntry tyEntry;
   public limelightSubsystem.Pipeline pipeline;
 
   double STEER_K;             // how hard to turn toward the target
@@ -42,7 +41,7 @@ public class limelightDriveToTarget extends Command {
   *  Example:
   *     comboButton.whileHeld(new visionlockoncommand("limelight", 0.075, 0.1, 0.55, 0.5, false, false));
   */
-  public limelightDriveToTarget(limelightSubsystem ll, limelightSubsystem.Pipeline p, double steer, double drive, double ta, double md, boolean invd, boolean invs) {
+  public limelightDriveToTargetCommand(limelightSubsystem ll, limelightSubsystem.Pipeline p, double steer, double drive, double ta, double md, boolean invd, boolean invs) {
     // declare subsystem dependencies
     requires(Robot.m_drive);
     requires(ll);
@@ -66,7 +65,6 @@ public class limelightDriveToTarget extends Command {
     tvEntry = limelight.getEntry("tv");
     taEntry = limelight.getEntry("ta");
     txEntry = limelight.getEntry("tx");
-    tyEntry = limelight.getEntry("ty");
     limelight.getEntry("camMode").setNumber(0);
     limelight.setPipeline(pipeline);
   }
@@ -89,7 +87,6 @@ public class limelightDriveToTarget extends Command {
     }
 
     double tx = txEntry.getDouble(0.0);
-    double ty = tyEntry.getDouble(0.0);
     double ta = taEntry.getDouble(0.0);
     
     // Start with proportional steering

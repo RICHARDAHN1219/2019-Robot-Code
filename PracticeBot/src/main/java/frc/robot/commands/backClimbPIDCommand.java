@@ -24,29 +24,29 @@ public class backClimbPIDCommand extends Command {
     kI = _kI;
     kD = _kD;
     kF = _kF;
-    requires(Robot.m_backstilt);
+    requires(Robot.m_backStilt);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.m_backstilt.kP = kP;
-    Robot.m_backstilt.kI = kI;
-    Robot.m_backstilt.kD = kD;
-    Robot.m_backstilt.kF = kF;
+    Robot.m_backStilt.kP = kP;
+    Robot.m_backStilt.kI = kI;
+    Robot.m_backStilt.kD = kD;
+    Robot.m_backStilt.kF = kF;
     setPosition();
-    Robot.m_backstilt.printDebug(name);
+    Robot.m_backStilt.printDebug(name);
   }
 
   public void setPosition() { 
     // 4096 encoder ticks per revolution
-    Robot.m_backstilt.setPosition(targetPosition);
+    Robot.m_backStilt.setPosition(targetPosition);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_backstilt.printDebug(name);
+    Robot.m_backStilt.printDebug(name);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -59,7 +59,7 @@ public class backClimbPIDCommand extends Command {
   @Override
   protected void end() {
     System.out.println("BACKSTRUT: Finished moving to " + name + "position");
-    Robot.m_backstilt.printDebug(name);
+    Robot.m_backStilt.printDebug(name);
   }
 
   // Called when another command which requires one or more of the same

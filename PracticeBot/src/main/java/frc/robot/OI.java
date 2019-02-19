@@ -10,21 +10,9 @@ package frc.robot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.shifterCommand;
-import frc.robot.commands.hatchVisionLockCommand;
-import frc.robot.commands.cargoVisionLockCommand;
+import frc.robot.commands.*;
 import frc.robot.subsystems.shifterSubsystem;
-import frc.robot.commandGroups.placeHatchLow;
-import frc.robot.commandGroups.readyHatchPickup;
-import frc.robot.commands.armHighCommand;
-import frc.robot.commands.armLowCommand;
-import frc.robot.commands.armCargoShipCommand;
-import frc.robot.commands.backStrutClimb;
-import frc.robot.commands.backStrutStart;
-import frc.robot.commands.frontStrutClimb;
-import frc.robot.commands.frontStrutStart;
-import frc.robot.commandGroups.climbLevel3;
-import frc.robot.commands.armRocketCommand;
+import frc.robot.commandGroups.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -101,10 +89,10 @@ public class OI {
     armRocketButton.whenPressed(new armRocketCommand());
 
     //Climb
-    backClimbPIDButton.whenPressed(new backStrutClimb());
-    backClimbStartPIDButton.whenPressed(new backStrutStart());
+    backClimbPIDButton.whenPressed(new backStrutClimbCommand());
+    backClimbStartPIDButton.whenPressed(new backStrutStartCommand());
     frontClimbPIDButton.whenPressed(new frontStrutClimb());
-    frontClimbStartPIDButton.whenPressed(new frontStrutStart());
+    frontClimbStartPIDButton.whenPressed(new frontStrutStartCommand());
     level3Climb.whenPressed(new climbLevel3());
   }
 }

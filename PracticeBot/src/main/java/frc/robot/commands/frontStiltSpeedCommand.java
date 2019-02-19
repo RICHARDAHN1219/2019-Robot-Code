@@ -15,20 +15,20 @@ import frc.robot.Robot;
 public class frontStiltSpeedCommand extends Command {
   public frontStiltSpeedCommand() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.m_frontstilt);
+    requires(Robot.m_frontStilt);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    // Robot.m_frontstilt.frontStrut2.follow(Robot.m_frontstilt.frontStrut1);
-    // Robot.m_frontstilt.frontStrut2.setInverted(true);
+    // Robot.m_frontStilt.frontStrut2.follow(Robot.m_frontStilt.frontStrut1);
+    // Robot.m_frontStilt.frontStrut2.setInverted(true);
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_frontstilt.setFrontClimberSpeed(OI.climbController.getY(Hand.kLeft));
+    Robot.m_frontStilt.setFrontClimberSpeed(OI.climbController.getY(Hand.kLeft));
   }
 
   // Make this return true when this Command no longer needs to run execute()

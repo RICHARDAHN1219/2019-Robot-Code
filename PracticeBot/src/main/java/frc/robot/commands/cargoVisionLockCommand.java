@@ -10,8 +10,6 @@ package frc.robot.commands;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.GenericHID.RumbleType;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.OI;
 import frc.robot.Robot;
 
@@ -59,7 +57,7 @@ public class cargoVisionLockCommand extends Command {
 
       // OI.driveController.setRumble(RumbleType.kLeftRumble, 1);
        m_LimelightHasValidTarget = true;
-       Robot.m_intake.setcargoDriveSpeed(-0.25);
+       Robot.m_intake.setCargoDriveSpeed(-0.25);
        Robot.m_beak.hatchRetrieve();
        // Start with proportional steering
        double steer_cmd = tx * STEER_K;

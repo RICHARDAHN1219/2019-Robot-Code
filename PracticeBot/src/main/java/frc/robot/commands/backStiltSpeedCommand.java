@@ -18,7 +18,7 @@ public class backStiltSpeedCommand extends Command {
 
   public backStiltSpeedCommand() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.m_backstilt);
+    requires(Robot.m_backStilt);
   }
 
   // Called just before this Command runs the first time
@@ -31,11 +31,11 @@ public class backStiltSpeedCommand extends Command {
   protected void execute() {
     double climbSpeed = -OI.climbController.getY(Hand.kRight);
     if (Math.abs(climbSpeed) > 0.1) {
-      Robot.m_backstilt.setBackClimberSpeed(climbSpeed);
+      Robot.m_backStilt.setBackClimberSpeed(climbSpeed);
       holding = false;
     }
     else if (!holding) {
-      Robot.m_backstilt.holdCurrentPosition();
+      Robot.m_backStilt.holdCurrentPosition();
       holding = true;
     }
   }

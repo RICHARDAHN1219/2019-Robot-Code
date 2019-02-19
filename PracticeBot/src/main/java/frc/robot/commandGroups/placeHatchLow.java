@@ -9,8 +9,8 @@ package frc.robot.commandGroups;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
-import frc.robot.commands.ejectorRelease;
-import frc.robot.commands.hatchRelease;
+import frc.robot.commands.ejectorReleaseCommand;
+import frc.robot.commands.hatchReleaseCommand;
 
 public class placeHatchLow extends CommandGroup {
   /**
@@ -35,9 +35,9 @@ public class placeHatchLow extends CommandGroup {
     // arm.
 
     //addSequential(vision targeting things i don't know about)
-    addParallel(new ejectorRelease());
+    addParallel(new ejectorReleaseCommand());
     addSequential(new WaitCommand(0.05));
-    addSequential(new hatchRelease());
+    addSequential(new hatchReleaseCommand());
     addSequential(new WaitCommand(0.5));    
   }
 }

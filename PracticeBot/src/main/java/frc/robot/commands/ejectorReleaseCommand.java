@@ -10,17 +10,18 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class hatchRetrieve extends Command {
-  public hatchRetrieve() {
+public class ejectorReleaseCommand extends Command {
+  public ejectorReleaseCommand() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.m_beak);
+    // eg. requires(chassis);
+    requires(Robot.m_ejector);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.m_beak.hatchRetrieve();
-    //setTimeout(0.2);
+    Robot.m_ejector.retract();
+    //setTimeout(0.5);
   }
 
   // Called repeatedly when this Command is scheduled to run

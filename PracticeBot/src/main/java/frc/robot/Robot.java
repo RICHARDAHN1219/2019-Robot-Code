@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.armSubsystem;
-import frc.robot.subsystems.backStiltDrive;
+import frc.robot.subsystems.backStiltDriveSubsystem;
 import frc.robot.subsystems.beakSubsystem;
 import frc.robot.subsystems.cargoSubsystem;
 import frc.robot.subsystems.driveSubsystem;
@@ -44,9 +44,9 @@ public class Robot extends TimedRobot {
   public static armSubsystem m_arm;
   public static beakSubsystem m_beak;
   public static ejectorSubsystem m_ejector;
-  public static backStiltSubsystem m_backstilt;
-  public static backStiltDrive m_backstiltdrive;
-  public static frontStiltSubsystem m_frontstilt;
+  public static backStiltSubsystem m_backStilt;
+  public static backStiltDriveSubsystem m_backStiltDrive;
+  public static frontStiltSubsystem m_frontStilt;
   //private CANEncoder m_encoder1;
   //private CANEncoder m_encoder2;
   //private CANEncoder m_encoder3;
@@ -73,13 +73,13 @@ public class Robot extends TimedRobot {
     m_arm = new armSubsystem();
     m_beak = new beakSubsystem();
     m_ejector = new ejectorSubsystem();
-    m_frontstilt = new frontStiltSubsystem();
-    m_backstilt = new backStiltSubsystem();
-    m_backstiltdrive = new backStiltDrive();
+    m_frontStilt = new frontStiltSubsystem();
+    m_backStilt = new backStiltSubsystem();
+    m_backStiltDrive = new backStiltDriveSubsystem();
 
     m_arm.init();
-    m_backstilt.init();
-    m_frontstilt.init();
+    m_backStilt.init();
+    m_frontStilt.init();
     
     // OI needs to be last
     m_oi = new OI();

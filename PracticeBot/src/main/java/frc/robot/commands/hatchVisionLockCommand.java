@@ -8,16 +8,18 @@
 package frc.robot.commands;
 
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.OI;
 import frc.robot.Robot;
 
-public class visionlockoncommand extends Command {
-    private boolean m_LimelightHasValidTarget = false;
+public class hatchVisionLockCommand extends Command {
+   private boolean m_LimelightHasValidTarget = false;
     private double m_LimelightDriveCommand = 0.0;
     private double m_LimelightSteerCommand = 0.0;
 
 
-  public visionlockoncommand() {
+  public hatchVisionLockCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.m_drive);
@@ -33,8 +35,8 @@ public class visionlockoncommand extends Command {
   @Override
   protected void execute() {
        // These numbers must be tuned for Comp Robot!  Be careful!
-       final double STEER_K = 0.075;                    // how hard to turn toward the target
-       final double DRIVE_K = 0.1;                    // how hard to drive fwd toward the target
+       final double STEER_K = 0.025;                    // how hard to turn toward the target
+       final double DRIVE_K = 0.075;                    // how hard to drive fwd toward the target
        final double DESIRED_TARGET_AREA = 55.0;        // Area of the target when the robot reaches the wall
        final double MAX_DRIVE = 0.5;                   // Simple speed limit so we don't drive too fast
 
@@ -53,6 +55,10 @@ public class visionlockoncommand extends Command {
        }
 
        m_LimelightHasValidTarget = true;
+       OI.driveController.setRumble(RumbleType.kLeftRumble, 1);
+       OI.driveController.setRumble(RumbleType.kRightRumble, 1);
+       OI.driveController.setRumble(RumbleType.kLeftRumble, 1);
+       OI.driveController.setRumble(RumbleType.kRightRumble, 1);
        Robot.m_beak.hatchRetrieve();
        // Start with proportional steering
        double steer_cmd = tx * STEER_K;
@@ -68,7 +74,7 @@ public class visionlockoncommand extends Command {
        }
        m_LimelightDriveCommand = drive_cmd;
     
-       Robot.m_drive.arcadeDrive(m_LimelightDriveCommand, -m_LimelightSteerCommand);
+       Robot.m_drive.arcadeDrive(m_LimelightDriveCommand, -m_LimelightSteerCommand * 0.3);
      
  }
 

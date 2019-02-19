@@ -10,21 +10,22 @@ package frc.robot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.hatchRelease;
-import frc.robot.commands.hatchRetrieve;
+//import frc.robot.commands.hatchRelease;
+//import frc.robot.commands.hatchRetrieve;
 import frc.robot.commands.shifterCommand;
-import frc.robot.commands.visionlockoncommand;
+import frc.robot.commands.hatchVisionLockCommand;
+import frc.robot.commands.cargoVisionLockCommand;
 import frc.robot.subsystems.shifterSubsystem;
 import frc.robot.commandGroups.placeHatchLow;
 import frc.robot.commandGroups.readyHatchPickup;
 import frc.robot.commands.armHighCommand;
 import frc.robot.commands.armLowCommand;
 import frc.robot.commands.armMiddleCommand;
-import frc.robot.commands.backStrutClimb;
-import frc.robot.commands.cargoIntakeCommand;
-import frc.robot.commands.climbPIDCommand;
-import frc.robot.commands.ejectorIntake;
-import frc.robot.commands.ejectorRelease;
+//import frc.robot.commands.backStrutClimb;
+//import frc.robot.commands.cargoIntakeCommand;
+//import frc.robot.commands.climbPIDCommand;
+//import frc.robot.commands.ejectorIntake; 
+//import frc.robot.commands.ejectorRelease;
 import frc.robot.commands.backStiltDriveCommand;
 
 /**
@@ -72,41 +73,44 @@ public class OI {
   Button shifterButton = new JoystickButton(driveController, RobotMap.LBumper);
   //Button hatchButton = new JoystickButton(driveController, RobotMap.AButton);
   Button comboButton = new JoystickButton(driveController, RobotMap.XButton);
-  Button cargoButton = new JoystickButton(driveController, RobotMap.StartButton);
+  //Button cargoButton = new JoystickButton(driveController, RobotMap.StartButton);
   //Button ejectorButton = new JoystickButton(driveController, RobotMap.Bbutton);
-  Button climbPIDButton = new JoystickButton(driveController, RobotMap.YButton);
-  Button armLowButton = new JoystickButton(driveController, RobotMap.AButton);
-  //Button armHighButton = new JoystickButton(driveController, RobotMap.YButton);
-  Button armMiddleButton = new JoystickButton(driveController, RobotMap.Bbutton);
+  //Button climbPIDButton = new JoystickButton(driveController, RobotMap.YButton);
   Button backStiltDriveButton = new JoystickButton(driveController, RobotMap.RBumper);
+  Button cargoVisionButton = new JoystickButton(driveController, RobotMap.AButton);
 
   // Operator controller
+  Button armLowButton = new JoystickButton(operatorController, RobotMap.AButton);
+  Button armHighButton = new JoystickButton(operatorController, RobotMap.YButton);
+  Button armMiddleButton = new JoystickButton(operatorController, RobotMap.Bbutton);
   Button hatchPlacementButton = new JoystickButton(operatorController, RobotMap.LBumper);
   Button hatchGrabButton = new JoystickButton(operatorController, RobotMap.RBumper);
-  Button ejectorPushButton = new JoystickButton(operatorController, RobotMap.YButton);
-  Button ejectorRetractButton = new JoystickButton(operatorController, RobotMap.XButton);
+
+  //Button ejectorPushButton = new JoystickButton(operatorController, RobotMap.YButton);
+  //Button ejectorRetractButton = new JoystickButton(operatorController, RobotMap.XButton);
 
   public OI() {
     //targetingButton.whileHeld(new visionTargetingCommand());
     //approachButton.whileHeld(new visionApproachCommand());
-    shifterButton.whileHeld(new shifterCommand(shifterSubsystem.Gears.LOW_GEAR));
+    shifterButton.whileHeld(new shifterCommand(shifterSubsystem.Gears.HIGH_GEAR));
     //hatchButton.whileHeld(new hatchRetrieve());
     //hatchButton.whenReleased(new hatchRelease());
     //ejectorButton.whileHeld(new ejectorRelease());
     //ejectorButton.whenReleased(new ejectorIntake());
-    comboButton.whileHeld(new visionlockoncommand());
-    cargoButton.whileHeld(new cargoIntakeCommand());
-    climbPIDButton.whileHeld(new backStrutClimb());
+    comboButton.whileHeld(new hatchVisionLockCommand());
+    //cargoButton.whileHeld(new cargoIntakeCommand());
+    //climbPIDButton.whileHeld(new backStrutClimb());
     //climbPIDButton.whenReleased(new climbPIDStopCommand());
     armLowButton.whenPressed(new armLowCommand());
-    //armHighButton.whenPressed(new armHighCommand());
+    armHighButton.whenPressed(new armHighCommand());
     armMiddleButton.whenPressed(new armMiddleCommand());
     backStiltDriveButton.whenPressed(new backStiltDriveCommand());
+    cargoVisionButton.whileHeld(new cargoVisionLockCommand());
 
     // Operator
     hatchPlacementButton.toggleWhenPressed(new placeHatchLow());
     hatchGrabButton.whileHeld(new readyHatchPickup());
-    ejectorPushButton.whenReleased(new ejectorRelease());
-    ejectorRetractButton.whenPressed(new ejectorIntake());
+    //ejectorPushButton.whenReleased(new ejectorRelease());
+    //ejectorRetractButton.whenPressed(new ejectorIntake());
   }
 }

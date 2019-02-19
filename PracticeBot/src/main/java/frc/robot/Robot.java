@@ -55,9 +55,9 @@ public class Robot extends TimedRobot {
   private CANEncoder m_encoder4;
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
-  public static DoubleSolenoid beakSolenoid = new DoubleSolenoid(0, 1);
-  public static DoubleSolenoid shifterSolenoid = new DoubleSolenoid(2, 6);
-  public static DoubleSolenoid ejectorSolenoid = new DoubleSolenoid(3, 7);
+  public static DoubleSolenoid beakSolenoid = new DoubleSolenoid(6, 7);
+  public static DoubleSolenoid shifterSolenoid = new DoubleSolenoid(2, 3);
+  public static DoubleSolenoid ejectorSolenoid = new DoubleSolenoid(4, 5);
   PowerDistributionPanel PowerDistributionPanel = new PowerDistributionPanel(0);
 
 

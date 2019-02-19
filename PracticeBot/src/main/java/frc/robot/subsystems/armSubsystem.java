@@ -48,7 +48,7 @@ public class armSubsystem extends Subsystem {
         kTimeoutMs);
     /* Ensure sensor is positive when output is positive */
     armDrive.setSensorPhase(true);
-    armDrive.setInverted(false);
+    armDrive.setInverted(true);
     /* Config the peak and nominal outputs, 12V means full */
     armDrive.configNominalOutputForward(0, kTimeoutMs);
     armDrive.configNominalOutputReverse(0, kTimeoutMs);
@@ -115,13 +115,6 @@ public class armSubsystem extends Subsystem {
     }
   }
 
-  /*
-  public void setPID(double _kP,double _kI, double _kD) {
-    armDrive.config_kP(kPIDLoopIdx, _kP, kTimeoutMs);
-    armDrive.config_kI(kPIDLoopIdx, _kI, kTimeoutMs);
-    armDrive.config_kD(kPIDLoopIdx, _kD, kTimeoutMs);
-  }
-  */
   public void printDebug(String name) {
     _sb.append("ARM out:");
     double motorOutput = armDrive.getMotorOutputPercent();

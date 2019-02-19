@@ -9,9 +9,6 @@ package frc.robot.commandGroups;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
-import edu.wpi.first.wpilibj.command.WaitUntilCommand;
-import frc.robot.commands.driveShortDistance;
-import frc.robot.commands.ejectorIntake;
 import frc.robot.commands.ejectorRelease;
 import frc.robot.commands.hatchRelease;
 
@@ -41,9 +38,6 @@ public class placeHatchLow extends CommandGroup {
     addParallel(new ejectorRelease());
     addSequential(new WaitCommand(0.05));
     addSequential(new hatchRelease());
-    addSequential(new WaitCommand(0.5));
-    //addSequential(new driveShortDistance(0.5,0.0,0.2));  // drive away
-    // addSequential(new ejectorIntake());
-    
+    addSequential(new WaitCommand(0.5));    
   }
 }

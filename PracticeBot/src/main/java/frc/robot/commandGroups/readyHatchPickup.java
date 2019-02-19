@@ -10,7 +10,6 @@ package frc.robot.commandGroups;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import frc.robot.commands.ejectorIntake;
 import frc.robot.commands.hatchRelease;
-import frc.robot.commands.hatchRetrieve;
 
 public class readyHatchPickup extends CommandGroup {
   /**

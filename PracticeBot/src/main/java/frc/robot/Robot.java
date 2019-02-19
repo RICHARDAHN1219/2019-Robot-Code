@@ -23,8 +23,6 @@ import frc.robot.subsystems.limelightSubsystem;
 import frc.robot.subsystems.shifterSubsystem;
 import frc.robot.subsystems.backStiltSubsystem;
 import frc.robot.subsystems.frontStiltSubsystem;
-
-import com.revrobotics.CANEncoder;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 
 /**
@@ -49,10 +47,10 @@ public class Robot extends TimedRobot {
   public static backStiltSubsystem m_backstilt;
   public static backStiltDrive m_backstiltdrive;
   public static frontStiltSubsystem m_frontstilt;
-  private CANEncoder m_encoder1;
-  private CANEncoder m_encoder2;
-  private CANEncoder m_encoder3;
-  private CANEncoder m_encoder4;
+  //private CANEncoder m_encoder1;
+  //private CANEncoder m_encoder2;
+  //private CANEncoder m_encoder3;
+  //private CANEncoder m_encoder4;
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
   public static DoubleSolenoid beakSolenoid = new DoubleSolenoid(0, 1);
@@ -177,13 +175,13 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
-    m_encoder1 = driveSubsystem.neo1.getEncoder();
-    m_encoder2 = driveSubsystem.neo2.getEncoder();
-    m_encoder3 = driveSubsystem.neo3.getEncoder();
-    m_encoder4 = driveSubsystem.neo4.getEncoder();
-    double averageDistance = m_encoder1.getPosition() + m_encoder2.getPosition() + m_encoder3.getPosition() +  m_encoder4.getPosition() / 4;
+    //m_encoder1 = driveSubsystem.neo1.getEncoder();
+    //m_encoder2 = driveSubsystem.neo2.getEncoder();
+    //m_encoder3 = driveSubsystem.neo3.getEncoder();
+    //m_encoder4 = driveSubsystem.neo4.getEncoder();
+    //double averageDistance = m_encoder1.getPosition() + m_encoder2.getPosition() + m_encoder3.getPosition() +  m_encoder4.getPosition() / 4;
     // System.out.println(frontEncoder);
-    Robot.m_frontstilt.printDebug("rear");
+    //Robot.m_frontstilt.printDebug("rear");
   }
 
   /**

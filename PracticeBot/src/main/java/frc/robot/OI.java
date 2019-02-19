@@ -10,8 +10,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.hatchRelease;
-import frc.robot.commands.hatchRetrieve;
 import frc.robot.commands.shifterCommand;
 import frc.robot.commands.visionlockoncommand;
 import frc.robot.subsystems.shifterSubsystem;
@@ -21,14 +19,10 @@ import frc.robot.commands.armHighCommand;
 import frc.robot.commands.armLowCommand;
 import frc.robot.commands.armMiddleCommand;
 import frc.robot.commands.backStrutClimb;
-import frc.robot.commands.cargoIntakeCommand;
-import frc.robot.commands.backClimbPIDCommand;
-import frc.robot.commands.ejectorIntake;
-import frc.robot.commands.ejectorRelease;
-import frc.robot.commands.backStiltDriveCommand;
 import frc.robot.commands.backStrutStart;
 import frc.robot.commands.frontStrutClimb;
 import frc.robot.commands.frontStrutStart;
+import frc.robot.commandGroups.climbLevel3;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -69,54 +63,42 @@ public class OI {
   public static XboxController operatorController = new XboxController(1);
   public static XboxController climbController = new XboxController(2);
 
-  // buttons on driveController
-  
-  //Button targetingButton = new JoystickButton(driveController, RobotMap.Bbutton);
-  //Button approachButton = new JoystickButton(driveController, RobotMap.YButton);
+  // Driver
   Button shifterButton = new JoystickButton(driveController, RobotMap.LBumper);
-  //Button hatchButton = new JoystickButton(driveController, RobotMap.AButton);
-  Button comboButton = new JoystickButton(driveController, RobotMap.XButton);
-  Button cargoButton = new JoystickButton(driveController, RobotMap.StartButton);
-  //Button ejectorButton = new JoystickButton(driveController, RobotMap.Bbutton);
+  Button comboButton = new JoystickButton(driveController, RobotMap.Bbutton);
+  
+  // Operator
+  Button hatchPlacementButton = new JoystickButton(operatorController, RobotMap.LBumper);
+  Button hatchGrabButton = new JoystickButton(operatorController, RobotMap.RBumper);
+  Button armLowButton = new JoystickButton(operatorController, RobotMap.AButton);
+  Button armMiddleButton = new JoystickButton(operatorController, RobotMap.Bbutton);
+  Button armHighButton = new JoystickButton(operatorController, RobotMap.YButton);
+
+  // Climb
   Button backClimbPIDButton = new JoystickButton(climbController, RobotMap.YButton);
   Button backClimbStartPIDButton = new JoystickButton(climbController, RobotMap.Bbutton);
   Button frontClimbPIDButton = new JoystickButton(climbController, RobotMap.XButton);
   Button frontClimbStartPIDButton = new JoystickButton(climbController, RobotMap.AButton);
-  Button armLowButton = new JoystickButton(driveController, RobotMap.AButton);
-  //Button armHighButton = new JoystickButton(driveController, RobotMap.YButton);
-  Button armMiddleButton = new JoystickButton(driveController, RobotMap.Bbutton);
-  Button backStiltDriveButton = new JoystickButton(driveController, RobotMap.RBumper);
-
-  // Operator controller
-  Button hatchPlacementButton = new JoystickButton(operatorController, RobotMap.LBumper);
-  Button hatchGrabButton = new JoystickButton(operatorController, RobotMap.RBumper);
-  Button ejectorPushButton = new JoystickButton(operatorController, RobotMap.YButton);
-  Button ejectorRetractButton = new JoystickButton(operatorController, RobotMap.XButton);
+  Button level3Climb = new JoystickButton(climbController, RobotMap.StartButton);
 
   public OI() {
-    //targetingButton.whileHeld(new visionTargetingCommand());
-    //approachButton.whileHeld(new visionApproachCommand());
+    
+    // Driver
     shifterButton.whileHeld(new shifterCommand(shifterSubsystem.Gears.LOW_GEAR));
-    //hatchButton.whileHeld(new hatchRetrieve());
-    //hatchButton.whenReleased(new hatchRelease());
-    //ejectorButton.whileHeld(new ejectorRelease());
-    //ejectorButton.whenReleased(new ejectorIntake());
     comboButton.whileHeld(new visionlockoncommand());
-    cargoButton.whileHeld(new cargoIntakeCommand());
-    backClimbPIDButton.whenPressed(new backStrutClimb());
-    backClimbStartPIDButton.whenPressed(new backStrutStart());
-    frontClimbPIDButton.whenPressed(new frontStrutClimb());
-    frontClimbStartPIDButton.whenPressed(new frontStrutStart());
-    //climbPIDButton.whenReleased(new climbPIDStopCommand());
-    armLowButton.whenPressed(new armLowCommand());
-    //armHighButton.whenPressed(new armHighCommand());
-    armMiddleButton.whenPressed(new armMiddleCommand());
-    backStiltDriveButton.whenPressed(new backStiltDriveCommand());
 
     // Operator
     hatchPlacementButton.toggleWhenPressed(new placeHatchLow());
     hatchGrabButton.whileHeld(new readyHatchPickup());
-    ejectorPushButton.whenReleased(new ejectorRelease());
-    ejectorRetractButton.whenPressed(new ejectorIntake());
+    armLowButton.whenPressed(new armLowCommand());
+    armMiddleButton.whenPressed(new armMiddleCommand());
+    armHighButton.whenPressed(new armHighCommand());
+
+    //Climb
+    backClimbPIDButton.whenPressed(new backStrutClimb());
+    backClimbStartPIDButton.whenPressed(new backStrutStart());
+    frontClimbPIDButton.whenPressed(new frontStrutClimb());
+    frontClimbStartPIDButton.whenPressed(new frontStrutStart());
+    level3Climb.whenPressed(new climbLevel3());
   }
 }

@@ -9,7 +9,6 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 public class ejectorRelease extends Command {
   public ejectorRelease() {

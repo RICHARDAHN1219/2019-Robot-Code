@@ -13,7 +13,6 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.FollowerType;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import frc.robot.RobotMap;
-import frc.robot.commands.frontStiltSpeedCommand;
 
 /**
  * armSubsystem controls the cargo collection arm's up and down movement.

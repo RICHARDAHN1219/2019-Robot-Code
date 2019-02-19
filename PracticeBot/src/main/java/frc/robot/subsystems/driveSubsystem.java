@@ -43,6 +43,7 @@ public class driveSubsystem extends Subsystem {
 
     if (false) {
       // Instead of SpeedControllerGroup use NEO controlls to lead follow
+      // TODO: test this again now that drive is working.
       neo2.follow(neo1);
       neo4.follow(neo3);
       drive = new DifferentialDrive(neo1, neo3);

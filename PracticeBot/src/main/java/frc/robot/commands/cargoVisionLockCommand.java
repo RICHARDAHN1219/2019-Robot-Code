@@ -14,10 +14,6 @@ import frc.robot.OI;
 import frc.robot.Robot;
 
 public class cargoVisionLockCommand extends Command {
-    private boolean m_LimelightHasValidTarget = false;
-    private double m_LimelightDriveCommand = 0.0;
-    private double m_LimelightSteerCommand = 0.0;
-
 
   public cargoVisionLockCommand() {
     // Use requires() here to declare subsystem dependencies
@@ -43,25 +39,20 @@ public class cargoVisionLockCommand extends Command {
 
        double tv = NetworkTableInstance.getDefault().getTable("limelight-zero").getEntry("tv").getDouble(0);
        double tx = NetworkTableInstance.getDefault().getTable("limelight-zero").getEntry("tx").getDouble(0);
-       double ty = NetworkTableInstance.getDefault().getTable("limelight-zero").getEntry("ty").getDouble(0);
+       //double ty = NetworkTableInstance.getDefault().getTable("limelight-zero").getEntry("ty").getDouble(0);
        double ta = NetworkTableInstance.getDefault().getTable("limelight-zero").getEntry("ta").getDouble(0);
 
        if (tv < 1.0)
        {
-         m_LimelightHasValidTarget = false;
-         m_LimelightDriveCommand = 0.0;
-         m_LimelightSteerCommand = 0.0;
          Robot.m_drive.arcadeDrive(0.0,0.0);
          return;
        }
 
       // OI.driveController.setRumble(RumbleType.kLeftRumble, 1);
-       m_LimelightHasValidTarget = true;
        Robot.m_intake.setCargoDriveSpeed(-0.25);
        Robot.m_beak.hatchRetrieve();
        // Start with proportional steering
        double steer_cmd = tx * STEER_K;
-       m_LimelightSteerCommand = steer_cmd;
 
        // try to drive forward until the target area reaches our desired area
        double drive_cmd = (DESIRED_TARGET_AREA - ta) * DRIVE_K;
@@ -71,9 +62,8 @@ public class cargoVisionLockCommand extends Command {
        {
          drive_cmd = MAX_DRIVE;
        }
-       m_LimelightDriveCommand = drive_cmd;
     
-       Robot.m_drive.arcadeDrive(OI.driveController.getY(Hand.kLeft), -m_LimelightSteerCommand);
+       Robot.m_drive.arcadeDrive(OI.driveController.getY(Hand.kLeft), -steer_cmd);
      
  }
 

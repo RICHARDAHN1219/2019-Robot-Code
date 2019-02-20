@@ -11,12 +11,12 @@ Perform these tests
 2. Hatch Intake
     * Hatch Intake/Grab
     * Hatch Eject
-3. Arm 
+3. Arm
     * correct motor (inverted or not) different for comp vs practice
     * low, mid, and high positions are correct
     * can move low-high, low-mid, mid-low
     * cargo intake
-    * cargo eject
+    * cargo eject into cargo bay
 4. Vision
     * Drive to vision target w/ hatch
     * Drive to cargo and auto intake
@@ -32,7 +32,3 @@ Perform these tests
 * invert arm moter
 * ejector solinoids are different
 * limelight one is upside right on compitition bot
-
-
-
-

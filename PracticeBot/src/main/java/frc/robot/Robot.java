@@ -67,15 +67,15 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    //if (IS_COMP_BOT) {
+    if (IS_COMP_BOT) {
       beakSolenoid = new DoubleSolenoid(6, 7);
       shifterSolenoid = new DoubleSolenoid(0, 1);
       ejectorSolenoid = new DoubleSolenoid(4, 5);
-    //} else {
-      //beakSolenoid = new DoubleSolenoid(0, 1);
-      //shifterSolenoid = new DoubleSolenoid(2, 6);
-      //ejectorSolenoid = new DoubleSolenoid(3, 7);
-    //}
+    } else {
+      beakSolenoid = new DoubleSolenoid(0, 1);
+      shifterSolenoid = new DoubleSolenoid(2, 6);
+      ejectorSolenoid = new DoubleSolenoid(3, 7);
+    }
 
 
     m_intake = new cargoSubsystem();
@@ -195,7 +195,7 @@ public class Robot extends TimedRobot {
     //m_encoder4 = driveSubsystem.neo4.getEncoder();
     //double averageDistance = m_encoder1.getPosition() + m_encoder2.getPosition() + m_encoder3.getPosition() +  m_encoder4.getPosition() / 4;
     //System.out.println(frontEncoder);
-    Robot.m_backStilt.printDebug("rear");
+    //Robot.m_backStilt.printDebug("rear");
   }
 
   /**

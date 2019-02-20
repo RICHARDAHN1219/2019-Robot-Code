@@ -12,6 +12,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.FollowerType;
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 /**
@@ -47,8 +48,15 @@ public class frontStiltSubsystem extends Subsystem {
     frontStrut1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, kPIDLoopIdx,
         kTimeoutMs);
     /* Ensure sensor is positive when output is positive */
-    frontStrut1.setSensorPhase(true);
-    frontStrut1.setInverted(true);
+    if (Robot.IS_COMP_BOT) {
+      frontStrut1.setSensorPhase(true);
+      frontStrut1.setInverted(true);
+    }
+    else {
+      // TODO: check if setSensorPhase is correct on practicebot
+      frontStrut1.setSensorPhase(false);
+      frontStrut1.setInverted(true);
+    }
     /* Config the peak and nominal outputs, 12V means full */
     frontStrut1.configNominalOutputForward(0, kTimeoutMs);
     frontStrut1.configNominalOutputReverse(0, kTimeoutMs);

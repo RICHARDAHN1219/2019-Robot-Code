@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.backStiltSpeedCommand;
 
@@ -46,8 +47,16 @@ public class backStiltSubsystem extends Subsystem {
     backStrut.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, kPIDLoopIdx,
         kTimeoutMs);
     /* Ensure sensor is positive when output is positive */
-    backStrut.setSensorPhase(true);
-    backStrut.setInverted(true);
+    if (Robot.IS_COMP_BOT) {
+      backStrut.setSensorPhase(true);
+      backStrut.setInverted(true);
+    }
+    else {
+      // TODO: check these values on practicebot
+      backStrut.setSensorPhase(false);
+      backStrut.setInverted(false);
+
+    }
     /* Config the peak and nominal outputs, 12V means full */
     backStrut.configNominalOutputForward(0, kTimeoutMs);
     backStrut.configNominalOutputReverse(0, kTimeoutMs);

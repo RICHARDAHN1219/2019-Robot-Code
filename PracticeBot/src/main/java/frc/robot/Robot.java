@@ -34,6 +34,8 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
  */
 public class Robot extends TimedRobot {
 
+  public static final boolean IS_COMP_BOT = true;
+
   public static cargoSubsystem m_intake;
   public static OI m_oi;
   public static driveSubsystem m_drive;
@@ -53,11 +55,10 @@ public class Robot extends TimedRobot {
   //private CANEncoder m_encoder4;
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
-  public static DoubleSolenoid beakSolenoid = new DoubleSolenoid(6, 7);
-  public static DoubleSolenoid shifterSolenoid = new DoubleSolenoid(2, 3);
-  public static DoubleSolenoid ejectorSolenoid = new DoubleSolenoid(4, 5);
+  public static DoubleSolenoid beakSolenoid;
+  public static DoubleSolenoid shifterSolenoid;
+  public static DoubleSolenoid ejectorSolenoid;
   PowerDistributionPanel PowerDistributionPanel = new PowerDistributionPanel(0);
-
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -65,6 +66,17 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    if (IS_COMP_BOT) {
+      beakSolenoid = new DoubleSolenoid(6, 7);
+      shifterSolenoid = new DoubleSolenoid(2, 3);
+      ejectorSolenoid = new DoubleSolenoid(4, 5);
+    } else {
+      beakSolenoid = new DoubleSolenoid(0, 1);
+      shifterSolenoid = new DoubleSolenoid(2, 6);
+      ejectorSolenoid = new DoubleSolenoid(3, 7);
+    }
+
+
     m_intake = new cargoSubsystem();
     m_drive = new driveSubsystem();
     m_shifter = new shifterSubsystem();

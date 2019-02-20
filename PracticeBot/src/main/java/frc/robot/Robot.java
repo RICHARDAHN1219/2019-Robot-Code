@@ -66,15 +66,15 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    if (IS_COMP_BOT) {
-      beakSolenoid = new DoubleSolenoid(6, 7);
-      shifterSolenoid = new DoubleSolenoid(2, 3);
-      ejectorSolenoid = new DoubleSolenoid(4, 5);
-    } else {
+    //if (IS_COMP_BOT) {
+     // beakSolenoid = new DoubleSolenoid(6, 7);
+      //shifterSolenoid = new DoubleSolenoid(2, 3);
+      //ejectorSolenoid = new DoubleSolenoid(4, 5);
+    //} else {
       beakSolenoid = new DoubleSolenoid(0, 1);
       shifterSolenoid = new DoubleSolenoid(2, 6);
       ejectorSolenoid = new DoubleSolenoid(3, 7);
-    }
+    //}
 
 
     m_intake = new cargoSubsystem();

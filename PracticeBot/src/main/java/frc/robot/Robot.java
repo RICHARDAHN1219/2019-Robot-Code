@@ -35,6 +35,7 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
 public class Robot extends TimedRobot {
 
   public static final boolean IS_COMP_BOT = true;
+  public static boolean driveInvert = false;
 
   public static cargoSubsystem m_intake;
   public static OI m_oi;

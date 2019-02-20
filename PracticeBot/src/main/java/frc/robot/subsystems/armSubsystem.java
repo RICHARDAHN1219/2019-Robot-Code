@@ -48,7 +48,7 @@ public class armSubsystem extends Subsystem {
     /* Ensure sensor is positive when output is positive */
     armDrive.setSensorPhase(true);
     //TODO: Invert when on comp bot
-    armDrive.setInverted(false);
+    armDrive.setInverted(true);
     /* Config the peak and nominal outputs, 12V means full */
     armDrive.configNominalOutputForward(0, kTimeoutMs);
     armDrive.configNominalOutputReverse(0, kTimeoutMs);

@@ -46,8 +46,8 @@ public class backStiltSubsystem extends Subsystem {
     backStrut.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, kPIDLoopIdx,
         kTimeoutMs);
     /* Ensure sensor is positive when output is positive */
-    backStrut.setSensorPhase(false);
-    backStrut.setInverted(false);
+    backStrut.setSensorPhase(true);
+    backStrut.setInverted(true);
     /* Config the peak and nominal outputs, 12V means full */
     backStrut.configNominalOutputForward(0, kTimeoutMs);
     backStrut.configNominalOutputReverse(0, kTimeoutMs);

@@ -63,7 +63,7 @@ public class frontStiltSubsystem extends Subsystem {
       // TODO: check if setSensorPhase is correct on practicebot
       frontStrut1.setSensorPhase(false);
       frontStrut1.setInverted(true);
-      frontStrut2.setSensorPhase(true);
+      frontStrut2.setSensorPhase(false);
       frontStrut2.setInverted(false);
     }
     /* Config the peak and nominal outputs, 12V means full */
@@ -159,6 +159,7 @@ public class frontStiltSubsystem extends Subsystem {
     int currentPosition2 = frontStrut2.getSensorCollection().getPulseWidthPosition();
     frontStrut2.setIntegralAccumulator(0.0);  // zero out the kI error accumulator
     frontStrut2.set(ControlMode.Position, currentPosition2);
+    
   }
    
   // Set the back stilt climb motor speed

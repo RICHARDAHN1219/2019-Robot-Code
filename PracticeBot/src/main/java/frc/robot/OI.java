@@ -80,7 +80,7 @@ public class OI {
     shifterButton.whileHeld(new shifterCommand(shifterSubsystem.Gears.LOW_GEAR));
     comboButton.whileHeld(new hatchVisionLockCommand());
     cargoVision.whileHeld(new cargoVisionLockCommand());
-    driveInvert.toggleWhenPressed(new driveInvertCommand());
+    driveInvert.whenPressed(new driveInvertCommand());
 
     // Operator
     hatchPlacementButton.toggleWhenPressed(new placeHatchLow());

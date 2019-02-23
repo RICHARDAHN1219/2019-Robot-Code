@@ -32,3 +32,31 @@ Perform these tests
 * invert arm moter
 * ejector solinoids are different
 * limelight one is upside right on compitition bot
+
+## Controller Layouts
+Drive Controller
+   * Left Bumper: Shift Gears(hold)
+   * B Button: Vision Targeting(hold)
+   * A Button: Cargo Vision Targeting(hold)
+   * Start Button: Invert Drive(toggle)
+   * Left Stick: Throttle
+   * Right Stick: Turning
+   * Right Trigger: Move Climb Drive Forward
+   * Left Trigger: Move Clime Drive Backward
+
+Operator Controller
+   * Left Bumper: Place Hatch(toggle)
+   * Right Bumper: Grab Hatch(hold)
+   * A Button: Move Arm to Low Position(press)
+   * B Button: Move Arm to Cargo Sip Position(press)
+   * Y Button: Move Arm to High Position(press)
+   * X Button: Move Arm to Rocket Position(press)
+   * Left Trigger: Intake Cargo
+   * Right Trigger: Spit out Cargo
+
+Climb Controller
+   * Y Button: TBD
+   * B Button: TBD
+   * X Button: TBD
+   * A Button: TBD
+   * Start Button: TBD

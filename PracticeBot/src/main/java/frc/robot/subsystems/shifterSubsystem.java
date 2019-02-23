@@ -28,12 +28,12 @@ public class shifterSubsystem extends Subsystem {
   }
    
   public void highGear() {
-    Robot.shifterSolenoid.set(DoubleSolenoid.Value.kReverse);
+    Robot.shifterSolenoid.set(DoubleSolenoid.Value.kForward);
     currentGear = Gears.HIGH_GEAR;
   }
 
   public void lowGear() {
-    Robot.shifterSolenoid.set(DoubleSolenoid.Value.kForward);
+    Robot.shifterSolenoid.set(DoubleSolenoid.Value.kReverse);
     currentGear = Gears.LOW_GEAR;
   }
 

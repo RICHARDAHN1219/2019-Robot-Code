@@ -78,8 +78,8 @@ public class OI {
     
     // Driver
     shifterButton.whileHeld(new shifterCommand(shifterSubsystem.Gears.LOW_GEAR));
-    comboButton.whileHeld(new hatchVisionLockCommand());
-    cargoVision.whileHeld(new cargoVisionLockCommand());
+    //comboButton.whileHeld(new hatchVisionLockCommand());
+    //cargoVision.whileHeld(new cargoVisionLockCommand());
     driveInvert.toggleWhenPressed(new driveInvertCommand());
 
     // Operator

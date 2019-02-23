@@ -20,16 +20,16 @@ public class climbLevel3 extends CommandGroup {
     
     int n = 7; //number of increments to use
     int start_front = 0;
-    int end_front = 17500;
+    int end_front = 18200;
     int start_back = 0;
-    int end_back = 16500;
+    int end_back = 7300;
     int delta_front = end_front - start_front;
     int delta_back = end_back - start_back;
     int inc_front = delta_front / n;
     int inc_back = delta_back / n;
     int i = 1;
 
-    while(i <= 7) {
+    while(i <= 2) {
       addParallel(new frontClimbPIDCommand(start_front + i * inc_front, 0.3, 0.0, 0.0, 0.0));
       addSequential(new backClimbPIDCommand(start_back + i * inc_back, 0.6, 0.0, 0.0, 0.0));
       addSequential(new WaitCommand(3));

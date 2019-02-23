@@ -39,7 +39,8 @@ public class frontClimbPIDCommand extends Command {
     Robot.m_frontStilt.kD = kD;
     Robot.m_frontStilt.kF = kF;
     setPosition();
-    Robot.m_frontStilt.printDebug(name);
+    Robot.m_frontStilt.printDebug1(name);
+    Robot.m_frontStilt.printDebug2(name);
   }
 
   public void setPosition() { 
@@ -50,7 +51,8 @@ public class frontClimbPIDCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_frontStilt.printDebug(name);
+    Robot.m_frontStilt.printDebug1(name);
+    Robot.m_frontStilt.printDebug2(name);
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -63,7 +65,8 @@ public class frontClimbPIDCommand extends Command {
   @Override
   protected void end() {
     System.out.println("FRONTSTRUT: Finished moving to " + name + "position");
-    Robot.m_frontStilt.printDebug(name);
+    Robot.m_frontStilt.printDebug1(name);
+    Robot.m_frontStilt.printDebug2(name);
   }
 
   // Called when another command which requires one or more of the same

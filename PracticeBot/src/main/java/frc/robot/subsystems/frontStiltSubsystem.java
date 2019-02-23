@@ -161,7 +161,7 @@ public class frontStiltSubsystem extends Subsystem {
     _sb.append("\tpos1:");
     _sb.append(frontStrut1.getSelectedSensorPosition(0));
     _sb.append("u"); // Native units
-     _sb.append("\tpos2:");
+    _sb.append("\tpos2:");
     _sb.append(frontStrut2.getSelectedSensorPosition(0));
     _sb.append("u"); // Native units
     _sb.append("\ttarget:");

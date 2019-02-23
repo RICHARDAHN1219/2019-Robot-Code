@@ -14,6 +14,7 @@ import com.ctre.phoenix.motorcontrol.FollowerType;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.commands.frontStiltSpeedCommand;
 
 /**
  * armSubsystem controls the cargo collection arm's up and down movement.
@@ -41,7 +42,7 @@ public class frontStiltSubsystem extends Subsystem {
   @Override
   public void initDefaultCommand() {
     // default to manual control
-    //setDefaultCommand(new frontStiltSpeedCommand());
+    setDefaultCommand(new frontStiltSpeedCommand());
   }
 
   public void init() {
@@ -111,6 +112,16 @@ public class frontStiltSubsystem extends Subsystem {
 
   public int getPosition() {
     return frontStrut1.getSensorCollection().getPulseWidthPosition();
+    //return frontStrut2.getSensorCollection().getPulseWidthPosition();
+  }
+
+  public void holdCurrentPosition() {
+    int currentPosition1 = frontStrut1.getSensorCollection().getPulseWidthPosition();
+    frontStrut1.setIntegralAccumulator(0.0);  // zero out the kI error accumulator
+    frontStrut1.set(ControlMode.Position, currentPosition1);
+    int currentPosition2 = frontStrut2.getSensorCollection().getPulseWidthPosition();
+    frontStrut2.setIntegralAccumulator(0.0);  // zero out the kI error accumulator
+    frontStrut2.set(ControlMode.Position, currentPosition2);
   }
 
   public int getStartPosition() { return startPosition; }

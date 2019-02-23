@@ -194,13 +194,8 @@ public class Robot extends TimedRobot {
     //m_encoder3 = driveSubsystem.neo3.getEncoder();
     //m_encoder4 = driveSubsystem.neo4.getEncoder();
     //double averageDistance = m_encoder1.getPosition() + m_encoder2.getPosition() + m_encoder3.getPosition() +  m_encoder4.getPosition() / 4;
-<<<<<<< HEAD
     // System.out.println(frontEncoder);
     Robot.m_backStilt.printDebug("rear");
-=======
-    //System.out.println(frontEncoder);
-    //Robot.m_backStilt.printDebug("rear");
->>>>>>> b1c29755b56031af25d870bc6ba1ff2dbf1b52ef
   }
 
   /**

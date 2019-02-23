@@ -49,7 +49,7 @@ public class cargoVisionLockCommand extends Command {
        }
 
       // OI.driveController.setRumble(RumbleType.kLeftRumble, 1);
-       Robot.m_intake.setCargoDriveSpeed(-0.25);
+       Robot.m_intake.setCargoDriveSpeed(-0.40);
        Robot.m_beak.hatchRetrieve();
        // Start with proportional steering
        double steer_cmd = tx * STEER_K;
@@ -63,7 +63,7 @@ public class cargoVisionLockCommand extends Command {
          drive_cmd = MAX_DRIVE;
        }
     
-       Robot.m_drive.arcadeDrive(OI.driveController.getY(Hand.kLeft), -steer_cmd);
+       Robot.m_drive.arcadeDrive(-drive_cmd, -steer_cmd);
      
  }
 

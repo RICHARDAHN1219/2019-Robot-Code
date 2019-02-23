@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import frc.robot.Robot;
 import frc.robot.RobotMap;
 
 /**
@@ -47,8 +48,13 @@ public class armSubsystem extends Subsystem {
         kTimeoutMs);
     /* Ensure sensor is positive when output is positive */
     armDrive.setSensorPhase(true);
-    //TODO: Invert when on comp bot
-    armDrive.setInverted(false);
+
+    if (Robot.IS_COMP_BOT) {
+      armDrive.setInverted(true);
+    }
+    else {
+      armDrive.setInverted(false);
+    }
     /* Config the peak and nominal outputs, 12V means full */
     armDrive.configNominalOutputForward(0, kTimeoutMs);
     armDrive.configNominalOutputReverse(0, kTimeoutMs);

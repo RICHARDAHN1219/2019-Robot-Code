@@ -13,6 +13,7 @@ import frc.robot.OI;
 import frc.robot.Robot;
 
 public class frontStiltSpeedCommand extends Command {
+  private boolean holding = false;
   public frontStiltSpeedCommand() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.m_frontStilt);
@@ -28,7 +29,17 @@ public class frontStiltSpeedCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_frontStilt.setFrontClimberSpeed(OI.climbController.getY(Hand.kLeft));
+    Robot.m_frontStilt.setFrontClimberSpeed(-OI.climbController.getY(Hand.kLeft));
+    
+    double climbSpeed = -OI.climbController.getY(Hand.kLeft);
+    if (Math.abs(climbSpeed) > 0.1) {
+      Robot.m_frontStilt.setFrontClimberSpeed(climbSpeed);
+      holding = false;
+    }
+    else if (!holding) {
+      Robot.m_frontStilt.holdCurrentPosition();
+      holding = true;
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

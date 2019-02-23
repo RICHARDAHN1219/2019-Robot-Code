@@ -34,7 +34,7 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
  */
 public class Robot extends TimedRobot {
 
-  public static final boolean IS_COMP_BOT = true;
+  public static final boolean IS_COMP_BOT = false;
   public static boolean driveInvert = false;
 
   public static cargoSubsystem m_intake;
@@ -189,6 +189,7 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
+    driveInvert = false;
     //m_encoder1 = driveSubsystem.neo1.getEncoder();
     //m_encoder2 = driveSubsystem.neo2.getEncoder();
     //m_encoder3 = driveSubsystem.neo3.getEncoder();

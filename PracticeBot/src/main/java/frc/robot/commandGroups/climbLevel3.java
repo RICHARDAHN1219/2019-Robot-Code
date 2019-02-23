@@ -29,8 +29,8 @@ public class climbLevel3 extends CommandGroup {
     int inc_back = delta_back / n;
     int i = 1;
 
-    while(i <= 2) {
-      addParallel(new frontClimbPIDCommand(start_front + i * inc_front, 0.2, 0.0, 0.0, 0.0));
+    while(i <= 7) {
+      addParallel(new frontClimbPIDCommand(start_front + i * inc_front, 0.3, 0.0, 0.0, 0.0));
       addSequential(new backClimbPIDCommand(start_back + i * inc_back, 0.6, 0.0, 0.0, 0.0));
       addSequential(new WaitCommand(3));
       i ++;

@@ -158,8 +158,11 @@ public class frontStiltSubsystem extends Subsystem {
     double motorOutput = frontStrut1.getMotorOutputPercent();
     _sb.append((int) (motorOutput * 100));
     _sb.append("%"); // Percent
-    _sb.append("\tpos:");
+    _sb.append("\tpos1:");
     _sb.append(frontStrut1.getSelectedSensorPosition(0));
+    _sb.append("u"); // Native units
+     _sb.append("\tpos2:");
+    _sb.append(frontStrut2.getSelectedSensorPosition(0));
     _sb.append("u"); // Native units
     _sb.append("\ttarget:");
     _sb.append(targetPosition);

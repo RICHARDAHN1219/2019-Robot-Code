@@ -113,8 +113,7 @@ public class frontStiltSubsystem extends Subsystem {
     targetPosition1 = startPosition1 - 0;
     targetPosition2 = startPosition2 - 0;
 
-    printDebug1("INIT");
-    printDebug2("INIT");
+    printDebug("INIT");
   }
 
   /*
@@ -169,13 +168,16 @@ public class frontStiltSubsystem extends Subsystem {
   }
 
   // debug the encoder positions and motor output for PID
-  public void printDebug1(String name) {
+  public void printDebug(String name) {
     _sb.append("FRONTSTRUT1 out:");
     double motorOutput = frontStrut1.getMotorOutputPercent();
     _sb.append((int) (motorOutput * 100));
     _sb.append("%"); // Percent
-    _sb.append("\tpos:");
+    _sb.append("\tpos1:");
     _sb.append(frontStrut1.getSelectedSensorPosition(0));
+    _sb.append("u"); // Native units
+    _sb.append("\tpos2:");
+    _sb.append(frontStrut2.getSelectedSensorPosition(0));
     _sb.append("u"); // Native units
     _sb.append("\ttarget:");
     _sb.append(targetPosition1);
@@ -185,29 +187,6 @@ public class frontStiltSubsystem extends Subsystem {
     _sb.append("u"); // Native Units
     _sb.append("\terr:");
     _sb.append(frontStrut1.getClosedLoopError(0));
-    _sb.append("u");	// Native Units
-    _sb.append(" " + name);
-    System.out.println(_sb);
-    /* Reset built string for next loop */
-    _sb.setLength(0);
-  }
-
-  public void printDebug2(String name) {
-    _sb.append("FRONTSTRUT1 out:");
-    double motorOutput = frontStrut2.getMotorOutputPercent();
-    _sb.append((int) (motorOutput * 100));
-    _sb.append("%"); // Percent
-    _sb.append("\tpos:");
-    _sb.append(frontStrut2.getSelectedSensorPosition(0));
-    _sb.append("u"); // Native units
-    _sb.append("\ttarget:");
-    _sb.append(targetPosition2);
-    _sb.append("u"); // Native Units
-    _sb.append("\tstart:");
-    _sb.append(startPosition2);
-    _sb.append("u"); // Native Units
-    _sb.append("\terr:");
-    _sb.append(frontStrut2.getClosedLoopError(0));
     _sb.append("u");	// Native Units
     _sb.append(" " + name);
     System.out.println(_sb);

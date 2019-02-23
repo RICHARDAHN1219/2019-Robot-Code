@@ -13,6 +13,10 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.armCargoShipCommand;
+import frc.robot.commands.armHighCommand;
+import frc.robot.commands.armLowCommand;
+import frc.robot.commands.armRocketCommand;
 import frc.robot.subsystems.armSubsystem;
 import frc.robot.subsystems.backStiltDriveSubsystem;
 import frc.robot.subsystems.beakSubsystem;
@@ -189,6 +193,19 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
+    int dPad = OI.operatorController.getPOV();
+    if (dPad == 0) {
+      new armHighCommand();
+    }
+    else if (dPad == 90) {
+      new armCargoShipCommand();
+    }
+    else if (dPad == 180) {
+      new armLowCommand();
+    }
+    else if (dPad == 270) {
+      new armRocketCommand();
+    }
     //m_encoder1 = driveSubsystem.neo1.getEncoder();
     //m_encoder2 = driveSubsystem.neo2.getEncoder();
     //m_encoder3 = driveSubsystem.neo3.getEncoder();

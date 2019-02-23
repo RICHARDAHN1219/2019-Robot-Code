@@ -12,6 +12,8 @@ import frc.robot.Robot;
 
 public class frontClimbPIDCommand extends Command {
   public int targetPosition = 0;
+  public int targetPosition1 = 0;
+  public int targetPosition2 = 0;
   public String name = "climbCommand";
   private double kP = 0.0;
   private double kI = 0.0;
@@ -44,7 +46,7 @@ public class frontClimbPIDCommand extends Command {
 
   public void setPosition() { 
     // 4096 encoder ticks per revolution
-    Robot.m_frontStilt.setPosition(targetPosition);
+    Robot.m_frontStilt.setPosition(targetPosition1, targetPosition2);
   }
 
   // Called repeatedly when this Command is scheduled to run

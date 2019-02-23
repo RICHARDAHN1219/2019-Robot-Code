@@ -28,12 +28,15 @@ public class frontStiltSpeedCommand extends Command {
 
   // Called repeatedly when this Command is scheduled to run
   @Override
-  protected void execute() {
-    //Robot.m_frontStilt.setFrontClimberSpeed(-OI.climbController.getY(Hand.kLeft));
-    
-    double climbSpeed = -OI.climbController.getY(Hand.kLeft);
-    if (Math.abs(climbSpeed) > 0.1) {
-      Robot.m_frontStilt.setFrontClimberSpeed(climbSpeed);
+  protected void execute() {    
+    int joyStick = (int) -OI.climbController.getY(Hand.kLeft);
+    int pos1 = Robot.m_frontStilt.getPosition1();
+    int pos2 = Robot.m_frontStilt.getPosition2();
+    int manualMove = joyStick * 10;      
+    int manualClimb1 = pos1 + manualMove;    
+    int manualClimb2 = pos2 + manualMove;
+    if (Math.abs(joyStick) > 0.1) {
+      Robot.m_frontStilt.setPosition(manualClimb1, manualClimb2);
       holding = false;
     }
     else if (!holding) {

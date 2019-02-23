@@ -122,8 +122,8 @@ public class frontStiltSubsystem extends Subsystem {
   * Tell the arm motor to move to the given targetPosition1. Target position is relative
   * to the start position when the robot turns on. Position is measured in encoder ticks.
   */
-  public void setPosition(int desiredPosition) {
-    targetPosition1 = startPosition1 - desiredPosition;
+  public void setPosition(int desiredPosition1, int desiredPosition2) {
+    targetPosition1 = startPosition1 - desiredPosition1;
     frontStrut1.config_kF(kPIDLoopIdx, kF, kTimeoutMs);
     frontStrut1.config_kP(kPIDLoopIdx, kP, kTimeoutMs);
     frontStrut1.config_kI(kPIDLoopIdx, kI, kTimeoutMs);
@@ -133,7 +133,7 @@ public class frontStiltSubsystem extends Subsystem {
     frontStrut1.setIntegralAccumulator(0.0);  // zero out the kI error accumulator
     frontStrut1.set(ControlMode.Position, targetPosition1);
     
-    targetPosition2 = startPosition2 - desiredPosition;
+    targetPosition2 = startPosition2 - desiredPosition2;
     frontStrut2.config_kF(kPIDLoopIdx, kF, kTimeoutMs);
     frontStrut2.config_kP(kPIDLoopIdx, kP, kTimeoutMs);
     frontStrut2.config_kI(kPIDLoopIdx, kI, kTimeoutMs);

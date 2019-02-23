@@ -129,8 +129,8 @@ public class Robot extends TimedRobot {
     //double armPos = m_arm.armDrive.getSelectedSensorPosition();
     //System.out.println(armPos);
     //Robot.m_arm.printDebug("debug");
-    double pos = m_arm.armDrive.getSelectedSensorPosition();
-    System.out.println(pos);
+    //double pos = m_arm.armDrive.getSelectedSensorPosition();
+    //System.out.println(pos);
 
   }
 
@@ -189,14 +189,13 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
-    driveInvert = false;
     //m_encoder1 = driveSubsystem.neo1.getEncoder();
     //m_encoder2 = driveSubsystem.neo2.getEncoder();
     //m_encoder3 = driveSubsystem.neo3.getEncoder();
     //m_encoder4 = driveSubsystem.neo4.getEncoder();
     //double averageDistance = m_encoder1.getPosition() + m_encoder2.getPosition() + m_encoder3.getPosition() +  m_encoder4.getPosition() / 4;
     // System.out.println(frontEncoder);
-    //Robot.m_frontstilt.printDebug("rear");
+    Robot.m_backStilt.printDebug("rear");
   }
 
   /**

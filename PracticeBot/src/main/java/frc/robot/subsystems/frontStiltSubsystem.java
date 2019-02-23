@@ -100,14 +100,23 @@ public class frontStiltSubsystem extends Subsystem {
     kTimeoutMs);
     frontStrut1.setIntegralAccumulator(0.0);  // zero out the kI error accumulator
     frontStrut1.set(ControlMode.Position, targetPosition);
+    frontStrut2.config_kF(kPIDLoopIdx, kF, kTimeoutMs);
+    frontStrut2.config_kP(kPIDLoopIdx, kP, kTimeoutMs);
+    frontStrut2.config_kI(kPIDLoopIdx, kI, kTimeoutMs);
+    frontStrut2.config_kD(kPIDLoopIdx, kD, kTimeoutMs);
+    frontStrut2.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, kPIDLoopIdx,
+    kTimeoutMs);
+    frontStrut2.setIntegralAccumulator(0.0);  // zero out the kI error accumulator
+    frontStrut2.set(ControlMode.Position, targetPosition);
   }
 
   public int getPosition() {
     return frontStrut1.getSensorCollection().getPulseWidthPosition();
-    //return frontStrut2.getSensorCollection().getPulseWidthPosition();
   }
 
   public void holdCurrentPosition() {
+    frontStrut2.follow(frontStrut1  , FollowerType.PercentOutput);
+    frontStrut2.setInverted(false);
     int currentPosition1 = frontStrut1.getSensorCollection().getPulseWidthPosition();
     frontStrut1.setIntegralAccumulator(0.0);  // zero out the kI error accumulator
     frontStrut1.set(ControlMode.Position, currentPosition1);

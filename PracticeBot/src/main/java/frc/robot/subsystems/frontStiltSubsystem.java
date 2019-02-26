@@ -10,10 +10,10 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-import com.ctre.phoenix.motorcontrol.FollowerType;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.commands.backStiltSpeedCommand;
 import frc.robot.commands.frontStiltSpeedCommand;
 
 /**
@@ -31,8 +31,7 @@ public class frontStiltSubsystem extends Subsystem {
   StringBuilder _sb = new StringBuilder();
   private int startPosition1 = 0;
   private int startPosition2 = 0;
-  private int targetPosition1 = 0;
-  private int targetPosition2 = 0;
+  private int targetPosition = 0;
   private int kPIDLoopIdx = 0;
   private int kTimeoutMs = 3;  // 30
   public double kP;  // 0.15
@@ -50,19 +49,15 @@ public class frontStiltSubsystem extends Subsystem {
   public void init() {
     frontStrut1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, kPIDLoopIdx,
         kTimeoutMs);
-    frontStrut2.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, kPIDLoopIdx,
-        kTimeoutMs);
     /* Ensure sensor is positive when output is positive */
     if (Robot.IS_COMP_BOT) {
       frontStrut1.setSensorPhase(true);
       frontStrut1.setInverted(true);
-      frontStrut2.setSensorPhase(false);
-      frontStrut2.setInverted(false);
     }
     else {
-      // TODO: check if setSensorPhase is correct on practicebot
+      // TODO: check these values on practicebot
       frontStrut1.setSensorPhase(false);
-      frontStrut1.setInverted(true);
+      frontStrut1.setInverted(false);
       frontStrut2.setSensorPhase(false);
       frontStrut2.setInverted(false);
     }
@@ -77,6 +72,7 @@ public class frontStiltSubsystem extends Subsystem {
     frontStrut1.config_kP(kPIDLoopIdx, kP, kTimeoutMs);
     frontStrut1.config_kI(kPIDLoopIdx, kI, kTimeoutMs);
     frontStrut1.config_kD(kPIDLoopIdx, kD, kTimeoutMs);
+
     /* Config the peak and nominal outputs, 12V means full */
     frontStrut2.configNominalOutputForward(0, kTimeoutMs);
     frontStrut2.configNominalOutputReverse(0, kTimeoutMs);
@@ -95,23 +91,17 @@ public class frontStiltSubsystem extends Subsystem {
     startPosition1 = frontStrut1.getSensorCollection().getPulseWidthPosition();
     startPosition2 = frontStrut2.getSensorCollection().getPulseWidthPosition();
 
-    _sb.append("FRONTSTRUT1: start position ");
+    _sb.append("BACKSTRUT: start position ");
     _sb.append(startPosition1);
     System.out.println(_sb);
     _sb.setLength(0);
 
-    _sb.append("FRONTSTRUT2: start position ");
-    _sb.append(startPosition2);
-    System.out.println(_sb);
-    _sb.setLength(0);
-
     /* Mask out overflows, keep bottom 12 bits. Value will be 0-4096 */
-    //startPosition1 &= 0xFFF;
+    //startPosition &= 0xFFF;
     frontStrut1.setSelectedSensorPosition(startPosition1, kPIDLoopIdx, kTimeoutMs);
     frontStrut2.setSelectedSensorPosition(startPosition2, kPIDLoopIdx, kTimeoutMs);
 
-    targetPosition1 = startPosition1 - 0;
-    targetPosition2 = startPosition2 - 0;
+    targetPosition = startPosition1 - 0;
 
     printDebug("INIT");
   }
@@ -119,69 +109,76 @@ public class frontStiltSubsystem extends Subsystem {
   /*
   * setPosition()
   * 
-  * Tell the arm motor to move to the given targetPosition1. Target position is relative
+  * Tell the arm motor to move to the given targetPosition. Target position is relative
   * to the start position when the robot turns on. Position is measured in encoder ticks.
   */
-  public void setPosition(int desiredPosition1, int desiredPosition2) {
-    targetPosition1 = startPosition1 - desiredPosition1;
+  public void setPosition(int desiredPosition) {
+    targetPosition = startPosition1 - desiredPosition;
     frontStrut1.config_kF(kPIDLoopIdx, kF, kTimeoutMs);
     frontStrut1.config_kP(kPIDLoopIdx, kP, kTimeoutMs);
     frontStrut1.config_kI(kPIDLoopIdx, kI, kTimeoutMs);
     frontStrut1.config_kD(kPIDLoopIdx, kD, kTimeoutMs);
+    frontStrut1.configAllowableClosedloopError(allowableError, kPIDLoopIdx, kTimeoutMs);
     frontStrut1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, kPIDLoopIdx,
     kTimeoutMs);
     frontStrut1.setIntegralAccumulator(0.0);  // zero out the kI error accumulator
-    frontStrut1.set(ControlMode.Position, targetPosition1);
-    
-    targetPosition2 = startPosition2 - desiredPosition2;
+    frontStrut1.set(ControlMode.Position, -targetPosition);
+
     frontStrut2.config_kF(kPIDLoopIdx, kF, kTimeoutMs);
     frontStrut2.config_kP(kPIDLoopIdx, kP, kTimeoutMs);
     frontStrut2.config_kI(kPIDLoopIdx, kI, kTimeoutMs);
     frontStrut2.config_kD(kPIDLoopIdx, kD, kTimeoutMs);
+    frontStrut2.configAllowableClosedloopError(allowableError, kPIDLoopIdx, kTimeoutMs);
     frontStrut2.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, kPIDLoopIdx,
     kTimeoutMs);
     frontStrut2.setIntegralAccumulator(0.0);  // zero out the kI error accumulator
-    frontStrut2.set(ControlMode.Position, targetPosition2);
+    frontStrut2.set(ControlMode.Position, targetPosition);
   }
 
-  public int getPosition1() {
+  public int getPosition() {
     return frontStrut1.getSensorCollection().getPulseWidthPosition();
-  }
-  
-  public int getPosition2() {
-    return frontStrut2.getSensorCollection().getPulseWidthPosition();
   }
 
   public void holdCurrentPosition() {
-    int currentPosition1 = frontStrut1.getSensorCollection().getPulseWidthPosition();
+    int currentPosition = frontStrut1.getSensorCollection().getPulseWidthPosition();
     frontStrut1.setIntegralAccumulator(0.0);  // zero out the kI error accumulator
-    frontStrut1.set(ControlMode.Position, currentPosition1);
-    int currentPosition2 = frontStrut2.getSensorCollection().getPulseWidthPosition();
+    frontStrut1.set(ControlMode.Position, currentPosition);
+
     frontStrut2.setIntegralAccumulator(0.0);  // zero out the kI error accumulator
-    frontStrut2.set(ControlMode.Position, currentPosition2);
-    
+    frontStrut2.set(ControlMode.Position, -currentPosition);
+  }
+
+  public int getStartPosition() { return startPosition1; }
+
+  public int getTargetPosition() { return targetPosition; }
+
+  public boolean isAtTargetPosition(int desiredPosition) {
+    if (Math.abs(getPosition() - (startPosition1 - desiredPosition)) <= allowableError) {
+        return true;
+    }
+    else {
+        return false;
+    }
   }
    
-  // Set the back stilt climb motor speed
+  // Set the back stilt climb motor speed, input from [-1,1]
   public void setFrontClimberSpeed(double speed) {
-    frontStrut1.set(ControlMode.PercentOutput, speed);
+    frontStrut1.set(ControlMode.PercentOutput, -speed);
     frontStrut2.set(ControlMode.PercentOutput, speed);
+    printDebug("speed");
   }
 
   // debug the encoder positions and motor output for PID
   public void printDebug(String name) {
-    _sb.append("FRONTSTRUT1 out:");
+    _sb.append("BACKSTRUT out:");
     double motorOutput = frontStrut1.getMotorOutputPercent();
     _sb.append((int) (motorOutput * 100));
     _sb.append("%"); // Percent
-    _sb.append("\tpos1:");
+    _sb.append("\tpos:");
     _sb.append(frontStrut1.getSelectedSensorPosition(0));
     _sb.append("u"); // Native units
-    _sb.append("\tpos2:");
-    _sb.append(frontStrut2.getSelectedSensorPosition(0));
-    _sb.append("u"); // Native units
     _sb.append("\ttarget:");
-    _sb.append(targetPosition1);
+    _sb.append(targetPosition);
     _sb.append("u"); // Native Units
     _sb.append("\tstart:");
     _sb.append(startPosition1);
@@ -189,6 +186,9 @@ public class frontStiltSubsystem extends Subsystem {
     _sb.append("\terr:");
     _sb.append(frontStrut1.getClosedLoopError(0));
     _sb.append("u");	// Native Units
+    _sb.append("\tspd:");
+		_sb.append(frontStrut1.getSelectedSensorVelocity(0));
+		_sb.append("u");
     _sb.append(" " + name);
     System.out.println(_sb);
     /* Reset built string for next loop */

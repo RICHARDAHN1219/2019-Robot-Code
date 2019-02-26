@@ -46,7 +46,7 @@ public class frontClimbPIDCommand extends Command {
 
   public void setPosition() { 
     // 4096 encoder ticks per revolution
-    Robot.m_frontStilt.setPosition(targetPosition1, targetPosition2);
+    Robot.m_frontStilt.setPosition(targetPosition);
   }
 
   // Called repeatedly when this Command is scheduled to run

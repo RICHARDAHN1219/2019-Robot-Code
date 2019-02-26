@@ -73,6 +73,8 @@ public class OI {
   Button frontClimbPIDButton = new JoystickButton(climbController, RobotMap.XButton);
   Button frontClimbStartPIDButton = new JoystickButton(climbController, RobotMap.AButton);
   Button level3Climb = new JoystickButton(climbController, RobotMap.StartButton);
+  Button climbArmUp = new JoystickButton(climbController, RobotMap.RBumper);
+  Button climbArmDown = new JoystickButton(climbController, RobotMap.LBumper);
 
   public OI() {
     
@@ -96,5 +98,7 @@ public class OI {
     frontClimbPIDButton.whenPressed(new frontStrutClimb());
     frontClimbStartPIDButton.whenPressed(new frontStrutStartCommand());
     level3Climb.whenPressed(new climbLevel3());
+    climbArmDown.whenPressed(new armLowCommand());
+    climbArmUp.whenPressed(new armHighCommand());
   }
 }

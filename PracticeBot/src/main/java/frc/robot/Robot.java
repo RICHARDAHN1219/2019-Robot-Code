@@ -218,7 +218,7 @@ public class Robot extends TimedRobot {
     //Robot.m_frontStilt.printDebug("debug");
 
     if (loopcount % 60 == 0) {
-      System.out.println("Front Distance: " + front_ultrasonic.getRangeInches() + " inches");
+      // System.out.println("Front Distance: " + front_ultrasonic.getRangeInches() + " inches");
     }
     loopcount++;
 

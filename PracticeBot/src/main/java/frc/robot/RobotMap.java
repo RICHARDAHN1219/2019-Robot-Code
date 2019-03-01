@@ -50,4 +50,6 @@ public class RobotMap {
 
   //sensors
   public static final int LIMIT_SWITCH_1 = 0; 
+  public static final int ULTRASONIC_FRONT_PING = 8;
+  public static final int ULTRASONIC_FRONT_ECHO = 9;
 }

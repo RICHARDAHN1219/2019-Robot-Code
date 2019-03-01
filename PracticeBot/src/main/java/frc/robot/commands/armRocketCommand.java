@@ -14,7 +14,7 @@ public class armRocketCommand extends armCommand {
     // eg. requires(chassis);
 
     // targetPosition, kP, kI, kD, kF
-    super(1200, 0.4, 0.0005, 0.75, 0.0);
+    super(1000, 0.4, 0.0005, 0.75, 0.0);
 
     name = "Middle";
   }

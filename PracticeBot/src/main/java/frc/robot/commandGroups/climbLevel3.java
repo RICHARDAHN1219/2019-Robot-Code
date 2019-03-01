@@ -31,7 +31,7 @@ public class climbLevel3 extends CommandGroup {
 
     while(i <= 2) {
       addParallel(new frontClimbPIDCommand(start_front + i * inc_front, 0.3, 0.0, 0.0, 0.0));
-      addSequential(new backClimbPIDCommand(start_back + i * inc_back, 0.8, 0.0, 0.0, 0.0));
+      addSequential(new backClimbPIDCommand(start_back + i * inc_back, 1.0, 0.0005, 0.0, 0.0));
       addSequential(new WaitCommand(3));
       i ++;
     }

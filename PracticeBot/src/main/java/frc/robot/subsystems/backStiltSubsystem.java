@@ -35,7 +35,7 @@ public class backStiltSubsystem extends Subsystem {
   public double kI;
   public double kD;  // 1.0
   public double kF;
-  private int allowableError = 200;   // allowable error in encoder ticks
+  private int allowableError = 50;   // allowable error in encoder ticks
 
   @Override
   public void initDefaultCommand() {
@@ -46,13 +46,12 @@ public class backStiltSubsystem extends Subsystem {
   public void init() {
     backStrut.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, kPIDLoopIdx,
         kTimeoutMs);
-    /* Ensure sensor is positive when output is positive */
+    
     if (Robot.IS_COMP_BOT) {
       backStrut.setSensorPhase(true);
       backStrut.setInverted(true);
     }
     else {
-      // TODO: check these values on practicebot
       backStrut.setSensorPhase(false);
       backStrut.setInverted(false);
 

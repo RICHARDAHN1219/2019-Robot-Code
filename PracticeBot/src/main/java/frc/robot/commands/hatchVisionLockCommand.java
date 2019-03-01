@@ -57,7 +57,7 @@ public class hatchVisionLockCommand extends Command {
        }
 
        m_LimelightHasValidTarget = true;
-       OI.driveController.setRumble(RumbleType.kLeftRumble, 1);
+       //OI.driveController.setRumble(RumbleType.kLeftRumble, 1);
        Robot.m_beak.hatchRetrieve();
        // Start with proportional steering
        double steer_cmd = tx * STEER_K;

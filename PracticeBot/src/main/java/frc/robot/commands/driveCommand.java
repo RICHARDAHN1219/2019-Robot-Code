@@ -27,11 +27,22 @@ public class driveCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (Robot.driveInvert == false) {
-      Robot.m_drive.arcadeDrive(OI.driveController.getY(Hand.kLeft), -OI.driveController.getX(Hand.kRight));
+    if (Robot.IS_COMP_BOT) {
+      if (Robot.driveInvert == false) {
+        Robot.m_drive.arcadeDrive(OI.driveController.getY(Hand.kLeft), -OI.driveController.getX(Hand.kRight));
+      }
+      else {
+        Robot.m_drive.arcadeDrive(-OI.driveController.getY(Hand.kLeft), -OI.driveController.getX(Hand.kRight));
+      }
     }
+    
     else {
-      Robot.m_drive.arcadeDrive(-OI.driveController.getY(Hand.kLeft), -OI.driveController.getX(Hand.kRight));
+      if (Robot.driveInvert == false) {
+        Robot.m_drive.arcadeDrive(OI.driveController.getY(Hand.kLeft), -OI.driveController.getX(Hand.kRight));
+      }
+      else {
+        Robot.m_drive.arcadeDrive(-OI.driveController.getY(Hand.kLeft), -OI.driveController.getX(Hand.kRight));
+      }
     }
   }
 

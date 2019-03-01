@@ -29,7 +29,12 @@ public class backStiltDriveCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_backStiltDrive.climberDriverSpeed(OI.driveController.getTriggerAxis(Hand.kRight) - OI.driveController.getTriggerAxis(Hand.kLeft));
+    if (Robot.IS_COMP_BOT) {
+      Robot.m_backStiltDrive.climberDriverSpeed(-OI.driveController.getTriggerAxis(Hand.kRight) + OI.driveController.getTriggerAxis(Hand.kLeft));
+    }
+    else {
+      Robot.m_backStiltDrive.climberDriverSpeed(OI.driveController.getTriggerAxis(Hand.kRight) - OI.driveController.getTriggerAxis(Hand.kLeft));
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

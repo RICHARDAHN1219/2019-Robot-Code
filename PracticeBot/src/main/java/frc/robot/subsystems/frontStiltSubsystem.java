@@ -38,7 +38,7 @@ public class frontStiltSubsystem extends Subsystem {
   public double kI;
   public double kD;  // 1.0
   public double kF;
-  private int allowableError = 200;   // allowable error in encoder ticks
+  private int allowableError = 50;   // allowable error in encoder ticks
 
   @Override
   public void initDefaultCommand() {
@@ -50,17 +50,10 @@ public class frontStiltSubsystem extends Subsystem {
     frontStrut1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, kPIDLoopIdx,
         kTimeoutMs);
     /* Ensure sensor is positive when output is positive */
-    if (Robot.IS_COMP_BOT) {
-      frontStrut1.setSensorPhase(true);
-      frontStrut1.setInverted(true);
-    }
-    else {
-      // TODO: check these values on practicebot
-      frontStrut1.setSensorPhase(false);
-      frontStrut1.setInverted(false);
-      frontStrut2.setSensorPhase(false);
-      frontStrut2.setInverted(false);
-    }
+    frontStrut1.setSensorPhase(false);
+    frontStrut1.setInverted(false);
+    frontStrut2.setSensorPhase(false);
+    frontStrut2.setInverted(false);
     /* Config the peak and nominal outputs, 12V means full */
     frontStrut1.configNominalOutputForward(0, kTimeoutMs);
     frontStrut1.configNominalOutputReverse(0, kTimeoutMs);

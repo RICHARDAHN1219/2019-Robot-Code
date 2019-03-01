@@ -29,7 +29,33 @@ public class cargoIntakeCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute(){
-  Robot.m_intake.setCargoDriveSpeed(OI.operatorController.getTriggerAxis(Hand.kRight) * 0.40 - OI.operatorController.getTriggerAxis(Hand.kLeft) * 0.40);
+    /*
+    if (Robot.IS_COMP_BOT) {
+      Robot.m_intake.setCargoDriveSpeed(-OI.operatorController.getTriggerAxis(Hand.kRight) * 0.40 + OI.operatorController.getTriggerAxis(Hand.kLeft) * 0.50);
+    }
+    else {
+      Robot.m_intake.setCargoDriveSpeed(OI.operatorController.getTriggerAxis(Hand.kRight) * 0.40 - OI.operatorController.getTriggerAxis(Hand.kLeft) * 0.50);
+    }
+    */
+    
+    if (Robot.IS_COMP_BOT) {
+      if (Math.abs(OI.operatorController.getTriggerAxis(Hand.kRight) * 0.40 - OI.operatorController.getTriggerAxis(Hand.kLeft) * 0.50) > 0.05) {
+        Robot.m_intake.setCargoDriveSpeed(-OI.operatorController.getTriggerAxis(Hand.kRight) * 0.40 + OI.operatorController.getTriggerAxis(Hand.kLeft) * 0.50);
+      }
+      else {
+        Robot.m_intake.setCargoDriveSpeed(-0.05);
+      }
+    }
+    else{
+      if (Math.abs(OI.operatorController.getTriggerAxis(Hand.kRight) * 0.40 - OI.operatorController.getTriggerAxis(Hand.kLeft) * 0.50) > 0.05) {
+        Robot.m_intake.setCargoDriveSpeed(OI.operatorController.getTriggerAxis(Hand.kRight) * 0.40 - OI.operatorController.getTriggerAxis(Hand.kLeft) * 0.50);
+      }
+      else {
+        Robot.m_intake.setCargoDriveSpeed(0.05);
+      }  
+    }
+
+    
   }
   // Make this return true when this Command no longer needs to run execute()
   @Override

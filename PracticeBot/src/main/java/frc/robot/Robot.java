@@ -38,7 +38,7 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
  */
 public class Robot extends TimedRobot {
 
-  public static final boolean IS_COMP_BOT = false;
+  public static final boolean IS_COMP_BOT = true;
   public static boolean driveInvert = false;
 
   public static cargoSubsystem m_intake;
@@ -212,7 +212,7 @@ public class Robot extends TimedRobot {
     //m_encoder4 = driveSubsystem.neo4.getEncoder();
     //double averageDistance = m_encoder1.getPosition() + m_encoder2.getPosition() + m_encoder3.getPosition() +  m_encoder4.getPosition() / 4;
     //System.out.println(frontEncoder);
-    Robot.m_backStilt.printDebug("rear");
+    Robot.m_frontStilt.printDebug("rear");
   }
 
   /**

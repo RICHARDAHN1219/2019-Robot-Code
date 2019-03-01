@@ -75,13 +75,14 @@ public class OI {
   Button level3Climb = new JoystickButton(climbController, RobotMap.StartButton);
   Button climbArmUp = new JoystickButton(climbController, RobotMap.RBumper);
   Button climbArmDown = new JoystickButton(climbController, RobotMap.LBumper);
+  Button frontUpArmDownButton = new JoystickButton(climbController, RobotMap.AButton);
 
   public OI() {
     
     // Driver
-    shifterButton.whileHeld(new shifterCommand(shifterSubsystem.Gears.LOW_GEAR));
-    //comboButton.whileHeld(new hatchVisionLockCommand());
-    //cargoVision.whileHeld(new cargoVisionLockCommand());
+    shifterButton.whileHeld(new shifterCommand(shifterSubsystem.Gears.HIGH_GEAR));
+    comboButton.whileHeld(new hatchVisionLockCommand());
+    cargoVision.whileHeld(new cargoVisionLockCommand());
     driveInvert.whenPressed(new driveInvertCommand());
 
     // Operator
@@ -97,6 +98,7 @@ public class OI {
     backClimbStartPIDButton.whenPressed(new backStrutStartCommand());
     frontClimbPIDButton.whenPressed(new frontStrutClimb());
     frontClimbStartPIDButton.whenPressed(new frontStrutStartCommand());
+    //frontUpArmDownButton.whenPressed(new frontUpArmDown());
     level3Climb.whenPressed(new climbLevel3());
     climbArmDown.whenPressed(new armLowCommand());
     climbArmUp.whenPressed(new armHighCommand());

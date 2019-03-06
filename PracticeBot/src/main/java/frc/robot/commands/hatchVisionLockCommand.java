@@ -8,7 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.GenericHID.RumbleType;
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.OI;
@@ -73,7 +73,7 @@ public class hatchVisionLockCommand extends Command {
        }
        m_LimelightDriveCommand = drive_cmd;
     
-       Robot.m_drive.arcadeDrive(m_LimelightDriveCommand, -m_LimelightSteerCommand * 0.3);
+       Robot.m_drive.arcadeDrive(OI.driveController.getY(GenericHID.Hand.kLeft), -m_LimelightSteerCommand * 0.3);
      
  }
 

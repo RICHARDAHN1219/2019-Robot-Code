@@ -8,51 +8,60 @@
 package frc.robot.commands;
 
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.GenericHID.Hand;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.OI;
 import frc.robot.Robot;
 
-public class cargoVisionLockCommand extends Command {
+public class fullAutoHatchVisionLockCommand extends Command {
 
-  public cargoVisionLockCommand() {
+    public boolean m_LimelightHasValidTarget = false;
+    private double m_LimelightDriveCommand = 0.0;
+    private double m_LimelightSteerCommand = 0.0;
+
+
+  public fullAutoHatchVisionLockCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.m_drive);
-    //SmartDashboard.putBoolean("CARGO_LOCK", m_LimelightHasValidTarget);  
+    SmartDashboard.putBoolean("HATCH_LOCK", m_LimelightHasValidTarget);  
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    //SmartDashboard.putBoolean("CARGO_LOCK", m_LimelightHasValidTarget);  
+    SmartDashboard.putBoolean("HATCH_LOCK", m_LimelightHasValidTarget);  
   }
 
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-       // These numbers must be tuned for Comp Robot!  Be careful!
-       final double STEER_K = 0.05;                    // how hard to turn toward the target
-       final double DRIVE_K = 0.3;                    // how hard to drive fwd toward the target
-       final double DESIRED_TARGET_AREA = 40.0;        // Area of the target when the robot reaches the wall
+    // These numbers must be tuned for Comp Robot!  Be careful!  
+       final double STEER_K = 0.025;                    // how hard to turn toward the target
+       final double DRIVE_K = 0.075;                    // how hard to drive fwd toward the target
+       final double DESIRED_TARGET_AREA = 55.0;        // Area of the target when the robot reaches the wall
        final double MAX_DRIVE = 0.5;                   // Simple speed limit so we don't drive too fast
 
-       double tv = NetworkTableInstance.getDefault().getTable("limelight-zero").getEntry("tv").getDouble(0);
-       double tx = NetworkTableInstance.getDefault().getTable("limelight-zero").getEntry("tx").getDouble(0);
-       //double ty = NetworkTableInstance.getDefault().getTable("limelight-zero").getEntry("ty").getDouble(0);
-       double ta = NetworkTableInstance.getDefault().getTable("limelight-zero").getEntry("ta").getDouble(0);
+       double tv = NetworkTableInstance.getDefault().getTable("limelight-one").getEntry("tv").getDouble(0);
+       double tx = NetworkTableInstance.getDefault().getTable("limelight-one").getEntry("tx").getDouble(0);
+       double ta = NetworkTableInstance.getDefault().getTable("limelight-one").getEntry("ta").getDouble(0);
 
        if (tv < 1.0)
        {
+         m_LimelightHasValidTarget = false;
+         m_LimelightDriveCommand = 0.0;
+         m_LimelightSteerCommand = 0.0;
          Robot.m_drive.arcadeDrive(0.0,0.0);
          return;
        }
 
-      // OI.driveController.setRumble(RumbleType.kLeftRumble, 1);
-       Robot.m_intake.setCargoDriveSpeed(-0.40);
+       m_LimelightHasValidTarget = true;
+       //OI.driveController.setRumble(RumbleType.kLeftRumble, 1);
        Robot.m_beak.hatchRetrieve();
        // Start with proportional steering
        double steer_cmd = tx * STEER_K;
+       m_LimelightSteerCommand = steer_cmd;
 
        // try to drive forward until the target area reaches our desired area
        double drive_cmd = (DESIRED_TARGET_AREA - ta) * DRIVE_K;
@@ -62,8 +71,9 @@ public class cargoVisionLockCommand extends Command {
        {
          drive_cmd = MAX_DRIVE;
        }
+       m_LimelightDriveCommand = drive_cmd;
     
-       Robot.m_drive.arcadeDrive(-drive_cmd, -steer_cmd);
+       Robot.m_drive.arcadeDrive(m_LimelightDriveCommand, -m_LimelightSteerCommand * 0.3);
      
  }
 

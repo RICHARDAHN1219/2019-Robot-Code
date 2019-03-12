@@ -69,7 +69,7 @@ public class Robot extends TimedRobot {
   public static DoubleSolenoid shifterSolenoid;
   public static DoubleSolenoid ejectorSolenoid;
   PowerDistributionPanel PowerDistributionPanel = new PowerDistributionPanel(0);
-  public static Ultrasonic front_ultrasonic = new Ultrasonic(RobotMap.ULTRASONIC_FRONT_PING, RobotMap.ULTRASONIC_FRONT_PING);
+  public static Ultrasonic front_ultrasonic = new Ultrasonic(RobotMap.ULTRASONIC_FRONT_PING, RobotMap.ULTRASONIC_FRONT_ECHO);
   public static Pixy2 pixy = Pixy2.createInstance(new SPILink());
 
   private int loopcount = 0;

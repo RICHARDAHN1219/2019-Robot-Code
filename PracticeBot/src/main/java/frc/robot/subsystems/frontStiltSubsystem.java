@@ -50,7 +50,7 @@ public class frontStiltSubsystem extends Subsystem {
     frontStrut1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, kPIDLoopIdx,
         kTimeoutMs);
     /* Ensure sensor is positive when output is positive */
-    frontStrut1.setSensorPhase(false);
+    frontStrut1.setSensorPhase(true);
     frontStrut1.setInverted(false);
     frontStrut2.setSensorPhase(false);
     frontStrut2.setInverted(false);
@@ -115,7 +115,7 @@ public class frontStiltSubsystem extends Subsystem {
     frontStrut1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, kPIDLoopIdx,
     kTimeoutMs);
     frontStrut1.setIntegralAccumulator(0.0);  // zero out the kI error accumulator
-    frontStrut1.set(ControlMode.Position, -targetPosition);
+    frontStrut1.set(ControlMode.Position, targetPosition);
 
     frontStrut2.config_kF(kPIDLoopIdx, kF, kTimeoutMs);
     frontStrut2.config_kP(kPIDLoopIdx, kP, kTimeoutMs);
@@ -125,7 +125,7 @@ public class frontStiltSubsystem extends Subsystem {
     frontStrut2.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, kPIDLoopIdx,
     kTimeoutMs);
     frontStrut2.setIntegralAccumulator(0.0);  // zero out the kI error accumulator
-    frontStrut2.set(ControlMode.Position, targetPosition);
+    frontStrut2.set(ControlMode.Position, -targetPosition);
   }
 
   public int getPosition() {
@@ -156,7 +156,7 @@ public class frontStiltSubsystem extends Subsystem {
    
   // Set the back stilt climb motor speed, input from [-1,1]
   public void setFrontClimberSpeed(double speed) {
-    frontStrut1.set(ControlMode.PercentOutput, -speed);
+    frontStrut1.set(ControlMode.PercentOutput, speed);
     frontStrut2.set(ControlMode.PercentOutput, speed);
     printDebug("speed");
   }
@@ -164,23 +164,23 @@ public class frontStiltSubsystem extends Subsystem {
   // debug the encoder positions and motor output for PID
   public void printDebug(String name) {
     _sb.append("BACKSTRUT out:");
-    double motorOutput = frontStrut1.getMotorOutputPercent();
+    double motorOutput = frontStrut2.getMotorOutputPercent();
     _sb.append((int) (motorOutput * 100));
     _sb.append("%"); // Percent
     _sb.append("\tpos:");
-    _sb.append(frontStrut1.getSelectedSensorPosition(0));
+    _sb.append(frontStrut2.getSelectedSensorPosition(0));
     _sb.append("u"); // Native units
     _sb.append("\ttarget:");
     _sb.append(targetPosition);
     _sb.append("u"); // Native Units
     _sb.append("\tstart:");
-    _sb.append(startPosition1);
+    _sb.append(startPosition2);
     _sb.append("u"); // Native Units
     _sb.append("\terr:");
-    _sb.append(frontStrut1.getClosedLoopError(0));
+    _sb.append(frontStrut2.getClosedLoopError(0));
     _sb.append("u");	// Native Units
     _sb.append("\tspd:");
-		_sb.append(frontStrut1.getSelectedSensorVelocity(0));
+		_sb.append(frontStrut2.getSelectedSensorVelocity(0));
 		_sb.append("u");
     _sb.append(" " + name);
     System.out.println(_sb);

@@ -38,8 +38,9 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
  */
 public class Robot extends TimedRobot {
 
-  public static final boolean IS_COMP_BOT = true;
   public static boolean driveInvert = false;
+  public static boolean IS_COMP_BOT = true;
+
 
   public static cargoSubsystem m_intake;
   public static OI m_oi;
@@ -60,6 +61,7 @@ public class Robot extends TimedRobot {
   //private CANEncoder m_encoder4;
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
+  //SendableChooser<Boolean> isCompBot = new SendableChooser<>();
   public static DoubleSolenoid beakSolenoid;
   public static DoubleSolenoid shifterSolenoid;
   public static DoubleSolenoid ejectorSolenoid;
@@ -71,6 +73,12 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    //isCompBot.setDefaultOption("This is comp bot", true);
+    //isCompBot.addOption("This is practice bot", false);
+    //SmartDashboard.putData("Is this the comp bot?", isCompBot);
+
+    //IS_COMP_BOT = isCompBot.getSelected();
+
     if (IS_COMP_BOT) {
       beakSolenoid = new DoubleSolenoid(6, 7);
       shifterSolenoid = new DoubleSolenoid(0, 1);
@@ -116,6 +124,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    //IS_COMP_BOT = isCompBot.getSelected();
   }
 
   /**

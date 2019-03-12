@@ -40,18 +40,18 @@ public class cargoIntakeCommand extends Command {
     
     if (Robot.IS_COMP_BOT) {
       if (Math.abs(OI.operatorController.getTriggerAxis(Hand.kRight) * 0.40 - OI.operatorController.getTriggerAxis(Hand.kLeft) * 0.50) > 0.05) {
-        Robot.m_intake.setCargoDriveSpeed(-OI.operatorController.getTriggerAxis(Hand.kRight) * 0.40 + OI.operatorController.getTriggerAxis(Hand.kLeft) * 0.50);
+        Robot.m_intake.setCargoDriveSpeed(-OI.operatorController.getTriggerAxis(Hand.kRight) + OI.operatorController.getTriggerAxis(Hand.kLeft));
       }
       else {
-        Robot.m_intake.setCargoDriveSpeed(-0.05);
+        Robot.m_intake.setCargoDriveSpeed(0.15);
       }
     }
     else{
       if (Math.abs(OI.operatorController.getTriggerAxis(Hand.kRight) * 0.40 - OI.operatorController.getTriggerAxis(Hand.kLeft) * 0.50) > 0.05) {
-        Robot.m_intake.setCargoDriveSpeed(OI.operatorController.getTriggerAxis(Hand.kRight) * 0.40 - OI.operatorController.getTriggerAxis(Hand.kLeft) * 0.50);
+        Robot.m_intake.setCargoDriveSpeed(OI.operatorController.getTriggerAxis(Hand.kRight) * 0.6 - OI.operatorController.getTriggerAxis(Hand.kLeft) * 0.75);
       }
       else {
-        Robot.m_intake.setCargoDriveSpeed(0.05);
+        Robot.m_intake.setCargoDriveSpeed(-0.15);
       }  
     }
 

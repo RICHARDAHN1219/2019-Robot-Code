@@ -58,6 +58,7 @@ public class OI {
   Button comboButton = new JoystickButton(driveController, RobotMap.Bbutton);
   Button cargoVision = new JoystickButton(driveController, RobotMap.AButton);
   Button driveInvert = new JoystickButton(driveController, RobotMap.StartButton);
+  Button driverArmDown = new JoystickButton(driveController, RobotMap.YButton);
   
   // Operator
   Button hatchPlacementButton = new JoystickButton(operatorController, RobotMap.LBumper);
@@ -84,6 +85,7 @@ public class OI {
     comboButton.whileHeld(new hatchVisionLockCommand());
     cargoVision.whileHeld(new cargoVisionLockCommand());
     driveInvert.whenPressed(new driveInvertCommand());
+    driverArmDown.whenPressed(new armLowCommand());
 
     // Operator
     hatchPlacementButton.toggleWhenPressed(new placeHatchLow());
@@ -97,8 +99,8 @@ public class OI {
     backClimbPIDButton.whenPressed(new backStrutClimbCommand());
     backClimbStartPIDButton.whenPressed(new backStrutStartCommand());
     frontClimbPIDButton.whenPressed(new frontStrutClimb());
-    frontClimbStartPIDButton.whenPressed(new frontStrutStartCommand());
-    //frontUpArmDownButton.whenPressed(new frontUpArmDown());
+    //frontClimbStartPIDButton.whenPressed(new frontStrutStartCommand());
+    frontUpArmDownButton.whenPressed(new frontUpArmDown());
     level3Climb.whenPressed(new climbLevel3());
     climbArmDown.whenPressed(new armLowCommand());
     climbArmUp.whenPressed(new armHighCommand());

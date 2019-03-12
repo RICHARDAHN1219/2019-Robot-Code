@@ -29,6 +29,8 @@ public class frontStiltSpeedCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    Robot.m_frontStilt.setFrontClimberSpeed(-OI.operatorController.getY(Hand.kLeft));
+    /*
     double climbSpeed = -OI.climbController.getY(Hand.kLeft);
     if (Math.abs(climbSpeed) > 0.1) {
       Robot.m_frontStilt.setFrontClimberSpeed(climbSpeed);
@@ -37,7 +39,7 @@ public class frontStiltSpeedCommand extends Command {
     else if (!holding) {
       Robot.m_frontStilt.holdCurrentPosition();
       holding = true;
-    }
+    }*/
   }
 
   // Make this return true when this Command no longer needs to run execute()

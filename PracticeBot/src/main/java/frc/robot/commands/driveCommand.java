@@ -29,10 +29,10 @@ public class driveCommand extends Command {
   protected void execute() {
     if (Robot.IS_COMP_BOT) {
       if (Robot.driveInvert == false) {
-        Robot.m_drive.arcadeDrive(OI.driveController.getY(Hand.kLeft), -OI.driveController.getX(Hand.kRight));
+        Robot.m_drive.arcadeDrive(-OI.driveController.getY(Hand.kLeft), -OI.driveController.getX(Hand.kRight));
       }
       else {
-        Robot.m_drive.arcadeDrive(-OI.driveController.getY(Hand.kLeft), -OI.driveController.getX(Hand.kRight));
+        Robot.m_drive.arcadeDrive(OI.driveController.getY(Hand.kLeft), -OI.driveController.getX(Hand.kRight));
       }
     }
     

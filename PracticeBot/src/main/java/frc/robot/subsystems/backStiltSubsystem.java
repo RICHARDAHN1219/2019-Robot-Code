@@ -46,16 +46,16 @@ public class backStiltSubsystem extends Subsystem {
   public void init() {
     backStrut.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, kPIDLoopIdx,
         kTimeoutMs);
-    
+    /*
     if (Robot.IS_COMP_BOT) {
       backStrut.setSensorPhase(true);
       backStrut.setInverted(true);
     }
-    else {
+    else { */
       backStrut.setSensorPhase(false);
       backStrut.setInverted(false);
 
-    }
+    //}
     /* Config the peak and nominal outputs, 12V means full */
     backStrut.configNominalOutputForward(0, kTimeoutMs);
     backStrut.configNominalOutputReverse(0, kTimeoutMs);

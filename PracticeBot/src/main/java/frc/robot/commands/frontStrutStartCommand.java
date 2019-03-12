@@ -14,7 +14,7 @@ public class frontStrutStartCommand extends frontClimbPIDCommand {
   public frontStrutStartCommand() {    
     // targetPosition, kP, kI, kD, kF
     // TODO: need to tune the position target value for front strut
-    super(0, 0.2, 0.0, 0.0, 0.0);
+    super(0, 0.3, 0.0, 0.0, 0.0);
     requires(Robot.m_frontStilt);
     name = "frontClimb";
   }

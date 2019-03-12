@@ -158,7 +158,7 @@ public class frontStiltSubsystem extends Subsystem {
   public void setFrontClimberSpeed(double speed) {
     frontStrut1.set(ControlMode.PercentOutput, speed);
     frontStrut2.set(ControlMode.PercentOutput, speed);
-    printDebug("speed");
+    //printDebug("speed");
   }
 
   // debug the encoder positions and motor output for PID

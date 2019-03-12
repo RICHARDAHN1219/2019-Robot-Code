@@ -119,6 +119,7 @@ public class Robot extends TimedRobot {
     m_arm.init();
     m_backStilt.init();
     m_frontStilt.init();
+    pixy.init();
     CameraServer.getInstance().startAutomaticCapture();
     
     // OI needs to be last

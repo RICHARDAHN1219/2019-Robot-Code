@@ -59,6 +59,8 @@ public class OI {
   Button cargoVision = new JoystickButton(driveController, RobotMap.AButton);
   Button driveInvert = new JoystickButton(driveController, RobotMap.StartButton);
   Button driverArmDown = new JoystickButton(driveController, RobotMap.YButton);
+
+  Button pixyButton = new JoystickButton(driveController, RobotMap.XButton);
   
   // Operator
   Button hatchPlacementButton = new JoystickButton(operatorController, RobotMap.LBumper);
@@ -86,6 +88,8 @@ public class OI {
     cargoVision.whileHeld(new fullAutoHatchVisionLockCommand());
     driveInvert.whenPressed(new driveInvertCommand());
     driverArmDown.whenPressed(new armLowCommand());
+
+    pixyButton.whileHeld(new pixyLineFollow());
 
     // Operator
     hatchPlacementButton.toggleWhenPressed(new placeHatchLow());

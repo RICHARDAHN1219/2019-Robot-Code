@@ -82,5 +82,8 @@ public class pixyLineFollow extends Command {
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    // turn off the LEDs
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
   }
 }

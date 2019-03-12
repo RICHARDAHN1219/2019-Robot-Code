@@ -84,7 +84,7 @@ public class frontStiltSubsystem extends Subsystem {
     startPosition1 = frontStrut1.getSensorCollection().getPulseWidthPosition();
     startPosition2 = frontStrut2.getSensorCollection().getPulseWidthPosition();
 
-    _sb.append("BACKSTRUT: start position ");
+    _sb.append("FRONTSTRUT: start position ");
     _sb.append(startPosition1);
     System.out.println(_sb);
     _sb.setLength(0);
@@ -163,7 +163,7 @@ public class frontStiltSubsystem extends Subsystem {
 
   // debug the encoder positions and motor output for PID
   public void printDebug(String name) {
-    _sb.append("BACKSTRUT out:");
+    _sb.append("FRONTSTRUT out:");
     double motorOutput = frontStrut2.getMotorOutputPercent();
     _sb.append((int) (motorOutput * 100));
     _sb.append("%"); // Percent

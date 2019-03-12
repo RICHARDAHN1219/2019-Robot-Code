@@ -111,6 +111,7 @@ public class Robot extends TimedRobot {
     m_arm.init();
     m_backStilt.init();
     m_frontStilt.init();
+    pixy.init();
     
     // OI needs to be last
     m_oi = new OI();

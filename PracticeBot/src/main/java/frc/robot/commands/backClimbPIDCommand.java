@@ -46,7 +46,7 @@ public class backClimbPIDCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_backStilt.printDebug(name);
+    //Robot.m_backStilt.printDebug(name);
   }
 
   // Make this return true when this Command no longer needs to run execute()

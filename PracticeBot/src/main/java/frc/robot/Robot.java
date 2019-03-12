@@ -30,6 +30,8 @@ import frc.robot.subsystems.backStiltSubsystem;
 import frc.robot.subsystems.frontStiltSubsystem;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Ultrasonic;
+import io.github.pseudoresonance.pixy2api.Pixy2;
+import io.github.pseudoresonance.pixy2api.links.SPILink;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -69,7 +71,8 @@ public class Robot extends TimedRobot {
   public static DoubleSolenoid ejectorSolenoidLeft;
   public static DoubleSolenoid ejectorSolenoidRight;
   PowerDistributionPanel PowerDistributionPanel = new PowerDistributionPanel(0);
-  //public Ultrasonic front_ultrasonic = new Ultrasonic(RobotMap.ULTRASONIC_FRONT_PING, RobotMap.ULTRASONIC_FRONT_PING);
+  // public static Ultrasonic front_ultrasonic = new Ultrasonic(RobotMap.ULTRASONIC_FRONT_PING, RobotMap.ULTRASONIC_FRONT_PING);
+  public static Pixy2 pixy = Pixy2.createInstance(new SPILink());
 
   //private int loopcount = 0;
 

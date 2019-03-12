@@ -44,9 +44,11 @@ public class pixyLineFollow extends Command {
           double leg2 = vector.getY1() - vector.getY0();
           // angle of the line
           theta = Math.toDegrees(Math.atan2(leg2, leg1));
-          // Where the line crosses the center of the image
+          // Where the line crosses the center of the image (0,78)
           double center = (vector.getX0() + vector.getX1()) / 2.0;
-          double off_center = center - 78;
+
+          // how many pixels we're off center (-39,39)
+          double off_center = center - (78/2);
 
           System.err.println("!!! Theta:" + theta + "  Off Center:"  + off_center );
           isFinished = true;

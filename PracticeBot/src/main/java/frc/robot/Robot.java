@@ -28,6 +28,7 @@ import frc.robot.subsystems.shifterSubsystem;
 import frc.robot.subsystems.backStiltSubsystem;
 import frc.robot.subsystems.frontStiltSubsystem;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.Ultrasonic;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -66,6 +67,9 @@ public class Robot extends TimedRobot {
   public static DoubleSolenoid shifterSolenoid;
   public static DoubleSolenoid ejectorSolenoid;
   PowerDistributionPanel PowerDistributionPanel = new PowerDistributionPanel(0);
+  public Ultrasonic front_ultrasonic = new Ultrasonic(RobotMap.ULTRASONIC_FRONT_PING, RobotMap.ULTRASONIC_FRONT_PING);
+
+  private int loopcount = 0;
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -88,7 +92,6 @@ public class Robot extends TimedRobot {
       shifterSolenoid = new DoubleSolenoid(2, 6);
       ejectorSolenoid = new DoubleSolenoid(3, 7);
     }
-
 
     m_intake = new cargoSubsystem();
     m_drive = new driveSubsystem();
@@ -221,7 +224,13 @@ public class Robot extends TimedRobot {
     //m_encoder4 = driveSubsystem.neo4.getEncoder();
     //double averageDistance = m_encoder1.getPosition() + m_encoder2.getPosition() + m_encoder3.getPosition() +  m_encoder4.getPosition() / 4;
     //System.out.println(frontEncoder);
-    Robot.m_frontStilt.printDebug("rear");
+    //Robot.m_frontStilt.printDebug("debug");
+
+    if (loopcount % 60 == 0) {
+      // System.out.println("Front Distance: " + front_ultrasonic.getRangeInches() + " inches");
+    }
+    loopcount++;
+
   }
 
   /**

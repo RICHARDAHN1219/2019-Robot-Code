@@ -13,6 +13,9 @@ import io.github.pseudoresonance.pixy2api.Pixy2;
 import io.github.pseudoresonance.pixy2api.Pixy2Line;
 import io.github.pseudoresonance.pixy2api.Pixy2Line.Vector;
 
+// Many thanks to FRC 3786 for blazing a trail and making this possible
+// https://github.com/KentridgeRobotics/2019Robot/blob/master/src/main/java/org/usfirst/frc/team3786/robot/utils/RocketPortFinder.java
+
 public class pixyLineFollow extends Command {
 
   byte features;
@@ -42,9 +45,13 @@ public class pixyLineFollow extends Command {
           Vector vector = vectors[0];
           double leg1 = vector.getX0() - vector.getX1();
           double leg2 = vector.getY1() - vector.getY0();
-          // angle of the line
+        
+          // angle of the line  (-180,180) 
+          // TODO: do math to figure out what angle should be straight ahead
+          // https://docs.pixycam.com/wiki/doku.php?id=wiki:v2:line_quickstart
           theta = Math.toDegrees(Math.atan2(leg2, leg1));
-          // Where the line crosses the center of the image (0,78)
+
+          // Where the vector crosses the center of the image (0,78)
           double center = (vector.getX0() + vector.getX1()) / 2.0;
 
           // how many pixels we're off center (-39,39)

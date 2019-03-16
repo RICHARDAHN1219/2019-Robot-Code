@@ -27,19 +27,22 @@ public class ejectorSubsystem extends Subsystem {
 
   public void extend() {
     if (Robot.IS_COMP_BOT) {
-      Robot.ejectorSolenoid.set(DoubleSolenoid.Value.kReverse);
+      Robot.ejectorSolenoidLeft.set(DoubleSolenoid.Value.kReverse);
+      Robot.ejectorSolenoidRight.set(DoubleSolenoid.Value.kForward);
     }
     else {
-      Robot.ejectorSolenoid.set(DoubleSolenoid.Value.kForward);
+      Robot.ejectorSolenoidLeft.set(DoubleSolenoid.Value.kReverse);
+      Robot.ejectorSolenoidRight.set(DoubleSolenoid.Value.kForward);
     }
   }
 
   public void retract() {
     if (Robot.IS_COMP_BOT) {
-      Robot.ejectorSolenoid.set(DoubleSolenoid.Value.kForward);
+      Robot.ejectorSolenoidLeft.set(DoubleSolenoid.Value.kForward);
+      Robot.ejectorSolenoidRight.set(DoubleSolenoid.Value.kReverse);
     }
     else {
-      Robot.ejectorSolenoid.set(DoubleSolenoid.Value.kReverse);
+      //Robot.ejectorSolenoid.set(DoubleSolenoid.Value.kReverse);
     }
   }
 }

@@ -48,7 +48,7 @@ public class cargoIntakeCommand extends Command {
     }
     else{
       if (Math.abs(OI.operatorController.getTriggerAxis(Hand.kRight) * 0.40 - OI.operatorController.getTriggerAxis(Hand.kLeft) * 0.50) > 0.05) {
-        Robot.m_intake.setCargoDriveSpeed(OI.operatorController.getTriggerAxis(Hand.kRight) * 0.6 - OI.operatorController.getTriggerAxis(Hand.kLeft) * 0.75);
+        Robot.m_intake.setCargoDriveSpeed(OI.operatorController.getTriggerAxis(Hand.kRight) - OI.operatorController.getTriggerAxis(Hand.kLeft));
       }
       else {
         Robot.m_intake.setCargoDriveSpeed(-0.15);

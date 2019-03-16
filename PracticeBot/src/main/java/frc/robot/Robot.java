@@ -65,9 +65,10 @@ public class Robot extends TimedRobot {
   //SendableChooser<Boolean> isCompBot = new SendableChooser<>();
   public static DoubleSolenoid beakSolenoid;
   public static DoubleSolenoid shifterSolenoid;
-  public static DoubleSolenoid ejectorSolenoid;
+  public static DoubleSolenoid ejectorSolenoidLeft;
+  public static DoubleSolenoid ejectorSolenoidRight;
   PowerDistributionPanel PowerDistributionPanel = new PowerDistributionPanel(0);
-  public Ultrasonic front_ultrasonic = new Ultrasonic(RobotMap.ULTRASONIC_FRONT_PING, RobotMap.ULTRASONIC_FRONT_PING);
+  //public Ultrasonic front_ultrasonic = new Ultrasonic(RobotMap.ULTRASONIC_FRONT_PING, RobotMap.ULTRASONIC_FRONT_PING);
 
   private int loopcount = 0;
 
@@ -84,13 +85,15 @@ public class Robot extends TimedRobot {
     //IS_COMP_BOT = isCompBot.getSelected();
 
     if (IS_COMP_BOT) {
-      beakSolenoid = new DoubleSolenoid(6, 7);
-      shifterSolenoid = new DoubleSolenoid(0, 1);
-      ejectorSolenoid = new DoubleSolenoid(4, 5);
+      beakSolenoid = new DoubleSolenoid(0, 1);
+      shifterSolenoid = new DoubleSolenoid(4, 5);
+      ejectorSolenoidLeft = new DoubleSolenoid(6, 7);
+      ejectorSolenoidRight = new DoubleSolenoid(2, 3);
     } else {
       beakSolenoid = new DoubleSolenoid(0, 1);
-      shifterSolenoid = new DoubleSolenoid(2, 6);
-      ejectorSolenoid = new DoubleSolenoid(3, 7);
+      shifterSolenoid = new DoubleSolenoid(4, 5);
+      ejectorSolenoidLeft = new DoubleSolenoid(6, 7);
+      ejectorSolenoidRight = new DoubleSolenoid(2, 3);
     }
 
     m_intake = new cargoSubsystem();

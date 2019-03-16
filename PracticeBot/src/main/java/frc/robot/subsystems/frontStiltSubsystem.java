@@ -50,6 +50,9 @@ public class frontStiltSubsystem extends Subsystem {
   public void init() {
     frontStrut1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, kPIDLoopIdx,
         kTimeoutMs);
+    frontStrut2.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, kPIDLoopIdx,
+        kTimeoutMs);
+
     /* Ensure sensor is positive when output is positive */
     frontStrut1.setSensorPhase(false);
     frontStrut1.setInverted(true);
@@ -82,11 +85,13 @@ public class frontStiltSubsystem extends Subsystem {
      * Grab the 360 degree position of the MagEncoder's absolute position, and initially set the
      * relative sensor to match.
      */
-    startPosition1 = frontStrut1.getSensorCollection().getPulseWidthPosition();
-    startPosition2 = frontStrut2.getSensorCollection().getPulseWidthPosition();
+    startPosition1 = frontStrut1.getSelectedSensorPosition();
+    startPosition2 = frontStrut2.getSelectedSensorPosition();
 
-    _sb.append("BACKSTRUT: start position ");
+    _sb.append("FRONTSTRUT: start position1 ");
     _sb.append(startPosition1);
+    _sb.append(" start position2 ");
+    _sb.append(startPosition2);
     System.out.println(_sb);
     _sb.setLength(0);
 
@@ -95,8 +100,8 @@ public class frontStiltSubsystem extends Subsystem {
     frontStrut1.setSelectedSensorPosition(startPosition1, kPIDLoopIdx, kTimeoutMs);
     frontStrut2.setSelectedSensorPosition(startPosition2, kPIDLoopIdx, kTimeoutMs);
 
-    targetPosition1 = startPosition1 - 0;
-    targetPosition2 = startPosition2 - 0;
+    targetPosition1 = startPosition1;
+    targetPosition2 = startPosition2;
 
     printDebug("INIT");
   }
@@ -109,6 +114,8 @@ public class frontStiltSubsystem extends Subsystem {
   */
   public void setPosition(int desiredPosition) {
     targetPosition1 = startPosition1 - desiredPosition;
+    targetPosition2 = startPosition2 - desiredPosition;
+
     frontStrut1.config_kF(kPIDLoopIdx, kF, kTimeoutMs);
     frontStrut1.config_kP(kPIDLoopIdx, kP, kTimeoutMs);
     frontStrut1.config_kI(kPIDLoopIdx, kI, kTimeoutMs);
@@ -117,7 +124,7 @@ public class frontStiltSubsystem extends Subsystem {
     frontStrut1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, kPIDLoopIdx,
     kTimeoutMs);
     frontStrut1.setIntegralAccumulator(0.0);  // zero out the kI error accumulator
-    frontStrut1.set(ControlMode.Position, startPosition1 - desiredPosition);
+    frontStrut1.set(ControlMode.Position, targetPosition1);
 
     frontStrut2.config_kF(kPIDLoopIdx, kF, kTimeoutMs);
     frontStrut2.config_kP(kPIDLoopIdx, kP, kTimeoutMs);
@@ -127,23 +134,40 @@ public class frontStiltSubsystem extends Subsystem {
     frontStrut2.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, kPIDLoopIdx,
     kTimeoutMs);
     frontStrut2.setIntegralAccumulator(0.0);  // zero out the kI error accumulator
-    frontStrut2.set(ControlMode.Position, startPosition2 - desiredPosition);
+    frontStrut2.set(ControlMode.Position, targetPosition2);
+
+    //System.out.println("TARGET SET");
+    //System.out.println("TARGET SET");
+    //System.out.println("TARGET SET");
+    //System.out.println("TARGET 1: " + targetPosition1 + " TARGET 2: " + targetPosition2);
+
   }
 
-  public int getPosition() {
-    return frontStrut1.getSensorCollection().getPulseWidthPosition();
-  }
 
   public void holdCurrentPosition() {
+    targetPosition1 = frontStrut1.getSelectedSensorPosition();
+    targetPosition2 = frontStrut2.getSelectedSensorPosition();
+
+    //System.out.println("HOLDING");
+    //System.out.println("HOLDING");
+    //System.out.println("HOLDING");
+    //System.out.println("HOLDING");
+    //System.out.println("HOLDING");
+    //System.out.println("HOLDING");
+    //System.out.println("TARGET 1: " + targetPosition1 + " TARGET 2: " + targetPosition2);
+
+
     frontStrut1.setIntegralAccumulator(0.0);  // zero out the kI error accumulator
-    frontStrut1.set(ControlMode.Position, frontStrut1.getSensorCollection().getPulseWidthPosition());
+    frontStrut1.set(ControlMode.Position, targetPosition1);
 
     frontStrut2.setIntegralAccumulator(0.0);  // zero out the kI error accumulator
-    frontStrut2.set(ControlMode.Position, frontStrut2.getSensorCollection().getPulseWidthPosition());
+    frontStrut2.set(ControlMode.Position, targetPosition2);
   }
 
   public boolean isAtTargetPosition(int desiredPosition) {
-    if (Math.abs(getPosition() - (startPosition1 - desiredPosition)) <= allowableError) {
+    if ((Math.abs(frontStrut1.getSelectedSensorPosition() - targetPosition1) <= allowableError) &&
+        (Math.abs(frontStrut2.getSelectedSensorPosition() - targetPosition2) <= allowableError))
+    {
         return true;
     }
     else {
@@ -155,7 +179,9 @@ public class frontStiltSubsystem extends Subsystem {
   public void setFrontClimberSpeed(double speed) {
     frontStrut1.set(ControlMode.PercentOutput, speed);
     frontStrut2.set(ControlMode.PercentOutput, speed);
-    printDebug("speed");
+ 
+    //printDebug("speed");
+    //System.out.println("SET SPEED: " + speed); 
   }
 
   // debug the encoder positions and motor output for PID

@@ -99,7 +99,7 @@ public class OI {
     backClimbPIDButton.whenPressed(new backStrutClimbCommand());
     backClimbStartPIDButton.whenPressed(new backStrutStartCommand());
     frontClimbPIDButton.whenPressed(new frontStrutClimb());
-    //frontClimbStartPIDButton.whenPressed(new frontStrutStartCommand());
+    frontClimbStartPIDButton.whenPressed(new frontStrutStartCommand());
     frontUpArmDownButton.whenPressed(new frontUpArmDown());
     level3Climb.whenPressed(new climbLevel3());
     climbArmDown.whenPressed(new armLowCommand());

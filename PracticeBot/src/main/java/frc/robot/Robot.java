@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -70,7 +71,7 @@ public class Robot extends TimedRobot {
   PowerDistributionPanel PowerDistributionPanel = new PowerDistributionPanel(0);
   //public Ultrasonic front_ultrasonic = new Ultrasonic(RobotMap.ULTRASONIC_FRONT_PING, RobotMap.ULTRASONIC_FRONT_PING);
 
-  private int loopcount = 0;
+  //private int loopcount = 0;
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -111,6 +112,7 @@ public class Robot extends TimedRobot {
     m_arm.init();
     m_backStilt.init();
     m_frontStilt.init();
+    CameraServer.getInstance().startAutomaticCapture();
     
     // OI needs to be last
     m_oi = new OI();
@@ -227,13 +229,13 @@ public class Robot extends TimedRobot {
     //m_encoder4 = driveSubsystem.neo4.getEncoder();
     //double averageDistance = m_encoder1.getPosition() + m_encoder2.getPosition() + m_encoder3.getPosition() +  m_encoder4.getPosition() / 4;
     //System.out.println(frontEncoder);
-    //Robot.m_frontStilt.printDebug("debug");
+    Robot.m_frontStilt.printDebug("debug");
 
-    if (loopcount % 60 == 0) {
+    //if (loopcount % 60 == 0) {
       // System.out.println("Front Distance: " + front_ultrasonic.getRangeInches() + " inches");
-    }
-    loopcount++;
-
+   // }
+    //loopcount++;
+    
   }
 
   /**

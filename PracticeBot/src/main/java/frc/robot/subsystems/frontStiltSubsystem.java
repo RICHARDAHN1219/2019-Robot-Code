@@ -31,7 +31,8 @@ public class frontStiltSubsystem extends Subsystem {
   StringBuilder _sb = new StringBuilder();
   private int startPosition1 = 0;
   private int startPosition2 = 0;
-  private int targetPosition = 0;
+  private int targetPosition1 = 0;
+  private int targetPosition2 = 0;
   private int kPIDLoopIdx = 0;
   private int kTimeoutMs = 3;  // 30
   public double kP;  // 0.15
@@ -50,8 +51,8 @@ public class frontStiltSubsystem extends Subsystem {
     frontStrut1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, kPIDLoopIdx,
         kTimeoutMs);
     /* Ensure sensor is positive when output is positive */
-    frontStrut1.setSensorPhase(true);
-    frontStrut1.setInverted(false);
+    frontStrut1.setSensorPhase(false);
+    frontStrut1.setInverted(true);
     frontStrut2.setSensorPhase(false);
     frontStrut2.setInverted(false);
     /* Config the peak and nominal outputs, 12V means full */
@@ -94,7 +95,8 @@ public class frontStiltSubsystem extends Subsystem {
     frontStrut1.setSelectedSensorPosition(startPosition1, kPIDLoopIdx, kTimeoutMs);
     frontStrut2.setSelectedSensorPosition(startPosition2, kPIDLoopIdx, kTimeoutMs);
 
-    targetPosition = startPosition1 - 0;
+    targetPosition1 = startPosition1 - 0;
+    targetPosition2 = startPosition2 - 0;
 
     printDebug("INIT");
   }
@@ -106,7 +108,7 @@ public class frontStiltSubsystem extends Subsystem {
   * to the start position when the robot turns on. Position is measured in encoder ticks.
   */
   public void setPosition(int desiredPosition) {
-    targetPosition = startPosition1 - desiredPosition;
+    targetPosition1 = startPosition1 - desiredPosition;
     frontStrut1.config_kF(kPIDLoopIdx, kF, kTimeoutMs);
     frontStrut1.config_kP(kPIDLoopIdx, kP, kTimeoutMs);
     frontStrut1.config_kI(kPIDLoopIdx, kI, kTimeoutMs);
@@ -115,7 +117,7 @@ public class frontStiltSubsystem extends Subsystem {
     frontStrut1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, kPIDLoopIdx,
     kTimeoutMs);
     frontStrut1.setIntegralAccumulator(0.0);  // zero out the kI error accumulator
-    frontStrut1.set(ControlMode.Position, targetPosition);
+    frontStrut1.set(ControlMode.Position, startPosition1 - desiredPosition);
 
     frontStrut2.config_kF(kPIDLoopIdx, kF, kTimeoutMs);
     frontStrut2.config_kP(kPIDLoopIdx, kP, kTimeoutMs);
@@ -125,7 +127,7 @@ public class frontStiltSubsystem extends Subsystem {
     frontStrut2.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, kPIDLoopIdx,
     kTimeoutMs);
     frontStrut2.setIntegralAccumulator(0.0);  // zero out the kI error accumulator
-    frontStrut2.set(ControlMode.Position, -targetPosition);
+    frontStrut2.set(ControlMode.Position, startPosition2 - desiredPosition);
   }
 
   public int getPosition() {
@@ -133,17 +135,12 @@ public class frontStiltSubsystem extends Subsystem {
   }
 
   public void holdCurrentPosition() {
-    int currentPosition = frontStrut1.getSensorCollection().getPulseWidthPosition();
     frontStrut1.setIntegralAccumulator(0.0);  // zero out the kI error accumulator
-    frontStrut1.set(ControlMode.Position, currentPosition);
+    frontStrut1.set(ControlMode.Position, frontStrut1.getSensorCollection().getPulseWidthPosition());
 
     frontStrut2.setIntegralAccumulator(0.0);  // zero out the kI error accumulator
-    frontStrut2.set(ControlMode.Position, -currentPosition);
+    frontStrut2.set(ControlMode.Position, frontStrut2.getSensorCollection().getPulseWidthPosition());
   }
-
-  public int getStartPosition() { return startPosition1; }
-
-  public int getTargetPosition() { return targetPosition; }
 
   public boolean isAtTargetPosition(int desiredPosition) {
     if (Math.abs(getPosition() - (startPosition1 - desiredPosition)) <= allowableError) {
@@ -163,15 +160,38 @@ public class frontStiltSubsystem extends Subsystem {
 
   // debug the encoder positions and motor output for PID
   public void printDebug(String name) {
-    _sb.append("BACKSTRUT out:");
-    double motorOutput = frontStrut2.getMotorOutputPercent();
+    _sb.append("FRONTSTRUT 1 out:");
+    double motorOutput = frontStrut1.getMotorOutputPercent();
+    _sb.append((int) (motorOutput * 100));
+    _sb.append("%"); // Percent
+    _sb.append("\tpos:");
+    _sb.append(frontStrut1.getSelectedSensorPosition(0));
+    _sb.append("u"); // Native units
+    _sb.append("\ttarget:");
+    _sb.append(targetPosition1);
+    _sb.append("u"); // Native Units
+    _sb.append("\tstart:");
+    _sb.append(startPosition1);
+    _sb.append("u"); // Native Units
+    _sb.append("\terr:");
+    _sb.append(frontStrut1.getClosedLoopError(0));
+    _sb.append("u");	// Native Units
+    _sb.append("\tspd:");
+		_sb.append(frontStrut1.getSelectedSensorVelocity(0));
+		_sb.append("u");
+    _sb.append(" " + name);
+    System.out.println(_sb);
+    /* Reset built string for next loop */
+    _sb.setLength(0);
+    _sb.append("FRONTSTRUT 2 out:");
+    motorOutput = frontStrut2.getMotorOutputPercent();
     _sb.append((int) (motorOutput * 100));
     _sb.append("%"); // Percent
     _sb.append("\tpos:");
     _sb.append(frontStrut2.getSelectedSensorPosition(0));
     _sb.append("u"); // Native units
     _sb.append("\ttarget:");
-    _sb.append(targetPosition);
+    _sb.append(targetPosition2);
     _sb.append("u"); // Native Units
     _sb.append("\tstart:");
     _sb.append(startPosition2);

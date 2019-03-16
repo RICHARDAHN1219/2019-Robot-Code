@@ -132,7 +132,7 @@ public class backStiltSubsystem extends Subsystem {
    // Set the back stilt climb motor speed, input from [-1,1]
   public void setBackClimberSpeed(double speed) {
     backStrut.set(ControlMode.PercentOutput, speed);
-    printDebug("speed");
+    // printDebug("speed");
   }
 
   // debug the encoder positions and motor output for PID

@@ -13,12 +13,15 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.OI;
 import frc.robot.Robot;
+import io.github.pseudoresonance.pixy2api.Pixy2Line;
+import io.github.pseudoresonance.pixy2api.Pixy2Line.Vector;
 
 public class hatchVisionLockCommand extends Command {
 
-    public boolean m_LimelightHasValidTarget = false;
-    private double m_LimelightDriveCommand = 0.0;
-    private double m_LimelightSteerCommand = 0.0;
+  byte features;
+  public boolean m_LimelightHasValidTarget = false;
+  private double m_LimelightDriveCommand = 0.0;
+  private double m_LimelightSteerCommand = 0.0;
 
 
   public hatchVisionLockCommand() {
@@ -31,7 +34,11 @@ public class hatchVisionLockCommand extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    SmartDashboard.putBoolean("HATCH_LOCK", m_LimelightHasValidTarget);  
+    SmartDashboard.putBoolean("HATCH_LOCK", m_LimelightHasValidTarget);
+
+    // turn on the Pixy LED lights
+    Robot.pixy.setLED(255, 255, 255);
+    Robot.pixy.setLamp((byte) 1, (byte) 1);
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -46,6 +53,24 @@ public class hatchVisionLockCommand extends Command {
        double tv = NetworkTableInstance.getDefault().getTable("limelight-one").getEntry("tv").getDouble(0);
        double tx = NetworkTableInstance.getDefault().getTable("limelight-one").getEntry("tx").getDouble(0);
        double ta = NetworkTableInstance.getDefault().getTable("limelight-one").getEntry("ta").getDouble(0);
+
+       // check for line follow
+       features = Robot.pixy.getLine().getMainFeatures();
+       if ((features & Pixy2Line.LINE_VECTOR) == Pixy2Line.LINE_VECTOR) {
+         Vector[] vectors = Robot.pixy.getLine().getVectors();
+         if (vectors != null) {
+           if (vectors.length > 0) {
+             Vector vector = vectors[0];
+             int error = vector.getX1() - 39;
+          
+   
+             // how many pixels we're off center (-39,39)
+             double off_center = center - (78/2);
+   
+             System.err.println("!!! Theta:" + theta + "  Off Center:"  + off_center );
+           } 
+         }
+       } // ((features & Pixy2Line.LINE_VECTOR) == Pixy2Line.LINE_VECTOR)
 
        if (tv < 1.0)
        {
@@ -86,11 +111,17 @@ public class hatchVisionLockCommand extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
+    // turn off the LEDs
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
+    // turn off the LEDs
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
   }
 }

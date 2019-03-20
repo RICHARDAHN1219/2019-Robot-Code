@@ -20,8 +20,6 @@ public class hatchVisionLockCommand extends Command {
 
   byte features;
   public boolean m_LimelightHasValidTarget = false;
-  private double m_LimelightDriveCommand = 0.0;
-  private double m_LimelightSteerCommand = 0.0;
 
 
   public hatchVisionLockCommand() {
@@ -45,34 +43,41 @@ public class hatchVisionLockCommand extends Command {
   @Override
   protected void execute() {
     // These numbers must be tuned for Comp Robot!  Be careful!  
-       final double STEER_K = 0.04;                    // how hard to turn toward the target
-       final double DRIVE_K = 0.03;                    // how hard to drive fwd toward the target
+       final double STEER_K = 0.045;                   // how hard to turn toward the target
+       final double DRIVE_K = 0.06;                    // how hard to drive fwd toward the target
+       final double LF_STEER_K = 0.09;
        final double DESIRED_TARGET_AREA = 50.0;        // Area of the target when the robot reaches the wall
-       final double MAX_DRIVE = 0.3;                   // Simple speed limit so we don't drive too fast
+       final double MAX_DRIVE = 0.4;                   // Simple speed limit so we don't drive too fast
 
        double tv = NetworkTableInstance.getDefault().getTable("limelight-one").getEntry("tv").getDouble(0);
        double tx = NetworkTableInstance.getDefault().getTable("limelight-one").getEntry("tx").getDouble(0);
        double ta = NetworkTableInstance.getDefault().getTable("limelight-one").getEntry("ta").getDouble(0);
 
+       double drive_cmd = 0.0;
+       double steer_cmd = 0.0;
+
        // check for line follow
+       boolean lineFollow = false;
+       int lf = 0;
+
        features = Robot.pixy.getLine().getMainFeatures();
        if ((features & Pixy2Line.LINE_VECTOR) == Pixy2Line.LINE_VECTOR) {
          Vector[] vectors = Robot.pixy.getLine().getVectors();
          if (vectors != null) {
            if (vectors.length > 0) {
              Vector vector = vectors[0];
-             int error = vector.getX1() - 39;
-          
-   
-             // how many pixels we're off center (-39,39)
-             double off_center = center - (78/2);
-   
-             System.err.println("!!! Theta:" + theta + "  Off Center:"  + off_center );
+
+             // distance off of center
+             lf = vector.getX1() - 39;
+             lineFollow = true;
+
+             steer_cmd = LF_STEER_K * lf;
+             drive_cmd = 0.1;
            } 
          }
-       } // ((features & Pixy2Line.LINE_VECTOR) == Pixy2Line.LINE_VECTOR)
+       } 
 
-       if (tv < 1.0)
+       if ((tv < 1.0) && !lineFollow)
        {
          m_LimelightHasValidTarget = false;
          m_LimelightDriveCommand = 0.0;
@@ -80,24 +85,25 @@ public class hatchVisionLockCommand extends Command {
          Robot.m_drive.arcadeDrive(0.0,0.0);
          return;
        }
+       
+       if (!lineFollow) {
+         m_LimelightHasValidTarget = true;
 
-       m_LimelightHasValidTarget = true;
-       //OI.driveController.setRumble(RumbleType.kLeftRumble, 1);
-       // Start with proportional steering
-       double steer_cmd = tx * STEER_K;
-       m_LimelightSteerCommand = steer_cmd;
+         Robot.m_beak.hatchRetrieve();
+         // Start with proportional steering
+         steer_cmd = tx * STEER_K;
 
-       // try to drive forward until the target area reaches our desired area
-       double drive_cmd = (DESIRED_TARGET_AREA - ta) * DRIVE_K;
+         // try to drive forward until the target area reaches our desired area
+         drive_cmd = (DESIRED_TARGET_AREA - ta) * DRIVE_K;
+       }
 
        // don't let the robot drive too fast into the goal
        if (drive_cmd > MAX_DRIVE)
        {
-         drive_cmd = MAX_DRIVE;
+          drive_cmd = MAX_DRIVE;
        }
-       m_LimelightDriveCommand = drive_cmd;
     
-       Robot.m_drive.arcadeDrive(-OI.driveController.getY(GenericHID.Hand.kLeft), -m_LimelightSteerCommand);
+       Robot.m_drive.arcadeDrive(OI.driveController.getY(GenericHID.Hand.kLeft), -steer_cmd);
      
  }
 

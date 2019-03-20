@@ -38,10 +38,10 @@ public class fullAutoHatchVisionLockCommand extends Command {
   @Override
   protected void execute() {
     // These numbers must be tuned for Comp Robot!  Be careful!  
-       final double STEER_K = 0.025;                    // how hard to turn toward the target
+       final double STEER_K = 0.04;                    // how hard to turn toward the target
        final double DRIVE_K = 0.075;                    // how hard to drive fwd toward the target
-       final double DESIRED_TARGET_AREA = 55.0;        // Area of the target when the robot reaches the wall
-       final double MAX_DRIVE = 1;                   // Simple speed limit so we don't drive too fast
+       final double DESIRED_TARGET_AREA = 50.0;        // Area of the target when the robot reaches the wall
+       final double MAX_DRIVE = 0.3;                   // Simple speed limit so we don't drive too fast
 
        double tv = NetworkTableInstance.getDefault().getTable("limelight-one").getEntry("tv").getDouble(0);
        double tx = NetworkTableInstance.getDefault().getTable("limelight-one").getEntry("tx").getDouble(0);
@@ -73,7 +73,7 @@ public class fullAutoHatchVisionLockCommand extends Command {
        }
        m_LimelightDriveCommand = drive_cmd;
     
-       Robot.m_drive.arcadeDrive(m_LimelightDriveCommand, -m_LimelightSteerCommand * 0.3);
+       Robot.m_drive.arcadeDrive(m_LimelightDriveCommand, -m_LimelightSteerCommand);
      
  }
 

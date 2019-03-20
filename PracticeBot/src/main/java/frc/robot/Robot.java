@@ -86,9 +86,13 @@ public class Robot extends TimedRobot {
     //IS_COMP_BOT = isCompBot.getSelected();
 
     if (IS_COMP_BOT) {
-      beakSolenoid = new DoubleSolenoid(0, 1);
+      /*beakSolenoid = new DoubleSolenoid(0, 1);
       shifterSolenoid = new DoubleSolenoid(4, 5);
       ejectorSolenoidLeft = new DoubleSolenoid(6, 7);
+      ejectorSolenoidRight = new DoubleSolenoid(2, 3);*/
+      beakSolenoid = new DoubleSolenoid(6, 7);
+      shifterSolenoid = new DoubleSolenoid(0, 1);
+      ejectorSolenoidLeft = new DoubleSolenoid(4, 5);
       ejectorSolenoidRight = new DoubleSolenoid(2, 3);
     } else {
       beakSolenoid = new DoubleSolenoid(0, 1);

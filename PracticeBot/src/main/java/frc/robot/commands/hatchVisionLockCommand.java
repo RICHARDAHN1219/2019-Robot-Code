@@ -80,8 +80,6 @@ public class hatchVisionLockCommand extends Command {
        if ((tv < 1.0) && !lineFollow)
        {
          m_LimelightHasValidTarget = false;
-         m_LimelightDriveCommand = 0.0;
-         m_LimelightSteerCommand = 0.0;
          Robot.m_drive.arcadeDrive(0.0,0.0);
          return;
        }

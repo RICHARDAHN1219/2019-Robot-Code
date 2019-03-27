@@ -119,7 +119,9 @@ public class hatchVisionLockCommand extends Command {
     if (!lineFollow) {
       m_LimelightHasValidTarget = true;
 
-      Robot.m_beak.hatchRetrieve();
+      // lock beak up out of the way, only for testing.
+      // Robot.m_beak.hatchRetrieve();
+
       // Start with proportional steering
       steer_cmd = tx * STEER_K;
 

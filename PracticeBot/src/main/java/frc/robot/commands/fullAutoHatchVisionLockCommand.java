@@ -14,6 +14,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.OI;
 import frc.robot.Robot;
 
+// Many thanks to FRC 3786 for blazing a trail and making this possible
+// https://github.com/KentridgeRobotics/2019Robot/blob/master/src/main/java/org/usfirst/frc/team3786/robot/utils/RocketPortFinder.java
+
+
 public class fullAutoHatchVisionLockCommand extends Command {
 
     public boolean m_LimelightHasValidTarget = false;

@@ -30,7 +30,7 @@ public class frontStiltSpeedCommand extends Command {
   @Override
   protected void execute() {
     //Robot.m_frontStilt.setFrontClimberSpeed(-OI.operatorController.getY(Hand.kLeft));
-    double climbSpeed = -OI.climbController.getY(Hand.kLeft);
+    double climbSpeed = -OI.operatorController.getY(Hand.kLeft);
     if (Math.abs(climbSpeed) > 0.1) {
       Robot.m_frontStilt.setFrontClimberSpeed(climbSpeed);
       holding = false;

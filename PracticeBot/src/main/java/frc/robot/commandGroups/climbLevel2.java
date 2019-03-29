@@ -7,11 +7,15 @@
 package frc.robot.commandGroups;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import frc.robot.commands.backClimbPIDCommand;
+import frc.robot.commands.frontClimbPIDCommand;
 
 public class climbLevel2 extends CommandGroup{
 
   public climbLevel2() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    addParallel(new frontClimbPIDCommand(12000, 0.4, 0.0, 0.0, 0.0));
+    addSequential(new backClimbPIDCommand(18000, 0.3, 0.0, 0.0, 0.0));
   }
 }

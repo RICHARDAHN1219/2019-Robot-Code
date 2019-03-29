@@ -9,6 +9,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.OI;
@@ -19,6 +20,7 @@ public class hatchVisionLockCommand extends Command {
     public boolean m_LimelightHasValidTarget = false;
     private double m_LimelightDriveCommand = 0.0;
     private double m_LimelightSteerCommand = 0.0;
+    private boolean done = false;
 
 
   public hatchVisionLockCommand() {
@@ -40,12 +42,21 @@ public class hatchVisionLockCommand extends Command {
     // These numbers must be tuned for Comp Robot!  Be careful!  
        final double STEER_K = 0.04;                    // how hard to turn toward the target
        final double DRIVE_K = 0.03;                    // how hard to drive fwd toward the target
-       final double DESIRED_TARGET_AREA = 50.0;        // Area of the target when the robot reaches the wall
+       final double DESIRED_TARGET_AREA = 15.0;        // Area of the target when the robot reaches the wall
        final double MAX_DRIVE = 0.3;                   // Simple speed limit so we don't drive too fast
 
        double tv = NetworkTableInstance.getDefault().getTable("limelight-one").getEntry("tv").getDouble(0);
        double tx = NetworkTableInstance.getDefault().getTable("limelight-one").getEntry("tx").getDouble(0);
        double ta = NetworkTableInstance.getDefault().getTable("limelight-one").getEntry("ta").getDouble(0);
+
+
+       
+      if (ta >= DESIRED_TARGET_AREA) {
+        done = true;
+      }
+      else {
+        done = false;
+      }
 
        if (tv < 1.0)
        {
@@ -55,6 +66,7 @@ public class hatchVisionLockCommand extends Command {
          Robot.m_drive.arcadeDrive(0.0,0.0);
          return;
        }
+
 
        m_LimelightHasValidTarget = true;
        //OI.driveController.setRumble(RumbleType.kLeftRumble, 1);
@@ -71,9 +83,12 @@ public class hatchVisionLockCommand extends Command {
          drive_cmd = MAX_DRIVE;
        }
        m_LimelightDriveCommand = drive_cmd;
-    
-       Robot.m_drive.arcadeDrive(-OI.driveController.getY(GenericHID.Hand.kLeft), -m_LimelightSteerCommand);
-     
+       if (done) {
+         Robot.m_drive.arcadeDrive(-OI.driveController.getY(GenericHID.Hand.kLeft), OI.driveController.getX(Hand.kRight));
+       }
+       else {
+        Robot.m_drive.arcadeDrive(-OI.driveController.getY(GenericHID.Hand.kLeft), -m_LimelightSteerCommand);
+       }
  }
 
   // Make this return true when this Command no longer needs to run execute()

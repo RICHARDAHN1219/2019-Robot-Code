@@ -84,12 +84,12 @@ public class OI {
     
     // Driver
     shifterButton.whileHeld(new shifterCommand(shifterSubsystem.Gears.HIGH_GEAR));
-    comboButton.whileHeld(new hatchVisionLockCommand());
+    comboButton.whileHeld(new pixyVisionLockCommand());
     cargoVision.whileHeld(new fullAutoHatchVisionLockCommand());
     driveInvert.whenPressed(new driveInvertCommand());
     driverArmDown.whenPressed(new armLowCommand());
 
-    pixyButton.whileHeld(new pixyLineFollow());
+    pixyButton.whileHeld(new hatchVisionLockCommand());
 
     // Operator
     hatchPlacementButton.toggleWhenPressed(new placeHatchLow());

@@ -8,7 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.GenericHID.RumbleType;
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.OI;
@@ -44,7 +44,7 @@ public class fullAutoHatchVisionLockCommand extends Command {
     // These numbers must be tuned for Comp Robot!  Be careful!  
        final double STEER_K = 0.04;                    // how hard to turn toward the target
        final double DRIVE_K = 0.075;                    // how hard to drive fwd toward the target
-       final double DESIRED_TARGET_AREA = 50.0;        // Area of the target when the robot reaches the wall
+       final double DESIRED_TARGET_AREA = 7.9769;        // Area of the target when the robot reaches the wall
        final double MAX_DRIVE = 0.3;                   // Simple speed limit so we don't drive too fast
 
        double tv = NetworkTableInstance.getDefault().getTable("limelight-one").getEntry("tv").getDouble(0);
@@ -77,7 +77,7 @@ public class fullAutoHatchVisionLockCommand extends Command {
        }
        m_LimelightDriveCommand = drive_cmd;
     
-       Robot.m_drive.arcadeDrive(m_LimelightDriveCommand, -m_LimelightSteerCommand);
+       Robot.m_drive.arcadeDrive(OI.driveController.getY(GenericHID.Hand.kLeft), -m_LimelightSteerCommand);
      
  }
 

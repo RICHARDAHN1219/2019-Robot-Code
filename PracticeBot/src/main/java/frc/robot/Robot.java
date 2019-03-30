@@ -90,14 +90,14 @@ public class Robot extends TimedRobot {
     //IS_COMP_BOT = isCompBot.getSelected();
 
     if (IS_COMP_BOT) {
-      /*beakSolenoid = new DoubleSolenoid(0, 1);
+      beakSolenoid = new DoubleSolenoid(0, 1);
       shifterSolenoid = new DoubleSolenoid(4, 5);
       ejectorSolenoidLeft = new DoubleSolenoid(6, 7);
-      ejectorSolenoidRight = new DoubleSolenoid(2, 3);*/
-      beakSolenoid = new DoubleSolenoid(6, 7);
+      ejectorSolenoidRight = new DoubleSolenoid(2, 3);
+      /*beakSolenoid = new DoubleSolenoid(6, 7);
       shifterSolenoid = new DoubleSolenoid(0, 1);
       ejectorSolenoidLeft = new DoubleSolenoid(4, 5);
-      ejectorSolenoidRight = new DoubleSolenoid(2, 3);
+      ejectorSolenoidRight = new DoubleSolenoid(2, 3);*/
     } else {
       beakSolenoid = new DoubleSolenoid(0, 1);
       shifterSolenoid = new DoubleSolenoid(4, 5);
@@ -164,84 +164,10 @@ public class Robot extends TimedRobot {
     Robot.pixy.setLamp((byte) 1, (byte) 0); 
     Robot.pixy.setLED(0, 0, 0);
     Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(0, 0, 0);
-    Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(255, 255, 255);
-    Robot.pixy.setLamp((byte) 0, (byte) 1);
-    Robot.pixy.setLED(0, 0, 0);
-    Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(0, 0, 0);
-    Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(255, 255, 255);
-    Robot.pixy.setLamp((byte) 1, (byte) 0);
-    Robot.pixy.setLED(0, 0, 0);
-    Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(0, 0, 0);
-    Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(255, 255, 255);
-    Robot.pixy.setLamp((byte) 0, (byte) 1);
-    Robot.pixy.setLED(0, 0, 0);
-    Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(0, 0, 0);
-    Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(255, 255, 255);
-    Robot.pixy.setLamp((byte) 1, (byte) 0);
-    Robot.pixy.setLED(0, 0, 0);
-    Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(0, 0, 0); 
-    Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(255, 255, 255);
-    Robot.pixy.setLamp((byte) 0, (byte) 1); 
-    Robot.pixy.setLED(0, 0, 0);
-    Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(0, 0, 0);
-    Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(255, 255, 255);
-    Robot.pixy.setLamp((byte) 1, (byte) 0);
-    Robot.pixy.setLED(0, 0, 0);
-    Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(0, 0, 0);
-    Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(255, 255, 255);
-    Robot.pixy.setLamp((byte) 0, (byte) 1);
-    Robot.pixy.setLED(0, 0, 0);
-    Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(0, 0, 0);
-    Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(255, 255, 255);
-    Robot.pixy.setLamp((byte) 1, (byte) 0);
-    Robot.pixy.setLED(0, 0, 0);
-    Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(0, 0, 0);
-    Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(255, 255, 255);
-    Robot.pixy.setLamp((byte) 0, (byte) 1);
-    Robot.pixy.setLED(0, 0, 0);
-    Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(0, 0, 0); 
-    Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(255, 255, 255);
-    Robot.pixy.setLamp((byte) 1, (byte) 0); 
-    Robot.pixy.setLED(0, 0, 0);
-    Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(0, 0, 0);
-    Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(255, 255, 255);
-    Robot.pixy.setLamp((byte) 0, (byte) 1);
-    Robot.pixy.setLED(0, 0, 0);
-    Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(0, 0, 0);
-    Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(255, 255, 255);
-    Robot.pixy.setLamp((byte) 1, (byte) 0);
-    Robot.pixy.setLED(0, 0, 0);
-    Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(0, 0, 0);
-    Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(255, 255, 255);
-    Robot.pixy.setLamp((byte) 0, (byte) 1);
-    Robot.pixy.setLED(0, 0, 0);
-    Robot.pixy.setLamp((byte) 0, (byte) 0);
+
+
+
+
     
     // OI needs to be last
     m_oi = new OI();

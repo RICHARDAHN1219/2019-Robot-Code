@@ -82,7 +82,7 @@ public class pixyLineFollow extends Command {
     // turn LED's red for robot enabled but pixy disabled
     Robot.pixy.setLED(0, 0, 0);
     Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(255, 0, 0);
+    Robot.pixy.setLED(0, 255, 0);
   }
 
   // Called when another command which requires one or more of the same
@@ -92,6 +92,6 @@ public class pixyLineFollow extends Command {
     // turn LED's red for robot enabled but pixy disabled
     Robot.pixy.setLED(0, 0, 0);
     Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(255, 0, 0);
+    Robot.pixy.setLED(0, 255, 0);
   }
 }

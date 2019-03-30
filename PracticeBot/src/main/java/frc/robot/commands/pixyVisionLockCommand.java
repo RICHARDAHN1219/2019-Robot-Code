@@ -17,22 +17,22 @@ import frc.robot.Robot;
 import io.github.pseudoresonance.pixy2api.Pixy2Line;
 import io.github.pseudoresonance.pixy2api.Pixy2Line.Vector;
 
-public class hatchVisionLockCommand extends Command {
+public class pixyVisionLockCommand extends Command {
 
-  byte features;
-  public boolean m_LimelightHasValidTarget = false;
-  public boolean m_LineFollowOnTarget = false;
+    byte features;
+    public boolean m_LimelightHasValidTarget = false;
+    public boolean m_LineFollowOnTarget = false;
 
-  public double STEER_K = 0.03; // how hard to turn toward the target
-  public double DRIVE_K = 0.06; // how hard to drive fwd toward the target
-  public double LF_STEER_K = 0.0175; // line follow kP
-  public double DESIRED_TARGET_AREA = 45.0; // Area of the target when the robot reaches the wall
-  public double MAX_DRIVE = 0.4; // Simple speed limit so we don't drive too fast
-  public double LF_TARGET_AREA = 12; // Start looking for line follow at this distance
-  public NetworkTable limelightTable;
-  public boolean closeEnoughtForLineFollow = false;
+    public double STEER_K = 0.045; // how hard to turn toward the target
+    public double DRIVE_K = 0.06; // how hard to drive fwd toward the target
+    public double LF_STEER_K = 0.0237; // line follow kP
+    public double DESIRED_TARGET_AREA = 45.0; // Area of the target when the robot reaches the wall
+    public double MAX_DRIVE = 0.4; // Simple speed limit so we don't drive too fast
+    public double LF_TARGET_AREA = 7.9769; // Start looking for line follow at this distance
+    public NetworkTable limelightTable;
+    public boolean closeEnoughtForLineFollow = true;
 
-  public hatchVisionLockCommand() {
+    public pixyVisionLockCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.m_drive);
@@ -135,7 +135,7 @@ public class hatchVisionLockCommand extends Command {
     }
 
     // drive_cmd is ignore, we use the driver's input
-    Robot.m_drive.arcadeDrive(-OI.driveController.getY(GenericHID.Hand.kLeft) * 0.6, -steer_cmd);
+    Robot.m_drive.arcadeDrive(-OI.driveController.getY(GenericHID.Hand.kLeft), -steer_cmd);
 
     SmartDashboard.putBoolean("HATCH_LOCK", m_LimelightHasValidTarget);
     SmartDashboard.putBoolean("LF_ONTARGET", m_LineFollowOnTarget);

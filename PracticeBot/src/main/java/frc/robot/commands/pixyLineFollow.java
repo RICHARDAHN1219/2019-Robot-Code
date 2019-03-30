@@ -53,8 +53,8 @@ public class pixyLineFollow extends Command {
 
           // how many pixels we're off center (-39,39)
           double off_center =  vector.getX1() - (78/2);
-
-          System.err.println("PIXY2 Theta: " + theta + "  Off Center:"  + off_center );
+          System.err.println( off_center);
+                    
         } else {
           System.err.println("!!!Vector length is 0 or less. Unsuccessful!!!");
         
@@ -78,17 +78,20 @@ public class pixyLineFollow extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    // turn off the LEDs
+
+    // turn LED's red for robot enabled but pixy disabled
     Robot.pixy.setLED(0, 0, 0);
     Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(255, 0, 0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    // turn off the LEDs
+    // turn LED's red for robot enabled but pixy disabled
     Robot.pixy.setLED(0, 0, 0);
     Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(255, 0, 0);
   }
 }

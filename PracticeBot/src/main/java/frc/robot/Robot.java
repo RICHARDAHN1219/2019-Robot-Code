@@ -18,6 +18,7 @@ import frc.robot.commands.armCargoShipCommand;
 import frc.robot.commands.armHighCommand;
 import frc.robot.commands.armLowCommand;
 import frc.robot.commands.armRocketCommand;
+import frc.robot.commands.pixyBlinkCommand;
 import frc.robot.subsystems.armSubsystem;
 import frc.robot.subsystems.backStiltDriveSubsystem;
 import frc.robot.subsystems.beakSubsystem;
@@ -121,6 +122,126 @@ public class Robot extends TimedRobot {
     m_frontStilt.init();
     pixy.init();
     CameraServer.getInstance().startAutomaticCapture();
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(255, 255, 255);
+    Robot.pixy.setLamp((byte) 0, (byte) 1);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0); 
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(255, 255, 255);
+    Robot.pixy.setLamp((byte) 1, (byte) 0); 
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(255, 255, 255);
+    Robot.pixy.setLamp((byte) 1, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(255, 255, 255);
+    Robot.pixy.setLamp((byte) 0, (byte) 1);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(255, 255, 255);
+    Robot.pixy.setLamp((byte) 1, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(255, 255, 255);
+    Robot.pixy.setLamp((byte) 0, (byte) 1);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0); 
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(255, 255, 255);
+    Robot.pixy.setLamp((byte) 1, (byte) 0); 
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(255, 255, 255);
+    Robot.pixy.setLamp((byte) 0, (byte) 1);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(255, 255, 255);
+    Robot.pixy.setLamp((byte) 1, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(255, 255, 255);
+    Robot.pixy.setLamp((byte) 0, (byte) 1);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(255, 255, 255);
+    Robot.pixy.setLamp((byte) 1, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0); 
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(255, 255, 255);
+    Robot.pixy.setLamp((byte) 0, (byte) 1); 
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(255, 255, 255);
+    Robot.pixy.setLamp((byte) 1, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(255, 255, 255);
+    Robot.pixy.setLamp((byte) 0, (byte) 1);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(255, 255, 255);
+    Robot.pixy.setLamp((byte) 1, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(255, 255, 255);
+    Robot.pixy.setLamp((byte) 0, (byte) 1);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0); 
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(255, 255, 255);
+    Robot.pixy.setLamp((byte) 1, (byte) 0); 
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(255, 255, 255);
+    Robot.pixy.setLamp((byte) 0, (byte) 1);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(255, 255, 255);
+    Robot.pixy.setLamp((byte) 1, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(255, 255, 255);
+    Robot.pixy.setLamp((byte) 0, (byte) 1);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
     
     // OI needs to be last
     m_oi = new OI();
@@ -160,6 +281,7 @@ public class Robot extends TimedRobot {
     //Robot.m_arm.printDebug("debug");
     //double pos = m_arm.armDrive.getSelectedSensorPosition();
     //System.out.println(pos);
+    Robot.pixy.setLED(255, 0, 0);
 
   }
 
@@ -209,6 +331,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    Robot.pixy.setLED(0, 255, 0);
 
   }
 
@@ -243,7 +366,7 @@ public class Robot extends TimedRobot {
     // System.out.println("Front Distance: " + front_ultrasonic.getRangeInches() + " inches");
     // }
     //loopcount++;
-    
+    //Robot.pixy.setLED(255, 0, 0);
   }
 
   /**

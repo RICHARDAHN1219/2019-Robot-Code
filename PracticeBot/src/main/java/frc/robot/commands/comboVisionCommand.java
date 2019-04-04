@@ -91,7 +91,7 @@ public class comboVisionCommand extends Command {
 
             // distance off of center, the pixy image is 78 pixels wide.
             // X1 is the X coordinate of top of the line vector
-            lf_off_center = vector.getX1() - 39;
+            lf_off_center = vector.getX0() - 39;
             lineFollow = true;
 
             // TODO: maybe the sign of lf_off_center is reversed? need to test.

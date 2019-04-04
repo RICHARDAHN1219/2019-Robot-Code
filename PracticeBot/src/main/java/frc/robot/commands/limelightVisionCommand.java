@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.OI;
 import frc.robot.Robot;
 
-public class hatchVisionLockCommand extends Command {
+public class limelightVisionCommand extends Command {
 
     public boolean m_LimelightHasValidTarget = false;
     private double m_LimelightDriveCommand = 0.0;
@@ -23,7 +23,7 @@ public class hatchVisionLockCommand extends Command {
     private boolean done = false;
 
 
-  public hatchVisionLockCommand() {
+  public limelightVisionCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.m_drive);

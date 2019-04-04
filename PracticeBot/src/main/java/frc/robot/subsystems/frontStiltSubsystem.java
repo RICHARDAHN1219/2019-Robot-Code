@@ -88,7 +88,7 @@ public class frontStiltSubsystem extends Subsystem {
     startPosition1 = frontStrut1.getSelectedSensorPosition();
     startPosition2 = frontStrut2.getSelectedSensorPosition();
 
-    _sb.append("FRONTSTRUT: start position1 ");
+    _sb.append("FRONTSTRUT: start position ");
     _sb.append(startPosition1);
     _sb.append(" start position2 ");
     _sb.append(startPosition2);

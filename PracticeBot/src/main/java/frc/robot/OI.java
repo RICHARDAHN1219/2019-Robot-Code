@@ -55,10 +55,11 @@ public class OI {
 
   // Driver
   Button shifterButton = new JoystickButton(driveController, RobotMap.LBumper);
-  Button comboButton = new JoystickButton(driveController, RobotMap.AButton);
-  //Button cargoVision = new JoystickButton(driveController, RobotMap.AButton);
   Button driveInvert = new JoystickButton(driveController, RobotMap.RBumper);
   Button driverArmDown = new JoystickButton(driveController, RobotMap.YButton);
+  Button limelightButton = new JoystickButton(driveController, RobotMap.XButton);
+  Button pixyButton = new JoystickButton(driveController, RobotMap.Bbutton);
+  Button comboButton = new JoystickButton(driveController, RobotMap.AButton);
   
   // Operator
   Button hatchPlacementButton = new JoystickButton(operatorController, RobotMap.LBumper);
@@ -84,10 +85,11 @@ public class OI {
     
     // Driver
     shifterButton.whileHeld(new shifterCommand(shifterSubsystem.Gears.HIGH_GEAR));
-    comboButton.whileHeld(new hatchVisionLockCommand());
-    //cargoVision.whileHeld(new fullAutoHatchVisionLockCommand());
     driveInvert.whenPressed(new driveInvertCommand());
     driverArmDown.whenPressed(new armLowCommand());
+    limelightButton.whileHeld(new limelightVisionCommand());
+    pixyButton.whileHeld(new pixyVisionCommand());
+    comboButton.whileHeld(new comboVisionCommand());
 
     // Operator
     hatchPlacementButton.toggleWhenPressed(new placeHatchLow());

@@ -30,6 +30,8 @@ import frc.robot.subsystems.backStiltSubsystem;
 import frc.robot.subsystems.frontStiltSubsystem;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Ultrasonic;
+import io.github.pseudoresonance.pixy2api.Pixy2;
+import io.github.pseudoresonance.pixy2api.links.SPILink;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -70,6 +72,7 @@ public class Robot extends TimedRobot {
   public static DoubleSolenoid ejectorSolenoidRight;
   PowerDistributionPanel PowerDistributionPanel = new PowerDistributionPanel(0);
   //public Ultrasonic front_ultrasonic = new Ultrasonic(RobotMap.ULTRASONIC_FRONT_PING, RobotMap.ULTRASONIC_FRONT_PING);
+  public static Pixy2 pixy = Pixy2.createInstance(new SPILink());
 
   //private int loopcount = 0;
 
@@ -116,7 +119,50 @@ public class Robot extends TimedRobot {
     m_arm.init();
     m_backStilt.init();
     m_frontStilt.init();
+    pixy.init();
     CameraServer.getInstance().startAutomaticCapture();
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(255, 255, 255);
+    Robot.pixy.setLamp((byte) 0, (byte) 1);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0); 
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(255, 255, 255);
+    Robot.pixy.setLamp((byte) 1, (byte) 0); 
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(255, 255, 255);
+    Robot.pixy.setLamp((byte) 1, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(255, 255, 255);
+    Robot.pixy.setLamp((byte) 0, (byte) 1);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(255, 255, 255);
+    Robot.pixy.setLamp((byte) 1, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(255, 255, 255);
+    Robot.pixy.setLamp((byte) 0, (byte) 1);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0); 
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(255, 255, 255);
+    Robot.pixy.setLamp((byte) 1, (byte) 0); 
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
     
     // OI needs to be last
     m_oi = new OI();
@@ -156,7 +202,7 @@ public class Robot extends TimedRobot {
     //Robot.m_arm.printDebug("debug");
     //double pos = m_arm.armDrive.getSelectedSensorPosition();
     //System.out.println(pos);
-
+    Robot.pixy.setLED(255, 0, 0);
   }
 
   /**
@@ -205,7 +251,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-
+    Robot.pixy.setLED(0, 255, 0);
   }
 
   /**
@@ -233,7 +279,7 @@ public class Robot extends TimedRobot {
     //m_encoder4 = driveSubsystem.neo4.getEncoder();
     //double averageDistance = m_encoder1.getPosition() + m_encoder2.getPosition() + m_encoder3.getPosition() +  m_encoder4.getPosition() / 4;
     //System.out.println(frontEncoder);
-    Robot.m_frontStilt.printDebug("debug");
+    //Robot.m_frontStilt.printDebug("debug");
 
     //if (loopcount % 60 == 0) {
       // System.out.println("Front Distance: " + front_ultrasonic.getRangeInches() + " inches");

@@ -60,6 +60,9 @@ public class comboVisionCommand extends Command {
     double drive_cmd = 0.0;
     double steer_cmd = 0.0;
 
+    Robot.pixy.setLED(255, 255, 255);
+    Robot.pixy.setLamp((byte) 1, (byte) 1);
+
     // are we doing line folow? so we an ignore the limelight
     boolean lineFollow = false;
 
@@ -135,7 +138,7 @@ public class comboVisionCommand extends Command {
     }
 
     // drive_cmd is ignore, we use the driver's input
-    Robot.m_drive.arcadeDrive(-OI.driveController.getY(GenericHID.Hand.kLeft), -steer_cmd);
+    Robot.m_drive.arcadeDrive(-OI.driveController.getY(GenericHID.Hand.kLeft) * 0.6, -steer_cmd);
 
     SmartDashboard.putBoolean("HATCH_LOCK", m_LimelightHasValidTarget);
     SmartDashboard.putBoolean("LF_ONTARGET", m_LineFollowOnTarget);

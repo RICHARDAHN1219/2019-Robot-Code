@@ -29,7 +29,7 @@ public class frontStiltSubsystem extends Subsystem {
   public TalonSRX frontStrut1 = new TalonSRX(RobotMap.FRONT_STRUT_1);
   public TalonSRX frontStrut2 = new TalonSRX(RobotMap.FRONT_STRUT_2);
   StringBuilder _sb = new StringBuilder();
-  private int startPosition1 = 0;
+  public int startPosition1 = 0;
   private int startPosition2 = 0;
   private int targetPosition1 = 0;
   private int targetPosition2 = 0;

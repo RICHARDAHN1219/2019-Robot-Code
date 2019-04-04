@@ -32,6 +32,14 @@ public class frontStiltSpeedCommand extends Command {
     //Robot.m_frontStilt.setFrontClimberSpeed(-OI.operatorController.getY(Hand.kLeft));
     double climbSpeed = -OI.operatorController.getY(Hand.kLeft);
     if (Math.abs(climbSpeed) > 0.1) {
+      /*if (climbSpeed > 0) {
+        if (Robot.m_frontStilt.frontStrut1.getSelectedSensorPosition() > Robot.m_frontStilt.startPosition1 + 50) {
+          Robot.m_frontStilt.setFrontClimberSpeed(0);
+        }
+      }
+      else {
+        Robot.m_frontStilt.setFrontClimberSpeed(climbSpeed);
+      }*/
       Robot.m_frontStilt.setFrontClimberSpeed(climbSpeed);
       holding = false;
     }

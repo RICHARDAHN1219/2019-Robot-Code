@@ -25,10 +25,10 @@ public class comboVisionCommand extends Command {
 
     public double STEER_K = 0.03; // how hard to turn toward the target
     public double DRIVE_K = 0.06; // how hard to drive fwd toward the target
-    public double LF_STEER_K = 0.018; // line follow kP
+    public double LF_STEER_K = 0.025; // line follow kP
     public double DESIRED_TARGET_AREA = 45.0; // Area of the target when the robot reaches the wall
     public double MAX_DRIVE = 0.4; // Simple speed limit so we don't drive too fast
-    public double LF_TARGET_AREA = 7.9769; // Start looking for line follow at this distance
+    public double LF_TARGET_AREA = 0; // Start looking for line follow at this distance
     public NetworkTable limelightTable;
     public boolean closeEnoughtForLineFollow = false;
 
@@ -91,7 +91,7 @@ public class comboVisionCommand extends Command {
 
             // distance off of center, the pixy image is 78 pixels wide.
             // X1 is the X coordinate of top of the line vector
-            lf_off_center = vector.getX0() - 39;
+            lf_off_center = vector.getX0() - 39 + 5;
             lineFollow = true;
 
             // TODO: maybe the sign of lf_off_center is reversed? need to test.

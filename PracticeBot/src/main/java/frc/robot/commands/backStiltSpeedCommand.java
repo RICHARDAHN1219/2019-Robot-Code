@@ -33,7 +33,14 @@ public class backStiltSpeedCommand extends Command {
     
     double climbSpeed = -OI.operatorController.getY(Hand.kRight);
     if (Math.abs(climbSpeed) > 0.1) {
-      Robot.m_backStilt.setBackClimberSpeed(climbSpeed);
+      if ((climbSpeed > 0 ) && 
+          (Robot.m_backStilt.backStrut.getSelectedSensorPosition() > Robot.m_backStilt.startPosition - 1500)) {
+          Robot.m_backStilt.setBackClimberSpeed(0);
+      }
+      else {
+        Robot.m_backStilt.setBackClimberSpeed(climbSpeed);
+      }
+      //Robot.m_frontStilt.setFrontClimberSpeed(climbSpeed);
       holding = false;
     }
     else if (!holding) {

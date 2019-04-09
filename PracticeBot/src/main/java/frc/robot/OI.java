@@ -88,7 +88,7 @@ public class OI {
     driveInvert.whenPressed(new driveInvertCommand());
     driverArmDown.whenPressed(new armLowCommand());
     limelightButton.whileHeld(new limelightVisionCommand());
-    //pixyButton.whileHeld(new pixyVisionCommand());
+    pixyButton.whileHeld(new pixyVisionCommand());
     comboButton.whileHeld(new comboVisionCommand());
 
     // Operator

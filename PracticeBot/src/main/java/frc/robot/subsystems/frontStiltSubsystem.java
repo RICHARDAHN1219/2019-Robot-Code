@@ -30,7 +30,7 @@ public class frontStiltSubsystem extends Subsystem {
   public TalonSRX frontStrut2 = new TalonSRX(RobotMap.FRONT_STRUT_2);
   StringBuilder _sb = new StringBuilder();
   public int startPosition1 = 0;
-  private int startPosition2 = 0;
+  public int startPosition2 = 0;
   private int targetPosition1 = 0;
   private int targetPosition2 = 0;
   private int kPIDLoopIdx = 0;
@@ -177,9 +177,20 @@ public class frontStiltSubsystem extends Subsystem {
    
   // Set the back stilt climb motor speed, input from [-1,1]
   public void setFrontClimberSpeed(double speed) {
-    frontStrut1.set(ControlMode.PercentOutput, speed);
+    if ((speed > 0 ) && 
+          (frontStrut1.getSelectedSensorPosition() > startPosition1 - 800)) {
+            frontStrut1.set(ControlMode.PercentOutput, 0);
+      }
+    else {
+      frontStrut1.set(ControlMode.PercentOutput, speed);
+    }
+    if ((speed > 0 ) && 
+      (frontStrut2.getSelectedSensorPosition() > startPosition2 - 800)) {
+        frontStrut2.set(ControlMode.PercentOutput, 0);
+      }
+    else {
     frontStrut2.set(ControlMode.PercentOutput, speed);
- 
+    }
     //printDebug("speed");
     //System.out.println("SET SPEED: " + speed); 
   }

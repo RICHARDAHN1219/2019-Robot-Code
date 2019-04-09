@@ -27,7 +27,7 @@ public class backStiltSubsystem extends Subsystem {
   // here. Call these from Commands.
   public TalonSRX backStrut = new TalonSRX(RobotMap.BACK_STRUT);
   StringBuilder _sb = new StringBuilder();
-  private int startPosition = 0;
+  public int startPosition = 0;
   private int targetPosition = 0;
   private int kPIDLoopIdx = 0;
   private int kTimeoutMs = 3;  // 30

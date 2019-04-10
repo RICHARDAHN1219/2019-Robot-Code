@@ -27,7 +27,7 @@ public class backStiltSubsystem extends Subsystem {
   // here. Call these from Commands.
   public TalonSRX backStrut = new TalonSRX(RobotMap.BACK_STRUT);
   StringBuilder _sb = new StringBuilder();
-  private int startPosition = 0;
+  public int startPosition = 0;
   private int targetPosition = 0;
   private int kPIDLoopIdx = 0;
   private int kTimeoutMs = 3;  // 30
@@ -35,7 +35,7 @@ public class backStiltSubsystem extends Subsystem {
   public double kI;
   public double kD;  // 1.0
   public double kF;
-  private int allowableError = 50;   // allowable error in encoder ticks
+  private int allowableError = 10;   // allowable error in encoder ticks
 
   @Override
   public void initDefaultCommand() {
@@ -71,7 +71,7 @@ public class backStiltSubsystem extends Subsystem {
      * Grab the 360 degree position of the MagEncoder's absolute position, and initially set the
      * relative sensor to match.
      */
-    startPosition = backStrut.getSensorCollection().getPulseWidthPosition();
+    startPosition = backStrut.getSelectedSensorPosition();
 
     _sb.append("BACKSTRUT: start position ");
     _sb.append(startPosition);
@@ -107,11 +107,11 @@ public class backStiltSubsystem extends Subsystem {
   }
 
   public int getPosition() {
-    return backStrut.getSensorCollection().getPulseWidthPosition();
+    return backStrut.getSelectedSensorPosition();
   }
 
   public void holdCurrentPosition() {
-    int currentPosition = backStrut.getSensorCollection().getPulseWidthPosition();
+    int currentPosition = backStrut.getSelectedSensorPosition();
     backStrut.setIntegralAccumulator(0.0);  // zero out the kI error accumulator
     backStrut.set(ControlMode.Position, currentPosition);
   }
@@ -132,7 +132,7 @@ public class backStiltSubsystem extends Subsystem {
    // Set the back stilt climb motor speed, input from [-1,1]
   public void setBackClimberSpeed(double speed) {
     backStrut.set(ControlMode.PercentOutput, speed);
-    printDebug("speed");
+    // printDebug("speed");
   }
 
   // debug the encoder positions and motor output for PID

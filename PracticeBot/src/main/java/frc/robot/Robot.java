@@ -7,6 +7,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -29,6 +30,8 @@ import frc.robot.subsystems.backStiltSubsystem;
 import frc.robot.subsystems.frontStiltSubsystem;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Ultrasonic;
+import io.github.pseudoresonance.pixy2api.Pixy2;
+import io.github.pseudoresonance.pixy2api.links.SPILink;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -65,11 +68,13 @@ public class Robot extends TimedRobot {
   //SendableChooser<Boolean> isCompBot = new SendableChooser<>();
   public static DoubleSolenoid beakSolenoid;
   public static DoubleSolenoid shifterSolenoid;
-  public static DoubleSolenoid ejectorSolenoid;
+  public static DoubleSolenoid ejectorSolenoidLeft;
+  public static DoubleSolenoid ejectorSolenoidRight;
   PowerDistributionPanel PowerDistributionPanel = new PowerDistributionPanel(0);
-  public Ultrasonic front_ultrasonic = new Ultrasonic(RobotMap.ULTRASONIC_FRONT_PING, RobotMap.ULTRASONIC_FRONT_PING);
+  //public Ultrasonic front_ultrasonic = new Ultrasonic(RobotMap.ULTRASONIC_FRONT_PING, RobotMap.ULTRASONIC_FRONT_PING);
+  public static Pixy2 pixy = Pixy2.createInstance(new SPILink());
 
-  private int loopcount = 0;
+  //private int loopcount = 0;
 
   /**
    * This function is run when the robot is first started up and should be used
@@ -84,19 +89,25 @@ public class Robot extends TimedRobot {
     //IS_COMP_BOT = isCompBot.getSelected();
 
     if (IS_COMP_BOT) {
+      //beakSolenoid = new DoubleSolenoid(0, 1);
+      //shifterSolenoid = new DoubleSolenoid(4, 5);
+      //ejectorSolenoidLeft = new DoubleSolenoid(6, 7);
+      //ejectorSolenoidRight = new DoubleSolenoid(2, 3);
       beakSolenoid = new DoubleSolenoid(6, 7);
       shifterSolenoid = new DoubleSolenoid(0, 1);
-      ejectorSolenoid = new DoubleSolenoid(4, 5);
+      ejectorSolenoidLeft = new DoubleSolenoid(4, 5);
+      ejectorSolenoidRight = new DoubleSolenoid(2, 3);
     } else {
       beakSolenoid = new DoubleSolenoid(0, 1);
-      shifterSolenoid = new DoubleSolenoid(2, 6);
-      ejectorSolenoid = new DoubleSolenoid(3, 7);
+      shifterSolenoid = new DoubleSolenoid(4, 5);
+      ejectorSolenoidLeft = new DoubleSolenoid(6, 7);
+      ejectorSolenoidRight = new DoubleSolenoid(2, 3);
     }
 
     m_intake = new cargoSubsystem();
     m_drive = new driveSubsystem();
     m_shifter = new shifterSubsystem();
-    limelight_zero = new limelightSubsystem("limelight-zero");
+    //limelight_zero = new limelightSubsystem("limelight-zero");
     limelight_one = new limelightSubsystem("limelight-one");
     m_arm = new armSubsystem();
     m_beak = new beakSubsystem();
@@ -108,6 +119,50 @@ public class Robot extends TimedRobot {
     m_arm.init();
     m_backStilt.init();
     m_frontStilt.init();
+    pixy.init();
+    CameraServer.getInstance().startAutomaticCapture();
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(255, 255, 255);
+    Robot.pixy.setLamp((byte) 0, (byte) 1);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0); 
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(255, 255, 255);
+    Robot.pixy.setLamp((byte) 1, (byte) 0); 
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(255, 255, 255);
+    Robot.pixy.setLamp((byte) 1, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(255, 255, 255);
+    Robot.pixy.setLamp((byte) 0, (byte) 1);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(255, 255, 255);
+    Robot.pixy.setLamp((byte) 1, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(255, 255, 255);
+    Robot.pixy.setLamp((byte) 0, (byte) 1);
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(0, 0, 0); 
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
+    Robot.pixy.setLED(255, 255, 255);
+    Robot.pixy.setLamp((byte) 1, (byte) 0); 
+    Robot.pixy.setLED(0, 0, 0);
+    Robot.pixy.setLamp((byte) 0, (byte) 0);
     
     // OI needs to be last
     m_oi = new OI();
@@ -147,7 +202,7 @@ public class Robot extends TimedRobot {
     //Robot.m_arm.printDebug("debug");
     //double pos = m_arm.armDrive.getSelectedSensorPosition();
     //System.out.println(pos);
-
+    Robot.pixy.setLED(255, 0, 0);
   }
 
   /**
@@ -196,7 +251,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-
+    Robot.pixy.setLED(0, 255, 0);
   }
 
   /**
@@ -226,11 +281,11 @@ public class Robot extends TimedRobot {
     //System.out.println(frontEncoder);
     //Robot.m_frontStilt.printDebug("debug");
 
-    if (loopcount % 60 == 0) {
+    //if (loopcount % 60 == 0) {
       // System.out.println("Front Distance: " + front_ultrasonic.getRangeInches() + " inches");
-    }
-    loopcount++;
-
+   // }
+    //loopcount++;
+    
   }
 
   /**

@@ -16,7 +16,7 @@ public class backStrutStartCommand extends backClimbPIDCommand {
     // eg. requires(chassis);
     
     // targetPosition, kP, kI, kD, kF
-    super(0, 0.4, 0.0, 0.0, 0.0);
+    super(0, 0.05, 0.00001, 0.0, 0.0);
     requires(Robot.m_backStilt);
     name = "backClimb";
   }

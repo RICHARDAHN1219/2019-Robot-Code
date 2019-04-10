@@ -12,8 +12,6 @@ import frc.robot.Robot;
 
 public class frontClimbPIDCommand extends Command {
   public int targetPosition = 0;
-  public int targetPosition1 = 0;
-  public int targetPosition2 = 0;
   public String name = "climbCommand";
   private double kP = 0.0;
   private double kI = 0.0;
@@ -52,7 +50,7 @@ public class frontClimbPIDCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_frontStilt.printDebug(name);
+    //Robot.m_frontStilt.printDebug(name);
   }
 
   // Make this return true when this Command no longer needs to run execute()

@@ -29,17 +29,24 @@ public class backStiltSpeedCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.m_backStilt.setBackClimberSpeed(-OI.operatorController.getY(Hand.kRight));
-    /*
-    double climbSpeed = -OI.climbController.getY(Hand.kRight);
+    //Robot.m_backStilt.setBackClimberSpeed(-OI.operatorController.getY(Hand.kRight));
+    
+    double climbSpeed = -OI.operatorController.getY(Hand.kRight);
     if (Math.abs(climbSpeed) > 0.1) {
-      Robot.m_backStilt.setBackClimberSpeed(climbSpeed);
+      if ((climbSpeed > 0 ) && 
+          (Robot.m_backStilt.backStrut.getSelectedSensorPosition() > Robot.m_backStilt.startPosition - 1500)) {
+          Robot.m_backStilt.setBackClimberSpeed(0);
+      }
+      else {
+        Robot.m_backStilt.setBackClimberSpeed(climbSpeed);
+      }
+      //Robot.m_frontStilt.setFrontClimberSpeed(climbSpeed);
       holding = false;
     }
     else if (!holding) {
       Robot.m_backStilt.holdCurrentPosition();
       holding = true;
-    }*/
+    }
   }
 
   // Make this return true when this Command no longer needs to run execute()

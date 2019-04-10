@@ -55,10 +55,11 @@ public class OI {
 
   // Driver
   Button shifterButton = new JoystickButton(driveController, RobotMap.LBumper);
-  Button comboButton = new JoystickButton(driveController, RobotMap.Bbutton);
-  Button cargoVision = new JoystickButton(driveController, RobotMap.AButton);
-  Button driveInvert = new JoystickButton(driveController, RobotMap.StartButton);
+  Button driveInvert = new JoystickButton(driveController, RobotMap.RBumper);
   Button driverArmDown = new JoystickButton(driveController, RobotMap.YButton);
+  Button limelightButton = new JoystickButton(driveController, RobotMap.XButton);
+  Button pixyButton = new JoystickButton(driveController, RobotMap.Bbutton);
+  Button comboButton = new JoystickButton(driveController, RobotMap.AButton);
   
   // Operator
   Button hatchPlacementButton = new JoystickButton(operatorController, RobotMap.LBumper);
@@ -67,6 +68,8 @@ public class OI {
   Button armCargoShipButton = new JoystickButton(operatorController, RobotMap.Bbutton);
   Button armHighButton = new JoystickButton(operatorController, RobotMap.YButton);
   Button armRocketButton = new JoystickButton(operatorController, RobotMap.XButton);
+  Button level2PIDClimb = new JoystickButton(operatorController, RobotMap.SelectButton);
+  Button level3PIDClimb = new JoystickButton(operatorController, RobotMap.StartButton);
 
   // Climb
   Button backClimbPIDButton = new JoystickButton(climbController, RobotMap.YButton);
@@ -82,10 +85,11 @@ public class OI {
     
     // Driver
     shifterButton.whileHeld(new shifterCommand(shifterSubsystem.Gears.HIGH_GEAR));
-    comboButton.whileHeld(new hatchVisionLockCommand());
-    cargoVision.whileHeld(new fullAutoHatchVisionLockCommand());
     driveInvert.whenPressed(new driveInvertCommand());
     driverArmDown.whenPressed(new armLowCommand());
+    limelightButton.whileHeld(new limelightVisionCommand());
+    pixyButton.whileHeld(new pixyVisionCommand());
+    comboButton.whileHeld(new comboVisionCommand());
 
     // Operator
     hatchPlacementButton.toggleWhenPressed(new placeHatchLow());
@@ -94,12 +98,13 @@ public class OI {
     armCargoShipButton.whenPressed(new armCargoShipCommand());
     armHighButton.whenPressed(new armHighCommand());
     armRocketButton.whenPressed(new armRocketCommand());
+    level2PIDClimb.whenPressed(new climbLevel2());
 
     //Climb
     backClimbPIDButton.whenPressed(new backStrutClimbCommand());
     backClimbStartPIDButton.whenPressed(new backStrutStartCommand());
     frontClimbPIDButton.whenPressed(new frontStrutClimb());
-    //frontClimbStartPIDButton.whenPressed(new frontStrutStartCommand());
+    frontClimbStartPIDButton.whenPressed(new frontStrutStartCommand());
     frontUpArmDownButton.whenPressed(new frontUpArmDown());
     level3Climb.whenPressed(new climbLevel3());
     climbArmDown.whenPressed(new armLowCommand());

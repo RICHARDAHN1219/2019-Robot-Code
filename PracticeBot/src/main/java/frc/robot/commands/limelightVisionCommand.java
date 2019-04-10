@@ -8,20 +8,22 @@
 package frc.robot.commands;
 
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.GenericHID.RumbleType;
+import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.OI;
 import frc.robot.Robot;
 
-public class fullAutoHatchVisionLockCommand extends Command {
+public class limelightVisionCommand extends Command {
 
     public boolean m_LimelightHasValidTarget = false;
     private double m_LimelightDriveCommand = 0.0;
     private double m_LimelightSteerCommand = 0.0;
+    private boolean done = false;
 
 
-  public fullAutoHatchVisionLockCommand() {
+  public limelightVisionCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.m_drive);
@@ -38,14 +40,23 @@ public class fullAutoHatchVisionLockCommand extends Command {
   @Override
   protected void execute() {
     // These numbers must be tuned for Comp Robot!  Be careful!  
-       final double STEER_K = 0.025;                    // how hard to turn toward the target
-       final double DRIVE_K = 0.075;                    // how hard to drive fwd toward the target
-       final double DESIRED_TARGET_AREA = 55.0;        // Area of the target when the robot reaches the wall
-       final double MAX_DRIVE = 0.5;                   // Simple speed limit so we don't drive too fast
+       final double STEER_K = 0.04;                    // how hard to turn toward the target
+       final double DRIVE_K = 0.03;                    // how hard to drive fwd toward the target
+       final double DESIRED_TARGET_AREA = 15.0;        // Area of the target when the robot reaches the wall
+       final double MAX_DRIVE = 0.3;                   // Simple speed limit so we don't drive too fast
 
        double tv = NetworkTableInstance.getDefault().getTable("limelight-one").getEntry("tv").getDouble(0);
        double tx = NetworkTableInstance.getDefault().getTable("limelight-one").getEntry("tx").getDouble(0);
        double ta = NetworkTableInstance.getDefault().getTable("limelight-one").getEntry("ta").getDouble(0);
+
+
+       
+      if (ta >= DESIRED_TARGET_AREA) {
+        done = true;
+      }
+      else {
+        done = false;
+      }
 
        if (tv < 1.0)
        {
@@ -56,9 +67,9 @@ public class fullAutoHatchVisionLockCommand extends Command {
          return;
        }
 
+
        m_LimelightHasValidTarget = true;
        //OI.driveController.setRumble(RumbleType.kLeftRumble, 1);
-       Robot.m_beak.hatchRetrieve();
        // Start with proportional steering
        double steer_cmd = tx * STEER_K;
        m_LimelightSteerCommand = steer_cmd;
@@ -72,9 +83,12 @@ public class fullAutoHatchVisionLockCommand extends Command {
          drive_cmd = MAX_DRIVE;
        }
        m_LimelightDriveCommand = drive_cmd;
-    
-       Robot.m_drive.arcadeDrive(m_LimelightDriveCommand, -m_LimelightSteerCommand * 0.3);
-     
+       if (done) {
+         Robot.m_drive.arcadeDrive(-OI.driveController.getY(GenericHID.Hand.kLeft), OI.driveController.getX(Hand.kRight));
+       }
+       else {
+        Robot.m_drive.arcadeDrive(-OI.driveController.getY(GenericHID.Hand.kLeft), -m_LimelightSteerCommand);
+       }
  }
 
   // Make this return true when this Command no longer needs to run execute()

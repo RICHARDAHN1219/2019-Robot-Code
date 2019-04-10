@@ -48,6 +48,10 @@ public class pixyVisionCommand extends Command {
 
     // save the limelight table for later
     limelightTable = NetworkTableInstance.getDefault().getTable("limelight-one");
+
+    // turn on pixy lights
+    Robot.pixy.setLED(255, 255, 255);
+    Robot.pixy.setLamp((byte) 1, (byte) 1);
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -60,9 +64,6 @@ public class pixyVisionCommand extends Command {
     double drive_cmd = 0.0;
     double steer_cmd = 0.0;
 
-    Robot.pixy.setLED(255, 255, 255);
-    Robot.pixy.setLamp((byte) 1, (byte) 1);
-
     // are we doing line folow? so we an ignore the limelight
     boolean lineFollow = false;
 
@@ -70,12 +71,6 @@ public class pixyVisionCommand extends Command {
     int lf_off_center = 0;
 
     if (ta >= LF_TARGET_AREA) {
-      if (!closeEnoughtForLineFollow) {
-        // Now that we're close enough, turn on the Pixy LED lights
-        Robot.pixy.setLED(255, 255, 255);
-        Robot.pixy.setLamp((byte) 1, (byte) 1);
-      }
-
       // robot is close enough to target to start looking for a line to follow
       closeEnoughtForLineFollow = true;
     }
@@ -91,10 +86,10 @@ public class pixyVisionCommand extends Command {
 
             // distance off of center, the pixy image is 78 pixels wide.
             // X1 is the X coordinate of top of the line vector
+            // The pixy is mounted upside down so we want X0 instead
             lf_off_center = vector.getX0() - 39 + 5;
             lineFollow = true;
 
-            // TODO: maybe the sign of lf_off_center is reversed? need to test.
             steer_cmd = LF_STEER_K * -lf_off_center;
 
             drive_cmd = 0.1; // go slow

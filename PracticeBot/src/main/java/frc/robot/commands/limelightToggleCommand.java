@@ -7,12 +7,10 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
 
-public class driveInvertCommand extends Command {
-  public driveInvertCommand() {
+public class limelightToggleCommand extends Command {
+  public limelightToggleCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -20,16 +18,6 @@ public class driveInvertCommand extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    if (Robot.driveInvert) {
-      System.out.println("Drive NOT inverted.");
-      Robot.driveInvert = false;
-      NetworkTableInstance.getDefault().getTable("limelight-one").getEntry("ledMode").setNumber(3);
-    }
-    else {
-      System.out.println("Drive INVERTED");
-      Robot.driveInvert = true;
-      NetworkTableInstance.getDefault().getTable("limelight-one").getEntry("ledMode").setNumber(1);
-    }
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -40,7 +28,7 @@ public class driveInvertCommand extends Command {
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    return true;
+    return false;
   }
 
   // Called once after isFinished returns true

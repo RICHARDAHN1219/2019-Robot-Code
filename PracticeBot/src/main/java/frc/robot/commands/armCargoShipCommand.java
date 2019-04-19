@@ -14,7 +14,7 @@ public class armCargoShipCommand extends armCommand {
     // eg. requires(chassis);
 
     // targetPosition, kP, kI, kD, kF
-    super(350, 0.4, 0.0005, 0.75, 0.0);
+    super(400, 0.4, 0.0005, 0.75, 0.0);
 
     name = "Middle";
   }

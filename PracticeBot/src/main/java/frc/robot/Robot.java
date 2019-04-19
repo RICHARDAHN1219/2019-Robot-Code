@@ -121,6 +121,7 @@ public class Robot extends TimedRobot {
     m_frontStilt.init();
     pixy.init();
     CameraServer.getInstance().startAutomaticCapture();
+    CameraServer.getInstance().startAutomaticCapture();
     Robot.pixy.setLED(0, 0, 0);
     Robot.pixy.setLamp((byte) 0, (byte) 0);
     Robot.pixy.setLED(255, 255, 255);

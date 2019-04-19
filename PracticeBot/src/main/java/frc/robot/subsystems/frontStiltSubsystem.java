@@ -52,7 +52,7 @@ public class frontStiltSubsystem extends Subsystem {
         kTimeoutMs);
     frontStrut2.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, kPIDLoopIdx,
         kTimeoutMs);
-
+        
     /* Ensure sensor is positive when output is positive */
     frontStrut1.setSensorPhase(false);
     frontStrut1.setInverted(true);
@@ -177,19 +177,36 @@ public class frontStiltSubsystem extends Subsystem {
    
   // Set the back stilt climb motor speed, input from [-1,1]
   public void setFrontClimberSpeed(double speed) {
+
+    int fs1_pos = frontStrut1.getSelectedSensorPosition();
+    int fs2_pos = frontStrut2.getSelectedSensorPosition();
+
+    int fs1_offset = fs1_pos - startPosition1;
+    int fs2_offset = fs2_pos - startPosition2;
+
+    int offset_diff = fs1_offset - fs2_offset;
+    double fs1_speed_k = 1.0;
+    double fs2_speed_k = 1.0;
+    if (offset_diff < 50) {
+      fs1_speed_k = 0.90;
+    }
+    else if (offset_diff > 50) {
+      fs2_speed_k = 0.90;
+    }
+
     if ((speed > 0 ) && 
-          (frontStrut1.getSelectedSensorPosition() > startPosition1 - 800)) {
+          (fs1_pos > startPosition1 - 800)) {
             frontStrut1.set(ControlMode.PercentOutput, 0);
       }
     else {
-      frontStrut1.set(ControlMode.PercentOutput, speed);
+      frontStrut1.set(ControlMode.PercentOutput, speed * fs1_speed_k);
     }
     if ((speed > 0 ) && 
-      (frontStrut2.getSelectedSensorPosition() > startPosition2 - 800)) {
+      (fs2_pos > startPosition2 - 800)) {
         frontStrut2.set(ControlMode.PercentOutput, 0);
       }
     else {
-    frontStrut2.set(ControlMode.PercentOutput, speed);
+    frontStrut2.set(ControlMode.PercentOutput, speed * fs2_speed_k);
     }
     //printDebug("speed");
     //System.out.println("SET SPEED: " + speed); 

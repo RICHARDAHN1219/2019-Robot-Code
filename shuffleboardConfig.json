@@ -10,14 +10,14 @@
         "hgap": 16.0,
         "vgap": 16.0,
         "tiles": {
-          "1,0": {
+          "0,0": {
             "size": [
-              3,
+              4,
               4
             ],
             "content": {
               "_type": "Camera Stream",
-              "_source0": "camera_server://USB Camera 0",
+              "_source0": "camera_server://USB Camera 1",
               "_title": "Camera Stream",
               "Crosshair/Show crosshair": true,
               "Crosshair/Crosshair color": "#00FF00FF",
@@ -25,8 +25,8 @@
               "Controls/Rotation": "NONE",
               "compression": 0.0,
               "fps": -1,
-              "imageWidth": -1,
-              "imageHeight": -1
+              "imageWidth": 0,
+              "imageHeight": 0
             }
           },
           "4,0": {

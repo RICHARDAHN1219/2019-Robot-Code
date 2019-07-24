@@ -16,7 +16,7 @@ public class armHighCommand extends armCommand {
     // eg. requires(chassis);
     
     // targetPosition, kP, kI, kD, kF
-    super(100, 0.4, 0.0003, 0.75, 0.0);
+    super(0, 0.4, 0.0003, 0.75, 0.0);
     requires(Robot.m_arm);
     name = "High";
   }

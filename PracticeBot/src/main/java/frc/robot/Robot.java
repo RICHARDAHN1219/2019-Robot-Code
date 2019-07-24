@@ -7,6 +7,8 @@
 
 package frc.robot;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoSink;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -59,6 +61,9 @@ public class Robot extends TimedRobot {
   public static backStiltSubsystem m_backStilt;
   public static backStiltDriveSubsystem m_backStiltDrive;
   public static frontStiltSubsystem m_frontStilt;
+  public static VideoSink cameraServer;
+  public static UsbCamera camera0;
+  public static UsbCamera camera1;
   //private CANEncoder m_encoder1;
   //private CANEncoder m_encoder2;
   //private CANEncoder m_encoder3;
@@ -120,51 +125,10 @@ public class Robot extends TimedRobot {
     m_backStilt.init();
     m_frontStilt.init();
     pixy.init();
-    CameraServer.getInstance().startAutomaticCapture();
-    CameraServer.getInstance().startAutomaticCapture();
-    Robot.pixy.setLED(0, 0, 0);
-    Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(255, 255, 255);
-    Robot.pixy.setLamp((byte) 0, (byte) 1);
-    Robot.pixy.setLED(0, 0, 0);
-    Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(0, 0, 0); 
-    Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(255, 255, 255);
-    Robot.pixy.setLamp((byte) 1, (byte) 0); 
-    Robot.pixy.setLED(0, 0, 0);
-    Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(0, 0, 0);
-    Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(255, 255, 255);
-    Robot.pixy.setLamp((byte) 1, (byte) 0);
-    Robot.pixy.setLED(0, 0, 0);
-    Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(0, 0, 0);
-    Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(255, 255, 255);
-    Robot.pixy.setLamp((byte) 0, (byte) 1);
-    Robot.pixy.setLED(0, 0, 0);
-    Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(0, 0, 0);
-    Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(255, 255, 255);
-    Robot.pixy.setLamp((byte) 1, (byte) 0);
-    Robot.pixy.setLED(0, 0, 0);
-    Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(0, 0, 0);
-    Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(255, 255, 255);
-    Robot.pixy.setLamp((byte) 0, (byte) 1);
-    Robot.pixy.setLED(0, 0, 0);
-    Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(0, 0, 0); 
-    Robot.pixy.setLamp((byte) 0, (byte) 0);
-    Robot.pixy.setLED(255, 255, 255);
-    Robot.pixy.setLamp((byte) 1, (byte) 0); 
-    Robot.pixy.setLED(0, 0, 0);
-    Robot.pixy.setLamp((byte) 0, (byte) 0);
-    
+    camera0 = CameraServer.getInstance().startAutomaticCapture(0);
+    camera1 = CameraServer.getInstance().startAutomaticCapture(1);
+    cameraServer = CameraServer.getInstance().getServer();
+    //cameraServer.setSource(camera1);
     // OI needs to be last
     m_oi = new OI();
 

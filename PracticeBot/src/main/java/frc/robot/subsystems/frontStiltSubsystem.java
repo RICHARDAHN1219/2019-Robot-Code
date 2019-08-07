@@ -143,6 +143,19 @@ public class frontStiltSubsystem extends Subsystem {
 
   }
 
+  public void levelClimb(int desiredPosition) {
+    targetPosition1 = startPosition1 - desiredPosition;
+    targetPosition2 = startPosition2 - desiredPosition;
+
+    //Find pitch and roll values from gyro.
+    //Find error for pitch and roll.
+    //Set 'input speed' for stilt motors based on previous values.
+    //Set P value for roll and pitch.
+    //Set left motor speed equal to input speed + (P roll value * roll error) + (P pitch value * pitch error).
+    //Set right motor speed equal to input speed - (P roll value * roll error) + (P pitch value * pitch error).
+    //Set back motor speed equal to input speed - (P pitch value * pitch error).
+    //Replace P values with smartdashboard values for P.
+  }
 
   public void holdCurrentPosition() {
     targetPosition1 = frontStrut1.getSelectedSensorPosition();

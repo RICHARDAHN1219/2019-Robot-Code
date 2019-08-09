@@ -15,6 +15,8 @@ import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.backStiltSpeedCommand;
 import frc.robot.commands.frontStiltSpeedCommand;
+import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.SPI;
 
 /**
  * armSubsystem controls the cargo collection arm's up and down movement.
@@ -40,6 +42,7 @@ public class frontStiltSubsystem extends Subsystem {
   public double kD;  // 1.0
   public double kF;
   private int allowableError = 50;   // allowable error in encoder ticks
+  private AHRS gyro = new AHRS(SPI.Port.kMXP);
 
   @Override
   public void initDefaultCommand() {
@@ -146,9 +149,21 @@ public class frontStiltSubsystem extends Subsystem {
   public void levelClimb(int desiredPosition) {
     targetPosition1 = startPosition1 - desiredPosition;
     targetPosition2 = startPosition2 - desiredPosition;
+    double desiredRoll = 0.0;
+    double desiredPitch = 0.0;
+    double kP_motorSpeed;
+    double kP_roll;  //Roll is front to back.
+    double kP_pitch; //Pitch is left to right.
+    double rollError = desiredRoll - gyro.getRoll();
+    double pitchError = desiredPitch - gyro.getPitch();
+    double motorSpeed1 = kP_motorSpeed * (targetPosition1 - frontStrut1.getSelectedSensorPosition());
+    double motorSpeed2 = kP_motorSpeed * (targetPosition2 - frontStrut2.getSelectedSensorPosition());
+    double motor1Speed = motorSpeed1 + kP_roll * rollError + kP_pitch * pitchError; 
+    double motor2Speed = motorSpeed2 + kP_roll * rollError - kP_pitch * pitchError;
 
-    //Insert pitch and roll values from gyro.
-    //Find error for pitch and roll (desired angle - roll/pitch angle).
+    //Insert pitch and roll values in degrees from gyro (gyro.getRoll() and gyro.getPitch()).
+    //Declare desired pitch and roll angle as 0 and 0 degrees.
+    //Declare error for pitch and roll (desired angle - roll/pitch angle).
     //Set 'input speed' for stilt motors based on previous values.
     //Set P value for roll and pitch.
     //Set left motor speed equal to input speed + (P roll value * roll error) + (P pitch value * pitch error).

@@ -14,6 +14,8 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.backStiltSpeedCommand;
+import edu.wpi.first.wpilibj.SPI;
+import com.kauailabs.navx.frc.AHRS;
 
 /**
  * armSubsystem controls the cargo collection arm's up and down movement.
@@ -36,6 +38,7 @@ public class backStiltSubsystem extends Subsystem {
   public double kD;  // 1.0
   public double kF;
   private int allowableError = 10;   // allowable error in encoder ticks
+  private AHRS gyro = new AHRS(SPI.Port.kMXP);
 
   @Override
   public void initDefaultCommand() {
@@ -104,6 +107,26 @@ public class backStiltSubsystem extends Subsystem {
     kTimeoutMs);
     backStrut.setIntegralAccumulator(0.0);  // zero out the kI error accumulator
     backStrut.set(ControlMode.Position, targetPosition);
+  }
+
+  public void levelClimb(int desiredPosition) {
+    targetPosition = startPosition - desiredPosition;
+    double desiredRoll = 0.0;
+    double kP_motorSpeed;
+    double kP_roll; //Roll is front to back.
+    double rollError = (desiredRoll - gyro.getRoll());
+    double motorSpeed = kP_motorSpeed * (targetPosition - backStrut.getSelectedSensorPosition());
+    double back_motor_speed = motorSpeed - kP_roll * rollError;
+
+    //Insert pitch and roll values in degrees from gyro (gyro.getRoll() and gyro.getPitch()).
+    //Declare desired pitch and roll angle as 0 and 0 degrees.
+    //Declare error for pitch and roll (desired angle - roll/pitch angle).
+    //Set 'input speed' for stilt motors based on previous values.
+    //Set P value for roll and pitch.
+    //Set left motor speed equal to input speed + (P roll value * roll error) + (P pitch value * pitch error).
+    //Set right motor speed equal to input speed - (P roll value * roll error) + (P pitch value * pitch error).
+    //Set back motor speed equal to input speed - (P pitch value * pitch error).
+    //Replace P values with smartdashboard values for P.
   }
 
   public int getPosition() {

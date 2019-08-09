@@ -147,8 +147,8 @@ public class frontStiltSubsystem extends Subsystem {
     targetPosition1 = startPosition1 - desiredPosition;
     targetPosition2 = startPosition2 - desiredPosition;
 
-    //Find pitch and roll values from gyro.
-    //Find error for pitch and roll.
+    //Insert pitch and roll values from gyro.
+    //Find error for pitch and roll (desired angle - roll/pitch angle).
     //Set 'input speed' for stilt motors based on previous values.
     //Set P value for roll and pitch.
     //Set left motor speed equal to input speed + (P roll value * roll error) + (P pitch value * pitch error).

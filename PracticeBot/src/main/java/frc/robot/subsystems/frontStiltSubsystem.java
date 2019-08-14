@@ -152,6 +152,8 @@ public class frontStiltSubsystem extends Subsystem {
   public void levelClimb(int desiredPosition) {
     targetPosition1 = startPosition1 - desiredPosition;
     targetPosition2 = startPosition2 - desiredPosition;
+    int fs1_pos = frontStrut1.getSelectedSensorPosition();
+    int fs2_pos = frontStrut2.getSelectedSensorPosition();
     double desiredRoll = 0.0;
     double desiredPitch = 0.0;
     double rollError = desiredRoll - gyro.getRoll();
@@ -160,6 +162,24 @@ public class frontStiltSubsystem extends Subsystem {
     double motorSpeed2 = kP_motorSpeed * (targetPosition2 - frontStrut2.getSelectedSensorPosition());
     double motor1Speed = motorSpeed1 + kP_roll * rollError + kP_pitch * pitchError; 
     double motor2Speed = motorSpeed2 + kP_roll * rollError - kP_pitch * pitchError;
+
+    // TODO: remove after testing!
+    double safety_margin = 0.2;    // Slow everything down until we test things
+    motor1Speed = motor1Speed * safety_margin;
+    motor2Speed = motor2Speed * safety_margin;
+
+    // Stop motors before they strip the gear rack pulling stilts up
+    if ((motor1Speed > 0) && (fs1_pos > startPosition1 - 800)) {
+      motor1Speed = 0.0;
+    } 
+    if ((motor2Speed > 0) && (fs2_pos > startPosition2 - 800)) {
+      motor2Speed = 0.0;
+    } 
+    // TODO: cut motor speed when near the top 
+
+    // Set motor speed
+    frontStrut1.set(ControlMode.PercentOutput, motor1Speed );
+    frontStrut2.set(ControlMode.PercentOutput, motor2Speed );
 
     //Insert pitch and roll values in degrees from gyro (gyro.getRoll() and gyro.getPitch()).
     //Declare desired pitch and roll angle as 0 and 0 degrees.
@@ -222,19 +242,16 @@ public class frontStiltSubsystem extends Subsystem {
       fs2_speed_k = 0.90;
     }
 
-    if ((speed > 0 ) && 
-          (fs1_pos > startPosition1 - 800)) {
-            frontStrut1.set(ControlMode.PercentOutput, 0);
-      }
-    else {
+    if ((speed > 0) && (fs1_pos > startPosition1 - 800)) {
+      frontStrut1.set(ControlMode.PercentOutput, 0);
+    } else {
       frontStrut1.set(ControlMode.PercentOutput, speed * fs1_speed_k);
     }
-    if ((speed > 0 ) && 
-      (fs2_pos > startPosition2 - 800)) {
-        frontStrut2.set(ControlMode.PercentOutput, 0);
-      }
-    else {
-    frontStrut2.set(ControlMode.PercentOutput, speed * fs2_speed_k);
+
+    if ((speed > 0) && (fs2_pos > startPosition2 - 800)) {
+      frontStrut2.set(ControlMode.PercentOutput, 0);
+    } else {
+      frontStrut2.set(ControlMode.PercentOutput, speed * fs2_speed_k);
     }
     //printDebug("speed");
     //System.out.println("SET SPEED: " + speed); 

@@ -43,6 +43,9 @@ public class frontStiltSubsystem extends Subsystem {
   public double kF;
   private int allowableError = 50;   // allowable error in encoder ticks
   private AHRS gyro = new AHRS(SPI.Port.kMXP);
+  public double kP_motorSpeed;
+  public double kP_roll;  //Roll is front to back.
+  public double kP_pitch; //Pitch is left to right.
 
   @Override
   public void initDefaultCommand() {
@@ -151,9 +154,6 @@ public class frontStiltSubsystem extends Subsystem {
     targetPosition2 = startPosition2 - desiredPosition;
     double desiredRoll = 0.0;
     double desiredPitch = 0.0;
-    double kP_motorSpeed;
-    double kP_roll;  //Roll is front to back.
-    double kP_pitch; //Pitch is left to right.
     double rollError = desiredRoll - gyro.getRoll();
     double pitchError = desiredPitch - gyro.getPitch();
     double motorSpeed1 = kP_motorSpeed * (targetPosition1 - frontStrut1.getSelectedSensorPosition());

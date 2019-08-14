@@ -39,6 +39,8 @@ public class backStiltSubsystem extends Subsystem {
   public double kF;
   private int allowableError = 10;   // allowable error in encoder ticks
   private AHRS gyro = new AHRS(SPI.Port.kMXP);
+  private double kP_roll;
+  private double kP_motorSpeed;
 
   @Override
   public void initDefaultCommand() {
@@ -112,8 +114,7 @@ public class backStiltSubsystem extends Subsystem {
   public void levelClimb(int desiredPosition) {
     targetPosition = startPosition - desiredPosition;
     double desiredRoll = 0.0;
-    double kP_motorSpeed;
-    double kP_roll; //Roll is front to back.
+    //Roll is front to back.
     double rollError = (desiredRoll - gyro.getRoll());
     double motorSpeed = kP_motorSpeed * (targetPosition - backStrut.getSelectedSensorPosition());
     double back_motor_speed = motorSpeed - kP_roll * rollError;

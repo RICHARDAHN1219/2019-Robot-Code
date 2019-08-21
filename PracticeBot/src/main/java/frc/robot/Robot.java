@@ -148,6 +148,10 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     //IS_COMP_BOT = isCompBot.getSelected();
+    SmartDashboard.putNumber("The Value of Front Stilt 1", m_frontStilt.frontStrut1.getSelectedSensorPosition());
+    SmartDashboard.putNumber("The Value of Front Stilt 2", m_frontStilt.frontStrut2.getSelectedSensorPosition());
+    SmartDashboard.putNumber("The Value of Back Stilt", m_backStilt.backStrut.getSelectedSensorPosition());
+
   }
 
   /**
@@ -155,6 +159,7 @@ public class Robot extends TimedRobot {
    * can use it to reset any subsystem information you want to clear when the
    * robot is disabled.
    */
+
   @Override
   public void disabledInit() {
   }

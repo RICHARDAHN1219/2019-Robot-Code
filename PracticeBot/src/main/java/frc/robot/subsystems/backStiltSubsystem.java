@@ -135,7 +135,19 @@ public class backStiltSubsystem extends Subsystem {
    
    // Set the back stilt climb motor speed, input from [-1,1]
   public void setBackClimberSpeed(double speed) {
-    backStrut.set(ControlMode.PercentOutput, speed);
+    int bs_pos = backStrut.getSelectedSensorPosition();
+    int bs_offset = bs_pos - startPosition;
+    
+    if ((speed > 0) && (bs_pos > startPosition -800)) {
+      backStrut.set(ControlMode.PercentOutput, 0);
+    }
+    else if ((speed < 0) && (bs_pos < startPosition - 16000)) {
+      backStrut.set(ControlMode.PercentOutput, 0);
+    }
+    else {
+      backStrut.set(ControlMode.PercentOutput, speed);
+    }
+    
     // printDebug("speed");
   }
 

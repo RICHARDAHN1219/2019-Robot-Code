@@ -190,27 +190,42 @@ public class frontStiltSubsystem extends Subsystem {
     int offset_diff = fs1_offset - fs2_offset;
     double fs1_speed_k = 1.0;
     double fs2_speed_k = 1.0;
-    if (offset_diff < 50) {
-      fs1_speed_k = 0.90;
+    if (speed < 0 ) {
+      if (offset_diff < 50) {
+        fs1_speed_k = 0.90;
+      }
+      else if (offset_diff > 50) {
+        fs2_speed_k = 0.90;
+      }
     }
-    else if (offset_diff > 50) {
-      fs2_speed_k = 0.90;
+    else {
+      if (offset_diff < 50) {
+        fs2_speed_k = 0.90;
+      }
+      else if (offset_diff > 50) {
+        fs1_speed_k = 0.90;
+      }
     }
 
-    if ((speed > 0 ) && 
-          (fs1_pos > startPosition1 - 800)) {
-            frontStrut1.set(ControlMode.PercentOutput, 0);
-      }
+    if ((speed > 0 ) && (fs1_pos > startPosition1 - 800)) {
+      frontStrut1.set(ControlMode.PercentOutput, 0);
+    }
+    else if ((speed < 0 ) && (fs1_pos < startPosition1 - 32100)) {
+      frontStrut1.set(ControlMode.PercentOutput, 0);
+    }
     else {
       frontStrut1.set(ControlMode.PercentOutput, speed * fs1_speed_k);
     }
-    if ((speed > 0 ) && 
-      (fs2_pos > startPosition2 - 800)) {
-        frontStrut2.set(ControlMode.PercentOutput, 0);
-      }
-    else {
-    frontStrut2.set(ControlMode.PercentOutput, speed * fs2_speed_k);
+    if ((speed > 0 ) && (fs2_pos > startPosition2 - 800)) {
+      frontStrut2.set(ControlMode.PercentOutput, 0);
     }
+    else if ((speed < 0 ) && (fs2_pos < startPosition2 - 31000)) {
+      frontStrut2.set(ControlMode.PercentOutput, 0);
+    }
+    else {
+      frontStrut2.set(ControlMode.PercentOutput, speed * fs2_speed_k);
+    }
+    
     //printDebug("speed");
     //System.out.println("SET SPEED: " + speed); 
   }

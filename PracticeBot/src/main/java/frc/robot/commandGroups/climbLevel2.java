@@ -15,7 +15,7 @@ public class climbLevel2 extends CommandGroup{
   public climbLevel2() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    addParallel(new frontClimbPIDCommand(12000, 0.4, 0.0, 0.0, 0.0));
-    addSequential(new backClimbPIDCommand(18000, 0.3, 0.0, 0.0, 0.0));
+    addParallel(new frontClimbPIDCommand(12200, 0.8, 0.0, 0.0, 0.0));
+    addSequential(new backClimbPIDCommand(5400, 0.6, 0.0, 0.0, 0.0));
   }
 }

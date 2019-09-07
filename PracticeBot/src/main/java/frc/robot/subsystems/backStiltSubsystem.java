@@ -14,6 +14,9 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.backStiltSpeedCommand;
+import frc.robot.commands.climbCommand;
+import frc.robot.commands.frontStiltSpeedCommand;
+import frc.robot.commands.autoClimbCommand;
 
 /**
  * armSubsystem controls the cargo collection arm's up and down movement.
@@ -40,7 +43,8 @@ public class backStiltSubsystem extends Subsystem {
   @Override
   public void initDefaultCommand() {
     // default to manual control
-    setDefaultCommand(new backStiltSpeedCommand());
+    setDefaultCommand(new autoClimbCommand());
+    //setDefaultCommand(new autoClimbCommand());
   }
 
   public void init() {

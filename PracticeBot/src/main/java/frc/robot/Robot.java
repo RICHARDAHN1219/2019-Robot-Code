@@ -20,6 +20,8 @@ import frc.robot.commands.armCargoShipCommand;
 import frc.robot.commands.armHighCommand;
 import frc.robot.commands.armLowCommand;
 import frc.robot.commands.armRocketCommand;
+import frc.robot.commands.autoClimbCommand;
+import frc.robot.commands.climbCommand;
 import frc.robot.subsystems.armSubsystem;
 import frc.robot.subsystems.backStiltDriveSubsystem;
 import frc.robot.subsystems.beakSubsystem;
@@ -34,6 +36,9 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Ultrasonic;
 import io.github.pseudoresonance.pixy2api.Pixy2;
 import io.github.pseudoresonance.pixy2api.links.SPILink;
+import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.SerialPort;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -46,6 +51,7 @@ public class Robot extends TimedRobot {
 
   public static boolean driveInvert = false;
   public static boolean IS_COMP_BOT = true;
+  public static boolean climbSwap = false;
 
 
   public static cargoSubsystem m_intake;
@@ -78,6 +84,7 @@ public class Robot extends TimedRobot {
   PowerDistributionPanel PowerDistributionPanel = new PowerDistributionPanel(0);
   //public Ultrasonic front_ultrasonic = new Ultrasonic(RobotMap.ULTRASONIC_FRONT_PING, RobotMap.ULTRASONIC_FRONT_PING);
   public static Pixy2 pixy = Pixy2.createInstance(new SPILink());
+  public static AHRS ahrs;
 
   //private int loopcount = 0;
 
@@ -131,6 +138,7 @@ public class Robot extends TimedRobot {
     //cameraServer.setSource(camera1);
     // OI needs to be last
     m_oi = new OI();
+    ahrs = new AHRS(SerialPort.Port.kMXP);
 
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
@@ -148,6 +156,12 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     //IS_COMP_BOT = isCompBot.getSelected();
+    double frontstilts = (m_frontStilt.frontStrut1.getSelectedSensorPosition() + m_frontStilt.frontStrut2.getSelectedSensorPosition()) / 2;
+    SmartDashboard.putNumber("front stilts", frontstilts);
+    double backstilt = m_backStilt.backStrut.getSelectedSensorPosition();
+    SmartDashboard.putNumber("back stilts", backstilt);
+    double yaw = ahrs.getYaw();
+    SmartDashboard.putNumber("yaw", yaw);
   }
 
   /**
@@ -238,14 +252,30 @@ public class Robot extends TimedRobot {
     else if (dPad == 270) {
       new armRocketCommand();
     }
+
+    /*double yaw = ahrs.getYaw();
+    double speed = -OI.climbController.getY(Hand.kLeft);
+    if (yaw > 2) {
+      m_backStilt.setBackClimberSpeed(speed * 0.7);
+      m_frontStilt.setFrontClimberSpeed(speed);
+    }
+    else if (yaw < 0) {
+      m_backStilt.setBackClimberSpeed(speed);
+      m_frontStilt.setFrontClimberSpeed(speed * 0.9);
+    }
+    else {
+      m_backStilt.setBackClimberSpeed(speed);
+      m_frontStilt.setFrontClimberSpeed(speed);
+    }*/
+    
+    
     //m_encoder1 = driveSubsystem.neo1.getEncoder();
     //m_encoder2 = driveSubsystem.neo2.getEncoder();
     //m_encoder3 = driveSubsystem.neo3.getEncoder();
     //m_encoder4 = driveSubsystem.neo4.getEncoder();
     //double averageDistance = m_encoder1.getPosition() + m_encoder2.getPosition() + m_encoder3.getPosition() +  m_encoder4.getPosition() / 4;
-    //System.out.println(frontEncoder);
+    //System.out.println();
     //Robot.m_frontStilt.printDebug("debug");
-
     //if (loopcount % 60 == 0) {
       // System.out.println("Front Distance: " + front_ultrasonic.getRangeInches() + " inches");
    // }

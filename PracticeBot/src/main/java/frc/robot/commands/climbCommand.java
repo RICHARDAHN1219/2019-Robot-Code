@@ -29,11 +29,10 @@ public class climbCommand extends Command {
   @Override
   protected void execute() {
     if (Robot.climbSwap) {
-      new frontStiltSpeedCommand();
-      new backStiltSpeedCommand();
+
     }
     else {
-     new autoClimbCommand(); 
+     
     }
   }
 

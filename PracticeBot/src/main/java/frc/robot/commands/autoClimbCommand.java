@@ -38,25 +38,19 @@ public class autoClimbCommand extends Command {
     double front_joy = -OI.operatorController.getY(Hand.kRight);
  
     double frontSpeed = speed;
-    double backSpeed = speed * 0.8;
+    double backSpeed = speed * 0.7;
 
     if (yaw > 1.5) {
       backSpeed = backSpeed * 0.9;
-      frontSpeed = speed;
+      frontSpeed = frontSpeed;
       //Robot.m_backStilt.setBackClimberSpeed(speed * 0.7);
       //Robot.m_frontStilt.setFrontClimberSpeed(speed);
     }
     else if (yaw < 0.5) {
-      backSpeed = speed;
-      frontSpeed = speed * 0.9;
+      backSpeed = backSpeed;
+      frontSpeed = frontSpeed * 0.9;
       // Robot.m_backStilt.setBackClimberSpeed(speed);
       // Robot.m_frontStilt.setFrontClimberSpeed(speed * 0.9);
-    }
-    else {
-      backSpeed = speed;
-      frontSpeed = speed;
-      //Robot.m_backStilt.setBackClimberSpeed(speed);
-      //Robot.m_frontStilt.setFrontClimberSpeed(speed);
     }
 
     if (Math.abs(front_joy) > 0.1) {

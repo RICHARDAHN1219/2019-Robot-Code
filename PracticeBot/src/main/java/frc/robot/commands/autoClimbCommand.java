@@ -38,24 +38,44 @@ public class autoClimbCommand extends Command {
     double front_joy = -OI.operatorController.getY(Hand.kRight);
  
     double frontSpeed = speed;
-    double backSpeed = speed * 0.7;
+    double backSpeed = speed * 0.80;
 
-    if (yaw > 1.5) {
-      backSpeed = backSpeed * 0.9;
-      frontSpeed = frontSpeed;
-      //Robot.m_backStilt.setBackClimberSpeed(speed * 0.7);
-      //Robot.m_frontStilt.setFrontClimberSpeed(speed);
-    }
-    else if (yaw < 0.5) {
-      backSpeed = backSpeed;
-      frontSpeed = frontSpeed * 0.9;
-      // Robot.m_backStilt.setBackClimberSpeed(speed);
-      // Robot.m_frontStilt.setFrontClimberSpeed(speed * 0.9);
-    }
-
-    if (Math.abs(front_joy) > 0.1) {
-        frontSpeed = front_joy;
+    if (speed < 0) {
+      if (yaw > 1.2) {
+        backSpeed = backSpeed * 0.9;
+        frontSpeed = frontSpeed;
+        //Robot.m_backStilt.setBackClimberSpeed(speed * 0.7);
+        //Robot.m_frontStilt.setFrontClimberSpeed(speed);
       }
+      else if (yaw < 0.8) {
+        backSpeed = backSpeed;
+        frontSpeed = frontSpeed * 0.8;
+        // Robot.m_backStilt.setBackClimberSpeed(speed);
+        // Robot.m_frontStilt.setFrontClimberSpeed(speed * 0.9);
+      }
+  
+      if (Math.abs(front_joy) > 0.1) {
+          frontSpeed = front_joy;
+        }
+    }
+    else {
+      if (yaw > 1.25) {
+        backSpeed = backSpeed;
+        frontSpeed = frontSpeed * 0.1;
+        //Robot.m_backStilt.setBackClimberSpeed(speed * 0.7);
+        //Robot.m_frontStilt.setFrontClimberSpeed(speed);
+      }
+      else if (yaw < 0.75) {
+        backSpeed = backSpeed * 0.1;
+        frontSpeed = frontSpeed;
+        // Robot.m_backStilt.setBackClimberSpeed(speed);
+        // Robot.m_frontStilt.setFrontClimberSpeed(speed * 0.9);
+      }
+  
+      if (Math.abs(front_joy) > 0.1) {
+          frontSpeed = front_joy;
+        }
+    }
   
     Robot.m_backStilt.setBackClimberSpeed(backSpeed);
     Robot.m_frontStilt.setFrontClimberSpeed(frontSpeed);

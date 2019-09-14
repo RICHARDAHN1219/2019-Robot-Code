@@ -100,6 +100,8 @@ public class Robot extends TimedRobot {
 
     //IS_COMP_BOT = isCompBot.getSelected();
 
+    
+
     if (IS_COMP_BOT) {
       //beakSolenoid = new DoubleSolenoid(0, 1);
       //shifterSolenoid = new DoubleSolenoid(4, 5);
@@ -139,7 +141,7 @@ public class Robot extends TimedRobot {
     // OI needs to be last
     m_oi = new OI();
     ahrs = new AHRS(SerialPort.Port.kMXP);
-
+    ahrs.zeroYaw();
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
   }
@@ -156,12 +158,15 @@ public class Robot extends TimedRobot {
   @Override
   public void robotPeriodic() {
     //IS_COMP_BOT = isCompBot.getSelected();
-    double frontstilts = (m_frontStilt.frontStrut1.getSelectedSensorPosition() + m_frontStilt.frontStrut2.getSelectedSensorPosition()) / 2;
-    SmartDashboard.putNumber("front stilts", frontstilts);
-    double backstilt = m_backStilt.backStrut.getSelectedSensorPosition();
+    double frontstilts1 = m_frontStilt.frontStrut1.getMotorOutputPercent();
+    SmartDashboard.putNumber("front stilt 1", frontstilts1);
+    double frontstilts2 = m_frontStilt.frontStrut2.getMotorOutputPercent();
+    SmartDashboard.putNumber("front stilt 1", frontstilts2);
+    double backstilt = m_backStilt.backStrut.getMotorOutputPercent();
     SmartDashboard.putNumber("back stilts", backstilt);
     double yaw = ahrs.getYaw();
     SmartDashboard.putNumber("yaw", yaw);
+    
   }
 
   /**

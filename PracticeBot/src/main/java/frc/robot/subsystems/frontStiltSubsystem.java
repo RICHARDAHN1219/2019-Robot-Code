@@ -37,9 +37,10 @@ public class frontStiltSubsystem extends Subsystem {
   private int targetPosition2 = 0;
   private int kPIDLoopIdx = 0;
   private int kTimeoutMs = 3;  // 30
-  public double kP;  // 0.15
+  // PID parameters below are set by the calling command, for example frontClimbPIDCommand.java
+  public double kP;
   public double kI;
-  public double kD;  // 1.0
+  public double kD;
   public double kF;
   private int allowableError = 50;   // allowable error in encoder ticks
 

@@ -138,7 +138,7 @@ public class comboVisionCommand extends Command {
     }
 
     // drive_cmd is ignore, we use the driver's input
-    Robot.m_drive.arcadeDrive(-OI.driveController.getY(GenericHID.Hand.kLeft) * 0.6, -steer_cmd);
+    Robot.m_drive.arcadeDrive(-OI.driveController.getY(GenericHID.Hand.kLeft) * 0.65, -steer_cmd);
 
     SmartDashboard.putBoolean("HATCH_LOCK", m_LimelightHasValidTarget);
     SmartDashboard.putBoolean("LF_ONTARGET", m_LineFollowOnTarget);

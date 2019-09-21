@@ -30,6 +30,8 @@ public class backStiltSubsystem extends Subsystem {
   // here. Call these from Commands.
   public TalonSRX backStrut = new TalonSRX(RobotMap.BACK_STRUT);
   StringBuilder _sb = new StringBuilder();
+  public boolean l2HABBackPos = false;
+  public boolean l3HABBackPos = false;
   public int startPosition = 0;
   private int targetPosition = 0;
   private int kPIDLoopIdx = 0;
@@ -38,7 +40,11 @@ public class backStiltSubsystem extends Subsystem {
   public double kI;
   public double kD;  // 1.0
   public double kF;
-  private int allowableError = 10;   // allowable error in encoder ticks
+  private int allowableError = 10; 
+  private int habLevelRange = 50;  // allowable error in encoder ticks
+  public static final int maxEncoderValue = 16000;
+  public static final int level2EncoderValue = -5572 + 177;
+  public static final int level3EncoderValue = -16040 + 177;   // allowable error in encoder ticks
 
   @Override
   public void initDefaultCommand() {
@@ -132,7 +138,25 @@ public class backStiltSubsystem extends Subsystem {
         return false;
     }
   }
+  public boolean l2HABBackPos() {
+    if (Math.abs(backStrut.getSelectedSensorPosition() - level2EncoderValue) <= habLevelRange)
+    {
+        return true;
+    }
+    else {
+        return false;
+    }
+  }
    
+  public boolean l3HABBackPos() {
+    if (Math.abs(backStrut.getSelectedSensorPosition() - level3EncoderValue) <= habLevelRange)
+    {
+        return true;
+    }
+    else {
+        return false;
+    }
+  }
    // Set the back stilt climb motor speed, input from [-1,1]
   public void setBackClimberSpeed(double speed) {
     int bs_pos = backStrut.getSelectedSensorPosition();
@@ -141,7 +165,7 @@ public class backStiltSubsystem extends Subsystem {
     if ((speed > 0) && (bs_pos > startPosition -800)) {
       backStrut.set(ControlMode.PercentOutput, 0);
     }
-    else if ((speed < 0) && (bs_pos < startPosition - 16000)) {
+    else if ((speed < 0) && (bs_pos < startPosition - maxEncoderValue)) {
       backStrut.set(ControlMode.PercentOutput, 0);
     }
     else {

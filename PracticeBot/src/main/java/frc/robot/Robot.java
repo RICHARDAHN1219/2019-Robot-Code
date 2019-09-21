@@ -144,6 +144,7 @@ public class Robot extends TimedRobot {
     ahrs.zeroYaw();
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
+
   }
 
   /**
@@ -161,11 +162,13 @@ public class Robot extends TimedRobot {
     double frontstilts1 = m_frontStilt.frontStrut1.getMotorOutputPercent();
     SmartDashboard.putNumber("front stilt 1", frontstilts1);
     double frontstilts2 = m_frontStilt.frontStrut2.getMotorOutputPercent();
-    SmartDashboard.putNumber("front stilt 1", frontstilts2);
+    SmartDashboard.putNumber("front stilt 2", frontstilts2);
     double backstilt = m_backStilt.backStrut.getMotorOutputPercent();
     SmartDashboard.putNumber("back stilts", backstilt);
     double yaw = ahrs.getYaw();
     SmartDashboard.putNumber("yaw", yaw);
+    
+   
     
   }
 
@@ -285,6 +288,10 @@ public class Robot extends TimedRobot {
       // System.out.println("Front Distance: " + front_ultrasonic.getRangeInches() + " inches");
    // }
     //loopcount++;
+    SmartDashboard.putBoolean("Back Level 2?", Robot.m_backStilt.l2HABBackPos());
+    SmartDashboard.putBoolean("Back Level 3?", Robot.m_backStilt.l3HABBackPos());
+    SmartDashboard.putBoolean("Front Level 2?", Robot.m_frontStilt.l2HABFrontPos());
+    SmartDashboard.putBoolean("Front Level 3?", Robot.m_frontStilt.l3HABFrontPos());
     
   }
 

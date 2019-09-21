@@ -30,6 +30,8 @@ public class frontStiltSubsystem extends Subsystem {
   // here. Call these from Commands.
   public TalonSRX frontStrut1 = new TalonSRX(RobotMap.FRONT_STRUT_1);
   public TalonSRX frontStrut2 = new TalonSRX(RobotMap.FRONT_STRUT_2);
+  public boolean l2HABFrontPos = false;
+  public boolean l3HABFrontPos = false;
   StringBuilder _sb = new StringBuilder();
   public int startPosition1 = 0;
   public int startPosition2 = 0;
@@ -42,7 +44,11 @@ public class frontStiltSubsystem extends Subsystem {
   public double kI;
   public double kD;
   public double kF;
-  private int allowableError = 50;   // allowable error in encoder ticks
+  private int allowableError = 50;
+  private int habLevelRange = 50; 
+  public static final int maxEncoderValue = 32100;
+  public static final int level2EncoderValue = 11934 + 247;
+  public static final int level3EncoderValue = 30193 + 247;   // allowable error in encoder ticks
 
   @Override
   public void initDefaultCommand() {
@@ -116,6 +122,7 @@ public class frontStiltSubsystem extends Subsystem {
   * Tell the arm motor to move to the given targetPosition. Target position is relative
   * to the start position when the robot turns on. Position is measured in encoder ticks.
   */
+
   public void setPosition(int desiredPosition) {
     targetPosition1 = startPosition1 - desiredPosition;
     targetPosition2 = startPosition2 - desiredPosition;
@@ -178,6 +185,27 @@ public class frontStiltSubsystem extends Subsystem {
         return false;
     }
   }
+  public boolean l2HABFrontPos() {
+    if ((Math.abs(frontStrut1.getSelectedSensorPosition() - level2EncoderValue) <= habLevelRange) &&
+        (Math.abs(frontStrut2.getSelectedSensorPosition() - level2EncoderValue) <= habLevelRange))
+    {
+        return true;
+    }
+    else {
+        return false;
+    }
+  }
+   
+  public boolean l3HABFrontPos() {
+    if ((Math.abs(frontStrut1.getSelectedSensorPosition() - level3EncoderValue) <= habLevelRange) &&
+        (Math.abs(frontStrut2.getSelectedSensorPosition() - level3EncoderValue) <= habLevelRange))
+    {
+        return true;
+    }
+    else {
+        return false;
+    }
+  }
    
   // Set the back stilt climb motor speed, input from [-1,1]
   public void setFrontClimberSpeed(double speed) {
@@ -220,7 +248,7 @@ public class frontStiltSubsystem extends Subsystem {
     if ((speed > 0 ) && (fs2_pos > startPosition2 - 800)) {
       frontStrut2.set(ControlMode.PercentOutput, 0);
     }
-    else if ((speed < 0 ) && (fs2_pos < startPosition2 - 31000)) {
+    else if ((speed < 0 ) && (fs2_pos < startPosition2 - 32100)) {
       frontStrut2.set(ControlMode.PercentOutput, 0);
     }
     else {

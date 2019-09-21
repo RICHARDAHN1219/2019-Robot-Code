@@ -8,8 +8,11 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import com.kauailabs.navx.frc.AHRS;
 import frc.robot.Robot;
+import frc.robot.subsystems.backStiltSubsystem;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.GenericHID.Hand;
 import frc.robot.OI;
@@ -79,7 +82,10 @@ public class autoClimbCommand extends Command {
   
     Robot.m_backStilt.setBackClimberSpeed(backSpeed);
     Robot.m_frontStilt.setFrontClimberSpeed(frontSpeed);
-   
+    SmartDashboard.putBoolean("Back Level 2?", Robot.m_backStilt.l2HABBackPos());
+    SmartDashboard.putBoolean("Back Level 3?", Robot.m_backStilt.l3HABBackPos());
+    SmartDashboard.putBoolean("Front Level 2?", Robot.m_frontStilt.l2HABFrontPos());
+    SmartDashboard.putBoolean("Front Level 3?", Robot.m_frontStilt.l3HABFrontPos());
 
     
     

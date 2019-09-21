@@ -24,10 +24,10 @@ public class limelightVisionCommand extends Command {
     public boolean m_LineFollowOnTarget = false;
 
     public double STEER_K = 0.03; // how hard to turn toward the target
-    public double DRIVE_K = 0.06; // how hard to drive fwd toward the target
+    public double DRIVE_K = 0.08; // how hard to drive fwd toward the target
     public double LF_STEER_K = 0.025; // line follow kP
     public double DESIRED_TARGET_AREA = 45.0; // Area of the target when the robot reaches the wall
-    public double MAX_DRIVE = 0.4; // Simple speed limit so we don't drive too fast
+    public double MAX_DRIVE = 0.6; // Simple speed limit so we don't drive too fast
     public double LF_TARGET_AREA = 0; // Start looking for line follow at this distance
     public NetworkTable limelightTable;
     public boolean closeEnoughtForLineFollow = false;
@@ -138,7 +138,7 @@ public class limelightVisionCommand extends Command {
     }
 
     // drive_cmd is ignore, we use the driver's input
-    Robot.m_drive.arcadeDrive(drive_cmd, -steer_cmd);
+    Robot.m_drive.arcadeDrive(-OI.driveController.getY(GenericHID.Hand.kLeft) * 0.8, -steer_cmd);
 
     SmartDashboard.putBoolean("HATCH_LOCK", m_LimelightHasValidTarget);
     SmartDashboard.putBoolean("LF_ONTARGET", m_LineFollowOnTarget);

@@ -42,7 +42,7 @@ public class backStiltSubsystem extends Subsystem {
   public double kF;
   private int allowableError = 10; 
   private int habLevelRange = 50;  // allowable error in encoder ticks
-  public static final int maxEncoderValue = 16000;
+  public int maxEncoderValue = 16500;//5500;
   public static final int level2EncoderValue = -5572 + 177;
   public static final int level3EncoderValue = -16040 + 177;   // allowable error in encoder ticks
 

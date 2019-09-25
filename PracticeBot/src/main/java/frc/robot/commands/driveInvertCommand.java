@@ -23,7 +23,7 @@ public class driveInvertCommand extends Command {
     if (Robot.driveInvert) {
       System.out.println("Drive NOT inverted.");
       Robot.driveInvert = false;
-      NetworkTableInstance.getDefault().getTable("limelight-one").getEntry("ledMode").setNumber(3);
+      NetworkTableInstance.getDefault().getTable("limelight-one").getEntry("ledMode").setNumber(0);
       //Robot.cameraServer.setSource(Robot.camera1);
     }
     else {

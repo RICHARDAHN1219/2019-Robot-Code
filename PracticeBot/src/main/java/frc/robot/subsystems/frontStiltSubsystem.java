@@ -46,7 +46,7 @@ public class frontStiltSubsystem extends Subsystem {
   public double kF;
   private int allowableError = 50;
   private int habLevelRange = 50; 
-  public static final int maxEncoderValue = 32100;
+  public int maxEncoderValue = 31100; //12200;
   public static final int level2EncoderValue = 11934 + 247;
   public static final int level3EncoderValue = 30193 + 247;   // allowable error in encoder ticks
 
@@ -239,7 +239,7 @@ public class frontStiltSubsystem extends Subsystem {
     if ((speed > 0 ) && (fs1_pos > startPosition1 - 800)) {
       frontStrut1.set(ControlMode.PercentOutput, 0);
     }
-    else if ((speed < 0 ) && (fs1_pos < startPosition1 - 32100)) {
+    else if ((speed < 0 ) && (fs1_pos < startPosition1 - maxEncoderValue)) {
       frontStrut1.set(ControlMode.PercentOutput, 0);
     }
     else {
@@ -248,7 +248,7 @@ public class frontStiltSubsystem extends Subsystem {
     if ((speed > 0 ) && (fs2_pos > startPosition2 - 800)) {
       frontStrut2.set(ControlMode.PercentOutput, 0);
     }
-    else if ((speed < 0 ) && (fs2_pos < startPosition2 - 32100)) {
+    else if ((speed < 0 ) && (fs2_pos < startPosition2 - maxEncoderValue)) {
       frontStrut2.set(ControlMode.PercentOutput, 0);
     }
     else {

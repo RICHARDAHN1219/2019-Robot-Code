@@ -167,8 +167,18 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("back stilts", backstilt);
     double yaw = ahrs.getYaw();
     SmartDashboard.putNumber("yaw", yaw);
-    
-   
+    SmartDashboard.putNumber("backstilt max", m_backStilt.maxEncoderValue);
+    SmartDashboard.putNumber("frontstilt max", m_frontStilt.maxEncoderValue);
+    SmartDashboard.putBoolean("climbchange", climbSwap);
+
+    if (climbSwap == true) {
+      m_backStilt.maxEncoderValue = 5500;
+      m_frontStilt.maxEncoderValue = 12200;
+    }
+    else {
+      m_backStilt.maxEncoderValue = 16500;
+      m_frontStilt.maxEncoderValue = 31100;
+    }
     
   }
 
@@ -190,6 +200,9 @@ public class Robot extends TimedRobot {
     //double pos = m_arm.armDrive.getSelectedSensorPosition();
     //System.out.println(pos);
     Robot.pixy.setLED(255, 0, 0);
+
+    
+
   }
 
   /**

@@ -45,7 +45,7 @@ public class autoClimbCommand extends Command {
 
     if (speed < 0) {
       if (yaw > 1.2) {
-        backSpeed = backSpeed * 0.9;
+        backSpeed = backSpeed * 0.8;
         frontSpeed = frontSpeed;
         //Robot.m_backStilt.setBackClimberSpeed(speed * 0.7);
         //Robot.m_frontStilt.setFrontClimberSpeed(speed);

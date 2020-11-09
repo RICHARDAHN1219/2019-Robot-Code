@@ -13,6 +13,9 @@ import frc.robot.OI;
 import frc.robot.Robot;
 
 public class driveCommand extends Command {
+
+  private double m_slowdown = 0.8;
+
   public driveCommand() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
@@ -27,23 +30,13 @@ public class driveCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    if (Robot.IS_COMP_BOT) {
-      if (Robot.driveInvert == false) {
-        Robot.m_drive.arcadeDrive(-OI.driveController.getY(Hand.kLeft), -OI.driveController.getX(Hand.kRight));
-      }
-      else {
-        Robot.m_drive.arcadeDrive(OI.driveController.getY(Hand.kLeft), -OI.driveController.getX(Hand.kRight));
-      }
+
+    if (Robot.driveInvert == false) {
+      Robot.m_drive.arcadeDrive(m_slowdown * OI.driveController.getY(Hand.kLeft), -OI.driveController.getX(Hand.kRight));
+    } else {
+      Robot.m_drive.arcadeDrive(m_slowdown * -OI.driveController.getY(Hand.kLeft), -OI.driveController.getX(Hand.kRight));
     }
-    
-    else {
-      if (Robot.driveInvert == false) {
-        Robot.m_drive.arcadeDrive(-OI.driveController.getY(Hand.kLeft), -OI.driveController.getX(Hand.kRight));
-      }
-      else {
-        Robot.m_drive.arcadeDrive(OI.driveController.getY(Hand.kLeft), -OI.driveController.getX(Hand.kRight));
-      }
-    }
+
   }
 
   // Make this return true when this Command no longer needs to run execute()

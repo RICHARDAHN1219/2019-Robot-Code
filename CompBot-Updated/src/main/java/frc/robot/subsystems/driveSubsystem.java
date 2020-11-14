@@ -24,13 +24,13 @@ import frc.robot.commands.driveCommand;
  */
 public class driveSubsystem extends Subsystem {
 
-  public static final CANSparkMax neo1 = new CANSparkMax(RobotMap.NEO_1, MotorType.kBrushless);
-  public static final CANSparkMax neo2 = new CANSparkMax(RobotMap.NEO_2, MotorType.kBrushless);
-  public static final CANSparkMax neo3 = new CANSparkMax(RobotMap.NEO_3, MotorType.kBrushless);
-  public static final CANSparkMax neo4 = new CANSparkMax(RobotMap.NEO_4, MotorType.kBrushless);
-  public static SpeedController leftSide;
-  public static SpeedController rightSide;
-  public static DifferentialDrive drive;
+  private CANSparkMax neo1 = new CANSparkMax(RobotMap.NEO_1, MotorType.kBrushless);
+  private CANSparkMax neo2 = new CANSparkMax(RobotMap.NEO_2, MotorType.kBrushless);
+  private CANSparkMax neo3 = new CANSparkMax(RobotMap.NEO_3, MotorType.kBrushless);
+  private CANSparkMax neo4 = new CANSparkMax(RobotMap.NEO_4, MotorType.kBrushless);
+  private SpeedController leftSide;
+  private SpeedController rightSide;
+  private DifferentialDrive drive;
 
   public driveSubsystem(){
     super("driveSubsystem");

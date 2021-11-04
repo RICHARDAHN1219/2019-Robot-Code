@@ -1,3 +1,5 @@
+A fork from the official Sonic Squirrels robot code for me to view my old work
+
 # 2019-Robot-Code
 
 There are several WPILib robot project homed in this repository. When trying to build one of them in VS Code, make sure to open only the directory for the robot you want to build. Otherwise, VS Code gets confused.
